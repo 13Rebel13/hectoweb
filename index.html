@@ -3,509 +3,278 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>HectoWeb — Sites web qui se voient. Et qui vendent.</title>
-<meta name="description" content="HectoWeb — agence web boutique en Suisse. Sites vitrine, e-commerce, SEO, GEO et animations sur-mesure. Design qui claque, performance qui convertit." />
-<meta name="theme-color" content="#0a0a0a" />
-<meta property="og:title" content="HectoWeb — Sites web qui claquent" />
-<meta property="og:description" content="Agence web boutique. Vitrine, e-commerce, SEO/GEO, animations sur-mesure." />
-<meta property="og:type" content="website" />
+<title>HectoWeb — Agence web boutique · Sites qui se voient, qui vendent</title>
+<meta name="description" content="HectoWeb, agence web boutique en Suisse. Sites vitrine, e-commerce, SEO, GEO, animations sur-mesure. Découvrez 8 univers visuels — un seul savoir-faire." />
+<meta name="theme-color" content="#0c0c0e" />
+<meta property="og:title" content="HectoWeb — Agence web boutique" />
+<meta property="og:description" content="Sites web sur-mesure. 8 univers visuels pour vous montrer ce qu'on sait faire." />
 <meta property="og:locale" content="fr_CH" />
+<meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Inter', 'system-ui', 'sans-serif'],
-          serif: ['Fraunces', 'serif'],
-          display: ['Space Grotesk', 'sans-serif'],
-          mono: ['Space Mono', 'monospace'],
-        },
-        colors: {
-          ecto: {
-            DEFAULT: '#7cf66f',
-            dim: '#56c249',
-            bright: '#a8ff9d',
-          },
-          night: '#0a0a0a',
-          cream: '#f3ede1',
-        },
-      },
-    },
-  };
-</script>
-<style>
-  html { scroll-behavior: smooth; }
-  body { overflow-x: hidden; background: #0a0a0a; color: #f3ede1; -webkit-font-smoothing: antialiased; }
-  ::selection { background: #7cf66f; color: #0a0a0a; }
-
-  /* Custom cursor halo */
-  .cursor-halo {
-    position: fixed; top: 0; left: 0; width: 24px; height: 24px;
-    border-radius: 50%; background: rgba(124,246,111,.5); mix-blend-mode: difference;
-    pointer-events: none; z-index: 9999; transform: translate(-50%,-50%);
-    transition: transform .25s cubic-bezier(.2,.9,.2,1), background .3s;
-  }
-
-  /* Section base */
-  section { position: relative; min-height: 100vh; }
-
-  /* Hero glow */
-  .hero-glow {
-    background: radial-gradient(circle at 50% 40%, rgba(124,246,111,.18), transparent 55%);
-  }
-  .text-stroke { -webkit-text-stroke: 1px #7cf66f; color: transparent; }
-
-  /* Memphis section */
-  .memphis-bg {
-    background: #ffd84a;
-    background-image:
-      radial-gradient(circle at 12% 28%, #ff4fa1 4px, transparent 5px),
-      radial-gradient(circle at 78% 80%, #4fc3ff 5px, transparent 6px),
-      radial-gradient(circle at 88% 18%, #1a1a1a 3px, transparent 4px);
-    background-size: 60px 60px, 90px 90px, 50px 50px;
-  }
-  .memphis-shape {
-    position: absolute; pointer-events: none;
-  }
-
-  /* Glass section */
-  .glass-bg {
-    background: linear-gradient(135deg, #2b0a4a 0%, #0a1a4a 50%, #0a4a4a 100%);
-    overflow: hidden;
-  }
-  .glass-card {
-    background: rgba(255,255,255,.08);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,.18);
-    box-shadow: 0 30px 90px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.2);
-  }
-  .neon-text {
-    text-shadow: 0 0 12px rgba(124,246,111,.7), 0 0 32px rgba(124,246,111,.4);
-  }
-  .glass-orb {
-    position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55;
-  }
-
-  /* Magazine section */
-  .mag-bg { background: #f3ede1; color: #1a1a1a; }
-  .mag-rule { height: 1px; background: #1a1a1a; }
-  .drop-cap::first-letter {
-    float: left; font-family: 'Fraunces', serif; font-size: 5.5rem;
-    line-height: .85; padding-right: .5rem; padding-top: .25rem; font-weight: 600;
-  }
-
-  /* 3D section */
-  .three-bg { background: #050505; overflow: hidden; }
-  #three-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-
-  /* Brutalist section */
-  .brut-bg { background: #ff5722; color: #0a0a0a; }
-  .brut-card {
-    background: #fff; border: 4px solid #0a0a0a;
-    box-shadow: 12px 12px 0 #0a0a0a;
-    transition: transform .2s, box-shadow .2s;
-  }
-  .brut-card:hover { transform: translate(-4px,-4px); box-shadow: 16px 16px 0 #0a0a0a; }
-
-  /* CTA section */
-  .cta-bg { background: #f3ede1; color: #0a0a0a; }
-  .cta-input {
-    background: transparent; border: 0; border-bottom: 1px solid #0a0a0a;
-    padding: .9rem .25rem; font-family: 'Inter', sans-serif; font-size: 1.05rem;
-    outline: 0; width: 100%; transition: border-color .2s;
-  }
-  .cta-input:focus { border-color: #56c249; }
-
-  /* Scroll indicator */
-  .scroll-dot {
-    width: 1px; height: 60px; background: linear-gradient(to bottom, #7cf66f, transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%,100% { transform: scaleY(.5); opacity: .4; }
-    50% { transform: scaleY(1); opacity: 1; }
-  }
-
-  /* Marquee */
-  .marquee { display: flex; gap: 3rem; animation: marquee 28s linear infinite; will-change: transform; }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* Nav */
-  .nav-link { position: relative; transition: color .25s; }
-  .nav-link::after {
-    content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 1px;
-    background: currentColor; transition: width .35s cubic-bezier(.2,.9,.2,1);
-  }
-  .nav-link:hover::after { width: 100%; }
-
-  /* Reveal animation */
-  .reveal { opacity: 0; transform: translateY(40px); }
-
-  /* Wordmark */
-  .wordmark {
-    font-family: 'Fraunces', serif; font-weight: 900; letter-spacing: -.04em;
-  }
-  .wordmark .h { color: #7cf66f; }
-
-  /* Responsive tweaks */
-  @media (max-width: 768px) {
-    .drop-cap::first-letter { font-size: 4rem; }
-    .cursor-halo { display: none; }
-  }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./assets/css/style.css" />
 </head>
-<body>
+<body data-theme="onyx">
 
-<div class="cursor-halo" id="cursor"></div>
-
-<!-- NAV (fixed, transparent, adapts color per section) -->
-<nav id="nav" class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex items-center justify-between mix-blend-difference text-cream">
-  <a href="#hero" class="wordmark text-2xl md:text-3xl"><span class="h">H</span>ectoWeb</a>
-  <ul class="hidden md:flex items-center gap-8 text-sm tracking-wide">
-    <li><a href="#vitrine" class="nav-link">Vitrine</a></li>
-    <li><a href="#ecom" class="nav-link">E-commerce</a></li>
-    <li><a href="#seo" class="nav-link">SEO / GEO</a></li>
-    <li><a href="#anim" class="nav-link">Animation</a></li>
-    <li><a href="#process" class="nav-link">Process</a></li>
-    <li><a href="#contact" class="nav-link font-semibold">Contact →</a></li>
+<!-- THEME SWITCHER (floating dock) -->
+<div class="theme-dock" aria-label="Sélecteur de thème">
+  <button class="dock-toggle" id="dock-toggle" aria-expanded="false" aria-controls="dock-list">
+    <span class="dock-toggle-label">Univers</span>
+    <span class="dock-toggle-name" id="current-theme-name">Onyx</span>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <ul class="dock-list" id="dock-list" role="listbox">
+    <li><button data-theme="onyx" data-name="Onyx" class="active"><span class="dock-swatch" style="background:linear-gradient(135deg,#0c0c0e 50%,#c9a96e 50%)"></span><span><b>Onyx</b><i>Noir profond · or doux</i></span></button></li>
+    <li><button data-theme="galerie" data-name="Galerie"><span class="dock-swatch" style="background:linear-gradient(135deg,#f4ece0 50%,#7a1f2b 50%)"></span><span><b>Galerie</b><i>Ivoire · bordeaux</i></span></button></li>
+    <li><button data-theme="foret" data-name="Forêt"><span class="dock-swatch" style="background:linear-gradient(135deg,#efe8d8 50%,#2d4a3a 50%)"></span><span><b>Forêt</b><i>Crème · vert sapin</i></span></button></li>
+    <li><button data-theme="cyan" data-name="Cyan"><span class="dock-swatch" style="background:linear-gradient(135deg,#16181d 50%,#6ee7d7 50%)"></span><span><b>Cyan</b><i>Anthracite · cyan</i></span></button></li>
+    <li><button data-theme="pastel" data-name="Pastel"><span class="dock-swatch" style="background:linear-gradient(135deg,#f5e4dd 50%,#b85c3a 50%)"></span><span><b>Pastel</b><i>Rose poudré · terracotta</i></span></button></li>
+    <li><button data-theme="acier" data-name="Acier"><span class="dock-swatch" style="background:linear-gradient(135deg,#2a2c30 50%,#c08456 50%)"></span><span><b>Acier</b><i>Gris fumée · cuivre</i></span></button></li>
+    <li><button data-theme="studio" data-name="Studio"><span class="dock-swatch" style="background:linear-gradient(135deg,#f7f6f2 50%,#0a0a0a 50%)"></span><span><b>Studio</b><i>Blanc cassé · noir</i></span></button></li>
+    <li><button data-theme="nuit" data-name="Nuit"><span class="dock-swatch" style="background:linear-gradient(135deg,#10162a 50%,#e8aab3 50%)"></span><span><b>Nuit</b><i>Bleu nuit · blush</i></span></button></li>
   </ul>
-  <a href="#contact" class="md:hidden text-sm font-semibold">Contact →</a>
-</nav>
-
-<!-- ============================================== -->
-<!-- HERO — DARK LUXE                                -->
-<!-- ============================================== -->
-<section id="hero" class="hero-glow flex items-center justify-center px-6 md:px-12 pt-32 pb-20">
-  <div class="absolute inset-0 pointer-events-none opacity-40">
-    <canvas id="hero-canvas"></canvas>
-  </div>
-  <div class="relative max-w-6xl mx-auto text-center">
-    <p class="reveal text-ecto text-sm md:text-base tracking-[.4em] uppercase mb-8 font-mono">Agence web boutique · Suisse</p>
-    <h1 class="reveal font-serif font-light text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-[.95] tracking-tight mb-8">
-      Des sites qui<br/>
-      <span class="italic font-normal">se voient.</span><br/>
-      Et qui <span class="text-stroke font-serif italic">vendent.</span>
-    </h1>
-    <p class="reveal max-w-2xl mx-auto text-lg md:text-xl text-cream/70 mb-12 leading-relaxed">
-      Vitrine, e-commerce, SEO, GEO, animations 3D — on construit des sites qui font tourner les têtes, et le chiffre d'affaires avec.
-    </p>
-    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="#vitrine" class="px-8 py-4 bg-ecto text-night font-semibold rounded-full hover:bg-ecto-bright transition-colors">Voir nos univers</a>
-      <a href="#contact" class="px-8 py-4 border border-cream/30 text-cream font-medium rounded-full hover:border-ecto hover:text-ecto transition-colors">Démarrer un projet</a>
-    </div>
-  </div>
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-    <span class="text-xs tracking-[.3em] uppercase text-cream/40 font-mono">Scroll</span>
-    <div class="scroll-dot"></div>
-  </div>
-</section>
-
-<!-- MARQUEE / TICKER between sections -->
-<div class="bg-night border-y border-cream/10 py-6 overflow-hidden">
-  <div class="marquee whitespace-nowrap text-3xl md:text-5xl font-serif italic text-cream/80">
-    <span>Vitrine ✦ E-commerce ✦ SEO ✦ GEO ✦ Animation 3D ✦ Branding ✦ Performance ✦ Vitrine ✦ E-commerce ✦ SEO ✦ GEO ✦ Animation 3D ✦ Branding ✦ Performance ✦</span>
-    <span aria-hidden="true">Vitrine ✦ E-commerce ✦ SEO ✦ GEO ✦ Animation 3D ✦ Branding ✦ Performance ✦ Vitrine ✦ E-commerce ✦ SEO ✦ GEO ✦ Animation 3D ✦ Branding ✦ Performance ✦</span>
-  </div>
 </div>
 
-<!-- ============================================== -->
-<!-- SECTION 1 — VITRINE (POP / MEMPHIS)             -->
-<!-- ============================================== -->
-<section id="vitrine" class="memphis-bg text-night py-32 px-6 md:px-12">
-  <!-- decorative shapes -->
-  <div class="memphis-shape" style="top:8%;left:4%;width:120px;height:120px;background:#ff4fa1;border-radius:50%;"></div>
-  <div class="memphis-shape" style="top:18%;right:8%;width:90px;height:90px;background:#0a0a0a;transform:rotate(45deg);"></div>
-  <div class="memphis-shape" style="bottom:12%;left:14%;width:160px;height:24px;background:#4fc3ff;transform:rotate(-12deg);"></div>
-  <div class="memphis-shape" style="bottom:18%;right:6%;width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:100px solid #7cf66f;"></div>
+<!-- NAV -->
+<nav class="nav">
+  <a class="brand" href="#top">
+    <span class="brand-h">H</span><span class="brand-rest">ectoWeb</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
 
-  <div class="relative max-w-7xl mx-auto">
-    <div class="flex items-end justify-between mb-16 flex-wrap gap-6">
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-inner">
+    <p class="kicker reveal">Agence web boutique · Suisse</p>
+    <h1 class="hero-title reveal">
+      Un site qui<br/>
+      <em>se voit.</em><br/>
+      Un site qui <em>vend.</em>
+    </h1>
+    <p class="hero-sub reveal">
+      Nous concevons des sites web sur-mesure, pensés pour la marque qu'ils habillent — et pour les humains qui les visitent.
+    </p>
+    <div class="hero-ctas reveal">
+      <a href="#realisations" class="btn btn-primary">Voir nos réalisations</a>
+      <a href="#contact" class="btn btn-ghost">Démarrer un projet</a>
+    </div>
+    <p class="hero-hint reveal">
+      <span class="hint-dot"></span>
+      Changez d'univers en haut à droite — c'est le même site, 8 identités. C'est ce qu'on sait faire.
+    </p>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+</header>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="section-head">
+    <p class="kicker reveal">01 — Services</p>
+    <h2 class="section-title reveal">Ce que nous savons faire,<br/><em>vraiment bien.</em></h2>
+  </div>
+
+  <div class="services-grid">
+    <article class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M4 5h16v3H4zM4 11h16v3H4zM4 17h10v3H4z" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <h3>Sites vitrine</h3>
+      <p>Des sites qui posent votre marque. Identité, ton de voix, photographies, animations soignées. Le genre de site qui fait dire "qui vous a fait ça&nbsp;?".</p>
+    </article>
+    <article class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M3 7h18l-2 11H5zM8 11v4M16 11v4M12 11v4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <h3>E-commerce</h3>
+      <p>Shopify, WooCommerce ou sur-mesure — choisi pour <em>votre</em> métier, pas pour nos habitudes. Multi-langue, multi-devise, TVA Suisse, TWINT, PostFinance.</p>
+    </article>
+    <article class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.5"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <h3>SEO &amp; GEO</h3>
+      <p>Visible sur Google. Cité par ChatGPT, Perplexity, Gemini. Le SEO classique ne suffit plus — on prépare votre site pour l'ère des IA génératives.</p>
+    </article>
+    <article class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 3v18M3 12h18M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="1.2" opacity=".5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <h3>Animation &amp; 3D</h3>
+      <p>GSAP, Three.js, micro-interactions. Le mouvement au service du récit — jamais gratuit, toujours intentionnel.</p>
+    </article>
+    <article class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M3 13h4l3-9 4 18 3-9h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <h3>Performance</h3>
+      <p>Core Web Vitals verts, LCP &lt; 1.5 s, score Lighthouse 100. La vitesse, c'est de la conversion qu'on ne perd pas.</p>
+    </article>
+    <article class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 3l9 5-9 5-9-5 9-5zM3 12l9 5 9-5M3 17l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <h3>Maintenance</h3>
+      <p>On reste à côté de vous. Mises à jour, sécurité, évolutions, nouvelles pages. Forfait clair, pas d'abonnement piège.</p>
+    </article>
+  </div>
+</section>
+
+<!-- REALISATIONS -->
+<section id="realisations" class="section section-alt">
+  <div class="section-head">
+    <p class="kicker reveal">02 — Réalisations</p>
+    <h2 class="section-title reveal">Quelques sites<br/><em>déjà signés.</em></h2>
+  </div>
+
+  <div class="works">
+    <article class="work reveal">
+      <div class="work-visual work-visual-1">
+        <div class="work-mockup"><span>HF</span></div>
+      </div>
+      <div class="work-meta">
+        <p class="kicker-sm">Vitrine · Custom car</p>
+        <h3>HF Customs</h3>
+        <p>Site vitrine pour atelier suisse de covering automobile haut de gamme. Galerie immersive, avant/après, prise de rendez-vous intégrée.</p>
+        <a href="#" class="work-link">Voir le site →</a>
+      </div>
+    </article>
+    <article class="work reveal">
+      <div class="work-visual work-visual-2">
+        <div class="work-mockup"><span>HV</span></div>
+      </div>
+      <div class="work-meta">
+        <p class="kicker-sm">Vitrine · Vitrerie</p>
+        <h3>HF Vitro</h3>
+        <p>Site éditorial pour un poseur de films pour vitres. Configurateur de devis, mise en avant des références B2B, SEO local Lausanne.</p>
+        <a href="#" class="work-link">Voir le site →</a>
+      </div>
+    </article>
+    <article class="work reveal">
+      <div class="work-visual work-visual-3">
+        <div class="work-mockup"><span>DTF</span></div>
+      </div>
+      <div class="work-meta">
+        <p class="kicker-sm">E-commerce · B2B textile</p>
+        <h3>DTF Swiss</h3>
+        <p>Boutique en ligne d'impressions DTF pour textile. Catalogue produit, upload de design, devis automatique, paiement TWINT &amp; carte.</p>
+        <a href="#" class="work-link">Voir le site →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="section">
+  <div class="section-head">
+    <p class="kicker reveal">03 — Process</p>
+    <h2 class="section-title reveal">Comment ça<br/><em>se passe ?</em></h2>
+  </div>
+
+  <ol class="process">
+    <li class="reveal">
+      <span class="step-num">01</span>
       <div>
-        <p class="font-mono text-sm tracking-[.4em] uppercase mb-4">01 — Vitrine</p>
-        <h2 class="font-display font-bold text-6xl md:text-8xl leading-none reveal">
-          Le coup de<br/>
-          <span class="bg-night text-ecto px-4 inline-block -rotate-1">poing visuel</span>
-        </h2>
+        <h3>Brief — 1 heure</h3>
+        <p>Une visio. On comprend votre métier, vos clients, ce qui vous bloque, ce qui vous distingue. Pas de questionnaire de 14 pages.</p>
       </div>
-      <p class="max-w-md text-lg leading-relaxed reveal">
-        Un site vitrine qui ne ressemble à <em>aucun autre</em>. Identité forte, animations rythmées, mobile irréprochable. Le genre de site qui fait dire <strong>« qui c'est qui vous a fait ça&nbsp;? »</strong>.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="reveal bg-white border-4 border-night p-8 rotate-1 hover:rotate-0 transition-transform">
-        <div class="text-5xl mb-4">◐</div>
-        <h3 class="font-display font-bold text-2xl mb-3">Identité</h3>
-        <p class="leading-relaxed">Wordmark, palette, typo, ton de voix. On pose les fondations qui font qu'on vous reconnaît au premier coup d'œil.</p>
-      </div>
-      <div class="reveal bg-night text-cream p-8 -rotate-1 hover:rotate-0 transition-transform">
-        <div class="text-5xl mb-4 text-ecto">▲</div>
-        <h3 class="font-display font-bold text-2xl mb-3">Animations</h3>
-        <p class="leading-relaxed">GSAP, scroll, micro-interactions. Le mouvement qui guide le regard et donne de la vie sans faire bling-bling.</p>
-      </div>
-      <div class="reveal bg-[#ff4fa1] text-white border-4 border-night p-8 rotate-1 hover:rotate-0 transition-transform">
-        <div class="text-5xl mb-4">●</div>
-        <h3 class="font-display font-bold text-2xl mb-3">Responsive</h3>
-        <p class="leading-relaxed">Mobile-first, vraiment. 80 % de vos visiteurs sont sur leur téléphone. On code pour eux d'abord.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================== -->
-<!-- SECTION 2 — E-COMMERCE (GLASS / NÉON)           -->
-<!-- ============================================== -->
-<section id="ecom" class="glass-bg text-cream py-32 px-6 md:px-12">
-  <div class="glass-orb" style="top:-100px;left:-100px;width:400px;height:400px;background:#7cf66f;"></div>
-  <div class="glass-orb" style="bottom:-150px;right:-150px;width:500px;height:500px;background:#4fc3ff;"></div>
-  <div class="glass-orb" style="top:40%;left:50%;width:300px;height:300px;background:#ff4fa1;opacity:.3;"></div>
-
-  <div class="relative max-w-7xl mx-auto">
-    <div class="text-center mb-20">
-      <p class="font-mono text-sm tracking-[.4em] uppercase mb-4 text-ecto">02 — E-commerce</p>
-      <h2 class="font-serif font-light text-6xl md:text-8xl leading-tight reveal neon-text">
-        Vendre <em class="italic">en ligne</em>,<br/>
-        sans compromis.
-      </h2>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-8 mb-16">
-      <div class="glass-card reveal rounded-3xl p-10">
-        <h3 class="font-serif text-3xl mb-4">Shopify · WooCommerce · sur-mesure</h3>
-        <p class="text-cream/80 leading-relaxed mb-6">Plate-forme choisie selon <em>votre</em> métier, pas selon nos habitudes. Catalogue 10 ou 10 000 références, multi-langue, multi-devise, TVA Suisse.</p>
-        <div class="flex gap-2 flex-wrap">
-          <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-mono">Shopify</span>
-          <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-mono">Woo</span>
-          <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-mono">Stripe</span>
-          <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-mono">PostFinance</span>
-          <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-mono">TWINT</span>
-        </div>
-      </div>
-      <div class="glass-card reveal rounded-3xl p-10">
-        <h3 class="font-serif text-3xl mb-4">Conversion d'abord</h3>
-        <p class="text-cream/80 leading-relaxed mb-6">Tunnel d'achat optimisé, fiches produits qui vendent, panier intelligent, relance abandon. On mesure tout, on améliore tout.</p>
-        <div class="grid grid-cols-3 gap-4 text-center pt-4 border-t border-white/10">
-          <div><div class="text-3xl font-serif text-ecto">+34%</div><div class="text-xs text-cream/60 mt-1">conversion moy.</div></div>
-          <div><div class="text-3xl font-serif text-ecto">&lt;1.5s</div><div class="text-xs text-cream/60 mt-1">LCP cible</div></div>
-          <div><div class="text-3xl font-serif text-ecto">100/100</div><div class="text-xs text-cream/60 mt-1">Lighthouse</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================== -->
-<!-- SECTION 3 — SEO / GEO (ÉDITORIAL MAGAZINE)       -->
-<!-- ============================================== -->
-<section id="seo" class="mag-bg py-32 px-6 md:px-12">
-  <div class="max-w-6xl mx-auto">
-    <div class="mag-rule mb-6"></div>
-    <div class="flex items-baseline justify-between mb-12 flex-wrap gap-4">
-      <p class="font-mono text-xs tracking-[.4em] uppercase">03 — SEO &amp; GEO</p>
-      <p class="font-mono text-xs tracking-[.3em] uppercase">N° 03 · Mai 2026</p>
-    </div>
-
-    <h2 class="reveal font-serif text-6xl md:text-8xl leading-[.9] mb-12 tracking-tight">
-      Trouvé sur Google.<br/>
-      <em class="italic font-light">Cité par ChatGPT.</em><br/>
-      Recommandé par Perplexity.
-    </h2>
-
-    <div class="mag-rule mb-12"></div>
-
-    <div class="grid md:grid-cols-12 gap-10 mb-16">
-      <div class="md:col-span-3">
-        <p class="font-mono text-xs tracking-[.3em] uppercase mb-3 text-night/60">Le contexte</p>
-        <p class="font-serif text-2xl leading-tight italic">Le SEO classique ne suffit plus. Les LLM réécrivent la donne.</p>
-      </div>
-      <div class="md:col-span-9">
-        <p class="drop-cap text-lg leading-relaxed mb-6">
-          En 2026, vos prospects ne tapent plus seulement « plombier Lausanne » dans Google. Ils demandent à ChatGPT « quel plombier fiable à Lausanne ? ». Si votre site n'est pas <em>structuré pour être lu par une IA</em> — schema.org propre, contenu factuel, autorité démontrée — vous êtes invisible dans la moitié des recherches qui comptent.
-        </p>
-        <p class="text-lg leading-relaxed">
-          C'est ce qu'on appelle le <strong>GEO</strong> (Generative Engine Optimization). C'est l'extension naturelle du SEO, mais avec ses propres règles. Et on les maîtrise — parce qu'on les teste tous les jours sur nos propres sites.
-        </p>
-      </div>
-    </div>
-
-    <div class="mag-rule mb-12"></div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="reveal">
-        <p class="font-mono text-xs tracking-[.3em] uppercase mb-3 text-night/60">→ SEO technique</p>
-        <h3 class="font-serif text-2xl mb-3">Core Web Vitals verts</h3>
-        <p class="leading-relaxed text-night/80">LCP, INP, CLS — performance brute mesurable. Indexation propre, sitemaps, robots.txt, hreflang multi-langue.</p>
-      </div>
-      <div class="reveal">
-        <p class="font-mono text-xs tracking-[.3em] uppercase mb-3 text-night/60">→ GEO</p>
-        <h3 class="font-serif text-2xl mb-3">Structuré pour les IA</h3>
-        <p class="leading-relaxed text-night/80">Schema.org riche, FAQ extractibles, autorité topique, citations croisées. Apparaître dans les réponses de ChatGPT, Perplexity, Gemini.</p>
-      </div>
-      <div class="reveal">
-        <p class="font-mono text-xs tracking-[.3em] uppercase mb-3 text-night/60">→ Contenu</p>
-        <h3 class="font-serif text-2xl mb-3">Qui répond aux vraies questions</h3>
-        <p class="leading-relaxed text-night/80">On écrit les pages que vos clients cherchent à lire — pas celles qu'on aimerait écrire. Recherche d'intentions, mots-clés longue traîne, ton humain.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================== -->
-<!-- SECTION 4 — ANIMATION / 3D                       -->
-<!-- ============================================== -->
-<section id="anim" class="three-bg text-cream py-32 px-6 md:px-12">
-  <canvas id="three-canvas"></canvas>
-  <div class="relative max-w-6xl mx-auto">
-    <p class="font-mono text-sm tracking-[.4em] uppercase mb-4 text-ecto">04 — Animation &amp; 3D</p>
-    <h2 class="reveal font-serif font-light text-6xl md:text-8xl leading-tight mb-12 max-w-4xl">
-      Quand le mouvement<br/>
-      <em class="italic">devient</em> l'identité.
-    </h2>
-    <div class="grid md:grid-cols-2 gap-8 max-w-4xl">
-      <div class="reveal">
-        <p class="text-lg leading-relaxed text-cream/80">
-          Three.js, WebGL, shaders, particules. On code des univers 3D qui tournent à 60 FPS sur mobile — pas des gadgets, des <em>expériences</em> qui ancrent votre marque dans la mémoire du visiteur.
-        </p>
-      </div>
-      <div class="reveal">
-        <p class="text-lg leading-relaxed text-cream/80">
-          GSAP, Lenis, scroll triggers. L'animation au service du récit : on guide le regard, on rythme la lecture, on récompense l'exploration. Jamais gratuit.
-        </p>
-      </div>
-    </div>
-    <div class="mt-20 text-center reveal">
-      <p class="font-mono text-xs tracking-[.3em] uppercase text-cream/40">Cette section tourne en Three.js. En direct. Dans votre navigateur.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================== -->
-<!-- SECTION 5 — PROCESS (BRUTALIST)                 -->
-<!-- ============================================== -->
-<section id="process" class="brut-bg py-32 px-6 md:px-12">
-  <div class="max-w-7xl mx-auto">
-    <p class="font-mono text-sm tracking-[.4em] uppercase mb-4">// 05 PROCESS</p>
-    <h2 class="reveal font-mono font-bold text-6xl md:text-8xl leading-none mb-16 uppercase">
-      Comment<br/>on bosse.
-    </h2>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="brut-card reveal p-8">
-        <div class="font-mono text-6xl font-bold mb-4">01</div>
-        <h3 class="font-display font-bold text-2xl mb-3 uppercase">Brief</h3>
-        <p class="leading-relaxed">Une heure de visio. On comprend votre métier, vos clients, ce qui vous fait chier dans votre site actuel.</p>
-      </div>
-      <div class="brut-card reveal p-8">
-        <div class="font-mono text-6xl font-bold mb-4">02</div>
-        <h3 class="font-display font-bold text-2xl mb-3 uppercase">Maquette</h3>
-        <p class="leading-relaxed">Pas un Figma de 80 pages. Un <em>prototype</em> cliquable en 5 jours. On itère vite, on tranche.</p>
-      </div>
-      <div class="brut-card reveal p-8">
-        <div class="font-mono text-6xl font-bold mb-4">03</div>
-        <h3 class="font-display font-bold text-2xl mb-3 uppercase">Build</h3>
-        <p class="leading-relaxed">Code propre, perf au cordeau, SEO/GEO câblés dès le jour 1. Pas d'ajout après-coup.</p>
-      </div>
-      <div class="brut-card reveal p-8">
-        <div class="font-mono text-6xl font-bold mb-4">04</div>
-        <h3 class="font-display font-bold text-2xl mb-3 uppercase">Live</h3>
-        <p class="leading-relaxed">Mise en ligne, formation 1 h, et on reste là si vous nous voulez. Maintenance optionnelle.</p>
-      </div>
-    </div>
-
-    <div class="mt-16 inline-block">
-      <div class="bg-night text-ecto font-mono p-6 text-xl">
-        $ délai moyen : 4 à 8 semaines<br/>
-        $ tarif : transparent, devis fixe<br/>
-        $ <span class="animate-pulse">_</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================== -->
-<!-- SECTION 6 — CTA / CONTACT (MINIMALISTE)         -->
-<!-- ============================================== -->
-<section id="contact" class="cta-bg py-32 px-6 md:px-12">
-  <div class="max-w-4xl mx-auto">
-    <p class="font-mono text-sm tracking-[.4em] uppercase mb-4 text-night/60">06 — Contact</p>
-    <h2 class="reveal font-serif font-light text-6xl md:text-8xl leading-tight mb-12">
-      Un projet ?<br/>
-      <em class="italic">Parlons-en.</em>
-    </h2>
-
-    <form id="contact-form" class="space-y-8" method="POST" action="mailto:info@hectoweb.ch" enctype="text/plain">
-      <div class="grid md:grid-cols-2 gap-8">
-        <div>
-          <label class="font-mono text-xs tracking-[.3em] uppercase text-night/60">Nom</label>
-          <input class="cta-input" type="text" name="nom" required />
-        </div>
-        <div>
-          <label class="font-mono text-xs tracking-[.3em] uppercase text-night/60">Email</label>
-          <input class="cta-input" type="email" name="email" required />
-        </div>
-      </div>
+    </li>
+    <li class="reveal">
+      <span class="step-num">02</span>
       <div>
-        <label class="font-mono text-xs tracking-[.3em] uppercase text-night/60">Type de projet</label>
-        <select class="cta-input" name="type">
+        <h3>Direction artistique — 5 jours</h3>
+        <p>Un prototype cliquable. Une seule itération sérieuse, deux ou trois ajustements. On tranche vite, on avance.</p>
+      </div>
+    </li>
+    <li class="reveal">
+      <span class="step-num">03</span>
+      <div>
+        <h3>Développement — 3 à 6 semaines</h3>
+        <p>Code propre, perf au cordeau, SEO et GEO câblés <em>dès le jour 1</em>. Vous voyez l'avancée en temps réel sur une URL privée.</p>
+      </div>
+    </li>
+    <li class="reveal">
+      <span class="step-num">04</span>
+      <div>
+        <h3>Mise en ligne — 1 jour</h3>
+        <p>Déploiement, formation 1 h, transmission de tous les accès. Et on reste là pour la suite, si vous nous voulez.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- WHY US -->
+<section class="section section-alt why">
+  <div class="why-grid">
+    <div class="why-text">
+      <p class="kicker reveal">04 — Pourquoi nous</p>
+      <h2 class="section-title reveal">Petit atelier.<br/><em>Grandes obsessions.</em></h2>
+      <p class="reveal lead">Nous sommes une équipe restreinte, exigeante, qui ne prend que les projets qu'elle peut faire <em>vraiment bien</em>. Pas de chef de projet entre vous et la personne qui code. Pas de sous-traitance offshore. Pas de site générique habillé.</p>
+    </div>
+    <ul class="why-points">
+      <li class="reveal"><span class="bullet">→</span><b>Direct.</b> Vous parlez à la personne qui dessine et qui code. Toujours.</li>
+      <li class="reveal"><span class="bullet">→</span><b>Suisse.</b> Basés ici, on facture en CHF, on connaît vos clients.</li>
+      <li class="reveal"><span class="bullet">→</span><b>Honnête.</b> Devis fixe, pas de surprise. Vous savez ce que vous payez.</li>
+      <li class="reveal"><span class="bullet">→</span><b>Durable.</b> Sites que vous gardez 5 ans, pas que vous refaites dans 18 mois.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+  <div class="contact-inner">
+    <p class="kicker reveal">05 — Contact</p>
+    <h2 class="section-title reveal">Un projet ?<br/><em>Parlons-en.</em></h2>
+    <p class="contact-lead reveal">Quelques lignes suffisent pour démarrer. On revient vers vous sous 24 h ouvrées.</p>
+
+    <form id="contact-form" class="form reveal">
+      <div class="form-row">
+        <label>
+          <span>Nom</span>
+          <input type="text" name="nom" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+      </div>
+      <label>
+        <span>Type de projet</span>
+        <select name="type">
           <option>Site vitrine</option>
           <option>E-commerce</option>
           <option>Refonte SEO / GEO</option>
-          <option>Animation / 3D</option>
+          <option>Animation / sur-mesure</option>
           <option>Autre</option>
         </select>
-      </div>
-      <div>
-        <label class="font-mono text-xs tracking-[.3em] uppercase text-night/60">Votre projet en deux lignes</label>
-        <textarea class="cta-input" rows="4" name="message" required></textarea>
-      </div>
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-8">
-        <button type="submit" class="px-10 py-4 bg-night text-ecto font-semibold rounded-full hover:bg-ecto hover:text-night transition-colors">
-          Envoyer →
-        </button>
-        <div class="text-sm text-night/60 font-mono">
-          ou écrivez directement à <a href="mailto:info@hectoweb.ch" class="underline hover:text-ecto-dim">info@hectoweb.ch</a>
-        </div>
+      </label>
+      <label>
+        <span>Votre projet en deux lignes</span>
+        <textarea name="message" rows="4" required></textarea>
+      </label>
+      <div class="form-foot">
+        <button type="submit" class="btn btn-primary">Envoyer →</button>
+        <span class="form-alt">ou écrivez à <a href="mailto:info@hectoweb.ch">info@hectoweb.ch</a></span>
       </div>
     </form>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="bg-night text-cream/60 py-12 px-6 md:px-12 border-t border-cream/10">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<footer class="footer">
+  <div class="footer-inner">
     <div>
-      <a href="#hero" class="wordmark text-2xl"><span class="h">H</span>ectoWeb</a>
-      <p class="text-sm mt-2 font-mono">Agence web boutique · Suisse · 2026</p>
+      <a class="brand" href="#top"><span class="brand-h">H</span><span class="brand-rest">ectoWeb</span></a>
+      <p class="footer-tag">Agence web boutique · Suisse · 2026</p>
     </div>
-    <div class="text-sm space-y-1">
-      <p><a href="mailto:info@hectoweb.ch" class="hover:text-ecto">info@hectoweb.ch</a></p>
-      <p class="font-mono text-xs text-cream/40">Site démo · v0.1</p>
+    <div class="footer-links">
+      <a href="mailto:info@hectoweb.ch">info@hectoweb.ch</a>
+      <span class="footer-sep">·</span>
+      <span class="footer-version">v0.2 démo</span>
     </div>
   </div>
 </footer>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.165.0/build/three.module.js"
-  }
-}
-</script>
-<script type="module" src="./assets/js/main.js"></script>
+<script src="./assets/js/main.js"></script>
 </body>
 </html>
