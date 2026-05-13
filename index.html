@@ -3,285 +3,509 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>HectoWeb — Agence web boutique · Sites qui se voient, qui vendent</title>
-<meta name="description" content="HectoWeb, agence web boutique en Suisse. Sites vitrine, e-commerce, SEO, GEO, animations sur-mesure. Découvrez 8 univers visuels — un seul savoir-faire." />
+<title>HectoWeb — 20 sites. 20 métiers. Un savoir-faire.</title>
+<meta name="description" content="HectoWeb, agence web boutique en Suisse. Découvrez 20 sites entièrement conçus pour 20 métiers — chacun pensé pour vendre, séduire et durer." />
 <meta name="theme-color" content="#0c0c0e" />
-<meta property="og:title" content="HectoWeb — Agence web boutique" />
-<meta property="og:description" content="Sites web sur-mesure. 8 univers visuels pour vous montrer ce qu'on sait faire." />
-<meta property="og:locale" content="fr_CH" />
-<meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="./assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:#ece8df;background:#0c0c0e;
+  -webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;
+}
+::selection{background:#c9a96e;color:#0c0c0e}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* NAV */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:40;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.4rem clamp(1.5rem,4vw,3rem);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(12,12,14,.7);
+  border-bottom:1px solid rgba(236,232,223,.08);
+}
+.brand{font-family:'Cormorant Garamond',serif;font-size:1.7rem;letter-spacing:-.02em;display:inline-flex;align-items:baseline}
+.brand-h{color:#c9a96e}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{font-size:.9rem;color:#9b9588;transition:color .2s}
+.nav-links a:hover{color:#ece8df}
+.nav-cta{background:#c9a96e;color:#0c0c0e !important;padding:.55rem 1.1rem;border-radius:6px;font-weight:500}
+.nav-cta:hover{background:#e6c98a}
+@media(max-width:680px){.nav-links li:not(:last-child){display:none}}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:8rem clamp(1.5rem,5vw,4rem) 5rem;
+  position:relative;text-align:center;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(201,169,110,.18), transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(201,169,110,.10), transparent 60%);
+}
+.hero-inner{max-width:1100px;position:relative;z-index:1}
+.kicker{
+  font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.4em;
+  text-transform:uppercase;color:#c9a96e;margin-bottom:1.5rem;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;font-weight:400;
+  font-size:clamp(2.8rem,9vw,7rem);line-height:.95;letter-spacing:-.025em;
+  margin-bottom:1.8rem;
+}
+.hero h1 em{font-style:italic;color:#c9a96e}
+.hero-sub{
+  font-size:clamp(1.05rem,1.5vw,1.2rem);color:#9b9588;
+  max-width:42rem;margin:0 auto 2.5rem;line-height:1.65;
+}
+.hero-arrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'JetBrains Mono',monospace;font-size:.85rem;
+  color:#c9a96e;border-bottom:1px solid #c9a96e;padding-bottom:3px;
+}
+.hero-arrow:hover{color:#e6c98a;border-color:#e6c98a}
+
+/* GRID */
+.grid-section{padding:5rem clamp(1.5rem,5vw,4rem) 6rem;background:#0c0c0e}
+.grid-head{max-width:1280px;margin:0 auto 3.5rem;text-align:center}
+.grid-head h2{
+  font-family:'Cormorant Garamond',serif;font-weight:400;
+  font-size:clamp(2rem,4.5vw,3.5rem);line-height:1;letter-spacing:-.02em;
+  margin-bottom:1rem;
+}
+.grid-head h2 em{font-style:italic;color:#c9a96e}
+.grid-head p{color:#9b9588;font-size:1.05rem;max-width:40rem;margin:0 auto}
+.grid{
+  max-width:1400px;margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1.5rem;
+}
+.card{
+  position:relative;overflow:hidden;
+  border-radius:8px;
+  border:1px solid rgba(236,232,223,.08);
+  background:#131316;
+  aspect-ratio:4/5;
+  display:block;
+  transition:transform .35s cubic-bezier(.2,.9,.2,1),border-color .35s;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.4)}
+.card-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  filter:saturate(.95) brightness(.9);
+  transition:filter .35s,transform .8s cubic-bezier(.2,.9,.2,1);
+}
+.card:hover .card-img{filter:saturate(1) brightness(1);transform:scale(1.05)}
+.card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(12,12,14,.15) 30%,rgba(12,12,14,.92) 100%);
+}
+.card-content{
+  position:absolute;inset:auto 0 0 0;padding:1.5rem;
+}
+.card-kicker{
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.35em;
+  text-transform:uppercase;color:#c9a96e;margin-bottom:.5rem;
+}
+.card-title{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:1.7rem;line-height:1.05;color:#ece8df;margin-bottom:.4rem;
+  letter-spacing:-.015em;
+}
+.card-sub{font-size:.85rem;color:#bcb6a8;line-height:1.45}
+.card-arrow{
+  position:absolute;top:1rem;right:1rem;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(12,12,14,.55);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  color:#ece8df;font-size:1rem;font-weight:300;
+  transition:background .25s,transform .25s;
+}
+.card:hover .card-arrow{background:#c9a96e;color:#0c0c0e;transform:rotate(-45deg)}
+.card.dev{pointer-events:none;opacity:.55}
+.card.dev .card-arrow{background:rgba(12,12,14,.4);color:#9b9588}
+.card.dev::after{
+  content:'BIENTÔT';position:absolute;top:1rem;left:1rem;
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.3em;
+  color:#9b9588;background:rgba(12,12,14,.55);backdrop-filter:blur(6px);
+  padding:.35rem .6rem;border-radius:4px;
+}
+
+/* WHY US strip */
+.strip{
+  background:#131316;padding:6rem clamp(1.5rem,5vw,4rem);
+  border-top:1px solid rgba(236,232,223,.08);
+  border-bottom:1px solid rgba(236,232,223,.08);
+}
+.strip-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+}
+@media(max-width:800px){.strip-inner{grid-template-columns:1fr;gap:2rem}}
+.strip h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2rem,4vw,3rem);line-height:1;letter-spacing:-.02em}
+.strip h2 em{font-style:italic;color:#c9a96e}
+.strip p{color:#9b9588;font-size:1.05rem;line-height:1.7;margin-top:1.2rem;max-width:36rem}
+.strip-points{list-style:none;display:flex;flex-direction:column;gap:1.2rem}
+.strip-points li{
+  display:grid;grid-template-columns:28px 1fr;gap:.75rem;
+  color:#bcb6a8;line-height:1.55;
+}
+.strip-points b{color:#ece8df;font-weight:500;margin-right:.3rem}
+.strip-points .bullet{color:#c9a96e}
+
+/* CTA bottom */
+.cta{
+  padding:6rem clamp(1.5rem,5vw,4rem);text-align:center;
+  background:radial-gradient(circle at 50% 30%,rgba(201,169,110,.10),transparent 60%);
+}
+.cta h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:1.5rem}
+.cta h2 em{font-style:italic;color:#c9a96e}
+.cta p{color:#9b9588;font-size:1.05rem;max-width:36rem;margin:0 auto 2rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.95rem 1.8rem;background:#c9a96e;color:#0c0c0e;font-weight:500;
+  border-radius:6px;font-size:.95rem;
+  transition:background .25s,transform .15s;
+}
+.btn:hover{background:#e6c98a;transform:translateY(-1px)}
+
+/* FOOTER */
+.footer{
+  padding:3rem clamp(1.5rem,5vw,4rem);
+  border-top:1px solid rgba(236,232,223,.08);background:#0c0c0e;
+}
+.footer-inner{
+  max-width:1400px;margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center;
+}
+.footer p{color:#9b9588;font-size:.85rem;font-family:'JetBrains Mono',monospace}
+.footer a{color:#c9a96e}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
 </head>
-<body data-theme="onyx">
+<body>
 
-<!-- THEME SWITCHER (floating dock) -->
-<div class="theme-dock" aria-label="Sélecteur de thème">
-  <button class="dock-toggle" id="dock-toggle" aria-expanded="false" aria-controls="dock-list">
-    <span class="dock-toggle-label">Univers</span>
-    <span class="dock-toggle-name" id="current-theme-name">Onyx</span>
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-  <ul class="dock-list" id="dock-list" role="listbox">
-    <li><button data-theme="onyx" data-name="Onyx" class="active"><span class="dock-swatch" style="background:linear-gradient(135deg,#0c0c0e 50%,#c9a96e 50%)"></span><span><b>Onyx</b><i>Noir profond · or doux</i></span></button></li>
-    <li><button data-theme="galerie" data-name="Galerie"><span class="dock-swatch" style="background:linear-gradient(135deg,#f4ece0 50%,#7a1f2b 50%)"></span><span><b>Galerie</b><i>Ivoire · bordeaux</i></span></button></li>
-    <li><button data-theme="foret" data-name="Forêt"><span class="dock-swatch" style="background:linear-gradient(135deg,#efe8d8 50%,#2d4a3a 50%)"></span><span><b>Forêt</b><i>Crème · vert sapin</i></span></button></li>
-    <li><button data-theme="cyan" data-name="Cyan"><span class="dock-swatch" style="background:linear-gradient(135deg,#16181d 50%,#6ee7d7 50%)"></span><span><b>Cyan</b><i>Anthracite · cyan</i></span></button></li>
-    <li><button data-theme="pastel" data-name="Pastel"><span class="dock-swatch" style="background:linear-gradient(135deg,#f5e4dd 50%,#b85c3a 50%)"></span><span><b>Pastel</b><i>Rose poudré · terracotta</i></span></button></li>
-    <li><button data-theme="acier" data-name="Acier"><span class="dock-swatch" style="background:linear-gradient(135deg,#2a2c30 50%,#c08456 50%)"></span><span><b>Acier</b><i>Gris fumée · cuivre</i></span></button></li>
-    <li><button data-theme="studio" data-name="Studio"><span class="dock-swatch" style="background:linear-gradient(135deg,#f7f6f2 50%,#0a0a0a 50%)"></span><span><b>Studio</b><i>Blanc cassé · noir</i></span></button></li>
-    <li><button data-theme="nuit" data-name="Nuit"><span class="dock-swatch" style="background:linear-gradient(135deg,#10162a 50%,#e8aab3 50%)"></span><span><b>Nuit</b><i>Bleu nuit · blush</i></span></button></li>
-    <li><button data-theme="mer" data-name="Mer"><span class="dock-swatch" style="background:linear-gradient(135deg,#0d2a44 50%,#d4b78e 50%)"></span><span><b>Mer</b><i>Marine · sable doré</i></span></button></li>
-    <li><button data-theme="aube" data-name="Aube"><span class="dock-swatch" style="background:linear-gradient(135deg,#f5dcc8 50%,#6b2e3f 50%)"></span><span><b>Aube</b><i>Pêche · aubergine</i></span></button></li>
-    <li><button data-theme="olive" data-name="Olive"><span class="dock-swatch" style="background:linear-gradient(135deg,#4a523a 50%,#d4b76a 50%)"></span><span><b>Olive</b><i>Olive · ocre doré</i></span></button></li>
-    <li><button data-theme="neon" data-name="Néon"><span class="dock-swatch" style="background:linear-gradient(135deg,#050507 50%,#ff2e88 50%)"></span><span><b>Néon</b><i>Noir · magenta vif</i></span></button></li>
-    <li><button data-theme="papier" data-name="Papier"><span class="dock-swatch" style="background:linear-gradient(135deg,#e8dcc0 50%,#2e2826 50%)"></span><span><b>Papier</b><i>Kraft · encre</i></span></button></li>
-    <li><button data-theme="verre" data-name="Verre"><span class="dock-swatch" style="background:linear-gradient(135deg,#eef3f7 50%,#4a7a9c 50%)"></span><span><b>Verre</b><i>Bleuté · glacier</i></span></button></li>
-    <li><button data-theme="rubis" data-name="Rubis"><span class="dock-swatch" style="background:linear-gradient(135deg,#2a0a14 50%,#f0c0c8 50%)"></span><span><b>Rubis</b><i>Bordeaux · rose poudré</i></span></button></li>
-  </ul>
-</div>
-
-<!-- NAV -->
 <nav class="nav">
-  <a class="brand" href="#top">
-    <span class="brand-h">H</span><span class="brand-rest">ectoWeb</span>
-  </a>
+  <a href="#top" class="brand"><span class="brand-h">H</span>ectoWeb</a>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#realisations">Réalisations</a></li>
-    <li><a href="#process">Process</a></li>
+    <li><a href="#metiers">Métiers</a></li>
+    <li><a href="#approche">Approche</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <header id="top" class="hero">
   <div class="hero-inner">
     <p class="kicker reveal">Agence web boutique · Suisse</p>
-    <h1 class="hero-title reveal">
-      Un site qui<br/>
-      <em>se voit.</em><br/>
-      Un site qui <em>vend.</em>
-    </h1>
-    <p class="hero-sub reveal">
-      Nous concevons des sites web sur-mesure, pensés pour la marque qu'ils habillent — et pour les humains qui les visitent.
-    </p>
-    <div class="hero-ctas reveal">
-      <a href="#realisations" class="btn btn-primary">Voir nos réalisations</a>
-      <a href="#contact" class="btn btn-ghost">Démarrer un projet</a>
-    </div>
-    <p class="hero-hint reveal">
-      <span class="hint-dot"></span>
-      Changez d'univers en haut à droite — c'est le même site, 8 identités. C'est ce qu'on sait faire.
-    </p>
-  </div>
-  <div class="hero-art" aria-hidden="true">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <h1 class="reveal">20 sites.<br/>20 métiers.<br/><em>Un savoir-faire.</em></h1>
+    <p class="hero-sub reveal">Cliquez sur votre métier. Vous verrez à quoi pourrait ressembler <em>votre</em> site, conçu par nous. Tous nos univers sont des démonstrations — chacun se construit sur-mesure pour votre activité.</p>
+    <a href="#metiers" class="hero-arrow reveal">Choisir mon métier ↓</a>
   </div>
 </header>
 
-<!-- SERVICES -->
-<section id="services" class="section">
-  <div class="section-head">
-    <p class="kicker reveal">01 — Services</p>
-    <h2 class="section-title reveal">Ce que nous savons faire,<br/><em>vraiment bien.</em></h2>
+<section id="metiers" class="grid-section">
+  <div class="grid-head reveal">
+    <h2><em>Vingt</em> univers à explorer</h2>
+    <p>Chaque site est entièrement conçu, codé et pensé pour son métier. Pas de template recyclé.</p>
   </div>
 
-  <div class="services-grid">
-    <article class="service-card reveal">
-      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M4 5h16v3H4zM4 11h16v3H4zM4 17h10v3H4z" stroke="currentColor" stroke-width="1.5"/></svg></div>
-      <h3>Sites vitrine</h3>
-      <p>Des sites qui posent votre marque. Identité, ton de voix, photographies, animations soignées. Le genre de site qui fait dire "qui vous a fait ça&nbsp;?".</p>
-    </article>
-    <article class="service-card reveal">
-      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M3 7h18l-2 11H5zM8 11v4M16 11v4M12 11v4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-      <h3>E-commerce</h3>
-      <p>Shopify, WooCommerce ou sur-mesure — choisi pour <em>votre</em> métier, pas pour nos habitudes. Multi-langue, multi-devise, TVA Suisse, TWINT, PostFinance.</p>
-    </article>
-    <article class="service-card reveal">
-      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.5"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <h3>SEO &amp; GEO</h3>
-      <p>Visible sur Google. Cité par ChatGPT, Perplexity, Gemini. Le SEO classique ne suffit plus — on prépare votre site pour l'ère des IA génératives.</p>
-    </article>
-    <article class="service-card reveal">
-      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 3v18M3 12h18M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="1.2" opacity=".5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg></div>
-      <h3>Animation &amp; 3D</h3>
-      <p>GSAP, Three.js, micro-interactions. Le mouvement au service du récit — jamais gratuit, toujours intentionnel.</p>
-    </article>
-    <article class="service-card reveal">
-      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M3 13h4l3-9 4 18 3-9h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-      <h3>Performance</h3>
-      <p>Core Web Vitals verts, LCP &lt; 1.5 s, score Lighthouse 100. La vitesse, c'est de la conversion qu'on ne perd pas.</p>
-    </article>
-    <article class="service-card reveal">
-      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 3l9 5-9 5-9-5 9-5zM3 12l9 5 9-5M3 17l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-      <h3>Maintenance</h3>
-      <p>On reste à côté de vous. Mises à jour, sécurité, évolutions, nouvelles pages. Forfait clair, pas d'abonnement piège.</p>
-    </article>
-  </div>
-</section>
+  <div class="grid">
+    <!-- 1 RESTAURANT (live) -->
+    <a class="card" href="metiers/restaurant.html">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">01</p>
+        <h3 class="card-title">Restaurant gastronomique</h3>
+        <p class="card-sub">Hero plein écran · menu · réservation</p>
+      </div>
+    </a>
 
-<!-- REALISATIONS -->
-<section id="realisations" class="section section-alt">
-  <div class="section-head">
-    <p class="kicker reveal">02 — Réalisations</p>
-    <h2 class="section-title reveal">Quelques sites<br/><em>déjà signés.</em></h2>
-  </div>
-
-  <div class="works">
-    <article class="work reveal">
-      <div class="work-visual work-visual-1">
-        <div class="work-mockup"><span>HF</span></div>
+    <!-- 2 AVOCAT -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">02</p>
+        <h3 class="card-title">Cabinet d'avocats</h3>
+        <p class="card-sub">Sobre · expertises · prise de RDV</p>
       </div>
-      <div class="work-meta">
-        <p class="kicker-sm">Vitrine · Custom car</p>
-        <h3>HF Customs</h3>
-        <p>Site vitrine pour atelier suisse de covering automobile haut de gamme. Galerie immersive, avant/après, prise de rendez-vous intégrée.</p>
-        <a href="#" class="work-link">Voir le site →</a>
-      </div>
-    </article>
-    <article class="work reveal">
-      <div class="work-visual work-visual-2">
-        <div class="work-mockup"><span>HV</span></div>
-      </div>
-      <div class="work-meta">
-        <p class="kicker-sm">Vitrine · Vitrerie</p>
-        <h3>HF Vitro</h3>
-        <p>Site éditorial pour un poseur de films pour vitres. Configurateur de devis, mise en avant des références B2B, SEO local Lausanne.</p>
-        <a href="#" class="work-link">Voir le site →</a>
-      </div>
-    </article>
-    <article class="work reveal">
-      <div class="work-visual work-visual-3">
-        <div class="work-mockup"><span>DTF</span></div>
-      </div>
-      <div class="work-meta">
-        <p class="kicker-sm">E-commerce · B2B textile</p>
-        <h3>DTF Swiss</h3>
-        <p>Boutique en ligne d'impressions DTF pour textile. Catalogue produit, upload de design, devis automatique, paiement TWINT &amp; carte.</p>
-        <a href="#" class="work-link">Voir le site →</a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section id="process" class="section">
-  <div class="section-head">
-    <p class="kicker reveal">03 — Process</p>
-    <h2 class="section-title reveal">Comment ça<br/><em>se passe ?</em></h2>
-  </div>
-
-  <ol class="process">
-    <li class="reveal">
-      <span class="step-num">01</span>
-      <div>
-        <h3>Brief — 1 heure</h3>
-        <p>Une visio. On comprend votre métier, vos clients, ce qui vous bloque, ce qui vous distingue. Pas de questionnaire de 14 pages.</p>
-      </div>
-    </li>
-    <li class="reveal">
-      <span class="step-num">02</span>
-      <div>
-        <h3>Direction artistique — 5 jours</h3>
-        <p>Un prototype cliquable. Une seule itération sérieuse, deux ou trois ajustements. On tranche vite, on avance.</p>
-      </div>
-    </li>
-    <li class="reveal">
-      <span class="step-num">03</span>
-      <div>
-        <h3>Développement — 3 à 6 semaines</h3>
-        <p>Code propre, perf au cordeau, SEO et GEO câblés <em>dès le jour 1</em>. Vous voyez l'avancée en temps réel sur une URL privée.</p>
-      </div>
-    </li>
-    <li class="reveal">
-      <span class="step-num">04</span>
-      <div>
-        <h3>Mise en ligne — 1 jour</h3>
-        <p>Déploiement, formation 1 h, transmission de tous les accès. Et on reste là pour la suite, si vous nous voulez.</p>
-      </div>
-    </li>
-  </ol>
-</section>
-
-<!-- WHY US -->
-<section class="section section-alt why">
-  <div class="why-grid">
-    <div class="why-text">
-      <p class="kicker reveal">04 — Pourquoi nous</p>
-      <h2 class="section-title reveal">Petit atelier.<br/><em>Grandes obsessions.</em></h2>
-      <p class="reveal lead">Nous sommes une équipe restreinte, exigeante, qui ne prend que les projets qu'elle peut faire <em>vraiment bien</em>. Pas de chef de projet entre vous et la personne qui code. Pas de sous-traitance offshore. Pas de site générique habillé.</p>
     </div>
-    <ul class="why-points">
-      <li class="reveal"><span class="bullet">→</span><b>Direct.</b> Vous parlez à la personne qui dessine et qui code. Toujours.</li>
-      <li class="reveal"><span class="bullet">→</span><b>Suisse.</b> Basés ici, on facture en CHF, on connaît vos clients.</li>
-      <li class="reveal"><span class="bullet">→</span><b>Honnête.</b> Devis fixe, pas de surprise. Vous savez ce que vous payez.</li>
-      <li class="reveal"><span class="bullet">→</span><b>Durable.</b> Sites que vous gardez 5 ans, pas que vous refaites dans 18 mois.</li>
+
+    <!-- 3 SPA -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">03</p>
+        <h3 class="card-title">Spa &amp; wellness</h3>
+        <p class="card-sub">Apaisant · soins · réservation</p>
+      </div>
+    </div>
+
+    <!-- 4 JOAILLIER -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">04</p>
+        <h3 class="card-title">Joaillier · horloger</h3>
+        <p class="card-sub">Luxe · collections · histoire</p>
+      </div>
+    </div>
+
+    <!-- 5 ARCHITECTE -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">05</p>
+        <h3 class="card-title">Architecte</h3>
+        <p class="card-sub">Portfolio plein écran · études de cas</p>
+      </div>
+    </div>
+
+    <!-- 6 HÔTEL -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">06</p>
+        <h3 class="card-title">Hôtel boutique</h3>
+        <p class="card-sub">Panorama · chambres · réserver</p>
+      </div>
+    </div>
+
+    <!-- 7 VIGNERON -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">07</p>
+        <h3 class="card-title">Vigneron · domaine</h3>
+        <p class="card-sub">Cuvées · dégustation · boutique</p>
+      </div>
+    </div>
+
+    <!-- 8 ATELIER AUTO -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">08</p>
+        <h3 class="card-title">Atelier auto custom</h3>
+        <p class="card-sub">Galerie avant/après · devis</p>
+      </div>
+    </div>
+
+    <!-- 9 PHOTOGRAPHE -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">09</p>
+        <h3 class="card-title">Photographe</h3>
+        <p class="card-sub">Portfolio immersif · séries</p>
+      </div>
+    </div>
+
+    <!-- 10 MÉDECIN -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">10</p>
+        <h3 class="card-title">Médecin · clinique</h3>
+        <p class="card-sub">Rassurant · spécialités · prise RDV</p>
+      </div>
+    </div>
+
+    <!-- 11 COACH -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">11</p>
+        <h3 class="card-title">Coach · consultant</h3>
+        <p class="card-sub">Personnel · offres · booking</p>
+      </div>
+    </div>
+
+    <!-- 12 BOUTIQUE MODE -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">12</p>
+        <h3 class="card-title">Boutique mode</h3>
+        <p class="card-sub">Lookbook · collections · shop</p>
+      </div>
+    </div>
+
+    <!-- 13 PÂTISSIER -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">13</p>
+        <h3 class="card-title">Pâtissier · chocolatier</h3>
+        <p class="card-sub">Créations · boutique · commandes</p>
+      </div>
+    </div>
+
+    <!-- 14 BUREAU D'ÉTUDES -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">14</p>
+        <h3 class="card-title">Bureau d'études</h3>
+        <p class="card-sub">Sobre B2B · savoir-faire · clients</p>
+      </div>
+    </div>
+
+    <!-- 15 COIFFEUR -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">15</p>
+        <h3 class="card-title">Coiffeur · barbier</h3>
+        <p class="card-sub">Portrait · prestations · booking</p>
+      </div>
+    </div>
+
+    <!-- 16 TATOUEUR -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1561728103-5b6b6b9c2afa?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">16</p>
+        <h3 class="card-title">Tatoueur</h3>
+        <p class="card-sub">Portfolio · artistes · book online</p>
+      </div>
+    </div>
+
+    <!-- 17 ÉVÉNEMENTIEL -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">17</p>
+        <h3 class="card-title">Événementiel</h3>
+        <p class="card-sub">Spectaculaire · références · devis</p>
+      </div>
+    </div>
+
+    <!-- 18 ÉLECTRICIEN -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">18</p>
+        <h3 class="card-title">Électricien</h3>
+        <p class="card-sub">Rassurant · services · devis</p>
+      </div>
+    </div>
+
+    <!-- 19 AUTO-ÉCOLE -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">19</p>
+        <h3 class="card-title">Auto-école</h3>
+        <p class="card-sub">Moderne · formules · booking</p>
+      </div>
+    </div>
+
+    <!-- 20 MAGASIN DE VÊTEMENTS -->
+    <div class="card dev">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <p class="card-kicker">20</p>
+        <h3 class="card-title">Magasin de vêtements</h3>
+        <p class="card-sub">Vitrine · arrivages · e-shop</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approche" class="strip">
+  <div class="strip-inner">
+    <div>
+      <p class="kicker reveal" style="color:#c9a96e;margin-bottom:1rem">Notre approche</p>
+      <h2 class="reveal">Petit atelier.<br/><em>Grandes obsessions.</em></h2>
+      <p class="reveal">Nous sommes une équipe restreinte, exigeante, qui ne prend que les projets qu'elle peut faire vraiment bien. Pas de chef de projet entre vous et la personne qui code. Pas de template recyclé. Pas de sous-traitance offshore.</p>
+    </div>
+    <ul class="strip-points">
+      <li class="reveal"><span class="bullet">→</span><span><b>Direct.</b>Vous parlez à la personne qui dessine et qui code. Toujours.</span></li>
+      <li class="reveal"><span class="bullet">→</span><span><b>Suisse.</b>Basés ici, on facture en CHF, on connaît vos clients.</span></li>
+      <li class="reveal"><span class="bullet">→</span><span><b>Honnête.</b>Devis fixe, pas de surprise. Vous savez ce que vous payez.</span></li>
+      <li class="reveal"><span class="bullet">→</span><span><b>Durable.</b>Sites que vous gardez 5 ans, pas que vous refaites dans 18 mois.</span></li>
     </ul>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section contact">
-  <div class="contact-inner">
-    <p class="kicker reveal">05 — Contact</p>
-    <h2 class="section-title reveal">Un projet ?<br/><em>Parlons-en.</em></h2>
-    <p class="contact-lead reveal">Quelques lignes suffisent pour démarrer. On revient vers vous sous 24 h ouvrées.</p>
-
-    <form id="contact-form" class="form reveal">
-      <div class="form-row">
-        <label>
-          <span>Nom</span>
-          <input type="text" name="nom" required />
-        </label>
-        <label>
-          <span>Email</span>
-          <input type="email" name="email" required />
-        </label>
-      </div>
-      <label>
-        <span>Type de projet</span>
-        <select name="type">
-          <option>Site vitrine</option>
-          <option>E-commerce</option>
-          <option>Refonte SEO / GEO</option>
-          <option>Animation / sur-mesure</option>
-          <option>Autre</option>
-        </select>
-      </label>
-      <label>
-        <span>Votre projet en deux lignes</span>
-        <textarea name="message" rows="4" required></textarea>
-      </label>
-      <div class="form-foot">
-        <button type="submit" class="btn btn-primary">Envoyer →</button>
-        <span class="form-alt">ou écrivez à <a href="mailto:info@hectoweb.ch">info@hectoweb.ch</a></span>
-      </div>
-    </form>
-  </div>
+<section id="contact" class="cta">
+  <h2 class="reveal">Un projet ?<br/><em>Parlons-en.</em></h2>
+  <p class="reveal">Quelques lignes suffisent. On revient vers vous sous 24 h ouvrées.</p>
+  <a href="mailto:info@hectoweb.ch" class="btn reveal">Écrire à info@hectoweb.ch →</a>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div>
-      <a class="brand" href="#top"><span class="brand-h">H</span><span class="brand-rest">ectoWeb</span></a>
-      <p class="footer-tag">Agence web boutique · Suisse · 2026</p>
-    </div>
-    <div class="footer-links">
-      <a href="mailto:info@hectoweb.ch">info@hectoweb.ch</a>
-      <span class="footer-sep">·</span>
-      <span class="footer-version">v0.2 démo</span>
-    </div>
+    <p>HectoWeb · Agence web boutique · Suisse · 2026</p>
+    <p><a href="mailto:info@hectoweb.ch">info@hectoweb.ch</a> · v0.4 démo</p>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="./assets/js/main.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',delay:(i%4)*.06,
+    scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+});
+gsap.fromTo('.hero .reveal',{opacity:0,y:40},
+  {opacity:1,y:0,duration:1.1,ease:'power3.out',stagger:.12,delay:.15});
+
+// Subtle parallax on grid cards
+ScrollTrigger.batch('.card',{
+  start:'top bottom-=50',
+  onEnter:b=>gsap.fromTo(b,{opacity:0,y:30},{opacity:1,y:0,duration:.8,stagger:.05,ease:'power3.out'})
+});
+</script>
 </body>
 </html>
