@@ -205,6 +205,167 @@ input, textarea, select { font: inherit; color: inherit; }
   --hero-art: radial-gradient(circle at 70% 30%, rgba(232,170,179,.20), transparent 60%);
 }
 
+/* ---------- MER (bleu marine / sable doré) ---------- */
+[data-theme="mer"] {
+  --bg: #0d2a44;
+  --bg-alt: #133552;
+  --fg: #f0ead8;
+  --muted: #8ea0b3;
+  --border: rgba(240,234,216,.12);
+  --accent: #d4b78e;
+  --accent-2: #e6cca6;
+  --on-accent: #0d2a44;
+  --shadow: 0 30px 80px -20px rgba(0,0,0,.5);
+  --radius: 4px;
+  --radius-lg: 8px;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 400;
+  --display-italic-weight: 400;
+  --letter-spacing-tight: -0.02em;
+  --kicker-spacing: .42em;
+  --hero-art: radial-gradient(circle at 80% 25%, rgba(212,183,142,.18), transparent 60%);
+}
+
+/* ---------- AUBE (pêche pâle / aubergine) ---------- */
+[data-theme="aube"] {
+  --bg: #f5dcc8;
+  --bg-alt: #efd0bb;
+  --fg: #3a1f2b;
+  --muted: #8a6a6f;
+  --border: rgba(58,31,43,.13);
+  --accent: #6b2e3f;
+  --accent-2: #8b4055;
+  --on-accent: #f5dcc8;
+  --shadow: 0 30px 70px -30px rgba(58,31,43,.25);
+  --radius: 12px;
+  --radius-lg: 22px;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 400;
+  --display-italic-weight: 400;
+  --letter-spacing-tight: -0.02em;
+  --kicker-spacing: .35em;
+  --hero-art: radial-gradient(circle at 30% 70%, rgba(107,46,63,.18), transparent 60%);
+}
+
+/* ---------- OLIVE (vert olive / ocre doré) ---------- */
+[data-theme="olive"] {
+  --bg: #4a523a;
+  --bg-alt: #565f44;
+  --fg: #f0ead4;
+  --muted: #a8a690;
+  --border: rgba(240,234,212,.12);
+  --accent: #d4b76a;
+  --accent-2: #e8cc82;
+  --on-accent: #2a2e20;
+  --shadow: 0 30px 80px -20px rgba(0,0,0,.4);
+  --radius: 8px;
+  --radius-lg: 16px;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 400;
+  --display-italic-weight: 400;
+  --letter-spacing-tight: -0.02em;
+  --kicker-spacing: .35em;
+  --hero-art: radial-gradient(circle at 60% 40%, rgba(212,183,106,.18), transparent 60%);
+}
+
+/* ---------- NÉON (noir absolu / magenta vif) ---------- */
+[data-theme="neon"] {
+  --bg: #050507;
+  --bg-alt: #0e0e14;
+  --fg: #f5f0f5;
+  --muted: #8a8590;
+  --border: rgba(245,240,245,.10);
+  --accent: #ff2e88;
+  --accent-2: #ff5aa3;
+  --on-accent: #050507;
+  --shadow: 0 30px 80px -20px rgba(255,46,136,.18);
+  --radius: 0px;
+  --radius-lg: 2px;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 800;
+  --display-italic-weight: 500;
+  --letter-spacing-tight: -0.04em;
+  --kicker-spacing: .5em;
+  --hero-art: radial-gradient(circle at 25% 25%, rgba(255,46,136,.22), transparent 55%), radial-gradient(circle at 80% 80%, rgba(74,144,255,.12), transparent 60%);
+}
+
+/* ---------- PAPIER (kraft / encre) ---------- */
+[data-theme="papier"] {
+  --bg: #e8dcc0;
+  --bg-alt: #e0d2b3;
+  --fg: #1a1a17;
+  --muted: #6e6450;
+  --border: rgba(26,26,23,.16);
+  --accent: #2e2826;
+  --accent-2: #4a3e3a;
+  --on-accent: #e8dcc0;
+  --shadow: 0 30px 70px -30px rgba(26,26,23,.30);
+  --radius: 0px;
+  --radius-lg: 0px;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 500;
+  --display-italic-weight: 400;
+  --letter-spacing-tight: -0.015em;
+  --kicker-spacing: .45em;
+  --hero-art: none;
+}
+
+/* ---------- VERRE (blanc bleuté / bleu glacier) ---------- */
+[data-theme="verre"] {
+  --bg: #eef3f7;
+  --bg-alt: #e3eaf0;
+  --fg: #1a2630;
+  --muted: #6a7785;
+  --border: rgba(26,38,48,.10);
+  --accent: #4a7a9c;
+  --accent-2: #6692ad;
+  --on-accent: #eef3f7;
+  --shadow: 0 30px 70px -30px rgba(26,38,48,.18);
+  --radius: 16px;
+  --radius-lg: 28px;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 300;
+  --display-italic-weight: 400;
+  --letter-spacing-tight: -0.03em;
+  --kicker-spacing: .38em;
+  --hero-art: radial-gradient(circle at 70% 30%, rgba(74,122,156,.14), transparent 60%);
+}
+
+/* ---------- RUBIS (bordeaux profond / rose poudré) ---------- */
+[data-theme="rubis"] {
+  --bg: #2a0a14;
+  --bg-alt: #361320;
+  --fg: #f5e6e8;
+  --muted: #a89098;
+  --border: rgba(245,230,232,.10);
+  --accent: #f0c0c8;
+  --accent-2: #f8d4da;
+  --on-accent: #2a0a14;
+  --shadow: 0 30px 80px -20px rgba(0,0,0,.55);
+  --radius: 6px;
+  --radius-lg: 14px;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 400;
+  --display-italic-weight: 500;
+  --letter-spacing-tight: -0.02em;
+  --kicker-spacing: .42em;
+  --hero-art: radial-gradient(circle at 70% 30%, rgba(240,192,200,.16), transparent 60%);
+}
+
 /* All theme-affected props animate */
 body, .nav, .section, .footer, .service-card, .work, .form input, .form textarea, .form select,
 .btn, .step-num, .dock-toggle, .dock-list, .dock-list button, .work-visual,
@@ -283,11 +444,18 @@ body, .nav, .section, .footer, .service-card, .work, .form input, .form textarea
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   list-style: none; padding: .5rem;
-  min-width: 240px;
+  min-width: 260px;
+  max-height: min(72vh, 560px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) transparent;
   box-shadow: var(--shadow);
   opacity: 0; pointer-events: none; transform: translateY(-8px);
   transition: opacity .3s, transform .3s;
 }
+.dock-list::-webkit-scrollbar { width: 6px; }
+.dock-list::-webkit-scrollbar-track { background: transparent; }
+.dock-list::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--muted) 50%, transparent); border-radius: 3px; }
 .theme-dock.open .dock-list {
   opacity: 1; pointer-events: auto; transform: translateY(0);
 }
