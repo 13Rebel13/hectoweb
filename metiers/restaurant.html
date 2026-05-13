@@ -5,383 +5,441 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title>Maison Hélène — Restaurant gastronomique · Lausanne</title>
 <meta name="description" content="Maison Hélène, restaurant gastronomique étoilé à Lausanne. Cuisine française de saison, produits suisses, quinze couverts par service." />
-<meta name="theme-color" content="#15110d" />
+<meta name="theme-color" content="#f5ede0" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&family=Italiana&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
-   RESET / BASE
+   PALETTE & BASE — crème chaude + bordeaux + ocre (très différent
+   du hub HectoWeb qui est noir+or)
    ============================================================ */
+:root{
+  --cream:#f5ede0;
+  --cream-2:#ebe2d2;
+  --cream-3:#e1d6c0;
+  --ink:#2d1a16;          /* brun très foncé presque noir */
+  --ink-soft:#4a2e26;
+  --muted:#7a6755;        /* brun moyen */
+  --burgundy:#6b2030;     /* bordeaux profond */
+  --burgundy-soft:#8c3145;
+  --ocre:#8a6a3c;
+  --ocre-light:#a98a5c;
+  --rule:rgba(45,26,22,.18);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  font-family:'Inter',system-ui,sans-serif;color:#ebe4d6;background:#15110d;
-  -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;
-  cursor:none;
+  font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);
+  -webkit-font-smoothing:antialiased;line-height:1.75;overflow-x:hidden;
 }
-::selection{background:#b89968;color:#15110d}
+::selection{background:var(--burgundy);color:var(--cream)}
 a{color:inherit;text-decoration:none;transition:color .2s}
 img{display:block;max-width:100%}
-button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
-@media(hover:none),(pointer:coarse){body,a,button{cursor:auto}}
-
-/* ============================================================
-   GRAIN
-   ============================================================ */
-.grain{
-  position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.05;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-
-/* ============================================================
-   CUSTOM CURSOR
-   ============================================================ */
-.cursor{
-  position:fixed;top:0;left:0;width:12px;height:12px;
-  background:#b89968;border-radius:50%;
-  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
-  mix-blend-mode:difference;
-  transition:width .3s cubic-bezier(.2,.9,.2,1),height .3s cubic-bezier(.2,.9,.2,1);
-}
-.cursor.is-link{width:48px;height:48px;background:#ebe4d6}
-@media(hover:none),(pointer:coarse){.cursor{display:none}}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
 
 /* ============================================================
    HECTOWEB DEMO STRIP (top)
    ============================================================ */
 .hw-strip{
   position:fixed;top:0;left:0;right:0;z-index:60;
-  background:rgba(10,10,12,.88);backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(184,153,104,.15);
-  font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;
-  color:#c9a96e;padding:.65rem 1.5rem;text-align:center;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
 }
-.hw-strip a{border-bottom:1px solid rgba(201,169,110,.5);padding-bottom:1px;margin-left:.6rem}
-.hw-strip a:hover{color:#e6c98a;border-color:#e6c98a}
-@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.15em;padding:.55rem 1rem}}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
 
 /* ============================================================
    NAV
    ============================================================ */
 .nav{
-  position:fixed;top:32px;left:0;right:0;z-index:50;
-  padding:1.5rem clamp(1.5rem,4vw,3rem);
+  position:fixed;top:30px;left:0;right:0;z-index:50;
+  padding:1.4rem clamp(1.5rem,4vw,3.5rem);
   display:flex;justify-content:space-between;align-items:center;
-  transition:background .4s,border-color .4s,padding .3s;
+  transition:background .35s,border-color .35s,padding .3s;
 }
 .nav.scrolled{
-  background:rgba(21,17,13,.92);backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(184,153,104,.13);padding-top:1.1rem;padding-bottom:1.1rem;
+  background:rgba(245,237,224,.94);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1rem;padding-bottom:1rem;
 }
-.nav-brand{font-family:'Italiana',serif;font-size:1.55rem;letter-spacing:.05em;color:#ebe4d6}
-.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
-.nav-links a{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:#c2b8a3}
-.nav-links a:hover{color:#ebe4d6}
+.nav-brand{
+  font-family:'Playfair Display',serif;font-weight:600;font-style:italic;
+  font-size:1.55rem;color:var(--ink);letter-spacing:-.005em;
+}
+.nav-links{display:flex;gap:2.3rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);
+}
+.nav-links a:hover{color:var(--burgundy)}
 .nav-cta{
-  border:1px solid #b89968;color:#ebe4d6 !important;padding:.55rem 1.2rem;
-  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
-  transition:background .25s,color .25s;
+  background:var(--burgundy);color:var(--cream) !important;padding:.7rem 1.4rem;
+  border-radius:0;font-size:.72rem;letter-spacing:.25em;
+  transition:background .25s;
 }
-.nav-cta:hover{background:#b89968;color:#15110d !important}
+.nav-cta:hover{background:var(--burgundy-soft);color:var(--cream) !important}
 @media(max-width:780px){.nav-links li:not(:last-child){display:none}}
 
 /* ============================================================
-   HERO — full bleed photo + nom géant en bas
+   ORNEMENT (small decorative element used between sections)
+   ============================================================ */
+.orn{
+  display:flex;align-items:center;justify-content:center;gap:1.5rem;
+  color:var(--ocre);margin:0 auto;
+}
+.orn::before,.orn::after{
+  content:'';width:60px;height:1px;background:currentColor;
+}
+.orn-sym{
+  font-family:'Playfair Display',serif;font-size:1.4rem;
+}
+
+/* ============================================================
+   HERO — split image gauche + texte droite (asymétrique
+   et radicalement différent du hero HectoWeb)
    ============================================================ */
 .hero{
-  position:relative;min-height:100vh;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:0;overflow:hidden;
+  position:relative;min-height:100vh;padding-top:5rem;
+  display:grid;grid-template-columns:1.1fr 1fr;
+  background:var(--cream);
 }
-.hero-bg{
-  position:absolute;inset:0;z-index:0;
-  background:
-    linear-gradient(180deg,rgba(21,17,13,.45) 0%,rgba(21,17,13,.25) 40%,rgba(21,17,13,.95) 100%),
-    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2400&q=85') center/cover no-repeat;
-  will-change:transform;
+@media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto}}
+.hero-img{
+  position:relative;overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+  min-height:600px;
 }
-.hero-top{
-  position:absolute;top:5rem;left:0;right:0;z-index:2;
-  padding:2rem clamp(1.5rem,5vw,4rem);
-  display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;
+@media(max-width:880px){.hero-img{min-height:60vh}}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(45,26,22,.1) 0%,rgba(107,32,48,.18) 100%);
 }
-.hero-top-info{
-  font-family:'JetBrains Mono',monospace;font-size:.7rem;
-  letter-spacing:.4em;text-transform:uppercase;color:#c2b8a3;
+.hero-text{
+  padding:clamp(4rem,7vw,8rem) clamp(2rem,5vw,5rem);
+  display:flex;flex-direction:column;justify-content:center;position:relative;
 }
-.hero-top-info span{display:inline-block;margin-right:1rem}
-.hero-top-info .sep{color:#b89968;opacity:.6}
-.hero-content{
-  position:relative;z-index:2;
-  padding:0 clamp(1.5rem,5vw,4rem) clamp(3rem,8vw,6rem);
+.hero-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--burgundy);
+  margin-bottom:2rem;display:inline-flex;align-items:center;gap:1rem;
 }
-.hero-kicker{
-  font-family:'JetBrains Mono',monospace;font-size:.7rem;
-  letter-spacing:.5em;text-transform:uppercase;color:#b89968;
-  margin-bottom:2rem;display:flex;align-items:center;gap:1rem;
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--burgundy)}
+.hero h1{
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(3.5rem,8vw,7rem);line-height:.95;letter-spacing:-.025em;
+  color:var(--ink);margin-bottom:1.8rem;
 }
-.hero-kicker::before{content:'';width:50px;height:1px;background:#b89968}
-.hero-name{
-  font-family:'Italiana',serif;font-weight:400;
-  font-size:clamp(4rem,15vw,13rem);line-height:.88;letter-spacing:.01em;
-  color:#ebe4d6;margin-bottom:1.5rem;
+.hero h1 em{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  color:var(--burgundy);display:block;
 }
-.hero-name .mask{display:block;overflow:hidden}
-.hero-name .mask-inner{display:inline-block;will-change:transform;transform:translateY(110%)}
 .hero-tag{
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
-  font-size:clamp(1.2rem,2vw,1.6rem);color:#d6cbb3;max-width:38rem;
+  font-family:'Lora',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.15rem,1.6vw,1.35rem);line-height:1.55;color:var(--ink-soft);
+  max-width:32rem;margin-bottom:2.5rem;
 }
-.hero-scroll{
-  position:absolute;bottom:2rem;right:clamp(1.5rem,5vw,4rem);z-index:2;
-  font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.4em;
-  text-transform:uppercase;color:#c2b8a3;
-  writing-mode:vertical-rl;transform:rotate(180deg);
-  display:flex;align-items:center;gap:1rem;
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;
+  padding-top:2rem;border-top:1px solid var(--rule);
 }
-.hero-scroll::after{
-  content:'';width:1px;height:50px;background:linear-gradient(to bottom,#b89968,transparent);
-  animation:scrollLine 2.2s ease-in-out infinite;
+.hero-meta-item{display:flex;flex-direction:column;gap:.2rem}
+.hero-meta-label{font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+.hero-meta-value{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink);font-weight:500}
+.hero-cta{
+  margin-top:3rem;display:inline-flex;align-items:center;gap:.7rem;
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:1.2rem;
+  color:var(--burgundy);border-bottom:1px solid var(--burgundy);padding-bottom:4px;
+  transition:gap .3s;align-self:flex-start;
 }
-@keyframes scrollLine{
-  0%,100%{transform:scaleY(.4);opacity:.3}
-  50%{transform:scaleY(1);opacity:1}
-}
-@media(max-width:780px){.hero-scroll{display:none}}
+.hero-cta:hover{gap:1.2rem;color:var(--burgundy-soft);border-color:var(--burgundy-soft)}
 
 /* ============================================================
-   MANIFESTO / INTRO QUOTE
+   HISTOIRE — section éditoriale avec drop cap
    ============================================================ */
-.intro{
-  padding:clamp(7rem,14vw,12rem) clamp(1.5rem,5vw,4rem);
-  text-align:center;
-  border-bottom:1px solid rgba(184,153,104,.1);
+.histoire{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream);
 }
-.intro-kicker{
-  font-family:'JetBrains Mono',monospace;font-size:.7rem;
-  letter-spacing:.45em;text-transform:uppercase;color:#b89968;
-  margin-bottom:3rem;display:inline-flex;align-items:center;gap:1rem;
+.histoire-inner{max-width:1200px;margin:0 auto}
+.histoire-head{text-align:center;margin-bottom:4.5rem}
+.histoire-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;
+  text-transform:uppercase;color:var(--burgundy);margin-bottom:1.5rem;
 }
-.intro-kicker::before,.intro-kicker::after{content:'';width:40px;height:1px;background:#b89968}
-.intro h2{
-  font-family:'Fraunces',serif;font-weight:300;
-  font-size:clamp(2rem,5vw,4.5rem);line-height:1.05;letter-spacing:-.025em;
-  max-width:1100px;margin:0 auto;color:#ebe4d6;
+.histoire-head h2{
+  font-family:'Playfair Display',serif;font-weight:400;font-style:italic;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;color:var(--ink);letter-spacing:-.015em;
+  margin-bottom:1.5rem;
 }
-.intro h2 .mask{display:block;overflow:hidden}
-.intro h2 .mask-inner{display:inline-block;will-change:transform;transform:translateY(110%)}
-.intro h2 em{font-style:italic;color:#b89968;font-family:'Cormorant Garamond',serif;font-weight:400}
-.intro-badges{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:2rem 4rem;
-  margin-top:5rem;padding-top:4rem;border-top:1px solid rgba(184,153,104,.15);
-  max-width:900px;margin-left:auto;margin-right:auto;
+.histoire-head h2 strong{font-weight:500;font-style:normal;color:var(--burgundy)}
+
+.orn{margin:0 auto 4rem}
+
+.histoire-body{
+  max-width:680px;margin:0 auto;
+  font-family:'Lora',serif;font-size:1.1rem;line-height:1.85;color:var(--ink-soft);
 }
-.badge{display:flex;flex-direction:column;gap:.3rem;align-items:center}
-.badge-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:#9a907c}
-.badge-value{font-family:'Italiana',serif;font-size:1.5rem;color:#ebe4d6;letter-spacing:.02em}
+.histoire-body p{margin-bottom:1.5rem}
+.drop-cap::first-letter{
+  font-family:'Playfair Display',serif;font-weight:500;
+  float:left;font-size:5.5rem;line-height:.85;
+  padding-right:.5rem;padding-top:.4rem;color:var(--burgundy);
+}
+.histoire-quote{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:1.8rem;line-height:1.4;color:var(--burgundy);
+  text-align:center;padding:3rem 0;margin:3rem 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.histoire-quote::before,.histoire-quote::after{
+  display:block;color:var(--ocre);font-size:1.5rem;line-height:1;
+}
+.histoire-quote::before{content:'❦';margin-bottom:1rem}
 
 /* ============================================================
-   EXPÉRIENCE — split image / texte
+   CUISINE — 3 colonnes avec photos
    ============================================================ */
-.exp{
-  display:grid;grid-template-columns:1fr 1fr;
-  align-items:stretch;background:#1a160f;
+.cuisine{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
 }
-@media(max-width:820px){.exp{grid-template-columns:1fr}}
-.exp-img{
-  min-height:700px;
-  background:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
+.cuisine-head{max-width:1200px;margin:0 auto 4rem;text-align:center}
+.cuisine-head h2{
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.05;color:var(--ink);letter-spacing:-.015em;
 }
-.exp-text{padding:clamp(4rem,8vw,7rem) clamp(2rem,5vw,5rem);display:flex;flex-direction:column;justify-content:center}
-.section-kicker{
-  font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.45em;
-  text-transform:uppercase;color:#b89968;margin-bottom:1.5rem;
-  display:flex;align-items:center;gap:1rem;
+.cuisine-head h2 em{font-style:italic;color:var(--burgundy);font-family:'Cormorant Garamond',serif}
+.cuisine-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;
 }
-.section-kicker::before{content:'';width:40px;height:1px;background:#b89968}
-.section-title{
-  font-family:'Italiana',serif;font-weight:400;
-  font-size:clamp(2.4rem,5vw,4rem);line-height:1.02;letter-spacing:.01em;
-  color:#ebe4d6;margin-bottom:1.5rem;
+@media(max-width:820px){.cuisine-grid{grid-template-columns:1fr;gap:3rem}}
+.cuisine-card{text-align:center}
+.cuisine-card-img{
+  width:100%;aspect-ratio:3/4;
+  background-size:cover;background-position:center;margin-bottom:1.8rem;
 }
-.section-title em{font-family:'Fraunces',serif;font-style:italic;color:#b89968;font-weight:300}
-.exp-text p{color:#c2b8a3;font-size:1.05rem;line-height:1.85;margin-top:1.2rem;max-width:34rem}
+.cuisine-card h3{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:500;
+  font-size:1.6rem;color:var(--burgundy);margin-bottom:.8rem;
+}
+.cuisine-card p{font-family:'Lora',serif;font-size:1rem;color:var(--ink-soft);line-height:1.7;max-width:24rem;margin:0 auto}
 
 /* ============================================================
-   GALERIE DE PLATS — scroll horizontal snap
+   MENU SECTION — layout magazine élégant
    ============================================================ */
-.gallery{padding:clamp(7rem,12vw,10rem) 0 clamp(7rem,12vw,10rem);background:#15110d}
-.gallery-head{
-  max-width:1500px;margin:0 auto 4rem;
-  padding:0 clamp(1.5rem,5vw,4rem);
+.menu{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream);
 }
-.gallery-head h2{
-  font-family:'Fraunces',serif;font-weight:300;
-  font-size:clamp(2.2rem,5vw,4rem);line-height:.98;letter-spacing:-.025em;
+.menu-head{max-width:900px;margin:0 auto 4rem;text-align:center}
+.menu-head .menu-num{
+  font-family:'Playfair Display',serif;font-size:5rem;color:var(--ocre);line-height:1;
+  font-weight:400;font-style:italic;margin-bottom:1rem;
 }
-.gallery-head h2 em{font-style:italic;color:#b89968;font-family:'Cormorant Garamond',serif;font-weight:400}
+.menu-head h2{
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1;color:var(--ink);letter-spacing:-.015em;
+  margin-bottom:1.5rem;
+}
+.menu-head h2 em{font-style:italic;color:var(--burgundy);font-family:'Cormorant Garamond',serif}
+.menu-head .menu-lead{font-family:'Lora',serif;font-size:1.15rem;font-style:italic;color:var(--ink-soft);line-height:1.6}
+
+.menu-list{max-width:780px;margin:0 auto}
+.menu-section-title{
+  text-align:center;margin:3.5rem 0 2.5rem;
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:500;
+  font-size:1.6rem;color:var(--burgundy);
+  display:flex;align-items:center;justify-content:center;gap:1.5rem;
+}
+.menu-section-title::before,.menu-section-title::after{
+  content:'';width:60px;height:1px;background:var(--ocre);
+}
+.menu-item{padding:1.6rem 0;border-bottom:1px dotted var(--rule);text-align:center}
+.menu-item:last-child{border-bottom:0}
+.menu-item-name{
+  font-family:'Playfair Display',serif;font-weight:500;font-size:1.35rem;
+  color:var(--ink);margin-bottom:.5rem;letter-spacing:-.005em;
+}
+.menu-item-desc{font-family:'Lora',serif;font-style:italic;color:var(--muted);font-size:1rem;line-height:1.55;max-width:38rem;margin:0 auto}
+
+.menu-foot{text-align:center;margin-top:5rem;padding-top:3rem;border-top:1px solid var(--rule)}
+.menu-foot-note{font-family:'Lora',serif;font-style:italic;color:var(--muted);font-size:1rem;margin-bottom:2.5rem}
+.menu-foot-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:1rem 2rem;background:var(--burgundy);color:var(--cream);
+  font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;
+  transition:background .25s;
+}
+.menu-foot-cta:hover{background:var(--burgundy-soft)}
+
+/* ============================================================
+   GALERIE PLATS — horizontal scroll snap
+   ============================================================ */
+.gallery{
+  padding:clamp(6rem,10vw,10rem) 0 clamp(6rem,10vw,10rem);
+  background:var(--cream-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.gallery-head{max-width:1500px;margin:0 auto 3.5rem;padding:0 clamp(1.5rem,5vw,4rem);text-align:center}
+.gallery-head h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.05;color:var(--ink);letter-spacing:-.015em}
+.gallery-head h2 em{font-style:italic;color:var(--burgundy);font-family:'Cormorant Garamond',serif}
 .gallery-scroll{
-  display:flex;gap:1.5rem;
-  overflow-x:auto;overflow-y:hidden;
-  scroll-snap-type:x mandatory;
-  padding:0 clamp(1.5rem,5vw,4rem);
-  scrollbar-width:thin;scrollbar-color:#b89968 transparent;
+  display:flex;gap:2rem;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;padding:1rem clamp(1.5rem,5vw,4rem);
+  scrollbar-width:thin;scrollbar-color:var(--burgundy) transparent;
 }
 .gallery-scroll::-webkit-scrollbar{height:4px}
-.gallery-scroll::-webkit-scrollbar-thumb{background:#b89968;border-radius:2px}
-.dish{
-  scroll-snap-align:start;flex-shrink:0;
-  width:clamp(280px,40vw,500px);
-}
-.dish-img{
-  width:100%;aspect-ratio:4/5;
-  background-size:cover;background-position:center;
-  margin-bottom:1.5rem;
-  filter:grayscale(.15) brightness(.95);
-  transition:filter .5s;
-}
-.dish:hover .dish-img{filter:grayscale(0) brightness(1)}
-.dish-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.35em;color:#b89968;margin-bottom:.4rem}
-.dish-name{font-family:'Italiana',serif;font-size:1.5rem;color:#ebe4d6;letter-spacing:.02em;margin-bottom:.4rem}
-.dish-desc{font-family:'Cormorant Garamond',serif;font-style:italic;color:#c2b8a3;font-size:.95rem;line-height:1.5}
-.gallery-foot{
-  text-align:center;margin-top:3rem;
-  padding:0 clamp(1.5rem,5vw,4rem);
-}
-.gallery-foot p{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:#9a907c}
+.gallery-scroll::-webkit-scrollbar-thumb{background:var(--burgundy);border-radius:2px}
+.dish{scroll-snap-align:start;flex-shrink:0;width:clamp(280px,40vw,440px)}
+.dish-img{width:100%;aspect-ratio:4/5;background-size:cover;background-position:center;margin-bottom:1.5rem;filter:saturate(.95)}
+.dish-num{font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.35em;color:var(--burgundy);text-transform:uppercase;margin-bottom:.4rem}
+.dish-name{font-family:'Playfair Display',serif;font-weight:500;font-size:1.4rem;color:var(--ink);margin-bottom:.4rem;letter-spacing:-.005em}
+.dish-desc{font-family:'Lora',serif;font-style:italic;color:var(--muted);font-size:.95rem;line-height:1.55}
 
 /* ============================================================
-   MENU — layout magazine
-   ============================================================ */
-.menu{padding:clamp(7rem,12vw,12rem) clamp(1.5rem,5vw,4rem);background:#1a160f}
-.menu-head{text-align:center;max-width:780px;margin:0 auto 5rem}
-.menu-courses{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:4rem;
-}
-@media(max-width:820px){.menu-courses{grid-template-columns:1fr;gap:4rem}}
-.course-head{
-  display:flex;align-items:baseline;justify-content:space-between;
-  padding-bottom:1.2rem;margin-bottom:2.5rem;
-  border-bottom:1px solid rgba(184,153,104,.3);
-}
-.course-head h3{font-family:'Italiana',serif;font-size:1.5rem;letter-spacing:.05em;color:#ebe4d6;font-weight:400}
-.course-head span{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.4em;color:#9a907c}
-.course-item{margin-bottom:2.5rem}
-.course-item h4{font-family:'Fraunces',serif;font-weight:400;font-size:1.35rem;color:#ebe4d6;letter-spacing:-.005em;margin-bottom:.6rem}
-.course-item p{font-family:'Cormorant Garamond',serif;font-style:italic;color:#c2b8a3;font-size:1rem;line-height:1.6}
-.menu-foot{
-  text-align:center;margin-top:5rem;padding-top:3rem;
-  border-top:1px solid rgba(184,153,104,.15);
-}
-.menu-foot p{font-family:'Cormorant Garamond',serif;font-style:italic;color:#9a907c;font-size:1rem;margin-bottom:2.5rem}
-
-/* ============================================================
-   CHEF — full bleed split with dramatic quote
+   CHEF — split éditorial avec grande citation
    ============================================================ */
 .chef{
-  display:grid;grid-template-columns:1fr 1.15fr;background:#15110d;align-items:stretch;
+  display:grid;grid-template-columns:1fr 1.1fr;
+  background:var(--cream);min-height:90vh;
 }
-@media(max-width:820px){.chef{grid-template-columns:1fr}}
+@media(max-width:880px){.chef{grid-template-columns:1fr}}
 .chef-img{
-  min-height:720px;
   background:url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
-  filter:grayscale(.1);
+  min-height:600px;filter:saturate(.9);
 }
 .chef-text{
   padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,6rem);
   display:flex;flex-direction:column;justify-content:center;
 }
+.chef-eyebrow{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--burgundy);margin-bottom:2rem}
 .chef-name{
-  font-family:'Italiana',serif;font-size:clamp(2.4rem,5vw,4rem);
-  letter-spacing:.02em;color:#ebe4d6;margin-bottom:.5rem;font-weight:400;line-height:1;
+  font-family:'Playfair Display',serif;font-weight:400;font-style:italic;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1;color:var(--ink);margin-bottom:.4rem;
 }
-.chef-role{
-  font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.4em;
-  text-transform:uppercase;color:#b89968;margin-bottom:2.5rem;
-}
-.chef-text p{color:#c2b8a3;line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem;max-width:36rem}
+.chef-role{font-family:'Lora',serif;font-style:italic;color:var(--muted);font-size:1.05rem;margin-bottom:2.5rem}
+.chef-text p{font-family:'Lora',serif;color:var(--ink-soft);font-size:1.05rem;line-height:1.85;margin-bottom:1.3rem;max-width:36rem}
 .chef-quote{
-  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-  font-size:clamp(1.4rem,2.2vw,1.8rem);line-height:1.45;color:#ebe4d6;
-  margin-top:3rem;padding:2rem 0;
-  border-top:1px solid rgba(184,153,104,.3);
-  border-bottom:1px solid rgba(184,153,104,.3);
-  max-width:36rem;letter-spacing:-.01em;
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.4;color:var(--burgundy);
+  margin-top:3rem;padding:2.5rem 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  max-width:36rem;
 }
-.chef-quote::before{content:'« ';color:#b89968}
-.chef-quote::after{content:' »';color:#b89968}
+.chef-signature{
+  margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.5rem;color:var(--burgundy);
+}
+
+/* ============================================================
+   SALLE / PHOTOS — grille 4 photos
+   ============================================================ */
+.salle{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream-2);border-top:1px solid var(--rule);
+}
+.salle-head{max-width:1200px;margin:0 auto 4rem;text-align:center}
+.salle-head h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.05;color:var(--ink)}
+.salle-head h2 em{font-style:italic;color:var(--burgundy);font-family:'Cormorant Garamond',serif}
+.salle-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;
+}
+@media(max-width:780px){.salle-grid{grid-template-columns:repeat(2,1fr)}}
+.salle-photo{
+  aspect-ratio:3/4;background-size:cover;background-position:center;
+  transition:transform .5s;
+}
+.salle-photo:hover{transform:scale(1.03)}
 
 /* ============================================================
    RÉSERVATION
    ============================================================ */
-.reserve{padding:clamp(7rem,12vw,10rem) clamp(1.5rem,5vw,4rem);text-align:center}
-.reserve-inner{max-width:700px;margin:0 auto}
-.reserve-form{
-  margin-top:4rem;display:flex;flex-direction:column;gap:1.5rem;text-align:left;
+.reserve{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);background:var(--cream);
+  text-align:center;
 }
+.reserve-inner{max-width:680px;margin:0 auto}
+.reserve-eyebrow{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--burgundy);margin-bottom:1.5rem}
+.reserve h2{
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1;color:var(--ink);letter-spacing:-.015em;margin-bottom:1.5rem;
+}
+.reserve h2 em{font-style:italic;color:var(--burgundy);font-family:'Cormorant Garamond',serif}
+.reserve-lead{font-family:'Lora',serif;font-style:italic;font-size:1.15rem;color:var(--ink-soft);margin-bottom:4rem;line-height:1.6}
+
+.reserve-form{display:flex;flex-direction:column;gap:1.5rem;text-align:left}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
 @media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}}
 .reserve-form label{display:flex;flex-direction:column;gap:.5rem}
 .reserve-form span{
-  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.4em;
-  text-transform:uppercase;color:#9a907c;
+  font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--muted);
 }
 .reserve-form input,.reserve-form select{
-  background:rgba(235,228,214,.04);border:0;border-bottom:1px solid rgba(184,153,104,.25);
-  padding:.9rem .25rem;color:#ebe4d6;font-family:'Inter',sans-serif;font-size:1rem;
-  outline:0;transition:border-color .2s,background .2s;
+  background:transparent;border:0;border-bottom:1px solid var(--rule);
+  padding:.9rem .25rem;color:var(--ink);font-family:'Lora',serif;font-size:1.05rem;
+  outline:0;transition:border-color .2s;
 }
-.reserve-form input:focus,.reserve-form select:focus{border-color:#b89968;background:rgba(235,228,214,.08)}
+.reserve-form input:focus,.reserve-form select:focus{border-color:var(--burgundy)}
 .reserve-form button{
-  align-self:center;margin-top:2rem;min-width:260px;
-  padding:1rem 2rem;font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;
-  background:#b89968;color:#15110d;font-weight:500;
+  align-self:center;margin-top:2.5rem;min-width:280px;
+  padding:1.1rem 2.2rem;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;
+  background:var(--burgundy);color:var(--cream);
   transition:background .25s,transform .15s;
 }
-.reserve-form button:hover{background:#d0b07b;transform:translateY(-1px)}
+.reserve-form button:hover{background:var(--burgundy-soft);transform:translateY(-2px)}
 
 /* ============================================================
    INFOS
    ============================================================ */
-.infos{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);background:#1a160f;border-top:1px solid rgba(184,153,104,.1)}
-.infos-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center}
+.infos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4rem);background:var(--cream-2);
+  border-top:1px solid var(--rule);
+}
+.infos-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center;
+}
 @media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
-.info-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:#b89968;margin-bottom:1.2rem}
-.info-content{font-family:'Fraunces',serif;font-weight:300;font-size:1.2rem;color:#ebe4d6;line-height:1.6}
-.info-content em{font-style:italic;color:#c2b8a3;display:block;margin-top:.3rem;font-size:.95rem;font-family:'Cormorant Garamond',serif}
+.info-label{font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--burgundy);margin-bottom:1.2rem}
+.info-content{font-family:'Playfair Display',serif;font-weight:500;font-size:1.2rem;color:var(--ink);line-height:1.6}
+.info-content em{font-family:'Lora',serif;font-style:italic;color:var(--muted);display:block;margin-top:.3rem;font-size:.95rem;font-weight:400}
 
 /* ============================================================
-   HECTOWEB CTA bottom
+   HECTOWEB CTA — distincte (palette HW noir+or)
    ============================================================ */
 .hw-cta{
   padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;
-  background:#0a0a0c;border-top:1px solid rgba(201,169,110,.2);
-  background-image:radial-gradient(circle at 50% 30%,rgba(227,199,137,.10),transparent 60%);
+  background:#0a0a0c;color:#f0ebe1;
 }
 .hw-cta-kicker{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
 .hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
 .hw-cta h3{
   font-family:'Fraunces',serif;font-weight:300;
   font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;
-  max-width:42rem;margin:0 auto 2rem;letter-spacing:-.025em;
+  max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em;
 }
 .hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
 .hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6}
 .hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .hw-cta-btn{
   display:inline-flex;align-items:center;gap:.6rem;
-  padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;
-  font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;
+  padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;
+  font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
   transition:background .25s,transform .15s;
 }
-.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-1px)}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
 .hw-cta-back{
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:1rem 1.7rem;border:1px solid rgba(227,199,137,.35);color:#f0ebe1;
-  font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;
+  border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;
+  font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
   transition:border-color .25s,color .25s;
 }
 .hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
@@ -389,27 +447,16 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
 /* ============================================================
    FOOTER
    ============================================================ */
-.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:#15110d;border-top:1px solid rgba(184,153,104,.1)}
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--cream);border-top:1px solid var(--rule)}
 .footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
-.footer-inner p{color:#9a907c;font-size:.75rem;font-family:'JetBrains Mono',monospace;letter-spacing:.1em}
-.footer-inner a{color:#b89968}
+.footer-inner p{color:var(--muted);font-size:.85rem;font-family:'Lora',serif;font-style:italic}
+.footer-inner a{color:var(--burgundy)}
 
-/* Mask helper */
-.mask{display:block;overflow:hidden}
-.mask-inner{display:inline-block;will-change:transform;transform:translateY(110%)}
-.reveal{opacity:0;transform:translateY(30px)}
-
-@media(prefers-reduced-motion:reduce){
-  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
-  .mask-inner{transform:none !important}
-  .reveal{opacity:1;transform:none}
-}
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
-<div class="grain"></div>
-<div class="cursor" id="cursor"></div>
 
 <!-- HectoWeb top strip -->
 <div class="hw-strip">
@@ -421,77 +468,85 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
 <nav class="nav" id="nav">
   <a href="#top" class="nav-brand">Maison Hélène</a>
   <ul class="nav-links">
-    <li><a href="#experience">L'expérience</a></li>
+    <li><a href="#histoire">L'histoire</a></li>
     <li><a href="#menu">Le menu</a></li>
-    <li><a href="#chef">Le chef</a></li>
-    <li><a href="#infos">Infos</a></li>
+    <li><a href="#chef">La cheffe</a></li>
+    <li><a href="#infos">Visite</a></li>
     <li><a href="#reserve" class="nav-cta">Réserver</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <header id="top" class="hero">
-  <div class="hero-bg"></div>
-
-  <div class="hero-top">
-    <div class="hero-top-info">
-      <span>Lausanne</span><span class="sep">·</span>
-      <span>Depuis 2018</span><span class="sep">·</span>
-      <span>Une étoile Michelin</span>
-    </div>
-    <div class="hero-top-info">
-      <span>17 / 20 Gault &amp; Millau</span>
-    </div>
-  </div>
-
-  <div class="hero-content">
-    <p class="hero-kicker">Restaurant gastronomique</p>
-    <h1 class="hero-name">
-      <span class="mask"><span class="mask-inner">Maison</span></span>
-      <span class="mask"><span class="mask-inner">Hélène</span></span>
+  <div class="hero-img"></div>
+  <div class="hero-text">
+    <p class="hero-eyebrow">Restaurant gastronomique · ★ Michelin</p>
+    <h1>
+      Maison<br/>
+      <em>Hélène</em>
     </h1>
-    <p class="hero-tag">Cuisine française de saison, produits suisses, quinze couverts par service.</p>
+    <p class="hero-tag">Une cuisine française de saison, ancrée dans le terroir vaudois. Quinze couverts par service, un menu unique renouvelé chaque mois.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Lieu</span><span class="hero-meta-value">Lausanne</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Depuis</span><span class="hero-meta-value">2018</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Gault &amp; Millau</span><span class="hero-meta-value">17 / 20</span></div>
+    </div>
+    <a href="#reserve" class="hero-cta">Réserver une table →</a>
   </div>
-
-  <a href="#experience" class="hero-scroll">Faites défiler</a>
 </header>
 
-<!-- INTRO QUOTE -->
-<section class="intro">
-  <p class="intro-kicker">Le mot d'Hélène</p>
-  <h2>
-    <span class="mask"><span class="mask-inner">« Je ne cherche pas à <em>impressionner</em>.</span></span>
-    <span class="mask"><span class="mask-inner">Je cherche à ce qu'on se <em>souvienne</em> du repas</span></span>
-    <span class="mask"><span class="mask-inner">le lendemain matin. »</span></span>
-  </h2>
+<!-- HISTOIRE -->
+<section id="histoire" class="histoire">
+  <div class="histoire-inner">
+    <div class="histoire-head">
+      <p class="histoire-eyebrow">— Notre histoire</p>
+      <h2>Au cœur du quartier de Saint-François,<br/>une <strong>maison</strong> qui ne fait <em>aucun compromis.</em></h2>
+    </div>
 
-  <div class="intro-badges">
-    <div class="badge"><span class="badge-label">Distinction</span><span class="badge-value">★ Michelin</span></div>
-    <div class="badge"><span class="badge-label">Gault &amp; Millau</span><span class="badge-value">17 / 20</span></div>
-    <div class="badge"><span class="badge-label">Couverts</span><span class="badge-value">15</span></div>
-    <div class="badge"><span class="badge-label">Cuisine</span><span class="badge-value">Française</span></div>
-    <div class="badge"><span class="badge-label">Depuis</span><span class="badge-value">2018</span></div>
+    <div class="orn"><span class="orn-sym">❦</span></div>
+
+    <div class="histoire-body">
+      <p class="drop-cap">Maison Hélène a ouvert ses portes en septembre 2018, dans une ancienne crémerie patiemment restaurée. Quinze couverts, une cheffe, deux personnes en salle. Une équipe volontairement réduite — pour que tout le monde puisse faire son métier <em>vraiment bien</em>.</p>
+
+      <p>Le menu se construit à la semaine, parfois au jour, selon ce que les pêcheurs du Léman et les maraîchers de la Côte nous apportent. Aucune carte fixe, aucun plat signature reproduit à l'identique d'année en année. On préfère que chaque repas raconte le moment précis où vous l'avez vécu.</p>
+
+      <p>L'étoile Michelin est tombée deux ans après l'ouverture. Le 17/20 du Gault &amp; Millau l'année suivante. Cela ne change pas grand-chose à ce qu'on fait — sinon de devoir réserver plus longtemps à l'avance.</p>
+    </div>
+
+    <blockquote class="histoire-quote">Je n'écris pas mes menus à l'avance.<br/>Je les compose au matin.</blockquote>
   </div>
 </section>
 
-<!-- EXPÉRIENCE -->
-<section id="experience" class="exp">
-  <div class="exp-img"></div>
-  <div class="exp-text">
-    <p class="section-kicker">L'expérience</p>
-    <h2 class="section-title">Une salle.<br/><em>Quinze</em> couverts.</h2>
-    <p class="reveal">Pas de hâte, pas d'agitation. Le service dure deux heures et demie, parfois trois. Vous arrivez, on vous accueille avec un verre, et l'on commence à raconter une histoire — celle d'un menu construit chaque semaine au gré de ce que nous apportent les pêcheurs du Léman et les maraîchers de la Côte.</p>
-    <p class="reveal">Pour prolonger la soirée, notre sommelier propose un accord mets-vins en sept verres, exclusivement composé de domaines suisses.</p>
+<!-- CUISINE 3 colonnes -->
+<section class="cuisine">
+  <div class="cuisine-head">
+    <p class="histoire-eyebrow">— Notre cuisine</p>
+    <h2>Trois temps,<br/>une seule <em>obsession.</em></h2>
+  </div>
+  <div class="cuisine-grid">
+    <div class="cuisine-card">
+      <div class="cuisine-card-img" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=85')"></div>
+      <h3>Pour commencer</h3>
+      <p>Une mise en bouche, puis deux entrées au choix. Légère, vive, qui éveille sans saturer — on commence comme on doit toujours commencer.</p>
+    </div>
+    <div class="cuisine-card">
+      <div class="cuisine-card-img" style="background-image:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=85')"></div>
+      <h3>Le plat</h3>
+      <p>Viande, poisson ou végétal. Selon la saison, selon votre humeur. Cuisson lente, sauce courte, accompagnement précis — la juste générosité.</p>
+    </div>
+    <div class="cuisine-card">
+      <div class="cuisine-card-img" style="background-image:url('https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85')"></div>
+      <h3>Pour finir</h3>
+      <p>Pré-dessert, puis dessert. Un fromage de la Vallée si vous voulez. Une mignardise. Un café, un dernier mot — et c'est déjà la fin.</p>
+    </div>
   </div>
 </section>
 
-<!-- GALERIE DE PLATS -->
+<!-- GALERIE -->
 <section class="gallery">
   <div class="gallery-head">
-    <p class="section-kicker">La carte du moment</p>
-    <h2 class="reveal">Quelques signatures<br/>du <em>printemps</em>.</h2>
+    <h2>La carte de <em>printemps</em></h2>
   </div>
-
   <div class="gallery-scroll">
     <div class="dish">
       <div class="dish-img" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=85')"></div>
@@ -514,77 +569,67 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
     <div class="dish">
       <div class="dish-img" style="background-image:url('https://images.unsplash.com/photo-1565895405138-6c3a1555da6a?auto=format&fit=crop&w=900&q=85')"></div>
       <p class="dish-num">II — Le plat</p>
-      <h3 class="dish-name">Saint-Pierre, beurre noisette &amp; câpres</h3>
-      <p class="dish-desc">Basse température, beurre noisette infusé au laurier frais, ail noir.</p>
+      <h3 class="dish-name">Saint-Pierre, beurre noisette</h3>
+      <p class="dish-desc">Basse température, beurre noisette infusé au laurier, ail noir.</p>
     </div>
     <div class="dish">
       <div class="dish-img" style="background-image:url('https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85')"></div>
       <p class="dish-num">III — Pour finir</p>
-      <h3 class="dish-name">Soufflé à la rhubarbe du Jura</h3>
-      <p class="dish-desc">Servi minute, glace au lait cru de la ferme Joly, sablé à la fleur de sureau.</p>
+      <h3 class="dish-name">Soufflé à la rhubarbe</h3>
+      <p class="dish-desc">Servi minute, glace au lait cru de la ferme Joly, fleur de sureau.</p>
     </div>
     <div class="dish">
       <div class="dish-img" style="background-image:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85')"></div>
       <p class="dish-num">III — Pour finir</p>
       <h3 class="dish-name">Chocolat Grand Cru, sarrasin &amp; tonka</h3>
-      <p class="dish-desc">Ganache pure origine Pérou, sablé au sarrasin torréfié, fève tonka.</p>
+      <p class="dish-desc">Ganache pure origine Pérou, sablé au sarrasin torréfié.</p>
     </div>
-  </div>
-
-  <div class="gallery-foot">
-    <p>← Faites défiler horizontalement →</p>
   </div>
 </section>
 
-<!-- MENU -->
+<!-- MENU détaillé -->
 <section id="menu" class="menu">
   <div class="menu-head">
-    <p class="section-kicker" style="justify-content:center">Le menu complet</p>
-    <h2 class="section-title">Carte de <em>printemps</em></h2>
-    <p style="margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#c2b8a3">Une suggestion en cinq temps, à 165 CHF.<br/>Accord vins suisses optionnel à 95 CHF.</p>
+    <p class="menu-num">III</p>
+    <h2>Carte de <em>printemps</em></h2>
+    <p class="menu-lead">Une suggestion en cinq temps, à 165 CHF.<br/>Accord vins suisses optionnel à 95 CHF.</p>
   </div>
 
-  <div class="menu-courses">
-    <div class="course">
-      <div class="course-head"><h3>Pour commencer</h3><span>I</span></div>
-      <div class="course-item">
-        <h4>Truite du Léman, fenouil &amp; agrume</h4>
-        <p>Mi-cuite à l'huile d'olive verveine, jus de pamplemousse rôti, croquant de fenouil sauvage.</p>
-      </div>
-      <div class="course-item">
-        <h4>Asperges blanches de Maraîchin</h4>
-        <p>Sauce mousseline au champagne suisse, jaune d'œuf confit, copeaux d'amande de Provence.</p>
-      </div>
+  <div class="menu-list">
+    <h3 class="menu-section-title">Pour commencer</h3>
+    <div class="menu-item">
+      <h4 class="menu-item-name">Truite du Léman, fenouil &amp; agrume</h4>
+      <p class="menu-item-desc">Mi-cuite à l'huile d'olive verveine, jus de pamplemousse rôti, croquant de fenouil sauvage.</p>
+    </div>
+    <div class="menu-item">
+      <h4 class="menu-item-name">Asperges blanches de Maraîchin</h4>
+      <p class="menu-item-desc">Sauce mousseline au champagne suisse, jaune d'œuf confit, copeaux d'amande de Provence.</p>
     </div>
 
-    <div class="course">
-      <div class="course-head"><h3>Le plat</h3><span>II</span></div>
-      <div class="course-item">
-        <h4>Pigeonneau de la Sarthe, betterave &amp; cassis</h4>
-        <p>Filet rôti sur coffre, cuisse confite, jus court au vinaigre de cassis, betterave en deux façons.</p>
-      </div>
-      <div class="course-item">
-        <h4>Saint-Pierre, beurre noisette &amp; câpres</h4>
-        <p>Cuit à basse température, beurre noisette infusé au laurier frais, câpres de Sicile, croûton à l'ail noir.</p>
-      </div>
+    <h3 class="menu-section-title">Le plat principal</h3>
+    <div class="menu-item">
+      <h4 class="menu-item-name">Pigeonneau de la Sarthe, betterave &amp; cassis</h4>
+      <p class="menu-item-desc">Filet rôti sur coffre, cuisse confite, jus court au vinaigre de cassis, betterave en deux façons.</p>
+    </div>
+    <div class="menu-item">
+      <h4 class="menu-item-name">Saint-Pierre, beurre noisette &amp; câpres</h4>
+      <p class="menu-item-desc">Cuit à basse température, beurre noisette infusé au laurier frais, câpres de Sicile, croûton à l'ail noir.</p>
     </div>
 
-    <div class="course">
-      <div class="course-head"><h3>Pour finir</h3><span>III</span></div>
-      <div class="course-item">
-        <h4>Soufflé à la rhubarbe du Jura</h4>
-        <p>Servi minute, glace au lait cru de la ferme Joly, biscuit sablé à la fleur de sureau.</p>
-      </div>
-      <div class="course-item">
-        <h4>Chocolat Grand Cru, sarrasin &amp; tonka</h4>
-        <p>Ganache pure origine Pérou, sablé au sarrasin torréfié, glace à la fève tonka, fleur de sel.</p>
-      </div>
+    <h3 class="menu-section-title">Pour finir</h3>
+    <div class="menu-item">
+      <h4 class="menu-item-name">Soufflé à la rhubarbe du Jura</h4>
+      <p class="menu-item-desc">Servi minute, glace au lait cru de la ferme Joly, biscuit sablé à la fleur de sureau.</p>
+    </div>
+    <div class="menu-item">
+      <h4 class="menu-item-name">Chocolat Grand Cru, sarrasin &amp; tonka</h4>
+      <p class="menu-item-desc">Ganache pure origine Pérou, sablé au sarrasin torréfié, glace à la fève tonka, fleur de sel.</p>
     </div>
   </div>
 
   <div class="menu-foot">
-    <p>Menu végétarien sur demande. Allergies prises en charge.<br/>Carte susceptible de modification selon les arrivages.</p>
-    <a href="#reserve" class="hw-cta-btn" style="background:#b89968;color:#15110d">Réserver une table →</a>
+    <p class="menu-foot-note">Menu végétarien sur demande · Allergies prises en charge<br/>Carte susceptible de modification selon les arrivages</p>
+    <a href="#reserve" class="menu-foot-cta">Réserver une table →</a>
   </div>
 </section>
 
@@ -592,21 +637,36 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
 <section id="chef" class="chef">
   <div class="chef-img"></div>
   <div class="chef-text">
-    <p class="section-kicker">Le chef</p>
+    <p class="chef-eyebrow">— La cheffe</p>
     <h3 class="chef-name">Hélène Bovay</h3>
     <p class="chef-role">Cheffe &amp; propriétaire</p>
-    <p>Formée chez Pic à Valence, puis chez Anne-Sophie Pic à Genève, Hélène ouvre sa maison à Lausanne en 2018. L'étoile Michelin tombe deux ans plus tard.</p>
+    <p>Formée chez Anne-Sophie Pic à Valence, puis à Genève. Hélène ouvre sa maison à Lausanne en 2018. L'étoile Michelin tombe deux ans plus tard, le 17/20 du Gault &amp; Millau l'année d'après.</p>
     <p>Sa cuisine ne se laisse pas raconter. Elle se goûte. Elle puise dans la mémoire des grands classiques français, mais s'ancre dans le terroir vaudois — d'où vient tout ce qui arrive dans son assiette, ou presque.</p>
-    <blockquote class="chef-quote">Je n'écris pas mes menus à l'avance. Je les compose au matin, avec ce que la terre et le lac veulent bien me donner.</blockquote>
+    <blockquote class="chef-quote">« Je ne cherche pas à impressionner. Je cherche à ce qu'on se souvienne du repas le lendemain matin. »</blockquote>
+    <p class="chef-signature">Hélène B.</p>
+  </div>
+</section>
+
+<!-- SALLE -->
+<section class="salle">
+  <div class="salle-head">
+    <p class="histoire-eyebrow">— La maison</p>
+    <h2>Quinze couverts.<br/><em>Une seule</em> salle.</h2>
+  </div>
+  <div class="salle-grid">
+    <div class="salle-photo" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=85')"></div>
+    <div class="salle-photo" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=85')"></div>
+    <div class="salle-photo" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=85')"></div>
+    <div class="salle-photo" style="background-image:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=85')"></div>
   </div>
 </section>
 
 <!-- RÉSERVATION -->
 <section id="reserve" class="reserve">
   <div class="reserve-inner">
-    <p class="section-kicker" style="justify-content:center">Réservation</p>
-    <h2 class="section-title">Réserver <em>une table</em></h2>
-    <p style="margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#c2b8a3;max-width:38rem;margin-left:auto;margin-right:auto">Ouvert du mercredi au samedi, midi et soir.<br/>Fermeture le dimanche, lundi et mardi.</p>
+    <p class="reserve-eyebrow">— Réservation</p>
+    <h2>Réserver <em>une table</em></h2>
+    <p class="reserve-lead">Ouvert du mercredi au samedi, midi et soir.<br/>Fermeture le dimanche, lundi, mardi.</p>
 
     <form class="reserve-form">
       <div class="form-row-3">
@@ -627,15 +687,15 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
 <!-- INFOS -->
 <section id="infos" class="infos">
   <div class="infos-grid">
-    <div class="info-block">
+    <div>
       <p class="info-label">Adresse</p>
       <p class="info-content">Rue de Bourg 24<br/><em>1003 Lausanne, Suisse</em></p>
     </div>
-    <div class="info-block">
+    <div>
       <p class="info-label">Contact</p>
       <p class="info-content">+41 21 555 12 34<br/><em>reservation@maisonhelene.ch</em></p>
     </div>
-    <div class="info-block">
+    <div>
       <p class="info-label">Horaires</p>
       <p class="info-content">Mer · Sam · 12h–14h · 19h–22h<br/><em>Fermé dim · lun · mar</em></p>
     </div>
@@ -657,7 +717,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
 <footer class="footer">
   <div class="footer-inner">
     <p>Maison Hélène · Lausanne · MMXXVI</p>
-    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.5</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.6</p>
   </div>
 </footer>
 
@@ -666,86 +726,23 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-/* Cursor */
-(function(){
-  if(window.matchMedia('(pointer: coarse)').matches) return;
-  const cursor=document.getElementById('cursor');
-  let tx=0,ty=0,cx=0,cy=0;
-  window.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
-  function tick(){
-    cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;
-    cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-    requestAnimationFrame(tick);
-  }
-  tick();
-  document.querySelectorAll('a, button, .dish').forEach(el=>{
-    el.addEventListener('mouseenter',()=>cursor.classList.add('is-link'));
-    el.addEventListener('mouseleave',()=>cursor.classList.remove('is-link'));
-  });
-})();
-
-/* Nav scroll */
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
 
-/* Hero name reveal */
-gsap.to('.hero-name .mask-inner',{yPercent:0,duration:1.4,ease:'expo.out',stagger:.12,delay:.3});
-gsap.from('.hero-kicker, .hero-tag, .hero-top-info, .hero-scroll',{
-  opacity:0,y:20,duration:1,ease:'power3.out',stagger:.08,delay:.7
-});
-
-/* Hero parallax */
-gsap.to('.hero-bg',{
-  yPercent:25,
-  scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}
-});
-
-/* Intro quote reveal */
-gsap.utils.toArray('.intro h2 .mask-inner').forEach(el=>{
-  gsap.fromTo(el,{yPercent:110},{yPercent:0,duration:1.2,ease:'expo.out',
-    scrollTrigger:{trigger:el,start:'top 85%',once:true}});
-});
-gsap.from('.intro-badges .badge',{
-  opacity:0,y:20,duration:.8,stagger:.08,
-  scrollTrigger:{trigger:'.intro-badges',start:'top 85%',once:true}
-});
-
-/* Generic reveal */
-gsap.utils.toArray('.reveal').forEach(el=>{
-  gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',
-    scrollTrigger:{trigger:el,start:'top 88%',once:true}});
-});
-
-/* Section titles reveal */
-gsap.utils.toArray('.section-title').forEach(el=>{
-  gsap.fromTo(el,{opacity:0,y:30},{opacity:1,y:0,duration:1.1,ease:'power3.out',
-    scrollTrigger:{trigger:el,start:'top 85%',once:true}});
-});
-
-/* Course items reveal */
-gsap.utils.toArray('.course-item').forEach(el=>{
-  gsap.fromTo(el,{opacity:0,y:20},{opacity:1,y:0,duration:.8,ease:'power3.out',
+/* Reveal on scroll */
+gsap.utils.toArray('.histoire-body p, .histoire-quote, .cuisine-card, .dish, .menu-item, .menu-section-title, .salle-photo, .info-content, .chef-text > *').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
     scrollTrigger:{trigger:el,start:'top 90%',once:true}});
 });
 
-/* Dishes reveal */
-ScrollTrigger.batch('.dish',{
-  start:'top 90%',
-  onEnter:b=>gsap.fromTo(b,{opacity:0,y:30},{opacity:1,y:0,duration:.8,stagger:.06,ease:'power3.out'})
-});
-
-/* Chef quote */
-gsap.fromTo('.chef-quote',{opacity:0,y:20},{opacity:1,y:0,duration:1.1,ease:'power3.out',
-  scrollTrigger:{trigger:'.chef-quote',start:'top 85%',once:true}});
-
-/* HW CTA */
-gsap.from('.hw-cta > *',{opacity:0,y:30,duration:.9,stagger:.1,ease:'power3.out',
-  scrollTrigger:{trigger:'.hw-cta',start:'top 80%',once:true}});
+/* Hero on load */
+gsap.from('.hero-text > *',{opacity:0,y:30,duration:1,ease:'power3.out',stagger:.1,delay:.2});
+gsap.from('.hero-img',{opacity:0,scale:1.04,duration:1.4,ease:'power3.out',delay:.1});
 
 /* Form */
 document.querySelector('.reserve-form')?.addEventListener('submit',e=>{
   e.preventDefault();
-  alert('Cette page est une démonstration HectoWeb. Sur votre vrai site, la réservation serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch');
+  alert('Cette page est une démonstration HectoWeb.\nSur votre vrai site, la réservation serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch');
 });
 </script>
 </body>
