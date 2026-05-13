@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Encre Noire — Studio de tatouage · Lausanne</title>
+<meta name="description" content="Encre Noire, studio de tatouage à Lausanne. Quatre artistes, des styles distincts : blackwork, fineline, neo-traditional, japonais." />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — noir absolu + rouge sang + blanc froid
+   Radicalement différent : ni du hub HectoWeb (noir+or chaud),
+   ni du restaurant (crème+bordeaux). C'est URBAIN, BRUTAL, DIRECT.
+   ============================================================ */
+:root{
+  --bg:#0a0a0a;
+  --bg-2:#141414;
+  --bg-3:#1d1d1d;
+  --fg:#f4f1ea;          /* blanc cassé légèrement chaud */
+  --fg-2:#9a9590;
+  --muted:#5a5651;
+  --blood:#c1272d;       /* rouge sang */
+  --blood-2:#e0383e;
+  --rule:rgba(244,241,234,.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--fg);background:var(--bg);
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;
+}
+::selection{background:var(--blood);color:var(--fg)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HECTOWEB DEMO STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#000;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV — brutaliste, bord noir, condensée
+   ============================================================ */
+.nav{
+  position:fixed;top:30px;left:0;right:0;z-index:50;
+  padding:1.4rem clamp(1.5rem,4vw,3rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,border-color .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(10,10,10,.92);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1rem;padding-bottom:1rem;
+}
+.nav-brand{
+  font-family:'Bebas Neue',sans-serif;font-size:1.8rem;
+  letter-spacing:.04em;color:var(--fg);
+}
+.nav-brand-dot{color:var(--blood);font-family:inherit;margin-left:1px}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--fg-2);
+}
+.nav-links a:hover{color:var(--fg)}
+.nav-cta{
+  background:var(--blood);color:var(--fg) !important;padding:.7rem 1.4rem;
+  font-size:.7rem;letter-spacing:.3em;
+  transition:background .25s,transform .15s;
+}
+.nav-cta:hover{background:var(--blood-2);color:var(--fg) !important;transform:translateY(-1px)}
+@media(max-width:780px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — pleine page, photo intense en background, nom écrasé
+   en bas, slogan en haut, kicker en italique latéral
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:7rem clamp(1.5rem,4vw,3rem) 3rem;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(180deg,rgba(10,10,10,.6) 0%,rgba(10,10,10,.3) 40%,rgba(10,10,10,.97) 100%),
+    url('https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?auto=format&fit=crop&w=2400&q=85') center/cover no-repeat;
+  filter:contrast(1.05) saturate(.85);
+}
+.hero-top{
+  position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;
+}
+.hero-top-tag{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--blood);
+  padding:.5rem .9rem;border:1px solid var(--blood);
+}
+.hero-top-tag-dot{width:8px;height:8px;background:var(--blood);border-radius:50%;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-top-info{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--fg-2);text-align:right;
+}
+.hero-top-info span{color:var(--blood)}
+
+.hero-bottom{position:relative;z-index:2}
+.hero-name{
+  font-family:'Bebas Neue',sans-serif;letter-spacing:.02em;
+  font-size:clamp(5rem,18vw,16rem);line-height:.82;color:var(--fg);
+  margin-bottom:1.5rem;
+}
+.hero-name .blood{color:var(--blood)}
+.hero-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:2px solid var(--fg);padding-top:1.5rem;flex-wrap:wrap;gap:1rem;
+}
+.hero-tag{
+  font-family:'Oswald',sans-serif;font-weight:400;font-size:clamp(1rem,1.4vw,1.2rem);
+  letter-spacing:.05em;color:var(--fg);max-width:28rem;text-transform:uppercase;
+}
+.hero-tag b{color:var(--blood);font-weight:500}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:1rem 1.8rem;background:var(--blood);color:var(--fg);
+  font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  transition:background .25s,transform .15s;
+}
+.hero-cta:hover{background:var(--blood-2);transform:translateY(-2px)}
+
+/* ============================================================
+   TICKER — rouge sang, défilant
+   ============================================================ */
+.ticker{
+  background:var(--blood);color:var(--fg);overflow:hidden;
+  padding:1rem 0;border-top:2px solid var(--bg);border-bottom:2px solid var(--bg);
+}
+.ticker-track{
+  display:flex;gap:2rem;animation:scroll 30s linear infinite;
+  font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;white-space:nowrap;
+}
+.ticker-track span{display:inline-flex;align-items:center;gap:2rem}
+.ticker-track span::after{content:'✦';color:var(--bg);margin-left:1rem}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   STUDIO — section pleine page split avec photo
+   ============================================================ */
+.studio{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem);
+  background:var(--bg);
+}
+.studio-inner{
+  max-width:1500px;margin:0 auto;
+  display:grid;grid-template-columns:1.05fr 1fr;gap:5rem;align-items:center;
+}
+@media(max-width:880px){.studio-inner{grid-template-columns:1fr;gap:3rem}}
+.studio-img{
+  aspect-ratio:4/5;
+  background:url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1400&q=85') center/cover no-repeat;
+  filter:contrast(1.05);
+}
+.studio-text{padding:0}
+.studio-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--blood);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;
+}
+.studio-eyebrow::before{content:'';width:50px;height:2px;background:var(--blood)}
+.studio h2{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);
+  line-height:.9;letter-spacing:.01em;color:var(--fg);margin-bottom:1.8rem;
+}
+.studio h2 .blood{color:var(--blood)}
+.studio p{font-family:'Inter',sans-serif;color:var(--fg-2);font-size:1.1rem;line-height:1.75;margin-bottom:1.3rem;max-width:36rem}
+.studio-stats{
+  margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+}
+.studio-stat{display:flex;flex-direction:column;gap:.2rem}
+.studio-stat-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--blood);line-height:1}
+.studio-stat-label{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--fg-2)}
+
+/* ============================================================
+   ARTISTES — 4 cards en grille
+   ============================================================ */
+.artistes{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem);
+  background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.artistes-head{
+  max-width:1500px;margin:0 auto 4rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;
+}
+@media(max-width:780px){.artistes-head{grid-template-columns:1fr;gap:1.5rem}}
+.artistes-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;color:var(--fg);letter-spacing:.01em}
+.artistes-head h2 .blood{color:var(--blood)}
+.artistes-head p{color:var(--fg-2);font-size:1.05rem;line-height:1.7;max-width:34rem;font-family:'Inter',sans-serif}
+
+.artistes-grid{
+  max-width:1500px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+}
+@media(max-width:1000px){.artistes-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.artistes-grid{grid-template-columns:1fr}}
+.artist{
+  position:relative;overflow:hidden;
+  background:var(--bg);border:1px solid var(--rule);
+  transition:transform .3s;
+}
+.artist:hover{transform:translateY(-4px);border-color:var(--blood)}
+.artist-img{
+  width:100%;aspect-ratio:3/4;
+  background-size:cover;background-position:center;filter:grayscale(.4) contrast(1.05);
+  transition:filter .4s,transform .8s;
+}
+.artist:hover .artist-img{filter:grayscale(0) contrast(1.05);transform:scale(1.06)}
+.artist-body{padding:1.6rem 1.4rem}
+.artist-style{
+  font-family:'Inter',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--blood);margin-bottom:.5rem;
+}
+.artist-name{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;color:var(--fg);letter-spacing:.02em;line-height:1;margin-bottom:.4rem}
+.artist-bio{font-family:'Inter',sans-serif;font-size:.85rem;color:var(--fg-2);line-height:1.55}
+.artist-link{
+  display:inline-block;margin-top:1rem;
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--blood);border-bottom:1px solid var(--blood);padding-bottom:2px;
+}
+
+/* ============================================================
+   PORTFOLIO / GALERIE — grille masonry simulée
+   ============================================================ */
+.portfolio{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem);background:var(--bg);
+}
+.portfolio-head{max-width:1500px;margin:0 auto 4rem;text-align:center}
+.portfolio-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;color:var(--fg);letter-spacing:.01em}
+.portfolio-head h2 .blood{color:var(--blood)}
+.portfolio-head p{color:var(--fg-2);font-size:1.05rem;line-height:1.7;max-width:34rem;margin:1.5rem auto 0;font-family:'Inter',sans-serif}
+
+.portfolio-grid{
+  max-width:1500px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:200px;gap:1rem;
+}
+.p-tile{
+  position:relative;overflow:hidden;background-size:cover;background-position:center;
+  filter:grayscale(.15) contrast(1.02);
+  transition:filter .4s,transform .8s;
+}
+.p-tile:hover{filter:grayscale(0) contrast(1.02);transform:scale(1.03)}
+.p-1{grid-column:span 4;grid-row:span 2}
+.p-2{grid-column:span 4;grid-row:span 1}
+.p-3{grid-column:span 4;grid-row:span 2}
+.p-4{grid-column:span 4;grid-row:span 1}
+.p-5{grid-column:span 4;grid-row:span 1}
+.p-6{grid-column:span 4;grid-row:span 2}
+.p-7{grid-column:span 4;grid-row:span 1}
+.p-8{grid-column:span 4;grid-row:span 1}
+@media(max-width:780px){
+  .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+  .p-tile{grid-column:span 1 !important;grid-row:span 1 !important}
+}
+
+/* ============================================================
+   PROCESS — 4 étapes brutalistes
+   ============================================================ */
+.process{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem);
+  background:var(--bg-2);border-top:1px solid var(--rule);
+}
+.process-head{max-width:1500px;margin:0 auto 4rem}
+.process-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;color:var(--fg);letter-spacing:.01em;max-width:42rem}
+.process-head h2 .blood{color:var(--blood)}
+.process-grid{
+  max-width:1500px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--rule);
+  border:1px solid var(--rule);
+}
+@media(max-width:880px){.process-grid{grid-template-columns:1fr}}
+.step{padding:2.5rem 2rem;background:var(--bg);min-height:280px;display:flex;flex-direction:column}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:var(--blood);line-height:1;margin-bottom:1rem;letter-spacing:.02em}
+.step h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--fg);letter-spacing:.02em;margin-bottom:.7rem;line-height:1}
+.step p{font-family:'Inter',sans-serif;color:var(--fg-2);font-size:.95rem;line-height:1.7;margin-top:auto}
+
+/* ============================================================
+   BOOKING / RDV
+   ============================================================ */
+.booking{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem);
+  background:var(--bg);text-align:center;
+}
+.booking-inner{max-width:720px;margin:0 auto}
+.booking-eyebrow{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--blood);margin-bottom:1.5rem}
+.booking h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,6rem);line-height:.9;color:var(--fg);letter-spacing:.01em;margin-bottom:1.5rem}
+.booking h2 .blood{color:var(--blood)}
+.booking-lead{color:var(--fg-2);font-size:1.1rem;line-height:1.7;margin-bottom:3.5rem;font-family:'Inter',sans-serif}
+
+.booking-form{display:flex;flex-direction:column;gap:1.5rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.booking-form label{display:flex;flex-direction:column;gap:.5rem}
+.booking-form span{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--fg-2)}
+.booking-form input,.booking-form select,.booking-form textarea{
+  background:var(--bg-2);border:1px solid var(--rule);
+  padding:.9rem 1rem;color:var(--fg);font-family:'Inter',sans-serif;font-size:1rem;
+  outline:0;transition:border-color .2s,background .2s;
+}
+.booking-form input:focus,.booking-form select:focus,.booking-form textarea:focus{border-color:var(--blood);background:var(--bg-3)}
+.booking-form textarea{min-height:120px;resize:vertical;font-family:'Inter',sans-serif}
+.booking-form button{
+  align-self:center;margin-top:2rem;min-width:280px;
+  padding:1.1rem 2.2rem;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;
+  letter-spacing:.3em;text-transform:uppercase;
+  background:var(--blood);color:var(--fg);
+  transition:background .25s,transform .15s;
+}
+.booking-form button:hover{background:var(--blood-2);transform:translateY(-2px)}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,3rem);
+  background:var(--bg-2);border-top:1px solid var(--rule);
+}
+.infos-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
+.info-label{font-family:'Inter',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--blood);margin-bottom:1.2rem}
+.info-content{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--fg);line-height:1.3;letter-spacing:.02em}
+.info-content em{font-family:'Inter',sans-serif;font-style:normal;color:var(--fg-2);display:block;margin-top:.3rem;font-size:.85rem;letter-spacing:0;text-transform:none}
+
+/* ============================================================
+   HECTOWEB CTA
+   ============================================================ */
+.hw-cta{
+  padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;
+  background:#000;color:#f0ebe1;border-top:2px solid var(--blood);
+}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:.95;color:#f0ebe1;
+  max-width:46rem;margin:0 auto 1.5rem;letter-spacing:.01em;
+}
+.hw-cta h3 .gold{color:#e3c789}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:600;border-radius:999px;
+  font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
+  transition:background .25s,transform .15s;
+}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{
+  display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;
+  border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;
+  font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
+  transition:border-color .25s,color .25s;
+}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,3rem);background:var(--bg);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--fg-2);font-size:.78rem;font-family:'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.footer-inner a{color:var(--blood)}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">ENCRE NOIRE<span class="nav-brand-dot">.</span></a>
+  <ul class="nav-links">
+    <li><a href="#studio">Le studio</a></li>
+    <li><a href="#artistes">Artistes</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#booking" class="nav-cta">Prendre RDV</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-top">
+    <div class="hero-top-tag">
+      <span class="hero-top-tag-dot"></span>
+      Studio ouvert · prochain créneau jeudi
+    </div>
+    <div class="hero-top-info">
+      Lausanne · Suisse<br/>
+      <span>4 artistes · 6 styles</span>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <h1 class="hero-name">ENCRE<br/>NOIRE<span class="blood">.</span></h1>
+    <div class="hero-bar">
+      <p class="hero-tag">Studio de tatouage à Lausanne.<br/>4 artistes. <b>0 compromis.</b></p>
+      <a href="#booking" class="hero-cta">Prendre rendez-vous →</a>
+    </div>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Blackwork</span><span>Fineline</span><span>Neo-traditional</span><span>Japonais</span><span>Lettering</span><span>Realisme</span><span>Geometric</span>
+    <span>Blackwork</span><span>Fineline</span><span>Neo-traditional</span><span>Japonais</span><span>Lettering</span><span>Realisme</span><span>Geometric</span>
+  </div>
+</div>
+
+<!-- STUDIO -->
+<section id="studio" class="studio">
+  <div class="studio-inner">
+    <div class="studio-img"></div>
+    <div class="studio-text">
+      <p class="studio-eyebrow">Le studio</p>
+      <h2>Une seule règle&nbsp;:<br/>la <span class="blood">qualité</span>.<br/>Tout le reste<br/>en découle.</h2>
+      <p>Encre Noire est un studio fondé en 2019 par quatre artistes voulant travailler à leur manière, sans patron, sans pression de chiffre. On consulte sur rendez-vous, on dessine sur-mesure, et on tatoue avec le temps qu'il faut.</p>
+      <p>Hygiène irréprochable, encres végétales certifiées, matériel à usage unique. Et un café offert pendant qu'on dessine, parce que c'est ça aussi un bon studio.</p>
+      <div class="studio-stats">
+        <div class="studio-stat"><span class="studio-stat-num">4</span><span class="studio-stat-label">Artistes</span></div>
+        <div class="studio-stat"><span class="studio-stat-num">6</span><span class="studio-stat-label">Styles</span></div>
+        <div class="studio-stat"><span class="studio-stat-num">5★</span><span class="studio-stat-label">Google reviews</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTISTES -->
+<section id="artistes" class="artistes">
+  <div class="artistes-head">
+    <div>
+      <p class="studio-eyebrow">Les artistes</p>
+      <h2>Quatre signatures.<br/>Quatre <span class="blood">univers</span>.</h2>
+    </div>
+    <p>Chaque artiste a son style, son flow, ses obsessions. On vous oriente vers celui ou celle qui correspond le mieux à votre projet — parfois après une consult' rapide.</p>
+  </div>
+
+  <div class="artistes-grid">
+    <div class="artist">
+      <div class="artist-img" style="background-image:url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=85')"></div>
+      <div class="artist-body">
+        <p class="artist-style">Blackwork · Geometric</p>
+        <h3 class="artist-name">MAYA RIVERA</h3>
+        <p class="artist-bio">Compositions denses, lignes franches. Inspirations brutalistes et art tribal contemporain.</p>
+        <a href="#booking" class="artist-link">Booker Maya →</a>
+      </div>
+    </div>
+    <div class="artist">
+      <div class="artist-img" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=85')"></div>
+      <div class="artist-body">
+        <p class="artist-style">Fineline · Botanique</p>
+        <h3 class="artist-name">THEO LASSALLE</h3>
+        <p class="artist-bio">Travail tout en finesse, végétaux, micro-portraits, animaux. Spécialiste des séries.</p>
+        <a href="#booking" class="artist-link">Booker Théo →</a>
+      </div>
+    </div>
+    <div class="artist">
+      <div class="artist-img" style="background-image:url('https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&w=800&q=85')"></div>
+      <div class="artist-body">
+        <p class="artist-style">Neo-traditional</p>
+        <h3 class="artist-name">JONAS WEBER</h3>
+        <p class="artist-bio">Couleur vive, contours épais, références classiques. Reines, serpents, panthères.</p>
+        <a href="#booking" class="artist-link">Booker Jonas →</a>
+      </div>
+    </div>
+    <div class="artist">
+      <div class="artist-img" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=85')"></div>
+      <div class="artist-body">
+        <p class="artist-style">Japonais · Irezumi</p>
+        <h3 class="artist-name">HARUKI SATO</h3>
+        <p class="artist-bio">Formé à Osaka. Pièces grandes formes — bras complet, dos, jambe. Plusieurs séances.</p>
+        <a href="#booking" class="artist-link">Booker Haruki →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="portfolio">
+  <div class="portfolio-head">
+    <p class="studio-eyebrow" style="justify-content:center">Portfolio</p>
+    <h2>Quelques <span class="blood">pièces</span><br/>récentes.</h2>
+    <p>Ce que nous avons tatoué ces derniers mois. Le portfolio complet de chaque artiste est sur leur Instagram (lien sur leur profil).</p>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="p-tile p-1" style="background-image:url('https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?auto=format&fit=crop&w=1200&q=85')"></div>
+    <div class="p-tile p-2" style="background-image:url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=900&q=85')"></div>
+    <div class="p-tile p-3" style="background-image:url('https://images.unsplash.com/photo-1530021232320-687d8e3dba54?auto=format&fit=crop&w=1200&q=85')"></div>
+    <div class="p-tile p-4" style="background-image:url('https://images.unsplash.com/photo-1581071075-d3d6c2bcc31e?auto=format&fit=crop&w=900&q=85')"></div>
+    <div class="p-tile p-5" style="background-image:url('https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?auto=format&fit=crop&w=900&q=85')"></div>
+    <div class="p-tile p-6" style="background-image:url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=1200&q=85')"></div>
+    <div class="p-tile p-7" style="background-image:url('https://images.unsplash.com/photo-1494797262163-102fae527c62?auto=format&fit=crop&w=900&q=85')"></div>
+    <div class="p-tile p-8" style="background-image:url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=900&q=85')"></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-head">
+    <p class="studio-eyebrow">Le process</p>
+    <h2>Du premier message<br/>à l'<span class="blood">aiguille</span>.</h2>
+  </div>
+  <div class="process-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>VOTRE IDÉE</h3>
+      <p>Vous nous écrivez votre projet — un texte, des références d'images, votre budget approximatif. On revient sous 48h.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>CONSULT'</h3>
+      <p>20 min au studio (gratuit) pour choisir l'artiste, valider le concept, parler placement, taille, douleur, prix.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>LE DESSIN</h3>
+      <p>L'artiste dessine votre pièce sur-mesure. Vous validez. Acompte de 100 CHF pour bloquer la date.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>LA SÉANCE</h3>
+      <p>1h à 8h selon la pièce. On peut couper en plusieurs séances. Conseils de cicatrisation à la fin.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="booking">
+  <div class="booking-inner">
+    <p class="booking-eyebrow">— Prendre rendez-vous</p>
+    <h2>VOTRE <span class="blood">PROJET</span>.</h2>
+    <p class="booking-lead">Écrivez-nous votre idée. On revient vers vous sous 48 h ouvrées, gratuitement, pour planifier une consult'.</p>
+
+    <form class="booking-form">
+      <div class="form-row">
+        <label><span>Nom</span><input type="text" required /></label>
+        <label><span>Email</span><input type="email" required /></label>
+      </div>
+      <div class="form-row">
+        <label><span>Téléphone</span><input type="tel" required /></label>
+        <label><span>Artiste préféré</span><select><option>Indifférent</option><option>Maya Rivera (Blackwork)</option><option>Théo Lassalle (Fineline)</option><option>Jonas Weber (Neo-trad)</option><option>Haruki Sato (Japonais)</option></select></label>
+      </div>
+      <label><span>Votre projet</span><textarea placeholder="Style, taille, placement, contraintes, références..." required></textarea></label>
+      <button type="submit">Envoyer ma demande →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Adresse</p>
+      <p class="info-content">Rue de l'Industrie 17<br/><em>1005 Lausanne</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 21 555 88 88<br/><em>hello@encrenoire.ink</em></p>
+    </div>
+    <div>
+      <p class="info-label">Horaires</p>
+      <p class="info-content">Mar · Sam · 11h–19h<br/><em>Sur rendez-vous uniquement</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HECTOWEB CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>VOTRE STUDIO MÉRITE<br/>UN SITE <span class="gold">À SA HAUTEUR.</span></h3>
+  <p>HectoWeb conçoit des sites pour les artisans, créatifs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les 18 autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Encre Noire · Lausanne · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.7</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-top, .hero-name, .hero-bar',{opacity:0,y:30,duration:1.1,ease:'power3.out',stagger:.15,delay:.2});
+
+gsap.utils.toArray('.studio-text > *, .artist, .p-tile, .step, .info-content').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+});
+
+document.querySelector('.booking-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert('Démonstration HectoWeb. Sur votre vrai site, la demande serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch');
+});
+</script>
+</body>
+</html>
