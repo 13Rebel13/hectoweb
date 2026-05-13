@@ -3,490 +3,620 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>HectoWeb — 20 sites. 20 métiers. Un savoir-faire.</title>
-<meta name="description" content="HectoWeb, agence web boutique en Suisse. Découvrez 20 sites entièrement conçus pour 20 métiers — chacun pensé pour vendre, séduire et durer." />
-<meta name="theme-color" content="#0c0c0e" />
+<title>HectoWeb — Nous faisons des sites. Vingt univers. Un savoir-faire.</title>
+<meta name="description" content="HectoWeb, agence web boutique en Suisse. Vingt univers de sites pour vingt métiers — entièrement conçus, codés et pensés pour vendre, séduire et durer." />
+<meta name="theme-color" content="#0a0a0c" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
+/* ==========================================================
+   RESET / BASE
+   ========================================================== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  font-family:'Inter',system-ui,sans-serif;color:#ece8df;background:#0c0c0e;
+  font-family:'Inter',system-ui,sans-serif;color:#f0ebe1;background:#0a0a0c;
   -webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;
+  cursor:none;
 }
-::selection{background:#c9a96e;color:#0c0c0e}
+::selection{background:#e3c789;color:#0a0a0c}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:none}
 
-/* NAV */
+/* Disable custom cursor on touch */
+@media(hover:none),(pointer:coarse){body,a,button{cursor:auto}}
+
+/* ==========================================================
+   GRAIN NOISE OVERLAY (subtle texture, à la Obys)
+   ========================================================== */
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:200;
+  opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ==========================================================
+   CUSTOM CURSOR (magnétique, mix-blend-difference)
+   ========================================================== */
+.cursor{
+  position:fixed;top:0;left:0;width:14px;height:14px;
+  background:#f0ebe1;border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  mix-blend-mode:difference;
+  transition:width .3s cubic-bezier(.2,.9,.2,1),height .3s cubic-bezier(.2,.9,.2,1),background .3s;
+}
+.cursor.is-large{width:60px;height:60px;background:#e3c789}
+.cursor.is-link{width:40px;height:40px}
+@media(hover:none),(pointer:coarse){.cursor{display:none}}
+
+/* ==========================================================
+   NAV
+   ========================================================== */
 .nav{
-  position:fixed;inset:0 0 auto 0;z-index:40;
+  position:fixed;top:0;left:0;right:0;z-index:50;
   display:flex;justify-content:space-between;align-items:center;
-  padding:1.4rem clamp(1.5rem,4vw,3rem);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  background:rgba(12,12,14,.7);
-  border-bottom:1px solid rgba(236,232,223,.08);
+  padding:1.6rem clamp(1.5rem,4vw,3rem);
+  transition:background .35s,backdrop-filter .35s,border-color .35s;
 }
-.brand{font-family:'Cormorant Garamond',serif;font-size:1.7rem;letter-spacing:-.02em;display:inline-flex;align-items:baseline}
-.brand-h{color:#c9a96e}
-.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
-.nav-links a{font-size:.9rem;color:#9b9588;transition:color .2s}
-.nav-links a:hover{color:#ece8df}
-.nav-cta{background:#c9a96e;color:#0c0c0e !important;padding:.55rem 1.1rem;border-radius:6px;font-weight:500}
-.nav-cta:hover{background:#e6c98a}
-@media(max-width:680px){.nav-links li:not(:last-child){display:none}}
+.nav.scrolled{
+  background:rgba(10,10,12,.78);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(240,235,225,.06);
+}
+.brand{
+  font-family:'Fraunces',serif;font-weight:400;font-size:1.5rem;
+  letter-spacing:-.02em;display:inline-flex;align-items:baseline;
+}
+.brand-h{color:#e3c789;font-style:italic}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  letter-spacing:.25em;text-transform:uppercase;color:#a39d8d;
+  transition:color .2s;
+}
+.nav-links a:hover{color:#f0ebe1}
+.nav-cta{
+  color:#e3c789 !important;border-bottom:1px solid #e3c789;padding-bottom:3px;
+}
+@media(max-width:780px){.nav-links li:not(:last-child){display:none}}
 
-/* HERO */
+/* ==========================================================
+   HERO — typo XXL hero, à la Obys / Antinomy
+   ========================================================== */
 .hero{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  padding:8rem clamp(1.5rem,5vw,4rem) 5rem;
-  position:relative;text-align:center;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(201,169,110,.18), transparent 55%),
-    radial-gradient(circle at 75% 70%, rgba(201,169,110,.10), transparent 60%);
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:8rem clamp(1.5rem,5vw,5rem) 4rem;
+  position:relative;
+  overflow:hidden;
 }
-.hero-inner{max-width:1100px;position:relative;z-index:1}
-.kicker{
-  font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.4em;
-  text-transform:uppercase;color:#c9a96e;margin-bottom:1.5rem;
+.hero-kicker{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  letter-spacing:.45em;text-transform:uppercase;color:#e3c789;
+  margin-bottom:3rem;display:flex;align-items:center;gap:1rem;
 }
-.hero h1{
-  font-family:'Cormorant Garamond',serif;font-weight:400;
-  font-size:clamp(2.8rem,9vw,7rem);line-height:.95;letter-spacing:-.025em;
-  margin-bottom:1.8rem;
+.hero-kicker::before{
+  content:'';width:40px;height:1px;background:#e3c789;
 }
-.hero h1 em{font-style:italic;color:#c9a96e}
+.hero-mega{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(4.5rem,17vw,16rem);
+  line-height:.88;letter-spacing:-.045em;
+  color:#f0ebe1;
+}
+.hero-mega .line{
+  display:block;overflow:hidden;
+}
+.hero-mega .line-inner{display:inline-block;will-change:transform}
+.hero-mega em{
+  font-style:italic;font-weight:400;color:#e3c789;
+  font-family:'Cormorant Garamond',serif;
+  margin-left:.2em;
+}
+.hero-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:5rem;flex-wrap:wrap;gap:2rem;
+}
 .hero-sub{
-  font-size:clamp(1.05rem,1.5vw,1.2rem);color:#9b9588;
-  max-width:42rem;margin:0 auto 2.5rem;line-height:1.65;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.1rem,1.6vw,1.4rem);color:#c5beac;
+  max-width:36rem;line-height:1.5;
 }
-.hero-arrow{
-  display:inline-flex;align-items:center;gap:.5rem;
-  font-family:'JetBrains Mono',monospace;font-size:.85rem;
-  color:#c9a96e;border-bottom:1px solid #c9a96e;padding-bottom:3px;
+.hero-scroll{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  letter-spacing:.4em;text-transform:uppercase;color:#a39d8d;
+  display:flex;align-items:center;gap:.8rem;
 }
-.hero-arrow:hover{color:#e6c98a;border-color:#e6c98a}
+.hero-scroll::after{
+  content:'';width:60px;height:1px;background:#e3c789;
+  animation:slideRight 2s ease-in-out infinite;
+}
+@keyframes slideRight{
+  0%,100%{transform:scaleX(.3);opacity:.4}
+  50%{transform:scaleX(1);opacity:1}
+}
+@media(max-width:680px){
+  .hero-bottom{flex-direction:column;align-items:flex-start}
+}
 
-/* GRID */
-.grid-section{padding:5rem clamp(1.5rem,5vw,4rem) 6rem;background:#0c0c0e}
-.grid-head{max-width:1280px;margin:0 auto 3.5rem;text-align:center}
-.grid-head h2{
-  font-family:'Cormorant Garamond',serif;font-weight:400;
-  font-size:clamp(2rem,4.5vw,3.5rem);line-height:1;letter-spacing:-.02em;
-  margin-bottom:1rem;
+/* ==========================================================
+   MANIFESTO — section avec grand texte révélé au scroll
+   ========================================================== */
+.manifesto{
+  padding:clamp(8rem,15vw,14rem) clamp(1.5rem,5vw,5rem);
+  border-top:1px solid rgba(240,235,225,.06);
+  border-bottom:1px solid rgba(240,235,225,.06);
 }
-.grid-head h2 em{font-style:italic;color:#c9a96e}
-.grid-head p{color:#9b9588;font-size:1.05rem;max-width:40rem;margin:0 auto}
-.grid{
-  max-width:1400px;margin:0 auto;
+.manifesto-inner{max-width:1500px;margin:0 auto}
+.manifesto-kicker{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  letter-spacing:.45em;text-transform:uppercase;color:#e3c789;
+  margin-bottom:3rem;display:flex;align-items:center;gap:1rem;
+}
+.manifesto-kicker::before{content:'';width:40px;height:1px;background:#e3c789}
+.manifesto h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(2.5rem,7vw,7rem);line-height:1;letter-spacing:-.03em;
+  color:#f0ebe1;
+}
+.manifesto h2 .line{display:block;overflow:hidden}
+.manifesto h2 .line-inner{display:inline-block}
+.manifesto h2 em{
+  font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:500;
+}
+.manifesto h2 .muted{color:#5d5a52}
+
+/* ==========================================================
+   UNIVERS — bento grid asymétrique, à la Refokus
+   ========================================================== */
+.univers{padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,5rem)}
+.univers-head{
+  max-width:1500px;margin:0 auto 5rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;
+}
+@media(max-width:780px){.univers-head{grid-template-columns:1fr;gap:2rem}}
+.univers-head-num{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  letter-spacing:.45em;text-transform:uppercase;color:#e3c789;
+  margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;
+}
+.univers-head-num::before{content:'';width:40px;height:1px;background:#e3c789}
+.univers-head h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(2.2rem,5vw,4.5rem);line-height:.95;letter-spacing:-.025em;
+  color:#f0ebe1;
+}
+.univers-head h2 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:500}
+.univers-head p{
+  color:#a39d8d;font-size:1.05rem;line-height:1.7;max-width:34rem;
+}
+
+/* Bento grid */
+.bento{
+  max-width:1500px;margin:0 auto;
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:1.5rem;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:minmax(180px,auto);
+  gap:1rem;
 }
-.card{
+.tile{
   position:relative;overflow:hidden;
-  border-radius:8px;
-  border:1px solid rgba(236,232,223,.08);
-  background:#131316;
-  aspect-ratio:4/5;
+  background:#15151a;border:1px solid rgba(240,235,225,.06);
   display:block;
-  transition:transform .35s cubic-bezier(.2,.9,.2,1),border-color .35s;
+  transition:transform .5s cubic-bezier(.2,.9,.2,1),border-color .4s;
 }
-.card:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.4)}
-.card-img{
+.tile:hover{transform:translateY(-4px);border-color:rgba(227,199,137,.4)}
+.tile-img{
   position:absolute;inset:0;
   background-size:cover;background-position:center;
-  filter:saturate(.95) brightness(.9);
-  transition:filter .35s,transform .8s cubic-bezier(.2,.9,.2,1);
+  filter:grayscale(.4) brightness(.7);
+  transition:filter .6s,transform 1s cubic-bezier(.2,.9,.2,1);
 }
-.card:hover .card-img{filter:saturate(1) brightness(1);transform:scale(1.05)}
-.card-overlay{
+.tile:hover .tile-img{filter:grayscale(0) brightness(.95);transform:scale(1.06)}
+.tile-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(12,12,14,.15) 30%,rgba(12,12,14,.92) 100%);
+  background:linear-gradient(180deg,rgba(10,10,12,.10) 30%,rgba(10,10,12,.92) 100%);
 }
-.card-content{
-  position:absolute;inset:auto 0 0 0;padding:1.5rem;
+.tile-content{
+  position:absolute;inset:auto 0 0 0;padding:1.4rem 1.5rem;
 }
-.card-kicker{
-  font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.35em;
-  text-transform:uppercase;color:#c9a96e;margin-bottom:.5rem;
+.tile-num{
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;
+  letter-spacing:.35em;color:#e3c789;margin-bottom:.5rem;display:block;
 }
-.card-title{
-  font-family:'Cormorant Garamond',serif;font-weight:500;
-  font-size:1.7rem;line-height:1.05;color:#ece8df;margin-bottom:.4rem;
-  letter-spacing:-.015em;
+.tile-title{
+  font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.3rem,2vw,1.9rem);
+  line-height:1.05;color:#f0ebe1;letter-spacing:-.01em;
 }
-.card-sub{font-size:.85rem;color:#bcb6a8;line-height:1.45}
-.card-arrow{
+.tile-title em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif}
+.tile-sub{font-size:.82rem;color:#a39d8d;margin-top:.3rem;line-height:1.4}
+.tile-arrow{
   position:absolute;top:1rem;right:1rem;
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(12,12,14,.55);backdrop-filter:blur(6px);
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(10,10,12,.6);backdrop-filter:blur(8px);
   display:flex;align-items:center;justify-content:center;
-  color:#ece8df;font-size:1rem;font-weight:300;
-  transition:background .25s,transform .25s;
+  color:#f0ebe1;font-size:1rem;
+  transition:background .3s,color .3s,transform .4s cubic-bezier(.2,.9,.2,1);
 }
-.card:hover .card-arrow{background:#c9a96e;color:#0c0c0e;transform:rotate(-45deg)}
-.card.dev{pointer-events:none;opacity:.55}
-.card.dev .card-arrow{background:rgba(12,12,14,.4);color:#9b9588}
-.card.dev::after{
-  content:'BIENTÔT';position:absolute;top:1rem;left:1rem;
-  font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.3em;
-  color:#9b9588;background:rgba(12,12,14,.55);backdrop-filter:blur(6px);
-  padding:.35rem .6rem;border-radius:4px;
+.tile:hover .tile-arrow{background:#e3c789;color:#0a0a0c;transform:rotate(-45deg)}
+.tile.is-dev{pointer-events:none;opacity:.55}
+.tile.is-dev .tile-arrow{background:rgba(10,10,12,.4);color:#5d5a52}
+.tile.is-dev::after{
+  content:'BIENTÔT';position:absolute;top:1rem;left:1rem;z-index:2;
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.3em;
+  color:#a39d8d;background:rgba(10,10,12,.6);backdrop-filter:blur(8px);
+  padding:.4rem .7rem;
+}
+/* Bento sizes */
+.t-1{grid-column:span 4;grid-row:span 2}      /* large */
+.t-2{grid-column:span 3;grid-row:span 1}
+.t-3{grid-column:span 3;grid-row:span 1}
+.t-4{grid-column:span 2;grid-row:span 2}      /* tall */
+.t-5{grid-column:span 3;grid-row:span 1}
+.t-6{grid-column:span 3;grid-row:span 2}      /* tall */
+.t-7{grid-column:span 3;grid-row:span 1}
+.t-8{grid-column:span 4;grid-row:span 1}      /* wide */
+.t-9{grid-column:span 2;grid-row:span 2}      /* tall */
+.t-10{grid-column:span 3;grid-row:span 1}
+.t-11{grid-column:span 3;grid-row:span 2}     /* tall */
+.t-12{grid-column:span 3;grid-row:span 1}
+.t-13{grid-column:span 3;grid-row:span 1}
+.t-14{grid-column:span 4;grid-row:span 1}     /* wide */
+.t-15{grid-column:span 2;grid-row:span 2}     /* tall */
+.t-16{grid-column:span 3;grid-row:span 2}     /* tall */
+.t-17{grid-column:span 3;grid-row:span 1}
+.t-18{grid-column:span 3;grid-row:span 1}
+.t-19{grid-column:span 3;grid-row:span 1}
+.t-20{grid-column:span 3;grid-row:span 1}
+
+@media(max-width:1100px){
+  .bento{grid-template-columns:repeat(6,1fr)}
+  .tile{grid-column:span 3 !important;grid-row:span 1 !important}
+  .t-1,.t-6,.t-11{grid-column:span 6 !important}
+}
+@media(max-width:600px){
+  .bento{grid-template-columns:1fr}
+  .tile{grid-column:span 1 !important;min-height:220px}
 }
 
-/* WHY US strip */
-.strip{
-  background:#131316;padding:6rem clamp(1.5rem,5vw,4rem);
-  border-top:1px solid rgba(236,232,223,.08);
-  border-bottom:1px solid rgba(236,232,223,.08);
+/* ==========================================================
+   APPROCHE — big numbered statements
+   ========================================================== */
+.approche{
+  padding:clamp(8rem,15vw,14rem) clamp(1.5rem,5vw,5rem);
+  border-top:1px solid rgba(240,235,225,.06);
+  background:#0e0e11;
 }
-.strip-inner{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+.approche-head{max-width:1500px;margin:0 auto 5rem}
+.approche-head-num{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  letter-spacing:.45em;text-transform:uppercase;color:#e3c789;
+  margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;
 }
-@media(max-width:800px){.strip-inner{grid-template-columns:1fr;gap:2rem}}
-.strip h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2rem,4vw,3rem);line-height:1;letter-spacing:-.02em}
-.strip h2 em{font-style:italic;color:#c9a96e}
-.strip p{color:#9b9588;font-size:1.05rem;line-height:1.7;margin-top:1.2rem;max-width:36rem}
-.strip-points{list-style:none;display:flex;flex-direction:column;gap:1.2rem}
-.strip-points li{
-  display:grid;grid-template-columns:28px 1fr;gap:.75rem;
-  color:#bcb6a8;line-height:1.55;
+.approche-head-num::before{content:'';width:40px;height:1px;background:#e3c789}
+.approche-head h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(2.2rem,5vw,4.5rem);line-height:.95;letter-spacing:-.025em;
 }
-.strip-points b{color:#ece8df;font-weight:500;margin-right:.3rem}
-.strip-points .bullet{color:#c9a96e}
+.approche-head h2 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:500}
+.approche-list{
+  max-width:1500px;margin:0 auto;
+  display:flex;flex-direction:column;
+}
+.approche-row{
+  display:grid;grid-template-columns:80px 1fr 2fr;gap:3rem;
+  padding:2.5rem 0;border-bottom:1px solid rgba(240,235,225,.06);
+  align-items:baseline;
+}
+.approche-row:first-child{border-top:1px solid rgba(240,235,225,.06)}
+.approche-num{font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.3em;color:#e3c789}
+.approche-title{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(1.6rem,3vw,2.4rem);line-height:1;letter-spacing:-.015em;color:#f0ebe1;
+}
+.approche-title em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:500}
+.approche-desc{color:#a39d8d;font-size:1.05rem;line-height:1.7;max-width:42rem}
+@media(max-width:780px){
+  .approche-row{grid-template-columns:1fr;gap:.8rem}
+  .approche-num{margin-bottom:.5rem}
+}
 
-/* CTA bottom */
+/* ==========================================================
+   CTA CONTACT — big serif
+   ========================================================== */
 .cta{
-  padding:6rem clamp(1.5rem,5vw,4rem);text-align:center;
-  background:radial-gradient(circle at 50% 30%,rgba(201,169,110,.10),transparent 60%);
+  padding:clamp(8rem,15vw,14rem) clamp(1.5rem,5vw,5rem);text-align:center;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(227,199,137,.12),transparent 60%);
 }
-.cta h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:1.5rem}
-.cta h2 em{font-style:italic;color:#c9a96e}
-.cta p{color:#9b9588;font-size:1.05rem;max-width:36rem;margin:0 auto 2rem}
-.btn{
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:.95rem 1.8rem;background:#c9a96e;color:#0c0c0e;font-weight:500;
-  border-radius:6px;font-size:.95rem;
-  transition:background .25s,transform .15s;
+.cta-inner{max-width:1100px;margin:0 auto}
+.cta-kicker{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  letter-spacing:.45em;text-transform:uppercase;color:#e3c789;
+  margin-bottom:2.5rem;display:inline-flex;align-items:center;gap:1rem;
 }
-.btn:hover{background:#e6c98a;transform:translateY(-1px)}
+.cta-kicker::before,.cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.cta h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(3rem,9vw,8rem);line-height:.95;letter-spacing:-.035em;
+  margin-bottom:2.5rem;
+}
+.cta h2 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:500}
+.cta p{color:#c5beac;font-size:clamp(1rem,1.4vw,1.2rem);max-width:34rem;margin:0 auto 3rem;line-height:1.6}
+.cta-link{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:1.4rem;
+  color:#e3c789;border-bottom:1px solid #e3c789;padding-bottom:4px;
+  transition:gap .3s;
+}
+.cta-link:hover{gap:1.2rem}
 
-/* FOOTER */
+/* ==========================================================
+   FOOTER
+   ========================================================== */
 .footer{
-  padding:3rem clamp(1.5rem,5vw,4rem);
-  border-top:1px solid rgba(236,232,223,.08);background:#0c0c0e;
+  padding:3rem clamp(1.5rem,5vw,5rem);
+  border-top:1px solid rgba(240,235,225,.06);
 }
 .footer-inner{
-  max-width:1400px;margin:0 auto;
-  display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center;
+  max-width:1500px;margin:0 auto;
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.2rem;
 }
-.footer p{color:#9b9588;font-size:.85rem;font-family:'JetBrains Mono',monospace}
-.footer a{color:#c9a96e}
+.footer p{
+  color:#5d5a52;font-size:.78rem;
+  font-family:'JetBrains Mono',monospace;letter-spacing:.1em;
+}
+.footer a{color:#a39d8d;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.footer a:hover{color:#e3c789;border-color:#e3c789}
 
-.reveal{opacity:0;transform:translateY(28px)}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+/* ==========================================================
+   PAGE TRANSITION OVERLAY
+   ========================================================== */
+.page-transition{
+  position:fixed;inset:0;background:#0a0a0c;
+  transform:translateY(100%);
+  z-index:9998;pointer-events:none;
+}
+
+/* Reveal mask helper */
+.mask{overflow:hidden;display:block}
+.mask-inner{display:inline-block;will-change:transform;transform:translateY(110%)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .mask-inner{transform:none !important}
+}
 </style>
 </head>
 <body>
 
-<nav class="nav">
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="page-transition" id="transition"></div>
+
+<nav class="nav" id="nav">
   <a href="#top" class="brand"><span class="brand-h">H</span>ectoWeb</a>
   <ul class="nav-links">
-    <li><a href="#metiers">Métiers</a></li>
+    <li><a href="#univers">Univers</a></li>
     <li><a href="#approche">Approche</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Démarrer un projet ↗</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <header id="top" class="hero">
-  <div class="hero-inner">
-    <p class="kicker reveal">Agence web boutique · Suisse</p>
-    <h1 class="reveal">20 sites.<br/>20 métiers.<br/><em>Un savoir-faire.</em></h1>
-    <p class="hero-sub reveal">Cliquez sur votre métier. Vous verrez à quoi pourrait ressembler <em>votre</em> site, conçu par nous. Tous nos univers sont des démonstrations — chacun se construit sur-mesure pour votre activité.</p>
-    <a href="#metiers" class="hero-arrow reveal">Choisir mon métier ↓</a>
+  <p class="hero-kicker">HectoWeb · Agence boutique · Suisse romande</p>
+  <h1 class="hero-mega">
+    <span class="mask"><span class="mask-inner">Nous</span></span>
+    <span class="mask"><span class="mask-inner">faisons</span></span>
+    <span class="mask"><span class="mask-inner"><em>des sites.</em></span></span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-sub">Vingt univers à explorer. Vingt métiers. Un seul savoir-faire — le nôtre. Cliquez sur le vôtre&nbsp;: vous verrez à quoi pourrait ressembler votre site.</p>
+    <a href="#univers" class="hero-scroll">Explorer</a>
   </div>
 </header>
 
-<section id="metiers" class="grid-section">
-  <div class="grid-head reveal">
-    <h2><em>Vingt</em> univers à explorer</h2>
-    <p>Chaque site est entièrement conçu, codé et pensé pour son métier. Pas de template recyclé.</p>
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <p class="manifesto-kicker">Manifeste</p>
+    <h2>
+      <span class="mask"><span class="mask-inner">Un site, ce n'est pas <em>un produit</em>.</span></span>
+      <span class="mask"><span class="mask-inner"><span class="muted">C'est une voix.</span></span></span>
+      <span class="mask"><span class="mask-inner"><span class="muted">Une posture.</span></span></span>
+      <span class="mask"><span class="mask-inner"><span class="muted">Et parfois,</span> une <em>décision</em>.</span></span>
+    </h2>
+  </div>
+</section>
+
+<!-- UNIVERS — Bento grid -->
+<section id="univers" class="univers">
+  <div class="univers-head">
+    <div>
+      <p class="univers-head-num">— Vingt univers</p>
+      <h2>Chaque métier mérite<br/>son <em>propre</em> site.</h2>
+    </div>
+    <p>Ces vingt démonstrations sont des sites réels — entièrement conçus, codés et pensés pour leur métier. Aucun template, aucun copier-coller. Cliquez sur un univers pour le visiter.</p>
   </div>
 
-  <div class="grid">
+  <div class="bento">
     <!-- 1 RESTAURANT (live) -->
-    <a class="card" href="metiers/restaurant.html">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">01</p>
-        <h3 class="card-title">Restaurant gastronomique</h3>
-        <p class="card-sub">Hero plein écran · menu · réservation</p>
+    <a class="tile t-1" href="metiers/restaurant.html">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80')"></div>
+      <div class="tile-overlay"></div>
+      <div class="tile-arrow">→</div>
+      <div class="tile-content">
+        <span class="tile-num">01 / Restauration</span>
+        <h3 class="tile-title">Restaurant<br/><em>gastronomique</em></h3>
+        <p class="tile-sub">Hero plein écran · menu · réservation</p>
       </div>
     </a>
 
-    <!-- 2 AVOCAT -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">02</p>
-        <h3 class="card-title">Cabinet d'avocats</h3>
-        <p class="card-sub">Sobre · expertises · prise de RDV</p>
-      </div>
+    <div class="tile t-2 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">02 / Droit</span><h3 class="tile-title">Cabinet <em>d'avocats</em></h3></div>
     </div>
 
-    <!-- 3 SPA -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">03</p>
-        <h3 class="card-title">Spa &amp; wellness</h3>
-        <p class="card-sub">Apaisant · soins · réservation</p>
-      </div>
+    <div class="tile t-3 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">03 / Bien-être</span><h3 class="tile-title">Spa &amp; <em>wellness</em></h3></div>
     </div>
 
-    <!-- 4 JOAILLIER -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">04</p>
-        <h3 class="card-title">Joaillier · horloger</h3>
-        <p class="card-sub">Luxe · collections · histoire</p>
-      </div>
+    <div class="tile t-4 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">04 / Luxe</span><h3 class="tile-title">Joaillier <em>horloger</em></h3></div>
     </div>
 
-    <!-- 5 ARCHITECTE -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">05</p>
-        <h3 class="card-title">Architecte</h3>
-        <p class="card-sub">Portfolio plein écran · études de cas</p>
-      </div>
+    <div class="tile t-5 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">05 / Architecture</span><h3 class="tile-title"><em>Architecte</em></h3></div>
     </div>
 
-    <!-- 6 HÔTEL -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">06</p>
-        <h3 class="card-title">Hôtel boutique</h3>
-        <p class="card-sub">Panorama · chambres · réserver</p>
-      </div>
+    <div class="tile t-6 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">06 / Hôtellerie</span><h3 class="tile-title">Hôtel <em>boutique</em></h3><p class="tile-sub">Panorama · chambres · réserver</p></div>
     </div>
 
-    <!-- 7 VIGNERON -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">07</p>
-        <h3 class="card-title">Vigneron · domaine</h3>
-        <p class="card-sub">Cuvées · dégustation · boutique</p>
-      </div>
+    <div class="tile t-7 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">07 / Viticulture</span><h3 class="tile-title"><em>Vigneron</em></h3></div>
     </div>
 
-    <!-- 8 ATELIER AUTO -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">08</p>
-        <h3 class="card-title">Atelier auto custom</h3>
-        <p class="card-sub">Galerie avant/après · devis</p>
-      </div>
+    <div class="tile t-8 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">08 / Automobile</span><h3 class="tile-title">Atelier auto <em>custom</em></h3></div>
     </div>
 
-    <!-- 9 PHOTOGRAPHE -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">09</p>
-        <h3 class="card-title">Photographe</h3>
-        <p class="card-sub">Portfolio immersif · séries</p>
-      </div>
+    <div class="tile t-9 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">09 / Image</span><h3 class="tile-title"><em>Photographe</em></h3></div>
     </div>
 
-    <!-- 10 MÉDECIN -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">10</p>
-        <h3 class="card-title">Médecin · clinique</h3>
-        <p class="card-sub">Rassurant · spécialités · prise RDV</p>
-      </div>
+    <div class="tile t-10 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">10 / Santé</span><h3 class="tile-title">Médecin · <em>clinique</em></h3></div>
     </div>
 
-    <!-- 11 COACH -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">11</p>
-        <h3 class="card-title">Coach · consultant</h3>
-        <p class="card-sub">Personnel · offres · booking</p>
-      </div>
+    <div class="tile t-11 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">11 / Conseil</span><h3 class="tile-title">Coach <em>consultant</em></h3><p class="tile-sub">Offres · cas clients · booking</p></div>
     </div>
 
-    <!-- 12 BOUTIQUE MODE -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">12</p>
-        <h3 class="card-title">Boutique mode</h3>
-        <p class="card-sub">Lookbook · collections · shop</p>
-      </div>
+    <div class="tile t-12 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">12 / Mode</span><h3 class="tile-title">Boutique <em>mode</em></h3></div>
     </div>
 
-    <!-- 13 PÂTISSIER -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">13</p>
-        <h3 class="card-title">Pâtissier · chocolatier</h3>
-        <p class="card-sub">Créations · boutique · commandes</p>
-      </div>
+    <div class="tile t-13 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">13 / Pâtisserie</span><h3 class="tile-title">Pâtissier <em>chocolatier</em></h3></div>
     </div>
 
-    <!-- 14 BUREAU D'ÉTUDES -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">14</p>
-        <h3 class="card-title">Bureau d'études</h3>
-        <p class="card-sub">Sobre B2B · savoir-faire · clients</p>
-      </div>
+    <div class="tile t-14 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">14 / B2B</span><h3 class="tile-title">Bureau <em>d'études</em></h3></div>
     </div>
 
-    <!-- 15 COIFFEUR -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">15</p>
-        <h3 class="card-title">Coiffeur · barbier</h3>
-        <p class="card-sub">Portrait · prestations · booking</p>
-      </div>
+    <div class="tile t-15 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">15 / Beauté</span><h3 class="tile-title">Coiffeur <em>barbier</em></h3></div>
     </div>
 
-    <!-- 16 TATOUEUR -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1561728103-5b6b6b9c2afa?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">16</p>
-        <h3 class="card-title">Tatoueur</h3>
-        <p class="card-sub">Portfolio · artistes · book online</p>
-      </div>
+    <div class="tile t-16 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1561728103-5b6b6b9c2afa?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">16 / Art</span><h3 class="tile-title"><em>Tatoueur</em></h3><p class="tile-sub">Portfolio · artistes · book</p></div>
     </div>
 
-    <!-- 17 ÉVÉNEMENTIEL -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">17</p>
-        <h3 class="card-title">Événementiel</h3>
-        <p class="card-sub">Spectaculaire · références · devis</p>
-      </div>
+    <div class="tile t-17 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">17 / Événement</span><h3 class="tile-title"><em>Événementiel</em></h3></div>
     </div>
 
-    <!-- 18 ÉLECTRICIEN -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">18</p>
-        <h3 class="card-title">Électricien</h3>
-        <p class="card-sub">Rassurant · services · devis</p>
-      </div>
+    <div class="tile t-18 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">18 / Métier</span><h3 class="tile-title"><em>Électricien</em></h3></div>
     </div>
 
-    <!-- 19 AUTO-ÉCOLE -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">19</p>
-        <h3 class="card-title">Auto-école</h3>
-        <p class="card-sub">Moderne · formules · booking</p>
-      </div>
+    <div class="tile t-19 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">19 / Formation</span><h3 class="tile-title"><em>Auto-école</em></h3></div>
     </div>
 
-    <!-- 20 MAGASIN DE VÊTEMENTS -->
-    <div class="card dev">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80')"></div>
-      <div class="card-overlay"></div>
-      <div class="card-arrow">→</div>
-      <div class="card-content">
-        <p class="card-kicker">20</p>
-        <h3 class="card-title">Magasin de vêtements</h3>
-        <p class="card-sub">Vitrine · arrivages · e-shop</p>
-      </div>
+    <div class="tile t-20 is-dev">
+      <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80')"></div>
+      <div class="tile-overlay"></div><div class="tile-arrow">→</div>
+      <div class="tile-content"><span class="tile-num">20 / Retail</span><h3 class="tile-title">Magasin de <em>vêtements</em></h3></div>
     </div>
   </div>
 </section>
 
-<section id="approche" class="strip">
-  <div class="strip-inner">
-    <div>
-      <p class="kicker reveal" style="color:#c9a96e;margin-bottom:1rem">Notre approche</p>
-      <h2 class="reveal">Petit atelier.<br/><em>Grandes obsessions.</em></h2>
-      <p class="reveal">Nous sommes une équipe restreinte, exigeante, qui ne prend que les projets qu'elle peut faire vraiment bien. Pas de chef de projet entre vous et la personne qui code. Pas de template recyclé. Pas de sous-traitance offshore.</p>
+<!-- APPROCHE -->
+<section id="approche" class="approche">
+  <div class="approche-head">
+    <p class="approche-head-num">— Approche</p>
+    <h2>Petit atelier.<br/><em>Grandes</em> obsessions.</h2>
+  </div>
+
+  <div class="approche-list">
+    <div class="approche-row">
+      <span class="approche-num">01</span>
+      <h3 class="approche-title"><em>Direct.</em></h3>
+      <p class="approche-desc">Vous parlez à la personne qui dessine, qui code, qui répond. Pas de chef de projet entre vous et le travail. Pas de sous-traitance offshore. Pas d'ego.</p>
     </div>
-    <ul class="strip-points">
-      <li class="reveal"><span class="bullet">→</span><span><b>Direct.</b>Vous parlez à la personne qui dessine et qui code. Toujours.</span></li>
-      <li class="reveal"><span class="bullet">→</span><span><b>Suisse.</b>Basés ici, on facture en CHF, on connaît vos clients.</span></li>
-      <li class="reveal"><span class="bullet">→</span><span><b>Honnête.</b>Devis fixe, pas de surprise. Vous savez ce que vous payez.</span></li>
-      <li class="reveal"><span class="bullet">→</span><span><b>Durable.</b>Sites que vous gardez 5 ans, pas que vous refaites dans 18 mois.</span></li>
-    </ul>
+    <div class="approche-row">
+      <span class="approche-num">02</span>
+      <h3 class="approche-title">Sur-<em>mesure</em>.</h3>
+      <p class="approche-desc">Aucun template. Chaque site est dessiné à partir de votre métier, vos clients, votre histoire. Le résultat ne ressemble qu'à vous.</p>
+    </div>
+    <div class="approche-row">
+      <span class="approche-num">03</span>
+      <h3 class="approche-title"><em>Honnête.</em></h3>
+      <p class="approche-desc">Devis fixe, pas de surprise, pas d'option cachée. Vous savez ce que vous payez, vous savez ce que vous recevez, vous savez quand.</p>
+    </div>
+    <div class="approche-row">
+      <span class="approche-num">04</span>
+      <h3 class="approche-title"><em>Durable.</em></h3>
+      <p class="approche-desc">Des sites construits pour durer cinq ans, pas pour être refaits dans dix-huit mois. Performances vertes, sécurité, évolutivité — câblés dès le premier jour.</p>
+    </div>
   </div>
 </section>
 
+<!-- CTA -->
 <section id="contact" class="cta">
-  <h2 class="reveal">Un projet ?<br/><em>Parlons-en.</em></h2>
-  <p class="reveal">Quelques lignes suffisent. On revient vers vous sous 24 h ouvrées.</p>
-  <a href="mailto:info@hectoweb.ch" class="btn reveal">Écrire à info@hectoweb.ch →</a>
+  <div class="cta-inner">
+    <p class="cta-kicker">Démarrer un projet</p>
+    <h2>Parlons-en<br/><em>autour d'un café.</em></h2>
+    <p>Vous avez un métier, une idée, ou simplement l'envie de refaire votre site ? Quelques lignes suffisent. On revient vers vous sous vingt-quatre heures.</p>
+    <a href="mailto:info@hectoweb.ch" class="cta-link" data-cursor="large">info@hectoweb.ch ↗</a>
+  </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <p>HectoWeb · Agence web boutique · Suisse · 2026</p>
-    <p><a href="mailto:info@hectoweb.ch">info@hectoweb.ch</a> · v0.4 démo</p>
+    <p>HectoWeb · Agence boutique · Suisse · MMXXVI</p>
+    <p><a href="mailto:info@hectoweb.ch">info@hectoweb.ch</a> &nbsp;·&nbsp; <span style="opacity:.6">v0.5 démo</span></p>
   </div>
 </footer>
 
@@ -494,17 +624,97 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
-document.querySelectorAll('.reveal').forEach((el,i)=>{
-  gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',delay:(i%4)*.06,
-    scrollTrigger:{trigger:el,start:'top 88%',once:true}});
-});
-gsap.fromTo('.hero .reveal',{opacity:0,y:40},
-  {opacity:1,y:0,duration:1.1,ease:'power3.out',stagger:.12,delay:.15});
 
-// Subtle parallax on grid cards
-ScrollTrigger.batch('.card',{
-  start:'top bottom-=50',
-  onEnter:b=>gsap.fromTo(b,{opacity:0,y:30},{opacity:1,y:0,duration:.8,stagger:.05,ease:'power3.out'})
+/* ---------- Custom cursor ---------- */
+(function(){
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  const cursor = document.getElementById('cursor');
+  let tx=0,ty=0,cx=0,cy=0;
+  window.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
+  function tick(){
+    cx += (tx-cx)*.22; cy += (ty-cy)*.22;
+    cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+    if(cursor.classList.contains('is-large') || cursor.classList.contains('is-link')){
+      cursor.style.transform += cursor.classList.contains('is-large') ? ' scale(1)' : ' scale(1)';
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+  document.querySelectorAll('a, button, .tile').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('is-link'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('is-link'));
+  });
+  document.querySelectorAll('[data-cursor="large"]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('is-large'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('is-large'));
+  });
+})();
+
+/* ---------- Nav scroll state ---------- */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+/* ---------- Hero mega text reveal ---------- */
+gsap.to('.hero-mega .mask-inner',{
+  yPercent:0,duration:1.25,ease:'expo.out',stagger:.13,delay:.25
+});
+gsap.from('.hero-kicker, .hero-sub, .hero-scroll',{
+  opacity:0,y:24,duration:1,ease:'power3.out',stagger:.1,delay:.6
+});
+
+/* ---------- Manifesto text reveal (line by line) ---------- */
+gsap.utils.toArray('.manifesto .mask-inner').forEach((el)=>{
+  gsap.fromTo(el,{yPercent:110},{
+    yPercent:0,duration:1.2,ease:'expo.out',
+    scrollTrigger:{trigger:el,start:'top 85%',once:true}
+  });
+});
+
+/* ---------- Univers head reveal ---------- */
+gsap.from('.univers-head > div, .univers-head > p',{
+  opacity:0,y:40,duration:1,ease:'power3.out',stagger:.1,
+  scrollTrigger:{trigger:'.univers-head',start:'top 80%',once:true}
+});
+
+/* ---------- Bento tiles reveal staggered ---------- */
+ScrollTrigger.batch('.tile',{
+  start:'top 90%',
+  onEnter:b=>gsap.fromTo(b,{opacity:0,y:40},{opacity:1,y:0,duration:.9,stagger:.05,ease:'power3.out',
+    onComplete:function(){
+      // re-apply opacity for is-dev
+      gsap.utils.toArray('.tile.is-dev').forEach(t=>t.style.opacity='.55');
+    }
+  })
+});
+
+/* ---------- Approche rows reveal ---------- */
+gsap.utils.toArray('.approche-row').forEach(row=>{
+  gsap.fromTo(row,{opacity:0,y:30},{opacity:1,y:0,duration:1,ease:'power3.out',
+    scrollTrigger:{trigger:row,start:'top 88%',once:true}});
+});
+
+/* ---------- CTA reveal ---------- */
+gsap.from('.cta-inner > *',{
+  opacity:0,y:40,duration:1,ease:'power3.out',stagger:.1,
+  scrollTrigger:{trigger:'.cta',start:'top 75%',once:true}
+});
+
+/* ---------- Page transition on tile click ---------- */
+document.querySelectorAll('.tile:not(.is-dev)').forEach(tile=>{
+  tile.addEventListener('click',e=>{
+    e.preventDefault();
+    const url = tile.getAttribute('href');
+    const transition = document.getElementById('transition');
+    gsap.to(transition,{
+      yPercent:-100,duration:.9,ease:'expo.inOut',
+      onStart:()=>{transition.style.transform='translateY(100%)'},
+      onComplete:()=>{window.location.href=url}
+    });
+    // start from below
+    gsap.set(transition,{yPercent:100});
+    gsap.to(transition,{yPercent:0,duration:.8,ease:'expo.inOut',
+      onComplete:()=>{window.location.href=url}});
+  });
 });
 </script>
 </body>
