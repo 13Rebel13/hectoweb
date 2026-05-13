@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#050505" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Unbounded:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
    PALETTE — pur N&B (inspiration directe de rebel-originel)
@@ -23,6 +23,8 @@
   --muted-dark:#3a3a3a;
   --line:#1a1a1a;
   --line-bright:#2a2a2a;
+  --accent:#c5ff3f;      /* lime acide — signature HectoWeb */
+  --accent-dim:#a5db2a;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -31,7 +33,7 @@ body{
   -webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;
   max-width:100vw;
 }
-::selection{background:var(--fg);color:var(--bg)}
+::selection{background:var(--accent);color:var(--bg)}
 a{color:inherit;text-decoration:none;transition:color .2s,opacity .2s}
 img{display:block;max-width:100%}
 button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
@@ -72,7 +74,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   display:inline-flex;align-items:baseline;gap:.8rem;
 }
 .brand-mark{
-  font-family:'Geist',sans-serif;font-weight:900;font-size:1.5rem;
+  font-family:'Unbounded',sans-serif;font-weight:800;font-size:1.5rem;
   letter-spacing:-.04em;color:var(--fg);
 }
 .brand-tag{
@@ -93,11 +95,11 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 }
 .nav-links a:hover::after{right:0}
 .nav-cta{
-  background:var(--fg);color:var(--bg) !important;padding:.55rem 1rem;
+  background:var(--accent);color:var(--bg) !important;padding:.55rem 1rem;
   letter-spacing:.2em !important;
-  transition:opacity .2s;
+  transition:background .2s;
 }
-.nav-cta:hover{opacity:.85;color:var(--bg) !important}
+.nav-cta:hover{background:var(--accent-dim);color:var(--bg) !important}
 .nav-cta::after{display:none !important}
 @media(max-width:760px){.nav-links li:not(:last-child){display:none}.brand-tag{display:none}}
 
@@ -112,7 +114,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 .hero-bg-text{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   pointer-events:none;user-select:none;
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:32vw;line-height:.9;letter-spacing:-.06em;
   color:transparent;-webkit-text-stroke:1px var(--fg);
   opacity:.045;white-space:nowrap;
@@ -124,7 +126,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   letter-spacing:.5em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem;
 }
 .hero-wordmark{
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(3rem,9vw,7rem);line-height:.9;letter-spacing:-.05em;
   color:var(--fg);margin-bottom:1.5rem;
 }
@@ -134,7 +136,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   letter-spacing:.5em;text-transform:uppercase;color:var(--fg-dim);margin-bottom:5rem;
 }
 .hero-headline{
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(2rem,6.5vw,5.5rem);line-height:.95;letter-spacing:-.04em;
   margin-bottom:3rem;
 }
@@ -154,10 +156,10 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   border:1px solid transparent;transition:background .25s,color .25s,border-color .25s,transform .15s;
 }
 .btn:hover{transform:translateY(-2px)}
-.btn-primary{background:var(--fg);color:var(--bg)}
-.btn-primary:hover{background:var(--fg);opacity:.9}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-primary:hover{background:var(--accent-dim)}
 .btn-ghost{border-color:var(--line-bright);color:var(--fg)}
-.btn-ghost:hover{border-color:var(--fg);color:var(--fg)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .hero-trust{
   margin-top:3rem;
   font-family:'Geist Mono',monospace;font-size:.7rem;font-weight:500;
@@ -181,12 +183,12 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   display:inline-flex;align-items:center;gap:2.5rem;padding:0 1.5rem;
 }
 .marquee-text{
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(1.4rem,3.5vw,3rem);letter-spacing:-.02em;text-transform:uppercase;
   color:var(--fg);
 }
 .marquee-sym{
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(1.4rem,3.5vw,3rem);
   -webkit-text-stroke:1px var(--fg);color:transparent;
 }
@@ -211,7 +213,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 }
 .eyebrow::before{content:'—';color:var(--muted)}
 .showcase-head h2{
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(2.2rem,5.5vw,4.5rem);line-height:.9;letter-spacing:-.04em;
 }
 .showcase-head h2 .stroke-line{-webkit-text-stroke:1px var(--fg);color:transparent}
@@ -259,7 +261,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   text-transform:uppercase;color:var(--fg);margin-bottom:.4rem;
 }
 .slide-label .lbl-name{
-  font-family:'Geist',sans-serif;font-weight:900;font-size:clamp(1.3rem,2.5vw,2.4rem);
+  font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(1.3rem,2.5vw,2.4rem);
   letter-spacing:-.03em;color:var(--fg);
 }
 
@@ -279,12 +281,12 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   background:var(--bg);padding:3rem 1.5rem;text-align:center;
 }
 .stat-num{
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(3rem,7vw,5.5rem);line-height:1;letter-spacing:-.04em;color:var(--fg);
   margin-bottom:.5rem;
 }
 .stat-num .unit{
-  -webkit-text-stroke:1px var(--fg);color:transparent;font-size:.55em;margin-left:.05em;
+  -webkit-text-stroke:1px var(--accent);color:transparent;font-size:.55em;margin-left:.05em;
 }
 .stat-label{
   font-family:'Geist Mono',monospace;font-size:.68rem;font-weight:500;
@@ -300,7 +302,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 }
 .manifesto-head{max-width:1600px;margin:0 auto 4rem}
 .manifesto-head h2{
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em;
   max-width:48rem;
 }
@@ -327,7 +329,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 }
 .mfto:hover .mfto-arrow{opacity:1;transform:translateX(0)}
 .mfto h3{
-  font-family:'Geist',sans-serif;font-weight:900;font-size:clamp(1.6rem,3vw,2.3rem);
+  font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(1.6rem,3vw,2.3rem);
   line-height:1;letter-spacing:-.03em;color:var(--fg);
 }
 .mfto p{
@@ -343,7 +345,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;
 }
 @media(max-width:880px){.univers-head{grid-template-columns:1fr;gap:1rem}}
-.univers-head h2{font-family:'Geist',sans-serif;font-weight:900;font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em}
+.univers-head h2{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em}
 .univers-head h2 .stroke-line{-webkit-text-stroke:1px var(--fg);color:transparent}
 .univers-head p{font-family:'Geist',sans-serif;color:var(--muted);font-size:1.05rem;line-height:1.65;max-width:36rem}
 
@@ -370,7 +372,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   letter-spacing:.35em;text-transform:uppercase;color:var(--fg);margin-bottom:.5rem;display:block;
 }
 .tile-title{
-  font-family:'Geist',sans-serif;font-weight:900;font-size:clamp(1.3rem,2vw,1.9rem);
+  font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(1.3rem,2vw,1.9rem);
   line-height:1.05;letter-spacing:-.025em;color:var(--fg);
 }
 .tile-sub{
@@ -384,7 +386,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   color:var(--fg);font-size:.95rem;background:rgba(5,5,5,.5);backdrop-filter:blur(6px);
   transition:background .25s,color .25s,border-color .25s,transform .4s cubic-bezier(.22,1,.36,1);
 }
-.tile:hover .tile-arrow{background:var(--fg);color:var(--bg);border-color:var(--fg);transform:rotate(-45deg)}
+.tile:hover .tile-arrow{background:var(--accent);color:var(--bg);border-color:var(--accent);transform:rotate(-45deg)}
 .tile.is-dev{pointer-events:none}
 .tile.is-dev .tile-img{filter:grayscale(1) brightness(.4)}
 .tile.is-dev::after{
@@ -419,35 +421,47 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 /* ============================================================
    PRICING — 3 formules sobres
    ============================================================ */
-.pricing{padding:clamp(7rem,11vw,11rem) clamp(1.25rem,4vw,2.5rem);border-top:1px solid var(--line)}
+/* PRICING — section inversée: fond clair, texte noir (différencie HectoWeb de Rebel) */
+.pricing{
+  padding:clamp(7rem,11vw,11rem) clamp(1.25rem,4vw,2.5rem);
+  background:var(--fg);color:var(--bg);
+  border-top:1px solid var(--bg);border-bottom:1px solid var(--bg);
+}
 .pricing-head{max-width:1600px;margin:0 auto 4rem}
-.pricing-head h2{font-family:'Geist',sans-serif;font-weight:900;font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em;max-width:42rem}
-.pricing-head h2 .stroke-line{-webkit-text-stroke:1px var(--fg);color:transparent}
+.pricing-head .eyebrow{color:var(--bg)}
+.pricing-head .eyebrow::before{content:'—';color:var(--bg)}
+.pricing-head h2{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em;max-width:42rem;color:var(--bg)}
+.pricing-head h2 .stroke-line{-webkit-text-stroke:1px var(--bg);color:transparent}
 
 .pricing-grid{
   max-width:1600px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bg);
 }
 @media(max-width:880px){.pricing-grid{grid-template-columns:1fr}}
-.plan{background:var(--bg);padding:3rem 2.5rem;display:flex;flex-direction:column;gap:1.5rem;transition:background .25s}
-.plan:hover{background:var(--surface)}
-.plan-num{font-family:'Geist Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-.plan h3{font-family:'Geist',sans-serif;font-weight:900;font-size:2.2rem;letter-spacing:-.03em;color:var(--fg);line-height:1}
-.plan p{font-family:'Geist',sans-serif;color:var(--fg-dim);font-size:.98rem;line-height:1.65}
-.plan-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;padding:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.plan-list li{font-family:'Geist',sans-serif;font-size:.92rem;color:var(--fg-dim);padding-left:1.2rem;position:relative}
-.plan-list li::before{content:'+';position:absolute;left:0;color:var(--fg);font-weight:900}
+.plan{background:var(--fg);padding:3rem 2.5rem;display:flex;flex-direction:column;gap:1.5rem;transition:background .25s}
+.plan:hover{background:#ededed}
+.plan-num{font-family:'Geist Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#7a7a7a}
+.plan h3{font-family:'Unbounded',sans-serif;font-weight:800;font-size:2.2rem;letter-spacing:-.03em;color:var(--bg);line-height:1}
+.plan p{font-family:'Geist',sans-serif;color:#3a3a3a;font-size:.98rem;line-height:1.65}
+.plan-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;padding:1rem 0;border-top:1px solid #d0d0d0;border-bottom:1px solid #d0d0d0}
+.plan-list li{font-family:'Geist',sans-serif;font-size:.92rem;color:#3a3a3a;padding-left:1.2rem;position:relative}
+.plan-list li::before{content:'+';position:absolute;left:0;color:var(--bg);font-weight:900}
 .plan-price{margin-top:auto;display:flex;align-items:baseline;gap:.4rem;padding-top:1rem}
-.plan-price .from{font-family:'Geist Mono',monospace;font-size:.65rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-.plan-price .amount{font-family:'Geist',sans-serif;font-weight:900;font-size:2.4rem;letter-spacing:-.03em;color:var(--fg);line-height:1}
-.plan-price .ccy{font-family:'Geist Mono',monospace;font-size:.78rem;color:var(--fg-dim);font-weight:500}
+.plan-price .from{font-family:'Geist Mono',monospace;font-size:.65rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#7a7a7a}
+.plan-price .amount{
+  font-family:'Unbounded',sans-serif;font-weight:800;font-size:2.4rem;letter-spacing:-.03em;
+  color:var(--bg);line-height:1;
+  background:linear-gradient(180deg,transparent 65%,var(--accent) 65%,var(--accent) 88%,transparent 88%);
+  padding:0 .15em;
+}
+.plan-price .ccy{font-family:'Geist Mono',monospace;font-size:.78rem;color:#3a3a3a;font-weight:500}
 
 /* ============================================================
    TESTIMONIALS
    ============================================================ */
 .testimonials{padding:clamp(7rem,11vw,11rem) clamp(1.25rem,4vw,2.5rem);border-top:1px solid var(--line)}
 .testimonials-head{max-width:1600px;margin:0 auto 4rem;text-align:center}
-.testimonials-head h2{font-family:'Geist',sans-serif;font-weight:900;font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em}
+.testimonials-head h2{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em}
 .testimonials-head h2 .stroke-line{-webkit-text-stroke:1px var(--fg);color:transparent}
 
 .tests-grid{
@@ -469,7 +483,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
    ============================================================ */
 .process{padding:clamp(7rem,11vw,11rem) clamp(1.25rem,4vw,2.5rem);border-top:1px solid var(--line)}
 .process-head{max-width:1600px;margin:0 auto 4rem}
-.process-head h2{font-family:'Geist',sans-serif;font-weight:900;font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em;max-width:42rem}
+.process-head h2{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5rem);line-height:.9;letter-spacing:-.04em;max-width:42rem}
 .process-head h2 .stroke-line{-webkit-text-stroke:1px var(--fg);color:transparent}
 .process-grid{
   max-width:1600px;margin:0 auto;
@@ -478,7 +492,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 @media(max-width:880px){.process-grid{grid-template-columns:1fr}}
 .step{background:var(--bg);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1rem;min-height:240px}
 .step-num{font-family:'Geist Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-.step h3{font-family:'Geist',sans-serif;font-weight:900;font-size:1.6rem;letter-spacing:-.025em;color:var(--fg);line-height:1}
+.step h3{font-family:'Unbounded',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-.025em;color:var(--fg);line-height:1}
 .step-time{font-family:'Geist Mono',monospace;font-size:.66rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--fg)}
 .step p{font-family:'Geist',sans-serif;color:var(--fg-dim);font-size:.92rem;line-height:1.65;margin-top:auto}
 
@@ -492,7 +506,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 .cta-bg-text{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   pointer-events:none;user-select:none;
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:30vw;line-height:.9;letter-spacing:-.06em;
   -webkit-text-stroke:1px var(--fg);color:transparent;opacity:.045;white-space:nowrap;
 }
@@ -500,7 +514,7 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 .cta-eyebrow{font-family:'Geist Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;display:inline-flex;align-items:center;gap:1rem}
 .cta-eyebrow::before,.cta-eyebrow::after{content:'';width:40px;height:1px;background:var(--muted)}
 .cta h2{
-  font-family:'Geist',sans-serif;font-weight:900;
+  font-family:'Unbounded',sans-serif;font-weight:800;
   font-size:clamp(3rem,9vw,7.5rem);line-height:.9;letter-spacing:-.05em;margin-bottom:2rem;
 }
 .cta h2 .stroke-line{-webkit-text-stroke:1px var(--fg);color:transparent}
