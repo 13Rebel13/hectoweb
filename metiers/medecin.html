@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Centre Médical Beaulieu — Lausanne · cabinet multi-spécialités</title>
+<meta name="description" content="Centre Médical Beaulieu à Lausanne. Médecine générale, cardiologie, dermatologie, pédiatrie. Prise de rendez-vous en ligne." />
+<meta name="theme-color" content="#ffffff" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — blanc pur clinique + bleu apaisant + accent vert santé
+   Lumière, sobriété, confiance. Aucun "mood" — c'est du soin.
+   ============================================================ */
+:root{
+  --white:#ffffff;
+  --bg:#f7f9fb;
+  --bg-2:#eef3f7;
+  --ink:#1a2530;
+  --ink-soft:#2f3d4a;
+  --slate:#5a6878;
+  --muted:#8a96a3;
+  --rule:#e1e7ed;
+  --rule-soft:#f0f4f7;
+  --blue:#2c6ba0;
+  --blue-deep:#1e4d77;
+  --blue-tint:#e8f0f7;
+  --green:#6ba87a;
+  --green-deep:#508a5d;
+  --orange:#d97a3d;
+  --red:#c14d4d;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--white);
+  -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;
+}
+::selection{background:var(--blue);color:var(--white)}
+a{color:inherit;text-decoration:none;transition:color .25s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+svg{display:block}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV — sobre, blanc, clinique
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1rem clamp(1.5rem,4vw,3rem);
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--white);border-bottom:1px solid var(--rule);
+  transition:box-shadow .3s,padding .3s;
+}
+.nav.scrolled{box-shadow:0 6px 20px -12px rgba(28,77,119,.18);padding-top:.8rem;padding-bottom:.8rem}
+.nav-brand{
+  display:flex;align-items:center;gap:.7rem;
+  font-family:'Source Serif 4',serif;font-weight:500;font-size:1.25rem;color:var(--ink);letter-spacing:-.005em;
+}
+.nav-brand-logo{
+  width:32px;height:32px;border-radius:50%;background:var(--blue);
+  display:flex;align-items:center;justify-content:center;color:var(--white);
+  font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.85rem;
+}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{font-family:'Inter',sans-serif;font-weight:500;font-size:.85rem;color:var(--slate)}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{
+  background:var(--blue);color:var(--white) !important;padding:.7rem 1.4rem;
+  border-radius:6px;font-size:.82rem;font-weight:500;
+  transition:background .25s,transform .15s;
+}
+.nav-cta:hover{background:var(--blue-deep);color:var(--white) !important;transform:translateY(-1px)}
+@media(max-width:880px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — split 60/40, photo cabinet à droite, texte gauche
+   ============================================================ */
+.hero{
+  padding-top:7rem;
+  display:grid;grid-template-columns:1.15fr 1fr;
+  background:var(--white);min-height:90vh;
+}
+@media(max-width:920px){.hero{grid-template-columns:1fr;min-height:auto}}
+.hero-text{
+  padding:clamp(3rem,7vw,6rem) clamp(2rem,5vw,5rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero-overline{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;
+  letter-spacing:.18em;color:var(--blue);text-transform:uppercase;margin-bottom:2rem;
+}
+.hero-overline::before{content:'';width:30px;height:1px;background:var(--blue)}
+.hero h1{
+  font-family:'Source Serif 4',serif;font-weight:400;
+  font-size:clamp(2.6rem,5.5vw,4.6rem);line-height:1.05;letter-spacing:-.02em;
+  color:var(--ink);margin-bottom:1.5rem;
+}
+.hero h1 b{color:var(--blue);font-weight:500}
+.hero-tag{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:clamp(1.05rem,1.4vw,1.25rem);
+  line-height:1.65;color:var(--slate);max-width:34rem;margin-bottom:2.5rem;
+}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:1rem 1.8rem;background:var(--blue);color:var(--white);border-radius:6px;
+  font-family:'Inter',sans-serif;font-weight:500;font-size:.92rem;
+  transition:background .25s,transform .15s;
+}
+.btn-primary:hover{background:var(--blue-deep);transform:translateY(-2px)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:1rem 1.8rem;border:1px solid var(--rule);color:var(--ink);border-radius:6px;
+  font-family:'Inter',sans-serif;font-weight:500;font-size:.92rem;
+  transition:border-color .25s,color .25s;
+}
+.btn-secondary:hover{border-color:var(--blue);color:var(--blue)}
+
+.hero-trust{
+  margin-top:3rem;padding-top:2rem;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap:1.5rem 3rem;
+}
+.trust-item{display:flex;align-items:center;gap:.7rem;font-family:'Inter',sans-serif;font-size:.85rem;color:var(--slate)}
+.trust-item svg{width:18px;height:18px;color:var(--green)}
+
+.hero-img{
+  background:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+  min-height:520px;
+}
+@media(max-width:920px){.hero-img{min-height:50vh;order:-1}}
+
+/* ============================================================
+   SPECIALITES — 4 cards avec SVG inline
+   ============================================================ */
+.specs{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,4rem);
+  background:var(--bg);border-top:1px solid var(--rule);
+}
+.specs-head{max-width:780px;margin:0 auto 4rem;text-align:center}
+.specs-overline{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;
+  letter-spacing:.2em;color:var(--blue);text-transform:uppercase;margin-bottom:1.4rem;
+}
+.specs h2{
+  font-family:'Source Serif 4',serif;font-weight:400;
+  font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.1;letter-spacing:-.015em;
+  color:var(--ink);margin-bottom:1rem;
+}
+.specs-lead{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:1.05rem;
+  color:var(--slate);max-width:36rem;margin:0 auto;line-height:1.7;
+}
+
+.specs-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+}
+@media(max-width:980px){.specs-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.specs-grid{grid-template-columns:1fr}}
+.spec{
+  background:var(--white);padding:2.2rem 1.8rem;border-radius:8px;
+  border:1px solid var(--rule);
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.spec:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 12px 28px -16px rgba(44,107,160,.25)}
+.spec-icon{
+  width:48px;height:48px;border-radius:8px;
+  background:var(--blue-tint);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;
+}
+.spec-icon svg{width:24px;height:24px}
+.spec h3{
+  font-family:'Source Serif 4',serif;font-weight:500;font-size:1.3rem;
+  color:var(--ink);margin-bottom:.8rem;letter-spacing:-.005em;
+}
+.spec p{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.92rem;
+  line-height:1.7;color:var(--slate);
+}
+
+/* ============================================================
+   EQUIPE MEDICALE
+   ============================================================ */
+.team{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,4rem);
+  background:var(--white);
+}
+.team-head{max-width:780px;margin:0 auto 4rem;text-align:center}
+.team-head h2{
+  font-family:'Source Serif 4',serif;font-weight:400;
+  font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.1;letter-spacing:-.015em;color:var(--ink);margin-bottom:1rem;
+}
+.team-lead{font-family:'Inter',sans-serif;font-weight:300;font-size:1.05rem;color:var(--slate);max-width:36rem;margin:0 auto}
+
+.team-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
+}
+@media(max-width:980px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.team-grid{grid-template-columns:1fr}}
+.doctor{text-align:left}
+.doctor-img{
+  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
+  border-radius:8px;margin-bottom:1.4rem;
+}
+.doctor-name{
+  font-family:'Source Serif 4',serif;font-weight:500;font-size:1.2rem;
+  color:var(--ink);margin-bottom:.3rem;letter-spacing:-.005em;
+}
+.doctor-spec{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;
+  letter-spacing:.12em;color:var(--blue);text-transform:uppercase;margin-bottom:.8rem;
+}
+.doctor-langs{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+}
+.doctor-lang{
+  display:inline-block;padding:.25rem .65rem;border-radius:4px;
+  background:var(--bg-2);color:var(--slate);
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* ============================================================
+   PROCESS / PREMIERE VISITE
+   ============================================================ */
+.process{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,4rem);
+  background:var(--bg);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.process-head{max-width:780px;margin:0 auto 4rem;text-align:center}
+.process-head h2{
+  font-family:'Source Serif 4',serif;font-weight:400;
+  font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.1;letter-spacing:-.015em;color:var(--ink);margin-bottom:1rem;
+}
+.process-lead{font-family:'Inter',sans-serif;font-weight:300;font-size:1.05rem;color:var(--slate);max-width:36rem;margin:0 auto}
+
+.process-timeline{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;
+}
+@media(max-width:880px){.process-timeline{grid-template-columns:1fr}}
+.process-timeline::before{
+  content:'';position:absolute;top:24px;left:6%;right:6%;height:2px;
+  background:repeating-linear-gradient(90deg,var(--blue) 0,var(--blue) 6px,transparent 6px,transparent 12px);
+  z-index:0;
+}
+@media(max-width:880px){.process-timeline::before{display:none}}
+.step{position:relative;z-index:1;text-align:center}
+.step-num{
+  width:48px;height:48px;border-radius:50%;background:var(--white);border:2px solid var(--blue);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;
+  font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--blue);font-size:1rem;
+}
+.step h3{
+  font-family:'Source Serif 4',serif;font-weight:500;font-size:1.15rem;
+  color:var(--ink);margin-bottom:.6rem;letter-spacing:-.005em;
+}
+.step p{font-family:'Inter',sans-serif;font-weight:300;font-size:.92rem;line-height:1.65;color:var(--slate)}
+
+/* ============================================================
+   URGENCES — encart rassurant
+   ============================================================ */
+.urgences{
+  padding:clamp(4rem,7vw,6rem) clamp(1.5rem,5vw,4rem);
+  background:var(--white);
+}
+.urgences-inner{
+  max-width:1100px;margin:0 auto;
+  background:#fef5f0;border-left:4px solid var(--orange);border-radius:6px;
+  padding:2.5rem 2.5rem;
+  display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;
+}
+@media(max-width:780px){.urgences-inner{grid-template-columns:1fr;text-align:center;gap:1.5rem}}
+.urgences-icon{
+  width:56px;height:56px;border-radius:50%;background:var(--orange);
+  display:flex;align-items:center;justify-content:center;color:var(--white);
+}
+.urgences-icon svg{width:28px;height:28px}
+.urgences-body p{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.18em;color:var(--orange);text-transform:uppercase;margin-bottom:.4rem;font-weight:500}
+.urgences-body h3{
+  font-family:'Source Serif 4',serif;font-weight:500;font-size:1.3rem;
+  color:var(--ink);margin-bottom:.4rem;letter-spacing:-.005em;
+}
+.urgences-body span{font-family:'Inter',sans-serif;font-weight:300;font-size:.92rem;color:var(--slate)}
+.urgences-numbers{
+  display:flex;flex-direction:column;gap:.4rem;text-align:right;
+}
+@media(max-width:780px){.urgences-numbers{text-align:center}}
+.urg-num{
+  font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:1.5rem;color:var(--ink);
+}
+.urg-num-label{font-family:'Inter',sans-serif;font-size:.72rem;color:var(--slate);font-weight:400}
+
+/* ============================================================
+   RDV / FORMULAIRE
+   ============================================================ */
+.rdv{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,4rem);
+  background:var(--bg);border-top:1px solid var(--rule);
+}
+.rdv-inner{
+  max-width:780px;margin:0 auto;
+  background:var(--white);padding:clamp(2.5rem,5vw,4rem);border-radius:10px;
+  border:1px solid var(--rule);
+  box-shadow:0 12px 30px -20px rgba(28,77,119,.12);
+}
+.rdv-head{text-align:center;margin-bottom:3.5rem}
+.rdv-overline{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;
+  letter-spacing:.2em;color:var(--blue);text-transform:uppercase;margin-bottom:1.2rem;
+}
+.rdv h2{
+  font-family:'Source Serif 4',serif;font-weight:400;
+  font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.1;color:var(--ink);letter-spacing:-.015em;margin-bottom:.8rem;
+}
+.rdv-lead{font-family:'Inter',sans-serif;font-weight:300;color:var(--slate);font-size:.98rem}
+
+.rdv-form{display:flex;flex-direction:column;gap:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.rdv-form label{display:flex;flex-direction:column;gap:.45rem}
+.rdv-form span{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:.78rem;
+  color:var(--ink);
+}
+.rdv-form input,.rdv-form select,.rdv-form textarea{
+  background:var(--white);border:1px solid var(--rule);border-radius:6px;
+  padding:.85rem 1rem;color:var(--ink);font-family:'Inter',sans-serif;font-size:.95rem;
+  outline:0;transition:border-color .2s,box-shadow .2s;
+}
+.rdv-form input:focus,.rdv-form select:focus,.rdv-form textarea:focus{
+  border-color:var(--blue);box-shadow:0 0 0 3px rgba(44,107,160,.12);
+}
+.rdv-form textarea{min-height:100px;resize:vertical;font-family:'Inter',sans-serif}
+
+.radio-group{display:flex;gap:1.5rem;margin-top:.3rem}
+.radio-item{display:flex;align-items:center;gap:.5rem;font-family:'Inter',sans-serif;font-weight:400;font-size:.92rem;color:var(--ink-soft);cursor:pointer}
+.radio-item input{accent-color:var(--blue)}
+
+.rdv-form button{
+  margin-top:1.5rem;padding:1.05rem 2rem;
+  background:var(--blue);color:var(--white);border-radius:6px;
+  font-family:'Inter',sans-serif;font-weight:500;font-size:.95rem;
+  transition:background .25s,transform .15s;
+}
+.rdv-form button:hover{background:var(--blue-deep);transform:translateY(-2px)}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4rem);
+  background:var(--white);border-top:1px solid var(--rule);
+}
+.infos-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;
+}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2rem}}
+.info-block{padding:0}
+.info-icon{
+  width:40px;height:40px;border-radius:8px;background:var(--blue-tint);
+  color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;
+}
+.info-icon svg{width:20px;height:20px}
+.info-label{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:500;
+  letter-spacing:.2em;color:var(--blue);text-transform:uppercase;margin-bottom:.8rem;
+}
+.info-content{
+  font-family:'Source Serif 4',serif;font-weight:500;font-size:1.1rem;
+  color:var(--ink);line-height:1.6;
+}
+.info-content em{
+  display:block;margin-top:.4rem;
+  font-family:'Inter',sans-serif;font-weight:300;font-style:normal;
+  font-size:.92rem;color:var(--slate);
+}
+
+/* ============================================================
+   HW CTA bottom
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--white);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--slate);font-size:.82rem;font-family:'Inter',sans-serif;font-weight:300}
+.footer-inner a{color:var(--blue);font-weight:500}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">
+    <span class="nav-brand-logo">+</span>
+    Centre Médical Beaulieu
+  </a>
+  <ul class="nav-links">
+    <li><a href="#specs">Spécialités</a></li>
+    <li><a href="#team">Équipe</a></li>
+    <li><a href="#process">Première visite</a></li>
+    <li><a href="#infos">Infos</a></li>
+    <li><a href="#rdv" class="nav-cta">Prendre RDV</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-text">
+    <p class="hero-overline">Cabinet multi-spécialités · Lausanne</p>
+    <h1>Une médecine humaine,<br/><b>à hauteur de patient.</b></h1>
+    <p class="hero-tag">Quatre médecins, une équipe paramédicale, un cabinet à taille humaine ouvert depuis 2009 dans le quartier de Beaulieu. Médecine générale, cardiologie, dermatologie et pédiatrie sous un même toit.</p>
+    <div class="hero-ctas">
+      <a href="#rdv" class="btn-primary">Prendre rendez-vous →</a>
+      <a href="#specs" class="btn-secondary">Voir les spécialités</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Conventionné LAMal
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Urgences en journée
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Tiers garant accepté
+      </div>
+    </div>
+  </div>
+  <div class="hero-img"></div>
+</header>
+
+<!-- SPECIALITES -->
+<section id="specs" class="specs">
+  <div class="specs-head">
+    <p class="specs-overline">Nos spécialités</p>
+    <h2>Quatre disciplines complémentaires</h2>
+    <p class="specs-lead">De la consultation routinière au suivi spécialisé, nos médecins couvrent la majorité des besoins courants.</p>
+  </div>
+  <div class="specs-grid">
+    <div class="spec">
+      <div class="spec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/></svg>
+      </div>
+      <h3>Médecine générale</h3>
+      <p>Bilans, vaccinations, suivi chronique, certificats, médecine du sport. Adultes et adolescents dès 16 ans.</p>
+    </div>
+    <div class="spec">
+      <div class="spec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <h3>Cardiologie</h3>
+      <p>ECG, échocardiographie, holter, test d'effort. Bilans cardiovasculaires complets sur place.</p>
+    </div>
+    <div class="spec">
+      <div class="spec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+      </div>
+      <h3>Dermatologie</h3>
+      <p>Suivi des grains de beauté, acné, eczéma, cryothérapie, dermoscopie numérique haute résolution.</p>
+    </div>
+    <div class="spec">
+      <div class="spec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12h6M12 9v6"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <h3>Pédiatrie</h3>
+      <p>Suivi de l'enfant 0–16 ans, vaccinations, courbes de croissance, conseil parental. RDV dédié.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="team" class="team">
+  <div class="team-head">
+    <p class="specs-overline">Équipe médicale</p>
+    <h2>Quatre médecins, quatre regards</h2>
+    <p class="team-lead">Tous nos médecins sont diplômés FMH et conventionnés. Nous travaillons à plusieurs voix sur les cas complexes.</p>
+  </div>
+  <div class="team-grid">
+    <div class="doctor">
+      <div class="doctor-img" style="background-image:url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=85')"></div>
+      <h3 class="doctor-name">Dr Antoine Berger</h3>
+      <p class="doctor-spec">Médecine générale · FMH</p>
+      <div class="doctor-langs">
+        <span class="doctor-lang">FR</span>
+        <span class="doctor-lang">DE</span>
+        <span class="doctor-lang">EN</span>
+      </div>
+    </div>
+    <div class="doctor">
+      <div class="doctor-img" style="background-image:url('https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&w=800&q=85')"></div>
+      <h3 class="doctor-name">Dre Sophie Mercier</h3>
+      <p class="doctor-spec">Cardiologie · FMH</p>
+      <div class="doctor-langs">
+        <span class="doctor-lang">FR</span>
+        <span class="doctor-lang">EN</span>
+        <span class="doctor-lang">IT</span>
+      </div>
+    </div>
+    <div class="doctor">
+      <div class="doctor-img" style="background-image:url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=85')"></div>
+      <h3 class="doctor-name">Dr Marc Dubois</h3>
+      <p class="doctor-spec">Dermatologie · FMH</p>
+      <div class="doctor-langs">
+        <span class="doctor-lang">FR</span>
+        <span class="doctor-lang">DE</span>
+      </div>
+    </div>
+    <div class="doctor">
+      <div class="doctor-img" style="background-image:url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=800&q=85')"></div>
+      <h3 class="doctor-name">Dre Élise Favre</h3>
+      <p class="doctor-spec">Pédiatrie · FMH</p>
+      <div class="doctor-langs">
+        <span class="doctor-lang">FR</span>
+        <span class="doctor-lang">EN</span>
+        <span class="doctor-lang">ES</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process">
+  <div class="process-head">
+    <p class="specs-overline">Première visite</p>
+    <h2>Comment ça se passe</h2>
+    <p class="process-lead">Pour votre première venue au cabinet, voici les quatre étapes simples du parcours.</p>
+  </div>
+  <div class="process-timeline">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Prise de RDV</h3>
+      <p>En ligne (formulaire ci-dessous), par téléphone ou via doctena. Confirmation par email sous 24 h.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Préparation</h3>
+      <p>On vous envoie un questionnaire médical à remplir. Apportez carte assurance + pièce d'identité.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Consultation</h3>
+      <p>30 minutes avec votre médecin référent. Examen clinique, discussion, plan de prise en charge.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Suivi</h3>
+      <p>Résultats d'analyses sécurisés en ligne, RDV de suivi proposés selon le besoin, ordonnances renouvelables.</p>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCES -->
+<section class="urgences">
+  <div class="urgences-inner">
+    <div class="urgences-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+    </div>
+    <div class="urgences-body">
+      <p>En cas d'urgence</p>
+      <h3>Appelez immédiatement</h3>
+      <span>Pour toute urgence vitale, contactez le 144. Pour les urgences en heures ouvrées, notre cabinet répond en priorité.</span>
+    </div>
+    <div class="urgences-numbers">
+      <div>
+        <p class="urg-num">144</p>
+        <p class="urg-num-label">Urgences vitales (24/7)</p>
+      </div>
+      <div>
+        <p class="urg-num">+41 21 555 14 14</p>
+        <p class="urg-num-label">Cabinet · heures ouvrées</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RDV FORM -->
+<section id="rdv" class="rdv">
+  <div class="rdv-inner">
+    <div class="rdv-head">
+      <p class="rdv-overline">Prise de rendez-vous</p>
+      <h2>Demander un rendez-vous</h2>
+      <p class="rdv-lead">Le secrétariat vous recontacte sous 24 h ouvrées pour confirmer.</p>
+    </div>
+
+    <form class="rdv-form">
+      <div class="form-row">
+        <label><span>Médecin / spécialité</span>
+          <select>
+            <option>Indifférent — généraliste</option>
+            <option>Dr Antoine Berger — médecine générale</option>
+            <option>Dre Sophie Mercier — cardiologie</option>
+            <option>Dr Marc Dubois — dermatologie</option>
+            <option>Dre Élise Favre — pédiatrie</option>
+          </select>
+        </label>
+        <label><span>Motif de consultation</span>
+          <input type="text" placeholder="Bilan annuel, consultation, suivi…" required />
+        </label>
+      </div>
+
+      <label><span>Caractère urgent ?</span>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="urgent" value="non" checked /> Non, RDV de routine</label>
+          <label class="radio-item"><input type="radio" name="urgent" value="oui" /> Oui, dans la semaine</label>
+        </div>
+      </label>
+
+      <div class="form-row">
+        <label><span>Nom complet</span><input type="text" required /></label>
+        <label><span>Téléphone</span><input type="tel" required /></label>
+      </div>
+
+      <label><span>Email</span><input type="email" required /></label>
+
+      <label><span>Première visite au cabinet ?</span>
+        <div class="radio-group">
+          <label class="radio-item"><input type="radio" name="premiere" value="oui" checked /> Oui</label>
+          <label class="radio-item"><input type="radio" name="premiere" value="non" /> Non, déjà patient</label>
+        </div>
+      </label>
+
+      <button type="submit">Envoyer ma demande →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section id="infos" class="infos">
+  <div class="infos-grid">
+    <div class="info-block">
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <p class="info-label">Adresse</p>
+      <p class="info-content">Avenue de Beaulieu 22<br/><em>1004 Lausanne, Suisse</em></p>
+    </div>
+    <div class="info-block">
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 21 555 14 14<br/><em>secretariat@centre-beaulieu.ch</em></p>
+    </div>
+    <div class="info-block">
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <p class="info-label">Horaires</p>
+      <p class="info-content">Lun–Ven · 8h–18h<br/><em>Sam · 9h–12h · sur RDV uniquement</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Centre Médical Beaulieu · Lausanne · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.8</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-text > *',{opacity:0,y:24,duration:1,ease:'power3.out',stagger:.1,delay:.2});
+gsap.from('.hero-img',{opacity:0,scale:1.03,duration:1.3,ease:'power3.out',delay:.1});
+
+gsap.utils.toArray('.spec, .doctor, .step, .info-block, .urgences-inner, .rdv-form > *').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:22},{opacity:1,y:0,duration:.85,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+});
+
+document.querySelector('.rdv-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert('Site de démonstration HectoWeb.\nSur votre vrai site, la demande de RDV serait envoyée par email au secrétariat.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch');
+});
+</script>
+</body>
+</html>

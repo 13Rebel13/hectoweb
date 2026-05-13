@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Domaine de la Côte — Vigneron à Aigle · Chablais vaudois</title>
+<meta name="description" content="Domaine de la Côte, vignoble familial à Aigle (Vaud). Chasselas, Pinot Noir, Gamay — quatre générations, douze hectares, culture biodynamique." />
+<meta name="theme-color" content="#5a1228" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lato:wght@300;400;500;700&family=Italiana&family=Fraunces:wght@300;400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — bordeaux profond + or vieux + crème + brun terreux
+   Terroir noble, mise en page éditoriale typographique
+   ============================================================ */
+:root{
+  --cream:#f1e8d4;
+  --cream-2:#e7dcc4;
+  --cream-3:#dccfb2;
+  --ink:#3a2418;          /* brun terreux foncé */
+  --ink-soft:#553828;
+  --muted:#8a7259;
+  --bordeaux:#5a1228;
+  --bordeaux-2:#7a1f37;
+  --gold:#c4954a;
+  --gold-soft:#d4a85e;
+  --rule:rgba(58,36,24,.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Lato',system-ui,sans-serif;color:var(--ink);background:var(--cream);
+  -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;
+}
+::selection{background:var(--bordeaux);color:var(--cream)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* HW STRIP */
+.hw-strip{position:fixed;top:0;left:0;right:0;z-index:60;background:#0a0a0c;border-bottom:1px solid #e3c789;font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* NAV */
+.nav{
+  position:fixed;top:30px;left:0;right:0;z-index:50;
+  padding:1.4rem clamp(1.5rem,4vw,3.5rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,border-color .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(241,232,212,.94);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1rem;padding-bottom:1rem;
+}
+.nav-brand{
+  font-family:'Italiana',serif;font-size:1.6rem;letter-spacing:.05em;
+  color:var(--bordeaux);
+}
+.nav-links{display:flex;gap:2.3rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Lato',sans-serif;font-size:.75rem;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);
+}
+.nav-links a:hover{color:var(--bordeaux)}
+.nav-cta{
+  background:var(--bordeaux);color:var(--cream) !important;padding:.7rem 1.4rem;
+  border-radius:0;font-size:.7rem;letter-spacing:.28em;
+  transition:background .25s;
+}
+.nav-cta:hover{background:var(--bordeaux-2);color:var(--cream) !important}
+@media(max-width:820px){.nav-links li:not(:last-child){display:none}}
+
+/* Ornement */
+.orn{display:flex;align-items:center;justify-content:center;gap:1.2rem;color:var(--gold);margin:0 auto}
+.orn::before,.orn::after{content:'';width:50px;height:1px;background:currentColor}
+.orn-sym{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic}
+
+/* HERO — panorama plein écran */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 clamp(1.5rem,5vw,4rem) clamp(3rem,6vw,5rem);overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(180deg,rgba(58,36,24,.35) 0%,rgba(58,36,24,.15) 35%,rgba(58,36,24,.92) 100%),
+    url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=2400&q=85') center/cover no-repeat;
+}
+.hero-inner{position:relative;z-index:2;max-width:1300px;margin:0 auto;width:100%}
+.hero-eyebrow{
+  font-family:'Lato',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:2rem;display:inline-flex;align-items:center;gap:1rem;
+}
+.hero-eyebrow::before{content:'';width:60px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;font-weight:400;
+  font-size:clamp(3rem,8vw,7.5rem);line-height:.95;letter-spacing:-.01em;
+  color:var(--cream);margin-bottom:1.5rem;
+}
+.hero h1 em{font-style:italic;color:var(--gold-soft);font-weight:500;display:block}
+.hero-tag{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.5rem);line-height:1.55;color:var(--cream-2);
+  max-width:38rem;margin-bottom:2.5rem;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:1.5rem 3rem;
+  padding-top:2rem;border-top:1px solid rgba(196,149,74,.4);
+  max-width:46rem;
+}
+.hero-meta-item{display:flex;flex-direction:column;gap:.2rem}
+.hero-meta-label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--gold)}
+.hero-meta-value{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);font-weight:500;font-style:italic}
+.hero-ctas{margin-top:2.5rem;display:flex;gap:1.2rem;flex-wrap:wrap}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:1rem 2rem;background:var(--gold);color:var(--ink);
+  font-family:'Lato',sans-serif;font-size:.75rem;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;
+  transition:background .25s,transform .15s;
+}
+.hero-cta:hover{background:var(--gold-soft);transform:translateY(-2px)}
+.hero-cta-ghost{
+  padding:1rem 2rem;border:1px solid var(--gold);color:var(--cream);
+  font-family:'Lato',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  transition:border-color .25s,color .25s;
+}
+.hero-cta-ghost:hover{border-color:var(--gold-soft);color:var(--gold-soft)}
+
+/* CUVÉES */
+.cuvees{padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);background:var(--cream)}
+.cuvees-head{max-width:780px;margin:0 auto 5rem;text-align:center}
+.cuvees-eye{font-family:'Lato',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:1.5rem}
+.cuvees-head h2{
+  font-family:'Cormorant Garamond',serif;font-weight:400;
+  font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:1.02;color:var(--ink);
+  margin-bottom:1.5rem;letter-spacing:-.015em;
+}
+.cuvees-head h2 em{font-style:italic;color:var(--bordeaux);font-weight:500}
+.cuvees-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--muted)}
+.orn{margin:0 auto 4rem}
+
+.cuvees-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2.5rem;
+}
+@media(max-width:1000px){.cuvees-grid{grid-template-columns:repeat(2,1fr);gap:3rem}}
+@media(max-width:540px){.cuvees-grid{grid-template-columns:1fr}}
+.cuvee{text-align:center;display:flex;flex-direction:column;align-items:center}
+.cuvee-img{
+  width:100%;aspect-ratio:3/4;
+  background:linear-gradient(180deg,var(--cream-2) 0%,var(--cream-3) 100%);
+  background-size:cover;background-position:center;margin-bottom:1.8rem;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--rule);
+}
+.cuvee-color{font-family:'Lato',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
+.cuvee-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.5rem;color:var(--bordeaux);margin-bottom:.4rem;line-height:1.2}
+.cuvee-year{font-family:'Italiana',serif;font-size:1rem;color:var(--muted);margin-bottom:.8rem;letter-spacing:.15em}
+.cuvee-desc{font-family:'Lato',sans-serif;font-size:.9rem;color:var(--ink-soft);line-height:1.6;max-width:18rem;margin-bottom:1.2rem}
+.cuvee-price{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ink);letter-spacing:.05em}
+.cuvee-price em{font-style:italic;color:var(--muted);font-size:.85rem}
+
+/* TERROIR — éditorial split */
+.terroir{
+  display:grid;grid-template-columns:1.05fr 1fr;
+  background:var(--cream-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  min-height:80vh;
+}
+@media(max-width:880px){.terroir{grid-template-columns:1fr}}
+.terroir-img{
+  background:url('https://images.unsplash.com/photo-1568213816046-0ee1c42bd559?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+  min-height:500px;
+}
+.terroir-text{padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,5rem);display:flex;flex-direction:column;justify-content:center}
+.terroir-eye{font-family:'Lato',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:2rem}
+.terroir h2{
+  font-family:'Cormorant Garamond',serif;font-weight:400;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;color:var(--ink);
+  margin-bottom:2rem;letter-spacing:-.015em;
+}
+.terroir h2 em{font-style:italic;color:var(--bordeaux);font-weight:500}
+.terroir-body p{font-family:'Lato',sans-serif;color:var(--ink-soft);font-size:1.05rem;line-height:1.85;margin-bottom:1.2rem;max-width:34rem}
+.terroir-body p.lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--ink);line-height:1.5}
+.terroir-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+  margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--rule);max-width:34rem;
+}
+.terroir-stat{display:flex;flex-direction:column;gap:.2rem}
+.terroir-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold);line-height:1;font-style:italic;font-weight:500}
+.terroir-stat-label{font-family:'Lato',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+
+/* DÉGUSTATION */
+.degustation{padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);background:var(--cream)}
+.degustation-head{max-width:780px;margin:0 auto 5rem;text-align:center}
+.degustation-head h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;color:var(--ink);letter-spacing:-.015em;margin-bottom:1.2rem}
+.degustation-head h2 em{font-style:italic;color:var(--bordeaux);font-weight:500}
+.degustation-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--muted)}
+
+.formules{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+@media(max-width:880px){.formules{grid-template-columns:1fr}}
+.formule{
+  background:var(--cream-2);padding:3rem 2.2rem;text-align:center;
+  border:1px solid var(--rule);position:relative;transition:transform .3s,border-color .3s;
+}
+.formule:hover{transform:translateY(-4px);border-color:var(--gold)}
+.formule-num{font-family:'Italiana',serif;font-size:1.8rem;color:var(--gold);letter-spacing:.2em;margin-bottom:1.5rem}
+.formule h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.7rem;color:var(--bordeaux);margin-bottom:.6rem}
+.formule-duration{font-family:'Lato',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem}
+.formule p{font-family:'Lato',sans-serif;font-size:.95rem;color:var(--ink-soft);line-height:1.65;margin-bottom:2rem}
+.formule-price{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--ink);font-weight:500;letter-spacing:.02em}
+.formule-price em{font-style:italic;font-size:.9rem;color:var(--muted)}
+
+/* BOUTIQUE */
+.boutique{padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,4rem);background:var(--cream-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.boutique-head{max-width:780px;margin:0 auto 4rem;text-align:center}
+.boutique-head h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.05;color:var(--ink);letter-spacing:-.015em}
+.boutique-head h2 em{font-style:italic;color:var(--bordeaux);font-weight:500}
+.boutique-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--muted);margin-top:.8rem}
+
+.shop-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+@media(max-width:1000px){.shop-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.shop-grid{grid-template-columns:1fr}}
+.shop-card{background:var(--cream);border:1px solid var(--rule);padding:1.8rem 1.6rem;text-align:center;display:flex;flex-direction:column;align-items:center;transition:transform .3s,border-color .3s}
+.shop-card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.shop-card-bottle{font-family:'Italiana',serif;font-size:3.5rem;color:var(--bordeaux);line-height:1;margin-bottom:1.2rem;letter-spacing:.05em}
+.shop-card-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.2rem;color:var(--bordeaux);margin-bottom:.3rem;line-height:1.2}
+.shop-card-year{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.35em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem}
+.shop-card-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ink);margin-bottom:1.2rem}
+.shop-card-btn{
+  display:inline-block;padding:.7rem 1.4rem;border:1px solid var(--bordeaux);color:var(--bordeaux);
+  font-family:'Lato',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  transition:background .25s,color .25s;cursor:pointer;
+}
+.shop-card-btn:hover{background:var(--bordeaux);color:var(--cream)}
+
+/* CARTE MILLÉSIMES */
+.millesimes{padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);background:var(--cream)}
+.millesimes-head{max-width:780px;margin:0 auto 4rem;text-align:center}
+.millesimes-head h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.05;color:var(--ink);letter-spacing:-.015em;margin-bottom:1rem}
+.millesimes-head h2 em{font-style:italic;color:var(--bordeaux);font-weight:500}
+.millesimes-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--muted)}
+
+.vintage-table{max-width:900px;margin:0 auto;border-top:1px solid var(--rule)}
+.vintage-row{
+  display:grid;grid-template-columns:1fr 1.3fr 1fr 1fr;gap:1rem;padding:1.4rem .5rem;
+  border-bottom:1px dotted var(--rule);align-items:center;
+}
+.vintage-row.head{
+  border-bottom:1px solid var(--bordeaux);
+  font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--bordeaux);
+}
+.vintage-year{font-family:'Italiana',serif;font-size:1.4rem;color:var(--bordeaux);letter-spacing:.1em}
+.vintage-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--ink)}
+.vintage-note{font-family:'Lato',sans-serif;font-size:.85rem;color:var(--ink-soft)}
+.vintage-stock{font-family:'Lato',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.vintage-stock.ok{color:#5a7a3a}
+.vintage-stock.low{color:#a06420}
+.vintage-stock.out{color:var(--muted);text-decoration:line-through}
+@media(max-width:680px){
+  .vintage-row{grid-template-columns:1fr 1.3fr 1fr;gap:.5rem}
+  .vintage-stock{display:none}
+  .vintage-row.head .vintage-stock{display:none}
+}
+
+/* VISITE / FORMULAIRE */
+.visite{padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);background:var(--cream-2);border-top:1px solid var(--rule);text-align:center}
+.visite-inner{max-width:680px;margin:0 auto}
+.visite-eye{font-family:'Lato',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:1.5rem}
+.visite h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.2rem,5vw,4rem);line-height:1;color:var(--ink);letter-spacing:-.015em;margin-bottom:1.5rem}
+.visite h2 em{font-style:italic;color:var(--bordeaux);font-weight:500}
+.visite-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--ink-soft);margin-bottom:4rem;line-height:1.6}
+
+.visite-form{display:flex;flex-direction:column;gap:1.5rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}}
+.visite-form label{display:flex;flex-direction:column;gap:.5rem}
+.visite-form span{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
+.visite-form input,.visite-form select{
+  background:transparent;border:0;border-bottom:1px solid var(--rule);
+  padding:.9rem .25rem;color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:1.1rem;
+  outline:0;transition:border-color .2s;
+}
+.visite-form input:focus,.visite-form select:focus{border-color:var(--bordeaux)}
+.visite-form button{
+  align-self:center;margin-top:2.5rem;min-width:280px;
+  padding:1.1rem 2.2rem;font-family:'Lato',sans-serif;font-size:.75rem;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;
+  background:var(--bordeaux);color:var(--cream);
+  transition:background .25s,transform .15s;
+}
+.visite-form button:hover{background:var(--bordeaux-2);transform:translateY(-2px)}
+
+/* INFOS */
+.infos{padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4rem);background:var(--cream);border-top:1px solid var(--rule)}
+.infos-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
+.info-label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:1.2rem}
+.info-content{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.25rem;color:var(--ink);line-height:1.6}
+.info-content em{font-family:'Lato',sans-serif;font-style:normal;color:var(--muted);display:block;margin-top:.3rem;font-size:.9rem;font-weight:400}
+
+/* HW CTA */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* FOOTER */
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--cream);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--muted);font-size:.85rem;font-family:'Cormorant Garamond',serif;font-style:italic}
+.footer-inner a{color:var(--bordeaux)}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<div class="hw-strip">Site de démonstration HectoWeb<a href="../index.html">← Retour aux 20 univers</a></div>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Domaine de la Côte</a>
+  <ul class="nav-links">
+    <li><a href="#cuvees">Cuvées</a></li>
+    <li><a href="#terroir">Terroir</a></li>
+    <li><a href="#degustation">Dégustation</a></li>
+    <li><a href="#boutique">Boutique</a></li>
+    <li><a href="#visite" class="nav-cta">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Vignoble familial · Aigle · Chablais vaudois</p>
+    <h1>Domaine<br/><em>de la Côte</em></h1>
+    <p class="hero-tag">Quatre générations de vignerons sur les coteaux d'Aigle. Douze hectares en biodynamie. Des vins qui racontent un seul terroir, année après année.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Depuis</span><span class="hero-meta-value">1924</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Hectares</span><span class="hero-meta-value">12</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">AOC</span><span class="hero-meta-value">Chablais</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Certification</span><span class="hero-meta-value">Biodynamie</span></div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#cuvees" class="hero-cta">Découvrir nos cuvées →</a>
+      <a href="#visite" class="hero-cta-ghost">Visiter le domaine</a>
+    </div>
+  </div>
+</header>
+
+<!-- CUVÉES -->
+<section id="cuvees" class="cuvees">
+  <div class="cuvees-head">
+    <p class="cuvees-eye">— Nos cuvées</p>
+    <h2>Quatre vins,<br/>une même <em>obsession.</em></h2>
+    <p>Chaque cuvée est un dialogue patient entre le cépage, le sol calcaire d'Aigle et le millésime. Vinifications longues, élevages en barriques de chêne français.</p>
+  </div>
+
+  <div class="orn"><span class="orn-sym">❦</span></div>
+
+  <div class="cuvees-grid">
+    <div class="cuvee">
+      <div class="cuvee-img" style="background-image:url('https://images.unsplash.com/photo-1547595628-c61a29f496f0?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="cuvee-color">Blanc · Sec</p>
+      <h3 class="cuvee-name">Chasselas Réserve</h3>
+      <p class="cuvee-year">— 2022 —</p>
+      <p class="cuvee-desc">Robe pâle, nez floral, bouche tendue sur la minéralité calcaire. Le Chasselas vaudois dans sa plus belle expression.</p>
+      <p class="cuvee-price">28 CHF <em>/ 75 cl</em></p>
+    </div>
+    <div class="cuvee">
+      <div class="cuvee-img" style="background-image:url('https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="cuvee-color">Rouge · Élevage 18 mois</p>
+      <h3 class="cuvee-name">Pinot Noir Vieilles Vignes</h3>
+      <p class="cuvee-year">— 2021 —</p>
+      <p class="cuvee-desc">Issu de parcelles plantées en 1962. Fruits noirs, épices douces, tannins fondus. Garde recommandée 5 à 8 ans.</p>
+      <p class="cuvee-price">42 CHF <em>/ 75 cl</em></p>
+    </div>
+    <div class="cuvee">
+      <div class="cuvee-img" style="background-image:url('https://images.unsplash.com/photo-1568213816046-0ee1c42bd559?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="cuvee-color">Rouge · Fruité</p>
+      <h3 class="cuvee-name">Gamay d'Aigle</h3>
+      <p class="cuvee-year">— 2022 —</p>
+      <p class="cuvee-desc">Vinifié en grappes entières. Cerise burlat, poivre blanc, une bouche juteuse. À boire jeune, légèrement frais.</p>
+      <p class="cuvee-price">24 CHF <em>/ 75 cl</em></p>
+    </div>
+    <div class="cuvee">
+      <div class="cuvee-img" style="background-image:url('https://images.unsplash.com/photo-1474722883778-792e7990302f?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="cuvee-color">Rouge · Assemblage</p>
+      <h3 class="cuvee-name">Cuvée Famille</h3>
+      <p class="cuvee-year">— 2020 —</p>
+      <p class="cuvee-desc">Assemblage Pinot Noir, Merlot, Syrah. Notre signature. Élevage 24 mois en barriques neuves. Édition limitée 2400 bouteilles.</p>
+      <p class="cuvee-price">68 CHF <em>/ 75 cl</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- TERROIR -->
+<section id="terroir" class="terroir">
+  <div class="terroir-img"></div>
+  <div class="terroir-text">
+    <p class="terroir-eye">— Le vignoble &amp; le terroir</p>
+    <h2>Douze hectares<br/>sur les <em>coteaux d'Aigle.</em></h2>
+    <div class="terroir-body">
+      <p class="lead">Les vignes du domaine sont accrochées au pied des Alpes vaudoises, entre 420 et 580 mètres d'altitude. Un sol calcaire fissuré par les anciens passages glaciaires, exposé plein sud-ouest sur le bassin lémanique.</p>
+      <p>Quatre générations de Bovay y travaillent depuis 1924. Chaque parcelle a son nom — les Granits, le Clos-du-Berger, les Crêtes — et ses propres cépages. Nous travaillons en culture biodynamique certifiée Demeter depuis 2014, avec labours au cheval sur les parcelles les plus escarpées.</p>
+      <p>Les vendanges se font à la main, en cagettes de 12 kg. Aucun pesticide de synthèse, aucun désherbant. Du temps, beaucoup de temps, et l'écoute du vivant.</p>
+    </div>
+    <div class="terroir-stats">
+      <div class="terroir-stat"><span class="terroir-stat-num">12</span><span class="terroir-stat-label">Hectares AOC Chablais</span></div>
+      <div class="terroir-stat"><span class="terroir-stat-num">580m</span><span class="terroir-stat-label">Altitude max</span></div>
+      <div class="terroir-stat"><span class="terroir-stat-num">2014</span><span class="terroir-stat-label">Certif. Demeter</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉGUSTATION -->
+<section id="degustation" class="degustation">
+  <div class="degustation-head">
+    <p class="cuvees-eye">— Dégustation &amp; visite</p>
+    <h2>Trois manières<br/>de <em>nous rencontrer.</em></h2>
+    <p>Toutes nos formules sont conduites par un membre de la famille, dans le caveau voûté du domaine. Sur réservation, du mardi au samedi.</p>
+  </div>
+
+  <div class="formules">
+    <div class="formule">
+      <p class="formule-num">— I —</p>
+      <h3>Découverte</h3>
+      <p class="formule-duration">1 heure</p>
+      <p>Visite rapide du chai et dégustation commentée de 4 cuvées de la gamme courante. Idéal pour une première rencontre.</p>
+      <p class="formule-price">35 CHF <em>/ personne</em></p>
+    </div>
+    <div class="formule">
+      <p class="formule-num">— II —</p>
+      <h3>Cellar Tour</h3>
+      <p class="formule-duration">2 heures</p>
+      <p>Promenade dans les vignes, descente dans le chai et les caves d'élevage, dégustation de 7 cuvées dont des verticales et une cuvée parcellaire.</p>
+      <p class="formule-price">75 CHF <em>/ personne</em></p>
+    </div>
+    <div class="formule">
+      <p class="formule-num">— III —</p>
+      <h3>Soirée Vigneron</h3>
+      <p class="formule-duration">4 heures</p>
+      <p>Dîner complet à la table du domaine, accord cuvée par plat, échange à bâtons rompus avec le vigneron. Maximum 8 personnes.</p>
+      <p class="formule-price">150 CHF <em>/ personne</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- BOUTIQUE EN LIGNE -->
+<section id="boutique" class="boutique">
+  <div class="boutique-head">
+    <h2>Boutique <em>en ligne</em></h2>
+    <p>Livraison en Suisse sous 3 jours ouvrés · Dès 6 bouteilles, livraison offerte</p>
+  </div>
+  <div class="shop-grid">
+    <div class="shop-card">
+      <div class="shop-card-bottle">♦</div>
+      <h4 class="shop-card-name">Chasselas Réserve</h4>
+      <p class="shop-card-year">2022 · 75 cl</p>
+      <p class="shop-card-price">28 CHF</p>
+      <button class="shop-card-btn add-cart">Ajouter au panier</button>
+    </div>
+    <div class="shop-card">
+      <div class="shop-card-bottle">♦</div>
+      <h4 class="shop-card-name">Pinot Noir VV</h4>
+      <p class="shop-card-year">2021 · 75 cl</p>
+      <p class="shop-card-price">42 CHF</p>
+      <button class="shop-card-btn add-cart">Ajouter au panier</button>
+    </div>
+    <div class="shop-card">
+      <div class="shop-card-bottle">♦</div>
+      <h4 class="shop-card-name">Gamay d'Aigle</h4>
+      <p class="shop-card-year">2022 · 75 cl</p>
+      <p class="shop-card-price">24 CHF</p>
+      <button class="shop-card-btn add-cart">Ajouter au panier</button>
+    </div>
+    <div class="shop-card">
+      <div class="shop-card-bottle">♦</div>
+      <h4 class="shop-card-name">Cuvée Famille</h4>
+      <p class="shop-card-year">2020 · 75 cl</p>
+      <p class="shop-card-price">68 CHF</p>
+      <button class="shop-card-btn add-cart">Ajouter au panier</button>
+    </div>
+  </div>
+</section>
+
+<!-- MILLÉSIMES -->
+<section class="millesimes">
+  <div class="millesimes-head">
+    <h2>Carte des <em>millésimes</em></h2>
+    <p>Notre fonds de cave — quelques bouteilles encore disponibles à la demande</p>
+  </div>
+  <div class="vintage-table">
+    <div class="vintage-row head">
+      <span>Millésime</span><span>Cuvée</span><span>Note dégustation</span><span class="vintage-stock">Stock</span>
+    </div>
+    <div class="vintage-row">
+      <span class="vintage-year">2024</span>
+      <span class="vintage-name">Chasselas Réserve</span>
+      <span class="vintage-note">Vif, tendu, à attendre 6 mois</span>
+      <span class="vintage-stock ok">En cuve</span>
+    </div>
+    <div class="vintage-row">
+      <span class="vintage-year">2023</span>
+      <span class="vintage-name">Pinot Noir VV</span>
+      <span class="vintage-note">Année solaire, fruits mûrs</span>
+      <span class="vintage-stock ok">Disponible</span>
+    </div>
+    <div class="vintage-row">
+      <span class="vintage-year">2022</span>
+      <span class="vintage-name">Gamay d'Aigle</span>
+      <span class="vintage-note">Belle fraîcheur, à boire maintenant</span>
+      <span class="vintage-stock ok">Disponible</span>
+    </div>
+    <div class="vintage-row">
+      <span class="vintage-year">2021</span>
+      <span class="vintage-name">Pinot Noir VV</span>
+      <span class="vintage-note">Grande tension, beau potentiel de garde</span>
+      <span class="vintage-stock low">Stock limité</span>
+    </div>
+    <div class="vintage-row">
+      <span class="vintage-year">2020</span>
+      <span class="vintage-name">Cuvée Famille</span>
+      <span class="vintage-note">Notre référence — élevage 24 mois</span>
+      <span class="vintage-stock low">Stock limité</span>
+    </div>
+    <div class="vintage-row">
+      <span class="vintage-year">2019</span>
+      <span class="vintage-name">Cuvée Famille</span>
+      <span class="vintage-note">Grand millésime, déjà ouvert</span>
+      <span class="vintage-stock out">Épuisé</span>
+    </div>
+    <div class="vintage-row">
+      <span class="vintage-year">2018</span>
+      <span class="vintage-name">Chasselas Réserve</span>
+      <span class="vintage-note">Très belle évolution, sur la pâtisserie</span>
+      <span class="vintage-stock out">Épuisé</span>
+    </div>
+  </div>
+</section>
+
+<!-- VISITE FORMULAIRE -->
+<section id="visite" class="visite">
+  <div class="visite-inner">
+    <p class="visite-eye">— Réserver une visite</p>
+    <h2>Venir <em>au domaine</em></h2>
+    <p class="visite-lead">Le caveau est ouvert le samedi de 10 h à 17 h.<br/>Pour les autres jours, merci de réserver à l'avance.</p>
+
+    <form class="visite-form">
+      <div class="form-row">
+        <label><span>Type de visite</span>
+          <select><option>Découverte (1h · 35 CHF)</option><option>Cellar Tour (2h · 75 CHF)</option><option>Soirée Vigneron (4h · 150 CHF)</option></select>
+        </label>
+        <label><span>Date souhaitée</span><input type="date" required /></label>
+      </div>
+      <div class="form-row">
+        <label><span>Nombre de personnes</span>
+          <select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select>
+        </label>
+        <label><span>Téléphone</span><input type="tel" required /></label>
+      </div>
+      <div class="form-row">
+        <label><span>Nom</span><input type="text" required /></label>
+        <label><span>Email</span><input type="email" required /></label>
+      </div>
+      <button type="submit">Envoyer ma demande →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Adresse</p>
+      <p class="info-content">Chemin du Petit-Vignoble 7<br/><em>1860 Aigle, Vaud</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 24 466 18 24<br/><em>caveau@domainedelacote.ch</em></p>
+    </div>
+    <div>
+      <p class="info-label">Horaires caveau</p>
+      <p class="info-content">Samedi · 10h–17h<br/><em>Autres jours sur rendez-vous</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Domaine de la Côte · Aigle · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.8</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-eyebrow, .hero h1, .hero-tag, .hero-meta, .hero-ctas',{opacity:0,y:30,duration:1,ease:'power3.out',stagger:.12,delay:.25});
+
+gsap.utils.toArray('.cuvee, .formule, .shop-card, .vintage-row, .terroir-body p, .terroir-stat, .info-content').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 92%',once:true}});
+});
+
+document.querySelector('.visite-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Site de démonstration HectoWeb.\nSur votre vrai site, la réservation serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+});
+
+document.querySelectorAll('.add-cart').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.preventDefault();
+    alert("Démo HectoWeb — l'ajout au panier n'est pas actif.\n\nSur votre vrai site, vous auriez une vraie boutique e-commerce.\ninfo@hectoweb.ch");
+  });
+});
+</script>
+</body>
+</html>

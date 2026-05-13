@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Atrium Ingénierie — Bureau d'études techniques · Lausanne</title>
+<meta name="description" content="Atrium Ingénierie, bureau d'études techniques à Lausanne. Génie civil, structure béton/acier, thermique du bâtiment, audit CECB. Depuis 1998." />
+<meta name="theme-color" content="#3f4856" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — anthracite + cyan ingénieur + blanc + orange CAD
+   B2B technique propre, sobre
+   ============================================================ */
+:root{
+  --ink:#3f4856;
+  --ink-2:#2d343f;
+  --ink-3:#525c6b;
+  --paper:#ffffff;
+  --paper-2:#f5f7fa;
+  --paper-3:#e9eef3;
+  --rule:#dde3eb;
+  --rule-2:#c8d1dc;
+  --grey:#7a8392;
+  --grey-2:#a0a7b3;
+  --cyan:#06b6d4;
+  --cyan-2:#0891b2;
+  --cyan-light:#ecfeff;
+  --orange:#fb923c;
+  --orange-2:#f97316;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--paper);
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;
+  background-image:
+    linear-gradient(rgba(63,72,86,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(63,72,86,.025) 1px,transparent 1px);
+  background-size:64px 64px;background-position:-1px -1px;
+}
+::selection{background:var(--cyan);color:var(--paper)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1.3rem clamp(1.5rem,4vw,3rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,border-color .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(255,255,255,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:.9rem;padding-bottom:.9rem;
+}
+.nav-brand{
+  font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:1.25rem;
+  color:var(--ink);display:inline-flex;align-items:center;gap:.6rem;letter-spacing:-.005em;
+}
+.nav-brand-mark{
+  width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;
+  background:var(--ink);color:var(--cyan);border-radius:4px;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.95rem;
+}
+.nav-brand-suffix{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--grey);font-weight:400;margin-left:.4rem}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'IBM Plex Sans',sans-serif;font-size:.92rem;font-weight:500;color:var(--ink-3);
+}
+.nav-links a:hover{color:var(--cyan-2)}
+.nav-cta{
+  background:var(--ink);color:var(--paper) !important;padding:.7rem 1.3rem;
+  font-size:.88rem;font-weight:500;border-radius:4px;
+  transition:background .25s,transform .15s;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.nav-cta:hover{background:var(--ink-2);color:var(--paper) !important;transform:translateY(-1px)}
+@media(max-width:880px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — magazine technique, grille modulaire
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;padding-top:5rem;
+  display:grid;grid-template-columns:1fr 1.05fr;
+  background:var(--paper);border-bottom:1px solid var(--rule);
+}
+@media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto}}
+.hero-text{
+  padding:clamp(4rem,7vw,7rem) clamp(1.5rem,5vw,5rem);
+  display:flex;flex-direction:column;justify-content:center;position:relative;
+  background:var(--paper);
+}
+.hero-meta-top{
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--cyan-2);font-weight:500;
+  margin-bottom:1.6rem;display:inline-flex;align-items:center;gap:.7rem;
+}
+.hero-meta-top::before{content:'///';color:var(--cyan)}
+.hero h1{
+  font-family:'IBM Plex Sans',sans-serif;font-weight:600;
+  font-size:clamp(2.4rem,5vw,4.4rem);line-height:1.05;letter-spacing:-.025em;
+  color:var(--ink-2);margin-bottom:1.8rem;
+}
+.hero h1 .cyan{color:var(--cyan-2)}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--ink-3)}
+.hero-tag{
+  font-family:'IBM Plex Sans',sans-serif;font-size:clamp(1.05rem,1.4vw,1.18rem);line-height:1.65;
+  color:var(--ink-3);max-width:34rem;margin-bottom:2.5rem;font-weight:400;
+}
+
+.hero-data{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--rule);background:var(--paper-2);margin-bottom:2.5rem;
+}
+.hero-data-cell{
+  padding:1.2rem 1.3rem;border-right:1px solid var(--rule);
+}
+.hero-data-cell:last-child{border-right:0}
+@media(max-width:600px){.hero-data{grid-template-columns:1fr}.hero-data-cell{border-right:0;border-bottom:1px solid var(--rule)}.hero-data-cell:last-child{border-bottom:0}}
+.hero-data-label{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:.3rem}
+.hero-data-value{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:1.5rem;color:var(--ink-2);letter-spacing:-.015em;line-height:1.1}
+.hero-data-value .cyan{color:var(--cyan-2)}
+
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.95rem 1.7rem;background:var(--ink);color:var(--paper);
+  font-family:'IBM Plex Sans',sans-serif;font-size:.92rem;font-weight:500;
+  border-radius:4px;transition:background .25s,transform .15s;
+}
+.btn-primary:hover{background:var(--cyan-2);transform:translateY(-2px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.95rem 1.7rem;background:transparent;color:var(--ink);
+  font-family:'IBM Plex Sans',sans-serif;font-size:.92rem;font-weight:500;
+  border:1px solid var(--rule-2);border-radius:4px;transition:border-color .25s,color .25s;
+}
+.btn-ghost:hover{border-color:var(--cyan-2);color:var(--cyan-2)}
+
+.hero-img{
+  position:relative;overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+  min-height:600px;
+}
+@media(max-width:880px){.hero-img{min-height:50vh;order:-1}}
+.hero-img::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(45,52,63,.4) 0%,rgba(6,182,212,.2) 100%);
+}
+.hero-img-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:50px 50px;pointer-events:none;
+}
+.hero-img-spec{
+  position:absolute;bottom:2rem;left:2rem;right:2rem;
+  background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+  border-left:3px solid var(--cyan);padding:1.2rem 1.4rem;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.hero-img-spec-item{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--ink-2);font-weight:500}
+.hero-img-spec-item span{color:var(--grey);font-weight:400;display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.15rem}
+
+/* ============================================================
+   SECTION COMMON
+   ============================================================ */
+.section{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,5vw,3rem);
+  border-bottom:1px solid var(--rule);background:var(--paper);
+}
+.section.alt{background:var(--paper-2)}
+.section-head{max-width:1300px;margin:0 auto 4rem}
+.section-head.center{text-align:center}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cyan-2);margin-bottom:1.2rem;
+}
+.section-eyebrow::before{content:'///';color:var(--cyan)}
+.section h2{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;color:var(--ink-2);letter-spacing:-.025em;margin-bottom:1.2rem}
+.section h2 .cyan{color:var(--cyan-2)}
+.section h2 em{font-style:italic;font-weight:400;color:var(--ink-3)}
+.section-head p{font-family:'IBM Plex Sans',sans-serif;color:var(--ink-3);font-size:1.05rem;line-height:1.7;max-width:38rem;font-weight:400}
+.section-head.center p{margin:0 auto}
+
+/* ============================================================
+   DOMAINES — 4 cards
+   ============================================================ */
+.domaines-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);
+}
+@media(max-width:1000px){.domaines-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.domaines-grid{grid-template-columns:1fr}}
+.domaine{
+  position:relative;padding:2.2rem 1.8rem;background:var(--paper);
+  display:flex;flex-direction:column;min-height:340px;transition:background .25s;
+}
+.domaine:hover{background:var(--paper-2)}
+.domaine-code{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.15em;
+  color:var(--orange);margin-bottom:1.2rem;text-transform:uppercase;
+}
+.domaine-icon{width:48px;height:48px;color:var(--cyan-2);margin-bottom:1.4rem}
+.domaine h3{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:1.3rem;color:var(--ink-2);margin-bottom:.7rem;letter-spacing:-.015em;line-height:1.2}
+.domaine p{font-family:'IBM Plex Sans',sans-serif;font-size:.95rem;color:var(--ink-3);line-height:1.65;margin-bottom:1.4rem;font-weight:400}
+.domaine-tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:.4rem}
+.domaine-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.05em;
+  background:var(--paper-3);color:var(--ink);padding:.3rem .6rem;border-radius:3px;
+}
+
+/* ============================================================
+   ÉTUDES DE CAS
+   ============================================================ */
+.cases{max-width:1300px;margin:0 auto;display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.case{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:0;background:var(--paper);
+  min-height:340px;
+}
+@media(max-width:880px){.case{grid-template-columns:1fr}}
+.case-visual{
+  position:relative;background-size:cover;background-position:center;min-height:280px;
+}
+.case-visual::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(45,52,63,.25) 0%,rgba(6,182,212,.1) 100%);
+}
+.case-visual-tag{
+  position:absolute;top:1rem;left:1rem;z-index:1;
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  background:var(--paper);color:var(--ink-2);padding:.4rem .8rem;border-left:2px solid var(--cyan);
+}
+.case-body{padding:2.4rem 2.2rem;display:flex;flex-direction:column;justify-content:center}
+.case-meta{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.15em;
+  color:var(--cyan-2);text-transform:uppercase;margin-bottom:1rem;
+  display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;
+}
+.case-meta span{color:var(--grey);}
+.case-meta span::before{content:'·';margin:0 .3rem;color:var(--rule-2)}
+.case h3{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:1.6rem;color:var(--ink-2);margin-bottom:1rem;letter-spacing:-.02em;line-height:1.2}
+.case p{font-family:'IBM Plex Sans',sans-serif;color:var(--ink-3);font-size:1rem;line-height:1.7;margin-bottom:1.6rem;max-width:36rem;font-weight:400}
+.case-specs{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;padding-top:1.4rem;
+  border-top:1px solid var(--rule);
+}
+@media(max-width:600px){.case-specs{grid-template-columns:repeat(2,1fr)}}
+.case-spec-label{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:.2rem}
+.case-spec-value{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:1rem;color:var(--ink-2)}
+
+/* ============================================================
+   MÉTHODOLOGIE
+   ============================================================ */
+.methodo-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;
+}
+@media(max-width:880px){.methodo-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.methodo-grid{grid-template-columns:1fr}}
+.step{
+  position:relative;padding:2rem 1.6rem;background:var(--paper);border:1px solid var(--rule);
+  display:flex;flex-direction:column;min-height:280px;transition:border-color .3s;
+}
+.step:hover{border-color:var(--cyan-2)}
+.step-num{
+  font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:2.6rem;color:var(--cyan-2);
+  line-height:1;margin-bottom:.5rem;letter-spacing:-.02em;
+}
+.step-num::after{content:' /';color:var(--rule-2);font-weight:400}
+.step-icon{width:38px;height:38px;color:var(--orange);margin-bottom:1.2rem}
+.step h3{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:1.2rem;color:var(--ink-2);margin-bottom:.6rem;letter-spacing:-.015em}
+.step p{font-family:'IBM Plex Sans',sans-serif;color:var(--ink-3);font-size:.92rem;line-height:1.65;margin-top:auto;font-weight:400}
+
+/* ============================================================
+   ÉQUIPE
+   ============================================================ */
+.team-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+}
+@media(max-width:880px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.team-grid{grid-template-columns:1fr}}
+.member{
+  background:var(--paper);border:1px solid var(--rule);
+  transition:border-color .3s,transform .3s;
+}
+.member:hover{border-color:var(--cyan-2);transform:translateY(-3px)}
+.member-img{
+  width:100%;aspect-ratio:1/1;background-size:cover;background-position:center;
+  filter:grayscale(.2) contrast(1.02);
+}
+.member-body{padding:1.4rem 1.4rem 1.6rem}
+.member-name{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:1.1rem;color:var(--ink-2);letter-spacing:-.01em;margin-bottom:.2rem}
+.member-title{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--cyan-2);margin-bottom:.6rem;letter-spacing:.04em}
+.member-exp{font-family:'IBM Plex Sans',sans-serif;font-size:.88rem;color:var(--ink-3);line-height:1.55;font-weight:400}
+
+/* ============================================================
+   DEVIS B2B
+   ============================================================ */
+.devis-inner{max-width:880px;margin:0 auto}
+.devis-form{display:flex;flex-direction:column;gap:1.2rem;text-align:left;background:var(--paper);padding:2.2rem;border:1px solid var(--rule)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem}
+@media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}}
+.devis-form label{display:flex;flex-direction:column;gap:.4rem}
+.devis-form span{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.devis-form input,.devis-form select,.devis-form textarea{
+  background:var(--paper-2);border:1px solid var(--rule);
+  padding:.85rem 1rem;color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:.95rem;
+  outline:0;transition:border-color .2s,background .2s;border-radius:3px;
+}
+.devis-form input:focus,.devis-form select:focus,.devis-form textarea:focus{border-color:var(--cyan-2);background:var(--paper)}
+.devis-form textarea{min-height:120px;resize:vertical;font-family:'IBM Plex Sans',sans-serif}
+.devis-form button{
+  align-self:flex-start;margin-top:.6rem;padding:1rem 2rem;
+  font-family:'IBM Plex Sans',sans-serif;font-size:.95rem;font-weight:500;
+  background:var(--ink);color:var(--paper);border-radius:4px;
+  transition:background .25s,transform .15s;
+}
+.devis-form button:hover{background:var(--cyan-2);transform:translateY(-2px)}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr}}
+.info-card{padding:2.2rem 1.8rem;background:var(--paper);display:flex;flex-direction:column;gap:.4rem}
+.info-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan-2);margin-bottom:.8rem}
+.info-content{font-family:'IBM Plex Sans',sans-serif;font-weight:500;font-size:1.15rem;color:var(--ink-2);line-height:1.45;letter-spacing:-.005em}
+.info-content em{font-family:'IBM Plex Mono',monospace;font-style:normal;color:var(--ink-3);display:block;margin-top:.4rem;font-size:.85rem;font-weight:400}
+
+/* ============================================================
+   HW CTA
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,3rem);background:var(--paper);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--grey);font-size:.85rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.05em}
+.footer-inner a{color:var(--cyan-2);font-weight:500}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">
+    <span class="nav-brand-mark">A</span>
+    Atrium Ingénierie
+    <span class="nav-brand-suffix">/ SA</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#domaines">Expertises</a></li>
+    <li><a href="#cases">Études de cas</a></li>
+    <li><a href="#methodo">Méthodologie</a></li>
+    <li><a href="#team">Équipe</a></li>
+    <li><a href="#devis" class="nav-cta">→ Devis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-text">
+    <p class="hero-meta-top">Bureau d'études techniques / fondé en 1998</p>
+    <h1>Études techniques<br/>pour <span class="cyan">bâtiment,</span><br/><em>infrastructure</em><br/>et industrie.</h1>
+    <p class="hero-tag">Atrium Ingénierie accompagne maîtres d'ouvrage, architectes et collectivités sur tout le cycle du projet : étude de faisabilité, dimensionnement, suivi d'exécution, mise en service.</p>
+
+    <div class="hero-data">
+      <div class="hero-data-cell">
+        <div class="hero-data-label">Fondée en</div>
+        <div class="hero-data-value">1998</div>
+      </div>
+      <div class="hero-data-cell">
+        <div class="hero-data-label">Projets / an</div>
+        <div class="hero-data-value">140<span class="cyan">+</span></div>
+      </div>
+      <div class="hero-data-cell">
+        <div class="hero-data-label">Ingénieurs</div>
+        <div class="hero-data-value">12</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#devis" class="btn-primary">Demander une étude →</a>
+      <a href="#cases" class="btn-ghost">Voir les projets</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <div class="hero-img-grid"></div>
+    <div class="hero-img-spec">
+      <div class="hero-img-spec-item"><span>Projet en cours</span>Centre log. Yverdon</div>
+      <div class="hero-img-spec-item"><span>Surface</span>8'000 m²</div>
+      <div class="hero-img-spec-item"><span>Livraison</span>Q3 2027</div>
+    </div>
+  </div>
+</header>
+
+<!-- DOMAINES -->
+<section id="domaines" class="section">
+  <div class="section-head">
+    <p class="section-eyebrow">04 / Domaines d'expertise</p>
+    <h2>Quatre <span class="cyan">métiers,</span><br/>une seule maison.</h2>
+    <p>Des ingénieurs EPF/HES réunis sous le même toit pour porter votre projet — du dimensionnement structurel à l'audit énergétique réglementaire.</p>
+  </div>
+
+  <div class="domaines-grid">
+    <div class="domaine">
+      <p class="domaine-code">DOM-01 / Structure</p>
+      <svg class="domaine-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 42V18l18-12 18 12v24"/>
+        <path d="M6 42h36"/>
+        <path d="M14 42V26h8v16M26 42V26h8v16"/>
+        <path d="M14 26h20"/>
+      </svg>
+      <h3>Structure béton &amp; acier</h3>
+      <p>Calcul statique et dynamique, dimensionnement parasismique SIA 261, plans d'exécution. Béton armé, acier, mixte, charpente bois.</p>
+      <div class="domaine-tags">
+        <span class="domaine-tag">SIA 260–267</span>
+        <span class="domaine-tag">Eurocode</span>
+        <span class="domaine-tag">BIM</span>
+      </div>
+    </div>
+    <div class="domaine">
+      <p class="domaine-code">DOM-02 / Génie civil</p>
+      <svg class="domaine-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 32h40"/>
+        <path d="M4 32l8-14h24l8 14"/>
+        <path d="M16 18v14M24 18v14M32 18v14"/>
+        <path d="M4 38h40"/>
+      </svg>
+      <h3>Génie civil</h3>
+      <p>Ponts, ouvrages d'art, soutènements, fondations spéciales. Diagnostic d'ouvrages existants, plans de réhabilitation, expertise judiciaire.</p>
+      <div class="domaine-tags">
+        <span class="domaine-tag">Ponts</span>
+        <span class="domaine-tag">Soutènements</span>
+        <span class="domaine-tag">Expertise</span>
+      </div>
+    </div>
+    <div class="domaine">
+      <p class="domaine-code">DOM-03 / Thermique</p>
+      <svg class="domaine-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 6v28"/>
+        <circle cx="24" cy="36" r="6"/>
+        <path d="M18 18h12M18 24h12"/>
+      </svg>
+      <h3>Thermique du bâtiment</h3>
+      <p>Étude SIA 380/1, ponts thermiques, simulation dynamique. Conception passive, choix d'enveloppe, dimensionnement CVS.</p>
+      <div class="domaine-tags">
+        <span class="domaine-tag">SIA 380/1</span>
+        <span class="domaine-tag">Minergie</span>
+        <span class="domaine-tag">PPlus</span>
+      </div>
+    </div>
+    <div class="domaine">
+      <p class="domaine-code">DOM-04 / Énergie</p>
+      <svg class="domaine-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 24h12l4-12 8 24 4-12h8"/>
+      </svg>
+      <h3>Audit énergétique CECB</h3>
+      <p>Certificat énergétique cantonal des bâtiments avec rapport de conseil. Plan d'assainissement priorisé, simulation gains, subventions.</p>
+      <div class="domaine-tags">
+        <span class="domaine-tag">CECB+</span>
+        <span class="domaine-tag">Subventions</span>
+        <span class="domaine-tag">Audit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉTUDES DE CAS -->
+<section id="cases" class="section alt">
+  <div class="section-head">
+    <p class="section-eyebrow">03 / Études de cas</p>
+    <h2>Projets <span class="cyan">réalisés.</span></h2>
+    <p>Trois mandats représentatifs livrés ces dernières années, en mandat direct ou en groupement d'ingénieurs.</p>
+  </div>
+
+  <div class="cases">
+    <article class="case">
+      <div class="case-visual" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=85')">
+        <span class="case-visual-tag">REF-2023-014</span>
+      </div>
+      <div class="case-body">
+        <p class="case-meta">Structure<span>Béton armé</span><span>Mandat direct</span></p>
+        <h3>Centre commercial Crissier — 12'500 m²</h3>
+        <p>Étude structurelle complète d'un centre commercial neuf sur 3 niveaux + parking enterré. Dimensionnement parasismique SIA 261, optimisation des poutres précontraintes, suivi de l'exécution gros œuvre.</p>
+        <div class="case-specs">
+          <div><p class="case-spec-label">Surface</p><p class="case-spec-value">12'500 m²</p></div>
+          <div><p class="case-spec-label">Niveaux</p><p class="case-spec-value">R+2 / S-2</p></div>
+          <div><p class="case-spec-label">Budget travaux</p><p class="case-spec-value">28 M CHF</p></div>
+          <div><p class="case-spec-label">Livraison</p><p class="case-spec-value">2024</p></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-visual" style="background-image:url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=85')">
+        <span class="case-visual-tag">REF-2022-008</span>
+      </div>
+      <div class="case-body">
+        <p class="case-meta">Génie civil<span>Pont</span><span>Groupement</span></p>
+        <h3>Pont Lavaux — réhabilitation</h3>
+        <p>Diagnostic d'un pont ferroviaire des années 1950, calculs de capacité résiduelle, plans de renforcement par précontrainte extérieure. Travaux exécutés sans interruption du trafic.</p>
+        <div class="case-specs">
+          <div><p class="case-spec-label">Longueur</p><p class="case-spec-value">186 m</p></div>
+          <div><p class="case-spec-label">Travées</p><p class="case-spec-value">3</p></div>
+          <div><p class="case-spec-label">Durée chantier</p><p class="case-spec-value">14 mois</p></div>
+          <div><p class="case-spec-label">Livraison</p><p class="case-spec-value">2023</p></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-visual" style="background-image:url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1600&q=85')">
+        <span class="case-visual-tag">REF-2024-002</span>
+      </div>
+      <div class="case-body">
+        <p class="case-meta">Structure + énergie<span>Industriel</span><span>Mandat direct</span></p>
+        <h3>Centre logistique Yverdon — 8'000 m²</h3>
+        <p>Halle logistique sur dalle alvéolaire, charpente acier porteuse 24 m de portée. Toiture photovoltaïque 850 kWc intégrée, étude thermique SIA 380/4, label Minergie-P obtenu.</p>
+        <div class="case-specs">
+          <div><p class="case-spec-label">Surface</p><p class="case-spec-value">8'000 m²</p></div>
+          <div><p class="case-spec-label">Portée libre</p><p class="case-spec-value">24 m</p></div>
+          <div><p class="case-spec-label">PV installé</p><p class="case-spec-value">850 kWc</p></div>
+          <div><p class="case-spec-label">Label</p><p class="case-spec-value">Minergie-P</p></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- MÉTHODOLOGIE -->
+<section id="methodo" class="section">
+  <div class="section-head center">
+    <p class="section-eyebrow" style="justify-content:center">04 / Méthodologie</p>
+    <h2>Process en <span class="cyan">quatre phases.</span></h2>
+    <p>Une méthode claire pour mener votre projet du concept à la mise en service, avec livrables et points de contrôle à chaque phase.</p>
+  </div>
+
+  <div class="methodo-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="22" cy="22" r="14"/>
+        <path d="M32 32l10 10"/>
+        <path d="M16 22h12M22 16v12"/>
+      </svg>
+      <h3>Analyse</h3>
+      <p>Recueil du programme, contraintes site et budget, étude de faisabilité, hypothèses techniques validées avec le maître d'ouvrage.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 8h32v32H8z"/>
+        <path d="M8 16h32M16 16v24"/>
+        <path d="M24 22l4 4 6-6"/>
+      </svg>
+      <h3>Conception</h3>
+      <p>Avant-projet, choix structurel, calculs préliminaires, comparatif de variantes chiffrées. Livraison rapport AVP + plans 1:200.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 42L24 6l18 36"/>
+        <path d="M12 30h24"/>
+        <path d="M18 18h12"/>
+      </svg>
+      <h3>Dimensionnement</h3>
+      <p>Calculs définitifs SIA, plans d'exécution 1:50, notes de calcul, métré, descriptif technique CFC 21. Coordination corps de métiers.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 24l8 8 22-22"/>
+        <path d="M9 38h30"/>
+      </svg>
+      <h3>Suivi &amp; réception</h3>
+      <p>Suivi de chantier, contrôle d'exécution, validation des essais, procès-verbal de réception. Dossier as-built remis en fin de mission.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section id="team" class="section alt">
+  <div class="section-head center">
+    <p class="section-eyebrow" style="justify-content:center">05 / Équipe</p>
+    <h2>Quatre <span class="cyan">ingénieurs</span> au cœur du bureau.</h2>
+    <p>Une équipe de 12 collaborateurs au total — voici les 4 ingénieurs responsables des principaux domaines techniques.</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="member">
+      <div class="member-img" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=85')"></div>
+      <div class="member-body">
+        <p class="member-name">Anne-Sophie Martignier</p>
+        <p class="member-title">Dr. ing. EPFL · Direction</p>
+        <p class="member-exp">22 ans d'expérience · Spécialiste béton précontraint et ouvrages d'art. Membre SIA &amp; FAS.</p>
+      </div>
+    </div>
+    <div class="member">
+      <div class="member-img" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=85')"></div>
+      <div class="member-body">
+        <p class="member-name">Thomas Berthoud</p>
+        <p class="member-title">Ing. civil HES · Structure</p>
+        <p class="member-exp">15 ans d'expérience · Calculs parasismiques, structures mixtes acier-béton, expertise.</p>
+      </div>
+    </div>
+    <div class="member">
+      <div class="member-img" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=85')"></div>
+      <div class="member-body">
+        <p class="member-name">Léa Pasquier</p>
+        <p class="member-title">Ing. EPF · Thermique &amp; CVS</p>
+        <p class="member-exp">11 ans d'expérience · Simulation dynamique IDA-ICE, labels Minergie, CECB+ experte.</p>
+      </div>
+    </div>
+    <div class="member">
+      <div class="member-img" style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=85')"></div>
+      <div class="member-body">
+        <p class="member-name">Julien Rossier</p>
+        <p class="member-title">Ing. HES · Génie civil</p>
+        <p class="member-exp">18 ans d'expérience · Géotechnique, fondations spéciales, soutènements complexes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS B2B -->
+<section id="devis" class="section">
+  <div class="devis-inner">
+    <div class="section-head center">
+      <p class="section-eyebrow" style="justify-content:center">06 / Demande de devis</p>
+      <h2>Décrivez votre <span class="cyan">projet.</span></h2>
+      <p>Quelques informations sur le projet et l'échéance. On revient vers vous sous 3 jours ouvrés avec un cadrage et une proposition d'honoraires.</p>
+    </div>
+
+    <form class="devis-form">
+      <div class="form-row">
+        <label><span>Type d'étude</span>
+          <select required>
+            <option>Étude structure neuve</option>
+            <option>Diagnostic ouvrage existant</option>
+            <option>Étude thermique SIA 380/1</option>
+            <option>Audit énergétique CECB+</option>
+            <option>Génie civil / ouvrage d'art</option>
+            <option>Expertise judiciaire</option>
+            <option>Autre</option>
+          </select>
+        </label>
+        <label><span>Secteur</span>
+          <select required>
+            <option>Bâtiment résidentiel</option>
+            <option>Bâtiment tertiaire</option>
+            <option>Industriel / logistique</option>
+            <option>Infrastructure publique</option>
+            <option>Patrimonial / classé</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-row">
+        <label><span>Ampleur du projet</span>
+          <select required>
+            <option>&lt; 500 m² · &lt; 2 M CHF</option>
+            <option>500 – 2'000 m² · 2 – 10 M CHF</option>
+            <option>2'000 – 10'000 m² · 10 – 50 M CHF</option>
+            <option>&gt; 10'000 m² · &gt; 50 M CHF</option>
+          </select>
+        </label>
+        <label><span>Échéance souhaitée</span>
+          <select required>
+            <option>Démarrage immédiat</option>
+            <option>Dans le mois</option>
+            <option>Dans le trimestre</option>
+            <option>Dans l'année</option>
+            <option>Pas encore défini</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-row">
+        <label><span>Entreprise / mandant</span><input type="text" placeholder="Société, commune, bureau d'architectes…" required /></label>
+        <label><span>Nom du contact</span><input type="text" required /></label>
+      </div>
+      <div class="form-row">
+        <label><span>Email professionnel</span><input type="email" required /></label>
+        <label><span>Téléphone</span><input type="tel" /></label>
+      </div>
+      <label><span>Description du projet</span><textarea placeholder="Programme, contraintes, livrables attendus, références éventuelles…" required></textarea></label>
+      <button type="submit">Envoyer la demande →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="section alt" style="padding-top:clamp(5rem,9vw,8rem);padding-bottom:clamp(5rem,9vw,8rem);border-bottom:0">
+  <div class="infos-grid">
+    <div class="info-card">
+      <p class="info-label">/// Adresse</p>
+      <p class="info-content">Avenue de la Gare 17<br/><em>1003 Lausanne, Suisse</em></p>
+    </div>
+    <div class="info-card">
+      <p class="info-label">/// Contact</p>
+      <p class="info-content">+41 21 555 19 98<br/><em>bureau@atrium-ing.ch</em></p>
+    </div>
+    <div class="info-card">
+      <p class="info-label">/// Horaires</p>
+      <p class="info-content">Lun · Ven · 8h00–17h00<br/><em>Sur rendez-vous en dehors</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Atrium Ingénierie SA · Lausanne · 1998 — 2026</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.8</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-text > *',{opacity:0,y:30,duration:1,ease:'power3.out',stagger:.1,delay:.15});
+gsap.from('.hero-img',{opacity:0,scale:1.03,duration:1.4,ease:'power3.out',delay:.1});
+
+gsap.utils.toArray('.domaine, .case, .step, .member, .info-card, .devis-form').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.85,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 92%',once:true}});
+});
+
+document.querySelector('.devis-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Site de démonstration HectoWeb.\nSur votre vrai site, la demande serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+});
+</script>
+</body>
+</html>

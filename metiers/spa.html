@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Spa Aurore — Spa &amp; bien-être · Vevey</title>
+<meta name="description" content="Spa Aurore à Vevey. Massages, rituels, soins du visage, hammam privatif. Quai Perdonnet, vue lac Léman." />
+<meta name="theme-color" content="#f9f6f1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Italiana&family=Inter:wght@200;300;400;500&family=Fraunces:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — blanc cassé + sauge + nude rosé + accent eau
+   Zen, féminin, lumineux. Anti-thèse du restaurant (chaud sombre)
+   et du tatoueur (brut noir/rouge).
+   ============================================================ */
+:root{
+  --bone:#f9f6f1;
+  --bone-2:#f3eee6;
+  --bone-3:#ebe4d8;
+  --ink:#3a3631;
+  --ink-soft:#5a544c;
+  --muted:#928a7e;
+  --sage:#9aa687;
+  --sage-deep:#7d8a6b;
+  --nude:#d4b8a0;
+  --water:#a8c5c2;
+  --rule:rgba(58,54,49,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;font-weight:300;color:var(--ink);background:var(--bone);
+  -webkit-font-smoothing:antialiased;line-height:1.85;overflow-x:hidden;
+}
+::selection{background:var(--sage);color:var(--bone)}
+a{color:inherit;text-decoration:none;transition:color .25s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1.5rem clamp(1.5rem,4vw,4rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .4s,padding .35s,border-color .4s;
+}
+.nav.scrolled{
+  background:rgba(249,246,241,.94);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--rule);padding-top:1.1rem;padding-bottom:1.1rem;
+}
+.nav-brand{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:1.8rem;color:var(--ink);letter-spacing:.08em;
+}
+.nav-links{display:flex;gap:2.4rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.72rem;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--ink-soft);
+}
+.nav-links a:hover{color:var(--sage-deep)}
+.nav-cta{
+  border:1px solid var(--sage);color:var(--sage-deep) !important;
+  padding:.75rem 1.5rem;border-radius:999px;font-size:.7rem;letter-spacing:.32em;
+  transition:background .3s,color .3s;
+}
+.nav-cta:hover{background:var(--sage);color:var(--bone) !important}
+@media(max-width:820px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — pleine largeur centré, photo apaisante, beaucoup d'air
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;padding-top:6rem;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  background:var(--bone);overflow:hidden;
+}
+.hero-img{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2400&q=85') center/cover no-repeat;
+  filter:saturate(.85) brightness(1.08);
+}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(249,246,241,.55) 0%,rgba(249,246,241,.35) 50%,rgba(249,246,241,.7) 100%);
+}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 clamp(1.5rem,5vw,4rem);max-width:46rem}
+.hero-eyebrow{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.7rem;
+  letter-spacing:.55em;text-transform:uppercase;color:var(--sage-deep);
+  margin-bottom:3rem;display:inline-flex;align-items:center;gap:1.2rem;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:42px;height:1px;background:var(--sage-deep)}
+.hero h1{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(3.5rem,9vw,7.5rem);line-height:1;letter-spacing:.04em;
+  color:var(--ink);margin-bottom:2rem;
+}
+.hero-tag{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.6;color:var(--ink-soft);
+  max-width:34rem;margin:0 auto 3.5rem;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:.8rem;
+  padding:1.1rem 2.4rem;border:1px solid var(--ink);color:var(--ink);
+  font-family:'Inter',sans-serif;font-weight:400;font-size:.72rem;
+  letter-spacing:.4em;text-transform:uppercase;border-radius:999px;
+  transition:background .3s,color .3s;
+}
+.hero-cta:hover{background:var(--ink);color:var(--bone)}
+.hero-scroll{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.62rem;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:.8rem;
+}
+.hero-scroll::after{content:'';width:1px;height:32px;background:var(--muted)}
+
+/* ============================================================
+   PHILOSOPHIE — 3 colonnes
+   ============================================================ */
+.philo{
+  padding:clamp(7rem,12vw,12rem) clamp(1.5rem,5vw,5rem);
+  background:var(--bone);
+}
+.philo-head{max-width:780px;margin:0 auto 6rem;text-align:center}
+.philo-eyebrow{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.66rem;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:2rem;
+}
+.philo h2{
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;
+  font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:1.05;color:var(--ink);letter-spacing:-.005em;
+}
+.philo h2 b{font-weight:400;font-style:normal;color:var(--sage-deep)}
+.philo-lead{
+  margin-top:2.5rem;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:1.25rem;color:var(--ink-soft);line-height:1.6;
+}
+
+.philo-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:4rem;
+}
+@media(max-width:820px){.philo-grid{grid-template-columns:1fr;gap:3.5rem}}
+.philo-card{text-align:center;padding:0 1rem}
+.philo-card-num{
+  font-family:'Italiana',serif;font-size:2.4rem;color:var(--nude);
+  margin-bottom:1.6rem;letter-spacing:.05em;
+}
+.philo-card h3{
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;
+  font-size:1.8rem;color:var(--ink);margin-bottom:1.2rem;
+}
+.philo-card p{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.98rem;
+  line-height:1.85;color:var(--ink-soft);
+}
+
+/* ============================================================
+   SOINS — 6 cards grid
+   ============================================================ */
+.soins{
+  padding:clamp(7rem,12vw,12rem) clamp(1.5rem,5vw,5rem);
+  background:var(--bone-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.soins-head{max-width:900px;margin:0 auto 5rem;text-align:center}
+.soins-head h2{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.1;color:var(--ink);letter-spacing:.04em;
+}
+.soins-head p{
+  margin-top:1.5rem;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:1.2rem;color:var(--ink-soft);
+}
+.soins-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;
+}
+@media(max-width:980px){.soins-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.soins-grid{grid-template-columns:1fr}}
+.soin{
+  background:var(--bone);padding:2.8rem 2.2rem;
+  border:1px solid var(--rule);
+  display:flex;flex-direction:column;
+  transition:transform .35s,border-color .35s;
+}
+.soin:hover{transform:translateY(-4px);border-color:var(--sage)}
+.soin-duree{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.65rem;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:1.2rem;
+}
+.soin h3{
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;
+  font-size:1.65rem;color:var(--ink);margin-bottom:1rem;line-height:1.2;
+}
+.soin p{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.92rem;
+  line-height:1.8;color:var(--ink-soft);margin-bottom:1.8rem;flex:1;
+}
+.soin-foot{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-top:1.5rem;border-top:1px solid var(--rule);
+}
+.soin-prix{
+  font-family:'Italiana',serif;font-size:1.5rem;color:var(--nude);letter-spacing:.04em;
+}
+.soin-prix em{font-style:normal;font-size:.72rem;color:var(--muted);letter-spacing:.25em;text-transform:uppercase;margin-left:.3rem}
+.soin-book{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.65rem;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--ink);
+  border-bottom:1px solid var(--ink);padding-bottom:2px;
+  transition:color .25s,border-color .25s;
+}
+.soin-book:hover{color:var(--sage-deep);border-color:var(--sage-deep)}
+
+/* ============================================================
+   FORFAITS — 3 cards verticales
+   ============================================================ */
+.forfaits{
+  padding:clamp(7rem,12vw,12rem) clamp(1.5rem,5vw,5rem);
+  background:var(--bone);
+}
+.forfaits-head{max-width:780px;margin:0 auto 5rem;text-align:center}
+.forfaits-head h2{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1.1;color:var(--ink);
+}
+.forfaits-head h2 b{font-style:normal;font-weight:400;color:var(--sage-deep)}
+.forfaits-head p{
+  margin-top:1.5rem;font-family:'Inter',sans-serif;font-weight:300;
+  color:var(--ink-soft);font-size:1.02rem;
+}
+
+.forfaits-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;
+}
+@media(max-width:880px){.forfaits-grid{grid-template-columns:1fr}}
+.forfait{
+  padding:3.5rem 2.5rem;text-align:center;
+  border:1px solid var(--rule);
+  background:var(--bone);
+  transition:background .35s,border-color .35s;
+  position:relative;
+}
+.forfait.featured{background:var(--bone-3);border-color:var(--sage)}
+.forfait.featured::before{
+  content:'★ Préféré';position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--sage);color:var(--bone);padding:.35rem 1rem;
+  font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
+}
+.forfait-name{
+  font-family:'Italiana',serif;font-size:1.7rem;letter-spacing:.06em;
+  color:var(--ink);margin-bottom:1.2rem;
+}
+.forfait-prix{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:3.5rem;line-height:1;color:var(--nude);margin-bottom:.4rem;
+}
+.forfait-prix em{font-size:.95rem;color:var(--muted);font-style:normal;letter-spacing:.2em;margin-left:.3rem;text-transform:uppercase}
+.forfait-duree{
+  font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-soft);
+  font-size:1.1rem;margin-bottom:2.5rem;
+}
+.forfait-list{list-style:none;padding:0;margin:0 0 2.5rem;text-align:left}
+.forfait-list li{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.9rem;
+  padding:.7rem 0;border-bottom:1px dotted var(--rule);
+  color:var(--ink-soft);position:relative;padding-left:1.6rem;
+}
+.forfait-list li::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:8px;height:8px;border-radius:50%;background:var(--sage);
+}
+.forfait-list li:last-child{border-bottom:0}
+.forfait-cta{
+  display:inline-block;padding:.95rem 2rem;border-radius:999px;
+  border:1px solid var(--ink);color:var(--ink);
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.7rem;
+  letter-spacing:.35em;text-transform:uppercase;
+  transition:background .3s,color .3s;
+}
+.forfait-cta:hover{background:var(--ink);color:var(--bone)}
+.forfait.featured .forfait-cta{background:var(--sage);color:var(--bone);border-color:var(--sage)}
+.forfait.featured .forfait-cta:hover{background:var(--sage-deep);border-color:var(--sage-deep)}
+
+/* ============================================================
+   EQUIPE — 3 portraits doux
+   ============================================================ */
+.equipe{
+  padding:clamp(7rem,12vw,12rem) clamp(1.5rem,5vw,5rem);
+  background:var(--bone-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.equipe-head{max-width:780px;margin:0 auto 5rem;text-align:center}
+.equipe-head h2{
+  font-family:'Italiana',serif;font-weight:400;letter-spacing:.05em;
+  font-size:clamp(2.2rem,5vw,3.8rem);color:var(--ink);
+}
+.equipe-head p{
+  margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.2rem;color:var(--ink-soft);
+}
+.equipe-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;
+}
+@media(max-width:820px){.equipe-grid{grid-template-columns:1fr;max-width:420px}}
+.therapeute{text-align:center}
+.therapeute-img{
+  width:100%;aspect-ratio:3/4;
+  background-size:cover;background-position:center;
+  margin-bottom:2rem;filter:saturate(.85);
+}
+.therapeute-name{
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;
+  font-size:1.7rem;color:var(--ink);margin-bottom:.4rem;
+}
+.therapeute-role{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.7rem;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:1.2rem;
+}
+.therapeute-bio{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.92rem;
+  line-height:1.85;color:var(--ink-soft);max-width:22rem;margin:0 auto;
+}
+
+/* ============================================================
+   RÉSERVATION
+   ============================================================ */
+.reserve{
+  padding:clamp(7rem,12vw,12rem) clamp(1.5rem,5vw,5rem);
+  background:var(--bone);text-align:center;
+}
+.reserve-inner{max-width:680px;margin:0 auto}
+.reserve-eyebrow{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.66rem;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:2rem;
+}
+.reserve h2{
+  font-family:'Italiana',serif;font-weight:400;letter-spacing:.04em;
+  font-size:clamp(2.4rem,5.5vw,4.5rem);color:var(--ink);margin-bottom:1.5rem;
+}
+.reserve-lead{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:1.3rem;color:var(--ink-soft);margin-bottom:4.5rem;line-height:1.6;
+}
+
+.reserve-form{display:flex;flex-direction:column;gap:1.8rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}}
+.reserve-form label{display:flex;flex-direction:column;gap:.6rem}
+.reserve-form span{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.62rem;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--muted);
+}
+.reserve-form input,.reserve-form select{
+  background:transparent;border:0;border-bottom:1px solid var(--rule);
+  padding:.9rem .25rem;color:var(--ink);
+  font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.15rem;
+  outline:0;transition:border-color .25s;
+}
+.reserve-form input:focus,.reserve-form select:focus{border-color:var(--sage)}
+.reserve-form button{
+  align-self:center;margin-top:2.5rem;min-width:300px;
+  padding:1.15rem 2.4rem;font-family:'Inter',sans-serif;font-weight:400;
+  font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;
+  background:var(--sage);color:var(--bone);border-radius:999px;
+  transition:background .3s,transform .2s;
+}
+.reserve-form button:hover{background:var(--sage-deep);transform:translateY(-2px)}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,5rem);
+  background:var(--bone-2);border-top:1px solid var(--rule);
+}
+.infos-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center;
+}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
+.info-label{
+  font-family:'Inter',sans-serif;font-weight:300;font-size:.62rem;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:1.2rem;
+}
+.info-content{
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;
+  font-size:1.3rem;color:var(--ink);line-height:1.7;
+}
+.info-content em{
+  display:block;margin-top:.3rem;
+  font-family:'Inter',sans-serif;font-weight:300;font-style:normal;
+  font-size:.9rem;color:var(--muted);
+}
+
+/* ============================================================
+   HW CTA bottom
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--bone);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--muted);font-size:.85rem;font-family:'Cormorant Garamond',serif;font-style:italic}
+.footer-inner a{color:var(--sage-deep)}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Spa Aurore</a>
+  <ul class="nav-links">
+    <li><a href="#philo">Philosophie</a></li>
+    <li><a href="#soins">Nos soins</a></li>
+    <li><a href="#forfaits">Forfaits</a></li>
+    <li><a href="#equipe">Équipe</a></li>
+    <li><a href="#reserve" class="nav-cta">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Spa &amp; bien-être · Vevey</p>
+    <h1>Spa Aurore</h1>
+    <p class="hero-tag">Au bord du Léman, une parenthèse de silence et de soins. Le geste juste, le souffle posé, l'eau qui apaise.</p>
+    <a href="#reserve" class="hero-cta">Réserver un soin →</a>
+  </div>
+  <div class="hero-scroll">Découvrir</div>
+</header>
+
+<!-- PHILOSOPHIE -->
+<section id="philo" class="philo">
+  <div class="philo-head">
+    <p class="philo-eyebrow">— Notre philosophie</p>
+    <h2>Le geste,<br/>le souffle,<br/><b>le silence.</b></h2>
+    <p class="philo-lead">Trois mots, trois temps, une seule intention : vous rendre à vous-même.</p>
+  </div>
+  <div class="philo-grid">
+    <div class="philo-card">
+      <p class="philo-card-num">I</p>
+      <h3>Le geste</h3>
+      <p>Des mains qui savent. Pression juste, rythme ralenti, écoute du corps. Chaque massage est ajusté à l'instant — pas de protocole figé, seulement votre besoin du moment.</p>
+    </div>
+    <div class="philo-card">
+      <p class="philo-card-num">II</p>
+      <h3>Le souffle</h3>
+      <p>Avant, pendant, après. Le souffle posé qui transforme un soin en méditation. Nos cabines sont silencieuses, les huiles choisies pour respirer aussi bien que pour toucher.</p>
+    </div>
+    <div class="philo-card">
+      <p class="philo-card-num">III</p>
+      <h3>Le silence</h3>
+      <p>Pas de musique d'ascenseur, pas de conversation forcée. Si vous voulez parler, on parle. Si vous voulez vous taire, on se tait. C'est votre heure — vous en faites ce que vous voulez.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOINS -->
+<section id="soins" class="soins">
+  <div class="soins-head">
+    <h2>Nos soins</h2>
+    <p>Six rituels, chacun pensé comme un voyage. Réservation conseillée 48 h à l'avance.</p>
+  </div>
+  <div class="soins-grid">
+    <article class="soin">
+      <p class="soin-duree">— 90 min</p>
+      <h3>Massage Aurore</h3>
+      <p>Notre signature. Massage relaxant corps entier aux huiles essentielles de lavande et bergamote, accompagné d'une cérémonie du thé en clôture.</p>
+      <div class="soin-foot">
+        <span class="soin-prix">220<em>CHF</em></span>
+        <a href="#reserve" class="soin-book">Réserver →</a>
+      </div>
+    </article>
+    <article class="soin">
+      <p class="soin-duree">— 60 min</p>
+      <h3>Rituel Pierres Chaudes</h3>
+      <p>Pierres de basalte chauffées, posées sur les chakras et utilisées en massage. Pour les tensions profondes et le froid de l'hiver.</p>
+      <div class="soin-foot">
+        <span class="soin-prix">180<em>CHF</em></span>
+        <a href="#reserve" class="soin-book">Réserver →</a>
+      </div>
+    </article>
+    <article class="soin">
+      <p class="soin-duree">— 75 min</p>
+      <h3>Soin Visage Botanique</h3>
+      <p>Nettoyage, gommage doux, masque aux plantes, massage facial drainant. Une peau plus claire et plus lisse en sortant.</p>
+      <div class="soin-foot">
+        <span class="soin-prix">195<em>CHF</em></span>
+        <a href="#reserve" class="soin-book">Réserver →</a>
+      </div>
+    </article>
+    <article class="soin">
+      <p class="soin-duree">— 120 min</p>
+      <h3>Hammam Privatif</h3>
+      <p>Privatisation du hammam pour vous (ou vous deux). Gommage au savon noir, rhassoul, thé à la menthe. Deux heures hors du temps.</p>
+      <div class="soin-foot">
+        <span class="soin-prix">240<em>CHF</em></span>
+        <a href="#reserve" class="soin-book">Réserver →</a>
+      </div>
+    </article>
+    <article class="soin">
+      <p class="soin-duree">— 45 min</p>
+      <h3>Réflexologie Plantaire</h3>
+      <p>Travail des zones réflexes du pied. Court, ciblé, étonnamment libérateur. Idéal en complément d'un autre soin.</p>
+      <div class="soin-foot">
+        <span class="soin-prix">125<em>CHF</em></span>
+        <a href="#reserve" class="soin-book">Réserver →</a>
+      </div>
+    </article>
+    <article class="soin">
+      <p class="soin-duree">— 3 h</p>
+      <h3>Forfait Couple</h3>
+      <p>Cabine double, massage simultané 90 min, hammam privatif, plateau gourmand. Une après-midi entière à deux, sans rien d'autre à penser.</p>
+      <div class="soin-foot">
+        <span class="soin-prix">520<em>CHF</em></span>
+        <a href="#reserve" class="soin-book">Réserver →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- FORFAITS -->
+<section id="forfaits" class="forfaits">
+  <div class="forfaits-head">
+    <h2>Trois <b>forfaits</b>,<br/>trois échelles de temps.</h2>
+    <p>Validité 12 mois. Transférables. Idéaux à offrir.</p>
+  </div>
+  <div class="forfaits-grid">
+    <div class="forfait">
+      <p class="forfait-name">Découverte</p>
+      <p class="forfait-prix">180<em>CHF</em></p>
+      <p class="forfait-duree">— une demi-journée</p>
+      <ul class="forfait-list">
+        <li>Massage Aurore 60 min</li>
+        <li>Accès hammam &amp; tisanerie</li>
+        <li>Plateau de thés &amp; pâtisseries</li>
+        <li>Durée totale ≈ 2 h</li>
+      </ul>
+      <a href="#reserve" class="forfait-cta">Choisir Découverte</a>
+    </div>
+    <div class="forfait featured">
+      <p class="forfait-name">Évasion</p>
+      <p class="forfait-prix">350<em>CHF</em></p>
+      <p class="forfait-duree">— une journée complète</p>
+      <ul class="forfait-list">
+        <li>Massage Aurore 90 min</li>
+        <li>Soin visage botanique 75 min</li>
+        <li>Hammam privatif 60 min</li>
+        <li>Déjeuner léger végétal</li>
+        <li>Durée totale ≈ 5 h</li>
+      </ul>
+      <a href="#reserve" class="forfait-cta">Choisir Évasion</a>
+    </div>
+    <div class="forfait">
+      <p class="forfait-name">Sérénité</p>
+      <p class="forfait-prix">680<em>CHF</em></p>
+      <p class="forfait-duree">— deux jours consécutifs</p>
+      <ul class="forfait-list">
+        <li>3 soins au choix (sur menu)</li>
+        <li>Hammam privatif quotidien</li>
+        <li>Séance de yoga matinale</li>
+        <li>2 repas + tisanes infinies</li>
+        <li>Cure de saison 2 jours</li>
+      </ul>
+      <a href="#reserve" class="forfait-cta">Choisir Sérénité</a>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe" class="equipe">
+  <div class="equipe-head">
+    <h2>Notre équipe</h2>
+    <p>Trois thérapeutes formées en Suisse et au Japon, choisies autant pour leur technique que pour leur présence.</p>
+  </div>
+  <div class="equipe-grid">
+    <div class="therapeute">
+      <div class="therapeute-img" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85')"></div>
+      <h3 class="therapeute-name">Camille Reymond</h3>
+      <p class="therapeute-role">Fondatrice · Massages</p>
+      <p class="therapeute-bio">Formée à l'École de massage de Genève, 12 ans d'expérience. Spécialiste des techniques scandinaves et japonaises.</p>
+    </div>
+    <div class="therapeute">
+      <div class="therapeute-img" style="background-image:url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=800&q=85')"></div>
+      <h3 class="therapeute-name">Léa Marchetti</h3>
+      <p class="therapeute-role">Esthéticienne · Visage</p>
+      <p class="therapeute-bio">Diplômée en cosmétologie naturelle. Travaille uniquement avec des produits biologiques suisses et français.</p>
+    </div>
+    <div class="therapeute">
+      <div class="therapeute-img" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=800&q=85')"></div>
+      <h3 class="therapeute-name">Yumiko Tanaka</h3>
+      <p class="therapeute-role">Réflexologie · Énergétique</p>
+      <p class="therapeute-bio">Formée à Kyoto en réflexologie plantaire et shiatsu. Quinze années de pratique, une douceur reconnue.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section id="reserve" class="reserve">
+  <div class="reserve-inner">
+    <p class="reserve-eyebrow">— Réservation</p>
+    <h2>Réserver un soin</h2>
+    <p class="reserve-lead">Choisissez votre soin et un créneau. Nous confirmons sous 24 h par téléphone.</p>
+
+    <form class="reserve-form">
+      <label><span>Type de soin</span>
+        <select>
+          <option>Massage Aurore — 90 min</option>
+          <option>Rituel Pierres Chaudes — 60 min</option>
+          <option>Soin Visage Botanique — 75 min</option>
+          <option>Hammam Privatif — 120 min</option>
+          <option>Réflexologie Plantaire — 45 min</option>
+          <option>Forfait Couple — 3 h</option>
+          <option>Forfait Découverte</option>
+          <option>Forfait Évasion</option>
+          <option>Forfait Sérénité</option>
+        </select>
+      </label>
+      <div class="form-row-3">
+        <label><span>Date</span><input type="date" required /></label>
+        <label><span>Heure</span><select><option>10:00</option><option>11:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option></select></label>
+        <label><span>Durée</span><select><option>45 min</option><option>60 min</option><option selected>90 min</option><option>120 min</option><option>3 h</option></select></label>
+      </div>
+      <div class="form-row">
+        <label><span>Nom</span><input type="text" required /></label>
+        <label><span>Téléphone</span><input type="tel" required /></label>
+      </div>
+      <label><span>Email</span><input type="email" required /></label>
+      <button type="submit">Demander la réservation →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Adresse</p>
+      <p class="info-content">Quai Perdonnet 14<br/><em>1800 Vevey, Suisse</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 21 555 24 24<br/><em>bonjour@spa-aurore.ch</em></p>
+    </div>
+    <div>
+      <p class="info-label">Horaires</p>
+      <p class="info-content">Mar · Dim · 10h–20h<br/><em>Fermé le lundi</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Spa Aurore · Vevey · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.8</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-content > *',{opacity:0,y:30,duration:1.2,ease:'power3.out',stagger:.15,delay:.3});
+gsap.from('.hero-img',{opacity:0,scale:1.06,duration:1.8,ease:'power3.out'});
+
+gsap.utils.toArray('.philo-card, .soin, .forfait, .therapeute, .info-content, .reserve-form > *').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:26},{opacity:1,y:0,duration:.95,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+});
+
+document.querySelector('.reserve-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert('Site de démonstration HectoWeb.\nSur votre vrai site, la réservation serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch');
+});
+</script>
+</body>
+</html>

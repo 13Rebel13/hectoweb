@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Atelier Numéro 12 — Boutique mode éditoriale · Lausanne</title>
+<meta name="description" content="Atelier Numéro 12, boutique de mode slow et éditoriale à Lausanne. Pièces unisexes en lin et coton bio, production Suisse et Italie, séries limitées." />
+<meta name="theme-color" content="#e8dcc8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — beige sable + noir + brun chaud + crème
+   Boutique éditoriale calme atemporelle. Radicalement différent :
+   - restaurant (crème+bordeaux+Playfair)
+   - tatoueur (noir+rouge+Bebas)
+   - coach (terra cotta+Fraunces)
+   - auto-école (bleu+jaune playful)
+   - hub (noir+lime)
+   ============================================================ */
+:root{
+  --sand:#e8dcc8;
+  --sand-2:#dcd0bb;
+  --cream:#f5ebd9;
+  --cream-2:#ede2cf;
+  --black:#1a1a1a;
+  --black-soft:#2a2a2a;
+  --brun:#6b4a30;
+  --brun-soft:#856244;
+  --muted:#8d7d6a;
+  --rule:rgba(26,26,26,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--black);background:var(--cream);
+  -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;font-weight:400;
+}
+::selection{background:var(--black);color:var(--cream)}
+a{color:inherit;text-decoration:none;transition:color .2s,opacity .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV — minimaliste, beaucoup d'air
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1.6rem clamp(1.5rem,5vw,4rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,border-color .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(245,235,217,.94);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1.1rem;padding-bottom:1.1rem;
+}
+.nav-brand{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:1.55rem;color:var(--black);letter-spacing:.05em;
+}
+.nav-brand em{font-style:italic;font-weight:400}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:400;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--black-soft);
+}
+.nav-links a:hover{opacity:.55}
+.nav-cta{
+  border:1px solid var(--black);padding:.7rem 1.4rem;
+  font-size:.7rem;letter-spacing:.35em;
+  transition:background .25s,color .25s;
+}
+.nav-cta:hover{background:var(--black);color:var(--cream) !important}
+@media(max-width:880px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — image full-bleed atmosphérique, texte centré bas
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;padding-top:5rem;
+  overflow:hidden;
+}
+.hero-img{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1485518882345-15568b007407?auto=format&fit=crop&w=2400&q=85') center/cover no-repeat;
+  filter:saturate(.85) brightness(.96);
+}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(245,235,217,.4) 0%,rgba(245,235,217,.1) 35%,rgba(245,235,217,.85) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:100vh;padding:0 clamp(1.5rem,5vw,4rem) clamp(4rem,8vw,6rem);
+  max-width:1500px;margin:0 auto;
+}
+.hero-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:400;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--black);
+  margin-bottom:2rem;
+}
+.hero h1{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(3.5rem,10vw,9rem);line-height:.92;letter-spacing:-.02em;
+  color:var(--black);margin-bottom:2.5rem;
+}
+.hero h1 .reg{font-style:normal;font-weight:500}
+.hero-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--rule);padding-top:2rem;
+  flex-wrap:wrap;gap:2rem;
+}
+.hero-meta-info{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;
+  color:var(--brun);max-width:36rem;line-height:1.45;
+}
+.hero-meta-tag{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:400;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--black);
+  text-align:right;
+}
+
+/* ============================================================
+   COLLECTION — intro + grille 4 photos
+   ============================================================ */
+.collec{
+  padding:clamp(7rem,12vw,12rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream);
+}
+.collec-inner{max-width:1400px;margin:0 auto}
+.collec-head{
+  display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;margin-bottom:5rem;
+  align-items:end;
+}
+@media(max-width:880px){.collec-head{grid-template-columns:1fr;gap:2rem}}
+.collec-num{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(4rem,7vw,7rem);color:var(--brun);line-height:.9;letter-spacing:-.02em;
+}
+.collec-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.68rem;font-weight:400;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--black);margin-bottom:1rem;
+}
+.collec-head h2{
+  font-family:'EB Garamond',serif;font-weight:400;
+  font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;color:var(--black);
+  letter-spacing:-.015em;
+}
+.collec-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--brun)}
+.collec-head p{
+  margin-top:1.5rem;font-family:'Inter',sans-serif;font-size:1rem;color:var(--muted);
+  line-height:1.75;max-width:32rem;font-weight:400;
+}
+
+.collec-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;
+}
+@media(max-width:880px){.collec-grid{grid-template-columns:repeat(2,1fr)}}
+.collec-photo{
+  aspect-ratio:3/4;background-size:cover;background-position:center;
+  filter:saturate(.9);transition:filter .4s,transform .5s;
+}
+.collec-photo:hover{filter:saturate(1);transform:scale(1.02)}
+
+/* ============================================================
+   NOUVEAUTÉS — 3 produits
+   ============================================================ */
+.nouv{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--sand);border-top:1px solid var(--rule);
+}
+.nouv-inner{max-width:1300px;margin:0 auto}
+.nouv-head{margin-bottom:5rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem}
+.nouv-head h2{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1;color:var(--black);letter-spacing:-.025em;
+}
+.nouv-head h2 .reg{font-style:normal;font-weight:500}
+.nouv-head-link{
+  font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--black);border-bottom:1px solid var(--black);padding-bottom:3px;
+}
+.nouv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+@media(max-width:880px){.nouv-grid{grid-template-columns:1fr;gap:3.5rem}}
+.produit{display:flex;flex-direction:column}
+.produit-img{
+  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
+  margin-bottom:1.5rem;filter:saturate(.92);transition:transform .5s;
+}
+.produit:hover .produit-img{transform:scale(1.02)}
+.produit-cat{
+  font-family:'Inter',sans-serif;font-size:.65rem;font-weight:400;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;
+}
+.produit-name{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:1.5rem;color:var(--black);margin-bottom:.6rem;line-height:1.2;
+}
+.produit-price{
+  font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--brun);
+  font-weight:500;letter-spacing:.05em;
+}
+
+/* ============================================================
+   PHILOSOPHIE — texte éditorial centré
+   ============================================================ */
+.philo{
+  padding:clamp(8rem,13vw,13rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream-2);text-align:center;border-top:1px solid var(--rule);
+}
+.philo-inner{max-width:780px;margin:0 auto}
+.philo-num{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:4rem;color:var(--brun);line-height:.8;margin-bottom:1.5rem;
+}
+.philo h2{
+  font-family:'EB Garamond',serif;font-weight:400;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;color:var(--black);
+  margin-bottom:3.5rem;letter-spacing:-.02em;
+}
+.philo h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--brun)}
+.philo-body{
+  font-family:'EB Garamond',serif;font-weight:400;
+  font-size:1.2rem;line-height:1.8;color:var(--black-soft);
+}
+.philo-body p{margin-bottom:1.5rem}
+.philo-body em{font-style:italic;color:var(--brun)}
+.philo-sep{
+  display:block;margin:3rem auto;width:60px;height:1px;background:var(--brun);
+  position:relative;
+}
+.philo-sep::after{
+  content:'§';position:absolute;left:50%;top:-12px;transform:translateX(-50%);
+  background:var(--cream-2);padding:0 .5rem;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.5rem;color:var(--brun);
+}
+
+/* ============================================================
+   SHOP — boutique en ligne grille 6
+   ============================================================ */
+.shop{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);background:var(--cream);
+  border-top:1px solid var(--rule);
+}
+.shop-inner{max-width:1400px;margin:0 auto}
+.shop-head{text-align:center;margin-bottom:4.5rem}
+.shop-head h2{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1;color:var(--black);
+  margin-bottom:1.5rem;letter-spacing:-.025em;
+}
+.shop-head h2 .reg{font-style:normal;font-weight:500}
+.shop-head p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;
+  color:var(--muted);max-width:32rem;margin:0 auto 2rem;line-height:1.5;
+}
+.shop-head-link{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--black);border:1px solid var(--black);padding:.85rem 1.8rem;
+  transition:background .25s,color .25s;
+}
+.shop-head-link:hover{background:var(--black);color:var(--cream)}
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem 1.5rem}
+@media(max-width:880px){.shop-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.shop-grid{grid-template-columns:1fr}}
+.shop-item{display:flex;flex-direction:column}
+.shop-item-img{
+  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
+  margin-bottom:1.2rem;filter:saturate(.9);transition:transform .5s;
+}
+.shop-item:hover .shop-item-img{transform:scale(1.02)}
+.shop-item-name{
+  font-family:'EB Garamond',serif;font-style:italic;font-size:1.15rem;
+  color:var(--black);margin-bottom:.3rem;
+}
+.shop-item-meta{
+  font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);
+  display:flex;justify-content:space-between;
+}
+.shop-item-price{color:var(--brun);font-weight:500;letter-spacing:.04em}
+
+/* ============================================================
+   BOUTIQUE PHYSIQUE — split image + texte
+   ============================================================ */
+.shop-physique{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  background:var(--cream-2);border-top:1px solid var(--rule);min-height:80vh;
+}
+@media(max-width:880px){.shop-physique{grid-template-columns:1fr}}
+.shop-physique-img{
+  background:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
+  min-height:500px;filter:saturate(.9);
+}
+.shop-physique-text{
+  padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,6rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.shop-physique-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.68rem;font-weight:400;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--brun);margin-bottom:2rem;
+}
+.shop-physique-text h2{
+  font-family:'EB Garamond',serif;font-weight:400;
+  font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.05;color:var(--black);
+  margin-bottom:2rem;letter-spacing:-.025em;
+}
+.shop-physique-text h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--brun)}
+.shop-physique-text p{
+  font-family:'Inter',sans-serif;color:var(--black-soft);font-size:1rem;line-height:1.8;
+  margin-bottom:1.2rem;max-width:34rem;
+}
+.shop-physique-creds{
+  margin-top:2rem;padding-top:2rem;border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;
+}
+.cred-label{font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.cred-val{font-family:'EB Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--black)}
+
+/* ============================================================
+   NEWSLETTER
+   ============================================================ */
+.news{
+  padding:clamp(6rem,10vw,9rem) clamp(1.5rem,5vw,4rem);
+  background:var(--black);color:var(--cream);text-align:center;
+}
+.news-inner{max-width:680px;margin:0 auto}
+.news-eyebrow{font-family:'Inter',sans-serif;font-size:.68rem;font-weight:400;letter-spacing:.5em;text-transform:uppercase;color:var(--sand);margin-bottom:1.5rem}
+.news h2{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1;color:var(--cream);
+  margin-bottom:1.5rem;letter-spacing:-.025em;
+}
+.news h2 .reg{font-style:normal}
+.news-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--sand);margin-bottom:3rem;line-height:1.5}
+.news-form{display:flex;gap:0;max-width:480px;margin:0 auto;border-bottom:1px solid var(--sand)}
+@media(max-width:560px){.news-form{flex-direction:column;border-bottom:0;gap:1rem}}
+.news-form input{
+  flex:1;background:transparent;border:0;color:var(--cream);
+  padding:1rem 0;font-family:'EB Garamond',serif;font-size:1.1rem;outline:0;
+}
+@media(max-width:560px){.news-form input{border-bottom:1px solid var(--sand)}}
+.news-form input::placeholder{color:rgba(232,220,200,.55)}
+.news-form button{
+  padding:1rem 1.5rem;font-family:'Inter',sans-serif;font-size:.7rem;font-weight:400;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--cream);
+  transition:opacity .25s;
+}
+.news-form button:hover{opacity:.6}
+.news-opt{
+  display:flex;align-items:flex-start;gap:.7rem;margin-top:1.8rem;
+  font-family:'Inter',sans-serif;font-size:.78rem;color:var(--sand);
+  text-align:left;max-width:480px;margin-left:auto;margin-right:auto;
+}
+.news-opt input{accent-color:var(--sand);margin-top:.2rem}
+
+/* ============================================================
+   PRESS
+   ============================================================ */
+.press{
+  padding:clamp(6rem,10vw,9rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream);border-top:1px solid var(--rule);
+}
+.press-inner{max-width:1200px;margin:0 auto;text-align:center}
+.press-eyebrow{font-family:'Inter',sans-serif;font-size:.68rem;font-weight:400;letter-spacing:.5em;text-transform:uppercase;color:var(--brun);margin-bottom:1.5rem}
+.press h2{
+  font-family:'EB Garamond',serif;font-weight:400;
+  font-size:clamp(2rem,4vw,3rem);line-height:1.1;color:var(--black);
+  margin-bottom:4rem;letter-spacing:-.02em;
+}
+.press h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--brun)}
+.press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+@media(max-width:880px){.press-grid{grid-template-columns:1fr;gap:3.5rem}}
+.press-card{padding:2rem;border-top:1px solid var(--rule)}
+.press-quote{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:1.4rem;line-height:1.45;color:var(--black);
+  margin-bottom:1.5rem;
+}
+.press-source{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--muted);
+}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4rem);background:var(--sand);
+  border-top:1px solid var(--rule);
+}
+.infos-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center;
+}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
+.info-label{font-family:'Inter',sans-serif;font-size:.65rem;font-weight:400;letter-spacing:.5em;text-transform:uppercase;color:var(--brun);margin-bottom:1.2rem}
+.info-content{font-family:'EB Garamond',serif;font-weight:500;font-size:1.15rem;color:var(--black);line-height:1.6}
+.info-content em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);display:block;margin-top:.3rem;font-size:1rem;font-weight:400}
+
+/* ============================================================
+   HW CTA
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--cream);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--muted);font-size:.85rem;font-family:'Cormorant Garamond',serif;font-style:italic}
+.footer-inner a{color:var(--brun)}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<!-- HectoWeb strip -->
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Atelier <em>N° 12</em></a>
+  <ul class="nav-links">
+    <li><a href="#collec">Collection</a></li>
+    <li><a href="#nouv">Nouveautés</a></li>
+    <li><a href="#philo">Philosophie</a></li>
+    <li><a href="#shop">Boutique</a></li>
+    <li><a href="#shop" class="nav-cta">Visiter</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Campagne · Automne MMXXVI</p>
+    <h1>Le silence<br/>d'une <span class="reg">étoffe.</span></h1>
+    <div class="hero-meta">
+      <p class="hero-meta-info">Boutique de mode éditoriale unisexe à Lausanne. Production en Suisse et Italie, séries limitées, lin et coton bio.</p>
+      <p class="hero-meta-tag">Capsule N° 12 ↗</p>
+    </div>
+  </div>
+</header>
+
+<!-- COLLECTION -->
+<section id="collec" class="collec">
+  <div class="collec-inner">
+    <div class="collec-head">
+      <div>
+        <p class="collec-num">N° 12</p>
+        <p class="collec-eyebrow">— Collection actuelle</p>
+      </div>
+      <div>
+        <h2>Capsule Automne — <em>Numéro 12</em>.<br/>Quinze pièces, douze coloris,<br/>trois matières pures.</h2>
+        <p>Une collection construite autour de la matière plus que de la forme. Lin filé en Italie, coton bio cultivé en Turquie, laine d'agneau du Jura. Tout est conçu pour vieillir lentement, et pour rester porté longtemps.</p>
+      </div>
+    </div>
+    <div class="collec-grid">
+      <div class="collec-photo" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="collec-photo" style="background-image:url('https://images.unsplash.com/photo-1485518882345-15568b007407?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="collec-photo" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1000&q=85')"></div>
+      <div class="collec-photo" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85')"></div>
+    </div>
+  </div>
+</section>
+
+<!-- NOUVEAUTÉS -->
+<section id="nouv" class="nouv">
+  <div class="nouv-inner">
+    <div class="nouv-head">
+      <h2>Nouveautés <span class="reg">cette semaine</span>.</h2>
+      <a href="#shop" class="nouv-head-link">Toute la boutique →</a>
+    </div>
+    <div class="nouv-grid">
+      <div class="produit">
+        <div class="produit-img" style="background-image:url('https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="produit-cat">— Haut · Femme &amp; Homme</p>
+        <h3 class="produit-name">Blouse Lin Brut</h3>
+        <p class="produit-price">220 CHF</p>
+      </div>
+      <div class="produit">
+        <div class="produit-img" style="background-image:url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="produit-cat">— Bas · Unisexe</p>
+        <h3 class="produit-name">Pantalon Coton Bio</h3>
+        <p class="produit-price">180 CHF</p>
+      </div>
+      <div class="produit">
+        <div class="produit-img" style="background-image:url('https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="produit-cat">— Pièce signature · Unisexe</p>
+        <h3 class="produit-name">Veste Tweed Suisse</h3>
+        <p class="produit-price">450 CHF</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHIE -->
+<section id="philo" class="philo">
+  <div class="philo-inner">
+    <p class="philo-num">II</p>
+    <h2>Faire <em>moins</em>,<br/>faire <em>mieux</em>.</h2>
+    <div class="philo-body">
+      <p>Atelier Numéro 12 est né d'un constat simple : la mode change trop vite, produit trop, jette trop. Nous croyons qu'on peut s'habiller bien sans participer à cette accélération. Faire moins, faire mieux, faire ailleurs que dans des usines invisibles.</p>
+      <span class="philo-sep"></span>
+      <p>Notre production est partagée entre la Suisse et l'Italie, dans <em>trois ateliers</em> que nous visitons chaque saison. Les séries sont limitées — entre 30 et 80 pièces par référence. Le lin vient d'une filature familiale toscane, le coton bio d'une coopérative anatolienne certifiée. Tout est traçable, tout est documenté, tout est conçu pour durer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="shop">
+  <div class="shop-inner">
+    <div class="shop-head">
+      <h2>La <span class="reg">boutique</span> en ligne.</h2>
+      <p>Livraison Suisse 48h. Retours gratuits sous 30 jours. Conseil personnalisé par e-mail.</p>
+      <a href="#" class="shop-head-link">Voir tous les articles →</a>
+    </div>
+    <div class="shop-grid">
+      <div class="shop-item">
+        <div class="shop-item-img" style="background-image:url('https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="shop-item-name">Blouse Lin Brut</p>
+        <p class="shop-item-meta"><span>Crème · Tabac · Olive</span><span class="shop-item-price">220 CHF</span></p>
+      </div>
+      <div class="shop-item">
+        <div class="shop-item-img" style="background-image:url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="shop-item-name">Pantalon Coton Bio</p>
+        <p class="shop-item-meta"><span>Noir · Sable</span><span class="shop-item-price">180 CHF</span></p>
+      </div>
+      <div class="shop-item">
+        <div class="shop-item-img" style="background-image:url('https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="shop-item-name">Veste Tweed Suisse</p>
+        <p class="shop-item-meta"><span>Anthracite · Camel</span><span class="shop-item-price">450 CHF</span></p>
+      </div>
+      <div class="shop-item">
+        <div class="shop-item-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="shop-item-name">Robe Tunique Lin</p>
+        <p class="shop-item-meta"><span>Sable · Ardoise</span><span class="shop-item-price">290 CHF</span></p>
+      </div>
+      <div class="shop-item">
+        <div class="shop-item-img" style="background-image:url('https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="shop-item-name">Pull Laine du Jura</p>
+        <p class="shop-item-meta"><span>Écru · Charbon</span><span class="shop-item-price">340 CHF</span></p>
+      </div>
+      <div class="shop-item">
+        <div class="shop-item-img" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85')"></div>
+        <p class="shop-item-name">Chemise Coton Brut</p>
+        <p class="shop-item-meta"><span>Crème · Noir</span><span class="shop-item-price">195 CHF</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOUTIQUE PHYSIQUE -->
+<section class="shop-physique">
+  <div class="shop-physique-img"></div>
+  <div class="shop-physique-text">
+    <p class="shop-physique-eyebrow">— La boutique physique</p>
+    <h2>Au <em>numéro 12</em><br/>de la Rue du Pont.</h2>
+    <p>Notre boutique est un espace lent. Trente mètres carrés, une grande table en chêne brut, des cintres en bois suspendus, beaucoup de lumière. On vient y essayer, mais aussi y prendre le temps — un café, une conversation, un regard de plus avant de choisir.</p>
+    <p>Les visites privées sont possibles sur rendez-vous le lundi (jour de fermeture) — pour les essayages tranquilles ou pour les conseils étoffe sur mesure.</p>
+    <div class="shop-physique-creds">
+      <div>
+        <p class="cred-label">Adresse</p>
+        <p class="cred-val">Rue du Pont 12<br/>1003 Lausanne</p>
+      </div>
+      <div>
+        <p class="cred-label">Horaires</p>
+        <p class="cred-val">Mar–Sam · 11h–19h<br/>Dim &amp; Lun fermé</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="news">
+  <div class="news-inner">
+    <p class="news-eyebrow">— Lettre éditoriale</p>
+    <h2>Une <span class="reg">lettre</span><br/>tous les mois.</h2>
+    <p class="news-lead">Les nouveautés en avant-première, les ateliers de production, les essais d'écriture. Lente, rare, sans bruit.</p>
+    <form class="news-form">
+      <input type="email" placeholder="votre.adresse@email.ch" required />
+      <button type="submit">S'abonner →</button>
+    </form>
+    <label class="news-opt">
+      <input type="checkbox" required />
+      <span>J'accepte de recevoir la lettre mensuelle de l'Atelier Numéro 12. Désabonnement libre à tout moment.</span>
+    </label>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="press">
+  <div class="press-inner">
+    <p class="press-eyebrow">— On en parle</p>
+    <h2>Vu dans la <em>presse</em>.</h2>
+    <div class="press-grid">
+      <div class="press-card">
+        <p class="press-quote">« Numéro 12 redéfinit le slow fashion suisse. Une boutique qui ne cherche ni la nouveauté ni le bruit — juste la juste pièce. »</p>
+        <p class="press-source">Femina · Mars 2026</p>
+      </div>
+      <div class="press-card">
+        <p class="press-quote">« Une boutique à découvrir, et à fréquenter. La promesse d'une mode qui dure se tient ici, dans la matière et dans les gestes. »</p>
+        <p class="press-source">Bilan · Janvier 2026</p>
+      </div>
+      <div class="press-card">
+        <p class="press-quote">« L'élégance retenue, le geste lent, la pièce signature qui ne se voit pas mais se sent. Une découverte rare en Suisse romande. »</p>
+        <p class="press-source">Vogue Suisse · Septembre 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Adresse</p>
+      <p class="info-content">Rue du Pont 12<br/><em>1003 Lausanne, Suisse</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 21 555 12 12<br/><em>bonjour@atelier12.ch</em></p>
+    </div>
+    <div>
+      <p class="info-label">Horaires</p>
+      <p class="info-content">Mar — Sam · 11h–19h<br/><em>Fermé dim · lun</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Atelier Numéro 12 · Lausanne · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.6</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.utils.toArray('.collec-photo, .produit, .shop-item, .press-card, .philo-body p, .shop-physique-text > *').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+});
+
+gsap.from('.hero-content > *',{opacity:0,y:40,duration:1.1,ease:'power3.out',stagger:.12,delay:.2});
+gsap.from('.hero-img',{opacity:0,scale:1.05,duration:1.6,ease:'power3.out',delay:.1});
+
+document.querySelector('.news-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Site de démonstration HectoWeb.\nSur votre vrai site, l'inscription à la newsletter serait enregistrée.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+});
+</script>
+</body>
+</html>

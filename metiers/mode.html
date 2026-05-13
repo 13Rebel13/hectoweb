@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Maison Lévrier — Mode &amp; lifestyle féminin · Lausanne</title>
+<meta name="description" content="Maison Lévrier, boutique de mode lifestyle féminine à Lausanne. Collections couture, lookbook, boutique en ligne, presse." />
+<meta name="theme-color" content="#f0d9d3" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — blush poudré + or pâle + crème + noir
+   Féminin chic moderne. Totalement différent des 3 autres :
+   pas de blanc Swiss minimal, pas de noir gallery, pas de
+   crème bordeaux. Ici : blush rosé, lookbook éditorial féminin.
+   ============================================================ */
+:root{
+  --blush:#f0d9d3;
+  --blush-2:#e8c9c1;
+  --cream:#f7ede0;
+  --gold:#d4b48a;
+  --gold-2:#bf9b6e;
+  --ink:#1a1a1a;
+  --ink-2:#2e2a28;
+  --muted:#7e6a60;
+  --rule:rgba(26,26,26,.14);
+  --rule-soft:rgba(26,26,26,.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;
+}
+::selection{background:var(--gold);color:var(--ink)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV — wordmark Italiana élégant
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1.5rem clamp(1.5rem,4vw,3.5rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,border-color .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(247,237,224,.96);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule-soft);padding-top:1rem;padding-bottom:1rem;
+}
+.nav-brand{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:2rem;color:var(--ink);letter-spacing:.04em;line-height:1;
+}
+.nav-links{display:flex;gap:2.3rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:400;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--ink-2);
+}
+.nav-links a:hover{color:var(--gold-2)}
+.nav-cta{
+  background:var(--ink);color:var(--cream) !important;padding:.85rem 1.6rem;
+  font-size:.68rem;letter-spacing:.32em;border-radius:999px;
+  transition:background .25s;
+}
+.nav-cta:hover{background:var(--gold-2);color:var(--cream) !important}
+@media(max-width:780px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — campagne plein écran mannequin
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;
+  display:grid;grid-template-columns:1fr 1.1fr;
+  padding-top:5rem;
+}
+@media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto}}
+.hero-text{
+  background:var(--blush);padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,5rem);
+  display:flex;flex-direction:column;justify-content:center;position:relative;
+}
+.hero-text::after{
+  content:'L';position:absolute;right:3rem;top:50%;transform:translateY(-50%);
+  font-family:'Italiana',serif;font-size:18rem;color:rgba(26,26,26,.05);line-height:1;pointer-events:none;
+}
+.hero-overline{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:400;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--ink-2);
+  margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem;position:relative;z-index:2;
+}
+.hero-overline::before{content:'';width:36px;height:1px;background:var(--gold-2)}
+.hero h1{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(3.2rem,8vw,6.5rem);line-height:.95;letter-spacing:.005em;
+  color:var(--ink);margin-bottom:1.8rem;position:relative;z-index:2;
+}
+.hero h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold-2)}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.2rem,1.7vw,1.45rem);line-height:1.5;color:var(--ink-2);
+  max-width:32rem;margin-bottom:2.5rem;position:relative;z-index:2;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:2}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:.8rem;
+  padding:1.1rem 2rem;background:var(--ink);color:var(--cream);
+  font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+  border-radius:999px;transition:background .25s,transform .15s;
+}
+.hero-cta:hover{background:var(--gold-2);transform:translateY(-2px)}
+.hero-cta-2{
+  display:inline-flex;align-items:center;gap:.8rem;
+  padding:1.1rem 2rem;border:1px solid var(--ink);color:var(--ink);
+  font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+  border-radius:999px;transition:background .25s,color .25s,border-color .25s;
+}
+.hero-cta-2:hover{background:var(--ink);color:var(--cream)}
+.hero-img{
+  background:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=90') center/cover no-repeat;
+  min-height:80vh;
+}
+
+/* ============================================================
+   BAND — sous-hero
+   ============================================================ */
+.band{
+  background:var(--ink);color:var(--cream);
+  padding:1.3rem clamp(1.5rem,4vw,3.5rem);
+  display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+}
+.band span{display:inline-flex;align-items:center;gap:.7rem}
+.band span::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
+
+/* ============================================================
+   COLLECTIONS — 3 collections avec photo + description
+   ============================================================ */
+.collections{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--cream);
+}
+.collections-head{max-width:1100px;margin:0 auto 5rem;text-align:center}
+.section-mark{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:400;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--gold-2);
+  margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:1rem;
+}
+.section-mark::before,.section-mark::after{content:'';width:32px;height:1px;background:var(--gold-2)}
+.collections-head h2{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;
+}
+.collections-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold-2)}
+.collections-grid{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;
+}
+@media(max-width:1000px){.collections-grid{grid-template-columns:1fr;gap:3rem}}
+.collection{display:flex;flex-direction:column}
+.collection-img{
+  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
+  margin-bottom:1.8rem;transition:transform .8s;
+}
+.collection:hover .collection-img{transform:scale(1.02)}
+.collection-name{font-family:'Italiana',serif;font-weight:400;font-size:2rem;color:var(--ink);letter-spacing:.005em;margin-bottom:.6rem}
+.collection-name em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
+.collection-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:1.15rem;color:var(--muted);line-height:1.55;margin-bottom:1.5rem;max-width:28rem}
+.collection-link{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:'Inter',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--ink);border-bottom:1px solid var(--gold-2);padding-bottom:3px;align-self:flex-start;
+  transition:gap .3s,color .25s;
+}
+.collection-link:hover{gap:1rem;color:var(--gold-2)}
+
+/* ============================================================
+   LOOKBOOK — galerie magazine 8 looks
+   ============================================================ */
+.lookbook{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--blush);
+}
+.lookbook-head{max-width:1100px;margin:0 auto 5rem;text-align:center}
+.lookbook-head h2{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;
+}
+.lookbook-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold-2)}
+.lookbook-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:1.2rem;color:var(--muted);max-width:32rem;margin:1.5rem auto 0;line-height:1.55}
+.lookbook-grid{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+}
+@media(max-width:880px){.lookbook-grid{grid-template-columns:repeat(2,1fr)}}
+.look{position:relative;cursor:pointer;overflow:hidden}
+.look-img{
+  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
+  transition:transform .8s,filter .4s;
+}
+.look:hover .look-img{transform:scale(1.05);filter:brightness(.9)}
+.look-num{
+  position:absolute;top:1rem;left:1rem;
+  font-family:'Italiana',serif;font-size:1.5rem;color:var(--cream);
+  text-shadow:0 1px 4px rgba(0,0,0,.3);
+}
+.look-label{
+  position:absolute;bottom:1rem;left:1rem;
+  font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cream);
+  background:rgba(26,26,26,.5);padding:.4rem .7rem;
+}
+
+/* ============================================================
+   BOUTIQUE — 4 produits
+   ============================================================ */
+.boutique{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--cream);
+}
+.boutique-head{max-width:1400px;margin:0 auto 4rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
+@media(max-width:780px){.boutique-head{grid-template-columns:1fr}}
+.boutique-head h2{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;
+}
+.boutique-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold-2)}
+.boutique-link{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--ink);border-bottom:1px solid var(--gold-2);padding-bottom:3px;
+  transition:gap .3s,color .25s;
+}
+.boutique-link:hover{gap:1rem;color:var(--gold-2)}
+
+.products-grid{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
+}
+@media(max-width:1000px){.products-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.products-grid{grid-template-columns:1fr}}
+.product{display:flex;flex-direction:column}
+.product-img{
+  position:relative;width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
+  margin-bottom:1.2rem;transition:transform .6s;
+}
+.product:hover .product-img{transform:scale(1.02)}
+.product-tag{
+  position:absolute;top:1rem;left:1rem;background:var(--gold);color:var(--ink);
+  font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
+  padding:.35rem .7rem;
+}
+.product-info{display:flex;justify-content:space-between;align-items:start;gap:1rem;padding-top:.5rem;border-top:1px solid var(--rule-soft)}
+.product-name{font-family:'Italiana',serif;font-size:1.2rem;color:var(--ink);letter-spacing:.005em;line-height:1.3}
+.product-cat{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:.9rem;margin-top:.2rem}
+.product-price{font-family:'Inter',sans-serif;font-weight:500;font-size:.95rem;color:var(--ink);white-space:nowrap}
+.product-price b{font-weight:400;color:var(--gold-2);font-size:.7rem;letter-spacing:.15em;margin-left:.3rem}
+
+/* ============================================================
+   PRESSE — citations
+   ============================================================ */
+.presse{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--ink);color:var(--cream);
+}
+.presse-head{max-width:1100px;margin:0 auto 5rem;text-align:center}
+.presse-head .section-mark{color:var(--gold)}
+.presse-head .section-mark::before,.presse-head .section-mark::after{background:var(--gold)}
+.presse-head h2{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--cream);letter-spacing:.005em;
+}
+.presse-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold)}
+.presse-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;
+}
+@media(max-width:880px){.presse-grid{grid-template-columns:1fr}}
+.press-card{
+  padding:2.5rem 0;
+  border-top:1px solid rgba(247,237,224,.18);
+}
+.press-mag{
+  font-family:'Italiana',serif;font-size:2rem;color:var(--gold);letter-spacing:.02em;margin-bottom:1.5rem;
+}
+.press-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:1.25rem;line-height:1.55;color:var(--cream);margin-bottom:1.5rem;
+}
+.press-source{font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(247,237,224,.6)}
+
+/* ============================================================
+   NEWSLETTER
+   ============================================================ */
+.newsletter{
+  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--blush-2);text-align:center;
+}
+.newsletter-inner{max-width:680px;margin:0 auto}
+.newsletter-inner h2{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;margin-bottom:1.2rem;
+}
+.newsletter-inner h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
+.newsletter-inner p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--ink-2);line-height:1.5;margin-bottom:3rem;max-width:30rem;margin-left:auto;margin-right:auto}
+
+.newsletter-form{display:flex;flex-direction:column;gap:1.5rem;text-align:left;max-width:520px;margin:0 auto}
+.newsletter-form .nf-input{display:flex;gap:0;border-bottom:1px solid var(--ink)}
+.newsletter-form input{
+  flex:1;background:transparent;border:0;padding:1rem 0;color:var(--ink);
+  font-family:'Inter',sans-serif;font-size:1rem;outline:0;
+}
+.newsletter-form input::placeholder{color:var(--muted);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem}
+.newsletter-form button{
+  padding:1rem 1.5rem;background:var(--ink);color:var(--cream);
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+  border-radius:999px;transition:background .25s;
+}
+.newsletter-form button:hover{background:var(--gold-2)}
+.newsletter-form label.check{display:flex;align-items:flex-start;gap:.7rem;font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.5;cursor:pointer}
+.newsletter-form label.check input{width:auto;flex-shrink:0;margin-top:.25rem;accent-color:var(--gold-2)}
+
+/* ============================================================
+   BOUTIQUE PHYSIQUE
+   ============================================================ */
+.shop-physical{
+  padding:clamp(6rem,10vw,9rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--cream);border-top:1px solid var(--rule-soft);
+}
+.shop-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+@media(max-width:880px){.shop-inner{grid-template-columns:1fr;gap:3rem}}
+.shop-img{
+  width:100%;aspect-ratio:4/3;
+  background:url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1400&q=90') center/cover no-repeat;
+}
+.shop-text h2{font-family:'Italiana',serif;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;margin:1.5rem 0 1.5rem}
+.shop-text h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
+.shop-text p{font-family:'Inter',sans-serif;color:var(--ink-2);font-size:1rem;line-height:1.75;margin-bottom:1.2rem}
+
+.shop-info{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--rule)}
+.shop-info-label{font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-2);margin-bottom:.7rem}
+.shop-info-value{font-family:'Italiana',serif;font-size:1.1rem;color:var(--ink);line-height:1.5;letter-spacing:.005em}
+.shop-info-value em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);display:block;margin-top:.2rem;font-size:.9rem}
+
+/* ============================================================
+   HW CTA
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,4vw,3.5rem);background:var(--cream);border-top:1px solid var(--rule-soft)}
+.footer-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.footer-inner a{color:var(--gold-2);border-bottom:1px solid var(--gold-2)}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- HW STRIP -->
+<div class="hw-strip">Site de démonstration HectoWeb<a href="../index.html">← Retour aux 20 univers</a></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Maison Lévrier</a>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#lookbook">Lookbook</a></li>
+    <li><a href="#boutique">Boutique</a></li>
+    <li><a href="#presse">Presse</a></li>
+    <li><a href="#shop" class="nav-cta">La boutique</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-text">
+    <p class="hero-overline">Printemps · Été 2026</p>
+    <h1>L'art<br/>de la <em>présence.</em></h1>
+    <p class="hero-sub">Maison Lévrier, boutique de mode lifestyle féminine fondée à Lausanne. Pièces couture, sélection de créateurs européens, et un service personnalisé à l'ancienne.</p>
+    <div class="hero-actions">
+      <a href="#collections" class="hero-cta">Voir les collections →</a>
+      <a href="#shop" class="hero-cta-2">Visiter la boutique</a>
+    </div>
+  </div>
+  <div class="hero-img"></div>
+</header>
+
+<!-- BAND -->
+<div class="band">
+  <span>Sélection couture</span>
+  <span>Service sur mesure</span>
+  <span>Livraison Suisse offerte</span>
+  <span>Retours sous 14 jours</span>
+</div>
+
+<!-- COLLECTIONS -->
+<section id="collections" class="collections">
+  <div class="collections-head">
+    <p class="section-mark">Saison · 2026</p>
+    <h2>Trois <em>collections</em><br/>en boutique.</h2>
+  </div>
+  <div class="collections-grid">
+
+    <div class="collection">
+      <div class="collection-img" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=90')"></div>
+      <p class="collection-name">Hiver <em>Soyeux</em></p>
+      <p class="collection-desc">Pièces glissées, soies lavées, cachemires fins. Une garde-robe d'hiver qui ne pèse rien et ne tient froid à personne.</p>
+      <a href="#lookbook" class="collection-link">Voir la collection →</a>
+    </div>
+
+    <div class="collection">
+      <div class="collection-img" style="background-image:url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=90')"></div>
+      <p class="collection-name">Printemps <em>Sauvage</em></p>
+      <p class="collection-desc">Lins, gazes, mousselines. Imprimés botaniques peints à la main par Élise Caron. La fraîcheur des dimanches de mai.</p>
+      <a href="#lookbook" class="collection-link">Voir la collection →</a>
+    </div>
+
+    <div class="collection">
+      <div class="collection-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=90')"></div>
+      <p class="collection-name">Soirée <em>Couture</em></p>
+      <p class="collection-desc">Pièces de soirée — courtes, longues, à porter une fois et à garder pour toujours. Coupes signées Maison Lévrier.</p>
+      <a href="#lookbook" class="collection-link">Voir la collection →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOOKBOOK -->
+<section id="lookbook" class="lookbook">
+  <div class="lookbook-head">
+    <p class="section-mark">Lookbook · printemps 2026</p>
+    <h2><em>Huit</em> silhouettes.</h2>
+    <p>Une sélection de looks photographiés à Évian, en avril dernier, par Tania Reuteler.</p>
+  </div>
+  <div class="lookbook-grid">
+    <div class="look">
+      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=90')"></div>
+      <span class="look-num">01</span>
+      <span class="look-label">Soie · Crème</span>
+    </div>
+    <div class="look">
+      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=90')"></div>
+      <span class="look-num">02</span>
+      <span class="look-label">Lin · Botanique</span>
+    </div>
+    <div class="look">
+      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=90')"></div>
+      <span class="look-num">03</span>
+      <span class="look-label">Soirée · Or pâle</span>
+    </div>
+    <div class="look">
+      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=90')"></div>
+      <span class="look-num">04</span>
+      <span class="look-label">Mousseline · Rosé</span>
+    </div>
+    <div class="look">
+      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1518730518541-d0843268c287?auto=format&fit=crop&w=800&q=90')"></div>
+      <span class="look-num">05</span>
+      <span class="look-label">Cachemire · Sable</span>
+    </div>
+    <div class="look">
+      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=90')"></div>
+      <span class="look-num">06</span>
+      <span class="look-label">Plissé · Crème</span>
+    </div>
+    <div class="look">
+      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=90')"></div>
+      <span class="look-num">07</span>
+      <span class="look-label">Manteau · Cachemire</span>
+    </div>
+    <div class="look">
+      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=90')"></div>
+      <span class="look-num">08</span>
+      <span class="look-label">Tailleur · Lin écru</span>
+    </div>
+  </div>
+</section>
+
+<!-- BOUTIQUE -->
+<section id="boutique" class="boutique">
+  <div class="boutique-head">
+    <div>
+      <p class="section-mark">Boutique · en ligne</p>
+      <h2>Quatre pièces<br/><em>mises en avant.</em></h2>
+    </div>
+    <a href="#shop" class="boutique-link">Voir tout le catalogue →</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=90')">
+        <span class="product-tag">Nouveauté</span>
+      </div>
+      <div class="product-info">
+        <div><p class="product-name">Robe Iris</p><p class="product-cat">Soie · imprimé botanique</p></div>
+        <p class="product-price">490<b>CHF</b></p>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=90')"></div>
+      <div class="product-info">
+        <div><p class="product-name">Blouse Hortense</p><p class="product-cat">Mousseline · crème</p></div>
+        <p class="product-price">280<b>CHF</b></p>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=90')">
+        <span class="product-tag">Édition</span>
+      </div>
+      <div class="product-info">
+        <div><p class="product-name">Manteau Charlotte</p><p class="product-cat">Cachemire double face</p></div>
+        <p class="product-price">980<b>CHF</b></p>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=800&q=90')"></div>
+      <div class="product-info">
+        <div><p class="product-name">Sac Léone</p><p class="product-cat">Cuir d'agneau · or pâle</p></div>
+        <p class="product-price">340<b>CHF</b></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRESSE -->
+<section id="presse" class="presse">
+  <div class="presse-head">
+    <p class="section-mark">Presse · mentions</p>
+    <h2>Ce qu'<em>elles</em> en disent.</h2>
+  </div>
+  <div class="presse-grid">
+
+    <div class="press-card">
+      <p class="press-mag">Vogue Suisse</p>
+      <p class="press-quote">« Maison Lévrier a réussi le pari rare d'une vraie écriture de mode — feminine sans être sage, raffinée sans être froide. Une maison à suivre. »</p>
+      <p class="press-source">Édition n°218 · mars 2025</p>
+    </div>
+
+    <div class="press-card">
+      <p class="press-mag">Femina</p>
+      <p class="press-quote">« La rue du Bourg tient enfin son adresse parfaite. Du textile pensé, des coupes irréprochables, et un accueil que l'on ne trouve plus nulle part. »</p>
+      <p class="press-source">Dossier mode · janvier 2026</p>
+    </div>
+
+    <div class="press-card">
+      <p class="press-mag">Bilan</p>
+      <p class="press-quote">« Florence Lévrier a fait le choix d'une mode lente, et c'est précisément ce qui en fait aujourd'hui l'une des marques les plus enviées de Suisse romande. »</p>
+      <p class="press-source">Portrait du mois · avril 2025</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <p class="section-mark">Lettre · de la maison</p>
+    <h2>Recevez les <em>nouveautés.</em></h2>
+    <p>Une lettre par mois, jamais plus. Lancements de collection, ventes privées en boutique, et quelques mots sur ce qui nous inspire.</p>
+
+    <form class="newsletter-form">
+      <div class="nf-input">
+        <input type="email" placeholder="votre.email@exemple.ch" required />
+        <button type="submit">S'inscrire →</button>
+      </div>
+      <label class="check">
+        <input type="checkbox" required />
+        <span>J'accepte de recevoir les communications de Maison Lévrier et confirme avoir lu les conditions d'utilisation.</span>
+      </label>
+    </form>
+  </div>
+</section>
+
+<!-- SHOP PHYSICAL -->
+<section id="shop" class="shop-physical">
+  <div class="shop-inner">
+    <div class="shop-img"></div>
+    <div class="shop-text">
+      <p class="section-mark">Boutique · physique</p>
+      <h2>Rue du Bourg,<br/>au <em>numéro 32.</em></h2>
+      <p>Notre boutique à Lausanne occupe un ancien atelier d'horlogerie, transformé par l'Atelier B+S en 2022. Cabines généreuses, lumière douce, vestiaires en chêne. Vous y trouverez la totalité des collections, ainsi que notre service couture pour retouches et pièces sur mesure.</p>
+      <p>Florence et son équipe vous accueillent du mardi au samedi. Possibilité de rendez-vous privé en dehors des horaires sur demande.</p>
+      <div class="shop-info">
+        <div>
+          <p class="shop-info-label">Adresse</p>
+          <p class="shop-info-value">Rue du Bourg 32<br/><em>1003 Lausanne</em></p>
+        </div>
+        <div>
+          <p class="shop-info-label">Horaires</p>
+          <p class="shop-info-value">Mar · Sam<br/><em>10h–18h30</em></p>
+        </div>
+        <div>
+          <p class="shop-info-label">Téléphone</p>
+          <p class="shop-info-value">+41 21 555 06 32<br/><em>contact@maison-levrier.ch</em></p>
+        </div>
+        <div>
+          <p class="shop-info-label">Réseaux</p>
+          <p class="shop-info-value">@maisonlevrier<br/><em>Instagram · 22k</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Maison Lévrier · Lausanne · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-text > *',{opacity:0,y:30,duration:1.1,ease:'power3.out',stagger:.12,delay:.25});
+gsap.from('.hero-img',{opacity:0,scale:1.04,duration:1.6,ease:'power3.out'});
+
+gsap.utils.toArray('.collection, .look, .product, .press-card, .newsletter-form > *, .shop-text > *').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 92%',once:true}});
+});
+
+document.querySelector('.newsletter-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Site de démonstration HectoWeb.\nSur votre vrai site, l'inscription serait enregistrée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+});
+</script>
+</body>
+</html>

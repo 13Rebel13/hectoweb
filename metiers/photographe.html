@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Studio Tania Reuteler — Photographe portrait &amp; mariage · Genève</title>
+<meta name="description" content="Studio Tania Reuteler, photographe portrait et mariage à Genève. Galerie éditoriale, séances sur rendez-vous, prestations sur mesure." />
+<meta name="theme-color" content="#050505" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — noir absolu + blanc cassé + rouge sang rare
+   Très différent : ni minimalisme blanc Manrope (architecte),
+   ni crème+bordeaux (resto), ni Bebas Neue brutaliste (tatoueur).
+   Ici : EB Garamond serif fluide + Inter + photos plein écran.
+   Gallery feeling magazine.
+   ============================================================ */
+:root{
+  --bg:#050505;
+  --bg-2:#0c0c0c;
+  --bg-3:#171717;
+  --fg:#f7f5f0;
+  --fg-2:#a8a39a;
+  --muted:#605b52;
+  --rare:#8a2030;
+  --rare-2:#a8344a;
+  --rule:rgba(247,245,240,.08);
+  --rule-2:rgba(247,245,240,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--fg);background:var(--bg);
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;
+}
+::selection{background:var(--rare);color:var(--fg)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV — wordmark serif italique, espacé, élégant
+   ============================================================ */
+.nav{
+  position:fixed;top:30px;left:0;right:0;z-index:50;
+  padding:1.6rem clamp(1.5rem,4vw,3.5rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,border-color .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(5,5,5,.93);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1rem;padding-bottom:1rem;
+}
+.nav-brand{
+  font-family:'EB Garamond',serif;font-weight:500;font-style:italic;
+  font-size:1.45rem;color:var(--fg);letter-spacing:-.005em;
+}
+.nav-brand b{font-style:normal;font-weight:500;color:var(--rare);font-size:1rem;letter-spacing:.05em}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;font-weight:400;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--fg-2);
+}
+.nav-links a:hover{color:var(--fg)}
+.nav-cta{
+  border:1px solid var(--rare);color:var(--rare) !important;padding:.75rem 1.4rem;
+  font-size:.62rem;letter-spacing:.32em;
+  transition:background .25s,color .25s;
+}
+.nav-cta:hover{background:var(--rare);color:var(--fg) !important}
+@media(max-width:780px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — photo plein écran portrait dramatique
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;overflow:hidden;
+  padding:8rem clamp(1.5rem,4vw,3.5rem) 4rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(180deg,rgba(5,5,5,.55) 0%,rgba(5,5,5,.2) 35%,rgba(5,5,5,.92) 100%),
+    url('https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?auto=format&fit=crop&w=2400&q=90') center/cover no-repeat;
+  filter:contrast(1.04) saturate(.9);
+}
+.hero-top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:1rem}
+.hero-top-left{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--fg-2);
+}
+.hero-top-left b{color:var(--rare);font-weight:500}
+.hero-top-right{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--fg-2);text-align:right;
+}
+.hero-bottom{position:relative;z-index:2;max-width:60rem}
+.hero h1{
+  font-family:'EB Garamond',serif;font-weight:400;font-style:italic;
+  font-size:clamp(3rem,9vw,8rem);line-height:.92;letter-spacing:-.025em;
+  color:var(--fg);margin-bottom:1.5rem;
+}
+.hero h1 .accent{color:var(--rare);font-style:italic}
+.hero h1 .normal{font-style:normal;font-weight:400}
+.hero-sub{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.1rem,1.6vw,1.4rem);line-height:1.5;color:var(--fg-2);
+  max-width:34rem;margin-bottom:2.5rem;
+}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:.8rem;
+  padding:1.1rem 1.8rem;background:var(--rare);color:var(--fg);
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  transition:background .25s,transform .15s;
+}
+.hero-cta:hover{background:var(--rare-2);transform:translateY(-2px)}
+.hero-cta-2{
+  display:inline-flex;align-items:center;gap:.8rem;
+  padding:1.1rem 1.8rem;border:1px solid rgba(247,245,240,.3);color:var(--fg);
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  transition:border-color .25s;
+}
+.hero-cta-2:hover{border-color:var(--fg)}
+
+/* ============================================================
+   SÉRIES — 4 albums avec photo et titre
+   ============================================================ */
+.series{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--bg);border-top:1px solid var(--rule);
+}
+.series-head{max-width:1400px;margin:0 auto 5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end}
+@media(max-width:780px){.series-head{grid-template-columns:1fr;gap:1rem}}
+.section-mark{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:400;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--rare);
+  display:inline-flex;align-items:center;gap:1rem;margin-bottom:1.5rem;
+}
+.section-mark::before{content:'';width:32px;height:1px;background:var(--rare)}
+.series-head h2{
+  font-family:'EB Garamond',serif;font-weight:400;font-style:italic;
+  font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.95;letter-spacing:-.02em;color:var(--fg);
+}
+.series-head h2 .normal{font-style:normal}
+.series-head p{
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:1.2rem;color:var(--fg-2);line-height:1.55;max-width:32rem;
+}
+.series-grid{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+}
+@media(max-width:1000px){.series-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.series-grid{grid-template-columns:1fr}}
+.serie{position:relative;overflow:hidden;cursor:pointer}
+.serie-img{
+  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
+  filter:grayscale(.2) contrast(1.04);transition:filter .5s,transform .8s;
+}
+.serie:hover .serie-img{filter:grayscale(0) contrast(1.06);transform:scale(1.04)}
+.serie-info{padding:1.2rem 0 0;display:flex;justify-content:space-between;align-items:start;gap:1rem;border-top:1px solid var(--rule);margin-top:1rem}
+.serie-name{font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:1.3rem;color:var(--fg)}
+.serie-count{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.28em;color:var(--rare)}
+
+/* ============================================================
+   SPLIT EDITORIAL — portrait
+   ============================================================ */
+.split{
+  display:grid;grid-template-columns:1fr 1fr;min-height:90vh;
+  background:var(--bg-2);
+}
+@media(max-width:880px){.split{grid-template-columns:1fr}}
+.split-img{
+  background:url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1800&q=90') center/cover no-repeat;
+  min-height:60vh;filter:contrast(1.03);
+}
+.split-text{
+  padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,5rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.split-text h3{
+  font-family:'EB Garamond',serif;font-weight:400;font-style:italic;
+  font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.95;letter-spacing:-.02em;color:var(--fg);
+  margin-bottom:2rem;
+}
+.split-text h3 .normal{font-style:normal}
+.split-text p{font-family:'EB Garamond',serif;font-weight:400;font-size:1.1rem;line-height:1.85;color:var(--fg-2);margin-bottom:1.3rem;max-width:32rem}
+.split-text .quote{
+  margin-top:3rem;padding:2rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  font-family:'EB Garamond',serif;font-style:italic;font-weight:400;
+  font-size:1.55rem;line-height:1.4;color:var(--rare);max-width:30rem;
+}
+
+/* ============================================================
+   PORTRAITS — galerie 8 portraits, grille
+   ============================================================ */
+.portraits{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--bg);
+}
+.portraits-head{max-width:1400px;margin:0 auto 5rem;text-align:center}
+.portraits-head .section-mark{justify-content:center}
+.portraits-head .section-mark::before{display:none}
+.portraits-head h2{
+  font-family:'EB Garamond',serif;font-weight:400;font-style:italic;
+  font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.95;letter-spacing:-.02em;color:var(--fg);
+}
+.portraits-head h2 .normal{font-style:normal}
+.portraits-grid{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;
+}
+@media(max-width:780px){.portraits-grid{grid-template-columns:repeat(2,1fr)}}
+.portrait{
+  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
+  filter:grayscale(.18);transition:filter .5s,transform .8s;
+}
+.portrait:hover{filter:grayscale(0);transform:scale(1.02)}
+
+/* ============================================================
+   MARIAGES — texte + galerie 6 photos
+   ============================================================ */
+.mariages{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.mariages-inner{max-width:1400px;margin:0 auto}
+.mariages-head{
+  display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;margin-bottom:4rem;
+}
+@media(max-width:880px){.mariages-head{grid-template-columns:1fr}}
+.mariages-head h2{
+  font-family:'EB Garamond',serif;font-weight:400;font-style:italic;
+  font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.95;letter-spacing:-.02em;color:var(--fg);
+}
+.mariages-head h2 .normal{font-style:normal}
+.mariages-head p{font-family:'EB Garamond',serif;font-weight:400;font-size:1.1rem;line-height:1.8;color:var(--fg-2);margin-bottom:1.2rem;max-width:36rem}
+.mariages-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:220px;gap:1rem;
+}
+.mariages-grid .tile{background-size:cover;background-position:center;filter:grayscale(.12);transition:filter .5s,transform .8s}
+.mariages-grid .tile:hover{filter:grayscale(0);transform:scale(1.02)}
+.t-1{grid-column:span 3;grid-row:span 2}
+.t-2{grid-column:span 3;grid-row:span 1}
+.t-3{grid-column:span 3;grid-row:span 1}
+.t-4{grid-column:span 2;grid-row:span 1}
+.t-5{grid-column:span 2;grid-row:span 1}
+.t-6{grid-column:span 2;grid-row:span 1}
+@media(max-width:780px){
+  .mariages-grid{grid-template-columns:repeat(2,1fr)}
+  .mariages-grid .tile{grid-column:span 1 !important;grid-row:span 1 !important;aspect-ratio:1/1}
+}
+
+/* ============================================================
+   TARIFS — 3 cartes
+   ============================================================ */
+.tarifs{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--bg);
+}
+.tarifs-head{max-width:1100px;margin:0 auto 4rem;text-align:center}
+.tarifs-head .section-mark{justify-content:center}
+.tarifs-head .section-mark::before{display:none}
+.tarifs-head h2{
+  font-family:'EB Garamond',serif;font-weight:400;font-style:italic;
+  font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.95;letter-spacing:-.02em;color:var(--fg);
+}
+.tarifs-head h2 .normal{font-style:normal}
+.tarifs-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--rule-2);
+  border:1px solid var(--rule-2);
+}
+@media(max-width:880px){.tarifs-grid{grid-template-columns:1fr}}
+.tarif{padding:3rem 2.5rem;background:var(--bg);display:flex;flex-direction:column}
+.tarif-name{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rare);margin-bottom:1.5rem}
+.tarif-price{font-family:'EB Garamond',serif;font-weight:400;font-size:3rem;color:var(--fg);line-height:1;margin-bottom:.5rem;letter-spacing:-.015em}
+.tarif-price b{font-style:italic;color:var(--rare);font-weight:400;font-size:1rem;letter-spacing:.15em;margin-left:.4rem}
+.tarif-desc{font-family:'EB Garamond',serif;font-style:italic;font-weight:400;font-size:1.05rem;color:var(--fg-2);line-height:1.6;margin-bottom:2rem}
+.tarif-list{list-style:none;flex:1;margin-bottom:2rem}
+.tarif-list li{font-family:'Inter',sans-serif;font-size:.9rem;color:var(--fg);padding:.6rem 0;border-bottom:1px solid var(--rule);display:flex;align-items:start;gap:.7rem}
+.tarif-list li::before{content:'+';color:var(--rare);font-weight:500;flex-shrink:0}
+.tarif-cta{
+  align-self:flex-start;padding:.9rem 1.6rem;border:1px solid var(--rare);color:var(--rare);
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
+  transition:background .25s,color .25s;
+}
+.tarif-cta:hover{background:var(--rare);color:var(--fg)}
+
+/* ============================================================
+   BOOKING
+   ============================================================ */
+.booking{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--bg-2);border-top:1px solid var(--rule);
+}
+.booking-inner{max-width:780px;margin:0 auto;text-align:center}
+.booking-inner .section-mark{justify-content:center}
+.booking-inner .section-mark::before{display:none}
+.booking-inner h2{
+  font-family:'EB Garamond',serif;font-weight:400;font-style:italic;
+  font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:.95;letter-spacing:-.02em;color:var(--fg);margin-bottom:1.5rem;
+}
+.booking-inner h2 .normal{font-style:normal}
+.booking-lead{font-family:'EB Garamond',serif;font-style:italic;font-weight:400;font-size:1.2rem;line-height:1.55;color:var(--fg-2);margin-bottom:4rem;max-width:34rem;margin-left:auto;margin-right:auto}
+
+.booking-form{display:flex;flex-direction:column;gap:1.8rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.booking-form label{display:flex;flex-direction:column;gap:.6rem}
+.booking-form span{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--fg-2)}
+.booking-form input,.booking-form select{
+  background:transparent;border:0;border-bottom:1px solid var(--rule-2);
+  padding:.9rem 0;color:var(--fg);font-family:'EB Garamond',serif;font-size:1.05rem;
+  outline:0;transition:border-color .2s;
+}
+.booking-form input:focus,.booking-form select:focus{border-color:var(--rare)}
+.booking-form button{
+  align-self:center;margin-top:2rem;min-width:300px;
+  padding:1.1rem 2.2rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  background:var(--rare);color:var(--fg);
+  transition:background .25s,transform .15s;
+}
+.booking-form button:hover{background:var(--rare-2);transform:translateY(-2px)}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos{
+  padding:clamp(5rem,8vw,8rem) clamp(1.5rem,4vw,3.5rem);
+  background:var(--bg);border-top:1px solid var(--rule);
+}
+.infos-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center}
+@media(max-width:780px){.infos-grid{grid-template-columns:1fr;gap:2rem}}
+.info-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rare);margin-bottom:1rem}
+.info-content{font-family:'EB Garamond',serif;font-weight:500;font-size:1.2rem;color:var(--fg);line-height:1.5}
+.info-content em{font-family:'EB Garamond',serif;font-style:italic;font-weight:400;color:var(--fg-2);display:block;margin-top:.3rem;font-size:.95rem}
+
+/* ============================================================
+   HW CTA
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,4vw,3.5rem);background:var(--bg);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-2)}
+.footer-inner a{color:var(--rare)}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- HW STRIP -->
+<div class="hw-strip">Site de démonstration HectoWeb<a href="../index.html">← Retour aux 20 univers</a></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Studio Tania Reuteler <b>·</b></a>
+  <ul class="nav-links">
+    <li><a href="#series">Séries</a></li>
+    <li><a href="#portraits">Portraits</a></li>
+    <li><a href="#mariages">Mariages</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#booking" class="nav-cta">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-top">
+    <div class="hero-top-left">Studio · Genève<br/><b>Sur rendez-vous uniquement</b></div>
+    <div class="hero-top-right">Portrait · Mariage<br/>Éditorial · Famille</div>
+  </div>
+  <div class="hero-bottom">
+    <h1><span class="normal">Photographier</span><br/>ce qui <span class="accent">reste.</span></h1>
+    <p class="hero-sub">Studio Tania Reuteler · portraitiste et photographe de mariage à Genève. Vingt ans de pratique, une approche éditoriale, des images qui se regardent encore vingt ans plus tard.</p>
+    <div class="hero-actions">
+      <a href="#booking" class="hero-cta">Réserver une séance →</a>
+      <a href="#series" class="hero-cta-2">Voir le travail ↓</a>
+    </div>
+  </div>
+</header>
+
+<!-- SÉRIES -->
+<section id="series" class="series">
+  <div class="series-head">
+    <div>
+      <p class="section-mark">Le travail · Séries</p>
+      <h2><span class="normal">Quatre</span> univers,<br/>un même regard.</h2>
+    </div>
+    <p>Chaque série est un projet long. Quelques mois, parfois plusieurs années. Voici ce sur quoi nous travaillons en ce moment.</p>
+  </div>
+  <div class="series-grid">
+
+    <div class="serie">
+      <div class="serie-img" style="background-image:url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=900&q=90')"></div>
+      <div class="serie-info">
+        <p class="serie-name">Portraits d'auteurs</p>
+        <p class="serie-count">42 images</p>
+      </div>
+    </div>
+
+    <div class="serie">
+      <div class="serie-img" style="background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=90')"></div>
+      <div class="serie-info">
+        <p class="serie-name">Mariages</p>
+        <p class="serie-count">68 images</p>
+      </div>
+    </div>
+
+    <div class="serie">
+      <div class="serie-img" style="background-image:url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=90')"></div>
+      <div class="serie-info">
+        <p class="serie-name">Famille</p>
+        <p class="serie-count">31 images</p>
+      </div>
+    </div>
+
+    <div class="serie">
+      <div class="serie-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=90')"></div>
+      <div class="serie-info">
+        <p class="serie-name">Éditorial mode</p>
+        <p class="serie-count">54 images</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SPLIT EDITORIAL -->
+<section class="split">
+  <div class="split-img"></div>
+  <div class="split-text">
+    <p class="section-mark">À propos</p>
+    <h3><span class="normal">Une</span> photographe<br/>basée à Genève.</h3>
+    <p>Tania Reuteler a commencé la photo à dix-huit ans, dans le journal de son école. Vingt ans plus tard, elle dirige son studio dans le quartier de Carouge, où elle reçoit ses sujets — auteurs, mariés, familles — pour des séances longues, posées, attentives.</p>
+    <p>Son travail a été publié dans Le Temps Magazine, dans Femina, dans Modes &amp; Travaux édition suisse. Elle a exposé deux fois à la Maison Tavel, à Genève — la dernière en 2024, avec la série « Portraits d'auteurs ».</p>
+    <blockquote class="quote">« Je ne cherche pas la beauté. Je cherche le vrai. Quand il est là, la beauté arrive d'elle-même. »</blockquote>
+  </div>
+</section>
+
+<!-- PORTRAITS -->
+<section id="portraits" class="portraits">
+  <div class="portraits-head">
+    <p class="section-mark">Portraits</p>
+    <h2><span class="normal">Quelques</span> visages.</h2>
+  </div>
+  <div class="portraits-grid">
+    <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=90')"></div>
+    <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&w=800&q=90')"></div>
+    <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=90')"></div>
+    <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=90')"></div>
+    <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=90')"></div>
+    <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=90')"></div>
+    <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=90')"></div>
+    <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?auto=format&fit=crop&w=800&q=90')"></div>
+  </div>
+</section>
+
+<!-- MARIAGES -->
+<section id="mariages" class="mariages">
+  <div class="mariages-inner">
+    <div class="mariages-head">
+      <div>
+        <p class="section-mark">Mariages</p>
+        <h2><span class="normal">Une journée</span><br/>de votre vie.</h2>
+      </div>
+      <div>
+        <p>Photographier un mariage est ce qu'il y a de plus difficile et de plus précieux dans ce métier. Il faut être partout, et invisible. Saisir l'instant, sans le forcer. Témoigner d'une journée qui ne reviendra plus.</p>
+        <p>Je travaille en duo (avec ma seconde, Laure), pour ne rien manquer. Je livre entre 400 et 600 photos, sélectionnées et retouchées une à une — pas de tri automatique, pas d'IA. Délai : entre 4 et 8 semaines selon la saison.</p>
+      </div>
+    </div>
+    <div class="mariages-grid">
+      <div class="tile t-1" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=90')"></div>
+      <div class="tile t-2" style="background-image:url('https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?auto=format&fit=crop&w=900&q=90')"></div>
+      <div class="tile t-3" style="background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=90')"></div>
+      <div class="tile t-4" style="background-image:url('https://images.unsplash.com/photo-1525258946800-98cfd641d0de?auto=format&fit=crop&w=900&q=90')"></div>
+      <div class="tile t-5" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=90')"></div>
+      <div class="tile t-6" style="background-image:url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=900&q=90')"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section id="tarifs" class="tarifs">
+  <div class="tarifs-head">
+    <p class="section-mark">Prestations · tarifs</p>
+    <h2><span class="normal">Trois</span> formules<br/>à <span class="normal">votre</span> mesure.</h2>
+  </div>
+  <div class="tarifs-grid">
+
+    <div class="tarif">
+      <p class="tarif-name">Portrait</p>
+      <p class="tarif-price">380<b>CHF</b></p>
+      <p class="tarif-desc">Séance d'une heure au studio ou en extérieur. Le format idéal pour un portrait individuel, professionnel ou intime.</p>
+      <ul class="tarif-list">
+        <li>1 heure de séance</li>
+        <li>15 photos retouchées</li>
+        <li>Galerie privée en ligne</li>
+        <li>Livraison sous 2 semaines</li>
+      </ul>
+      <a href="#booking" class="tarif-cta">Réserver →</a>
+    </div>
+
+    <div class="tarif">
+      <p class="tarif-name">Demi-journée</p>
+      <p class="tarif-price">950<b>CHF</b></p>
+      <p class="tarif-desc">Quatre heures. Pour une famille, un couple, un projet éditorial, un lancement de marque. Plusieurs lieux possibles.</p>
+      <ul class="tarif-list">
+        <li>4 heures de séance</li>
+        <li>50 photos retouchées</li>
+        <li>Galerie privée en ligne</li>
+        <li>Livraison sous 3 semaines</li>
+        <li>Conseil styling inclus</li>
+      </ul>
+      <a href="#booking" class="tarif-cta">Réserver →</a>
+    </div>
+
+    <div class="tarif">
+      <p class="tarif-name">Mariage complet</p>
+      <p class="tarif-price">dès 2400<b>CHF</b></p>
+      <p class="tarif-desc">Une journée entière, du préparatif au dîner. Possibilité de réserver la veille pour les préparatifs étendus.</p>
+      <ul class="tarif-list">
+        <li>10 à 12 heures de présence</li>
+        <li>Tania + seconde photographe</li>
+        <li>400 à 600 photos livrées</li>
+        <li>Sélection retouchée à la main</li>
+        <li>Tirages fine art en option</li>
+      </ul>
+      <a href="#booking" class="tarif-cta">Réserver →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="booking">
+  <div class="booking-inner">
+    <p class="section-mark">Réserver une séance</p>
+    <h2><span class="normal">Écrivez-moi.</span></h2>
+    <p class="booking-lead">Décrivez-moi en deux ou trois lignes ce que vous cherchez. Je reviens sous 48 heures pour fixer un rendez-vous d'échange — au studio ou par visio, sans engagement.</p>
+
+    <form class="booking-form">
+      <div class="form-row">
+        <label><span>Type de séance</span><select required>
+          <option>Portrait individuel</option>
+          <option>Famille / couple</option>
+          <option>Demi-journée éditoriale</option>
+          <option>Mariage</option>
+          <option>Autre — à préciser</option>
+        </select></label>
+        <label><span>Date souhaitée</span><input type="date" required /></label>
+      </div>
+      <div class="form-row">
+        <label><span>Lieu envisagé</span><input type="text" placeholder="Studio · domicile · extérieur..." /></label>
+        <label><span>Nombre de personnes</span><input type="text" placeholder="ex. 2 adultes + 1 enfant" /></label>
+      </div>
+      <div class="form-row">
+        <label><span>Nom</span><input type="text" required /></label>
+        <label><span>Téléphone</span><input type="tel" required /></label>
+      </div>
+      <label><span>Email</span><input type="email" required /></label>
+      <button type="submit">Envoyer ma demande →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Atelier</p>
+      <p class="info-content">Rue de Carouge 41<br/><em>1205 Genève · sur rdv</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 22 555 09 33<br/><em>tania@studio-reuteler.ch</em></p>
+    </div>
+    <div>
+      <p class="info-label">Réseaux</p>
+      <p class="info-content">@taniareuteler<br/><em>Instagram · 14k abonnés</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Studio Tania Reuteler · Genève · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-top, .hero h1, .hero-sub, .hero-actions',{opacity:0,y:30,duration:1.1,ease:'power3.out',stagger:.12,delay:.25});
+
+gsap.utils.toArray('.serie, .portrait, .mariages-grid .tile, .tarif, .split-text > *, .booking-form > *, .info-content').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 92%',once:true}});
+});
+
+document.querySelector('.booking-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Site de démonstration HectoWeb.\nSur votre vrai site, la demande serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+});
+</script>
+</body>
+</html>

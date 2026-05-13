@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Camille Beaulieu — Coach professionnelle · Lausanne</title>
+<meta name="description" content="Camille Beaulieu, coach professionnelle à Lausanne. Accompagnement individuel des dirigeants et entrepreneurs en transition. Séance découverte sans engagement." />
+<meta name="theme-color" content="#f0e6d8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — terra cotta chaude + crème + olive sombre + brun
+   Humain, chaleureux, asymétrique. Très différent de :
+   - restaurant (crème+bordeaux+Playfair)
+   - tatoueur (noir+rouge sang+Bebas)
+   - hub (noir+lime+Unbounded)
+   ============================================================ */
+:root{
+  --cream:#f0e6d8;
+  --cream-2:#e8dcc8;
+  --cream-3:#f7efe2;
+  --terra:#c66b3a;
+  --terra-deep:#a85427;
+  --olive:#6b6b3a;
+  --olive-deep:#52522d;
+  --brun:#5a3a28;
+  --brun-soft:#7a523b;
+  --ink:#2a1d14;
+  --muted:#8a7660;
+  --rule:rgba(90,58,40,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);
+  -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;
+}
+::selection{background:var(--terra);color:var(--cream)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1.4rem clamp(1.5rem,4vw,3.5rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,border-color .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(240,230,216,.95);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1rem;padding-bottom:1rem;
+}
+.nav-brand{
+  font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+  font-size:1.5rem;color:var(--brun);letter-spacing:-.01em;
+}
+.nav-brand strong{font-weight:500;font-style:normal;color:var(--terra)}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.76rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--brun);
+}
+.nav-links a:hover{color:var(--terra)}
+.nav-cta{
+  background:var(--terra);color:var(--cream) !important;padding:.75rem 1.5rem;
+  border-radius:999px;font-size:.7rem;letter-spacing:.28em;
+  transition:background .25s,transform .15s;
+}
+.nav-cta:hover{background:var(--terra-deep);transform:translateY(-1px)}
+@media(max-width:780px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — split asymétrique 5/7 photo+texte
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;padding-top:5rem;
+  display:grid;grid-template-columns:5fr 7fr;
+  background:var(--cream);
+}
+@media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto}}
+.hero-img{
+  position:relative;overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
+  min-height:600px;
+}
+@media(max-width:880px){.hero-img{min-height:55vh}}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(198,107,58,.05) 0%,rgba(90,58,40,.18) 100%);
+}
+.hero-text{
+  padding:clamp(4rem,7vw,7rem) clamp(2rem,5vw,5.5rem);
+  display:flex;flex-direction:column;justify-content:center;position:relative;
+}
+.hero-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--terra);
+  margin-bottom:2rem;display:inline-flex;align-items:center;gap:1rem;
+}
+.hero-eyebrow::before{content:'';width:48px;height:1px;background:var(--terra)}
+.hero h1{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(3rem,7.5vw,6rem);line-height:.98;letter-spacing:-.025em;
+  color:var(--brun);margin-bottom:2rem;
+}
+.hero h1 em{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  color:var(--terra);
+}
+.hero-tag{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(1.15rem,1.65vw,1.4rem);line-height:1.55;color:var(--olive-deep);
+  max-width:34rem;margin-bottom:3rem;
+}
+.hero-marginalia{
+  position:absolute;right:clamp(2rem,5vw,5.5rem);top:30%;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;
+  color:var(--muted);letter-spacing:.15em;
+}
+@media(max-width:1100px){.hero-marginalia{display:none}}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;
+  padding-top:2.2rem;border-top:1px solid var(--rule);
+}
+.hero-meta-item{display:flex;flex-direction:column;gap:.3rem}
+.hero-meta-label{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
+.hero-meta-value{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--brun);font-weight:500}
+.hero-cta{
+  margin-top:2.5rem;display:inline-flex;align-items:center;gap:.7rem;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:1.2rem;
+  color:var(--terra);border-bottom:1px solid var(--terra);padding-bottom:5px;
+  transition:gap .3s,color .25s;align-self:flex-start;
+}
+.hero-cta:hover{gap:1.2rem;color:var(--terra-deep)}
+
+/* ============================================================
+   APPROCHE — 3 piliers
+   ============================================================ */
+.approche{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream-3);
+  border-top:1px solid var(--rule);
+}
+.approche-inner{max-width:1200px;margin:0 auto}
+.approche-head{text-align:center;margin-bottom:5rem;position:relative}
+.approche-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.45em;
+  text-transform:uppercase;color:var(--terra);margin-bottom:1.5rem;
+}
+.approche-head h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;color:var(--brun);letter-spacing:-.02em;
+  margin-bottom:1.5rem;
+}
+.approche-head h2 em{font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--terra);font-weight:400}
+.approche-lead{
+  max-width:38rem;margin:0 auto;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:1.18rem;color:var(--olive-deep);line-height:1.65;
+}
+.approche-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3.5rem;
+  margin-top:4rem;
+}
+@media(max-width:820px){.approche-grid{grid-template-columns:1fr;gap:3rem}}
+.pilier{position:relative;padding:0 1rem}
+.pilier-num{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3.5rem;
+  color:var(--terra);line-height:.8;margin-bottom:1.2rem;font-weight:400;
+}
+.pilier-icon{
+  width:52px;height:52px;margin-bottom:1.5rem;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--terra);border-radius:50%;color:var(--terra);
+}
+.pilier h3{
+  font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+  font-size:1.85rem;color:var(--brun);margin-bottom:1rem;letter-spacing:-.01em;
+}
+.pilier p{
+  font-family:'Inter',sans-serif;font-size:1rem;color:var(--olive-deep);line-height:1.7;
+}
+
+/* ============================================================
+   PROGRAMMES
+   ============================================================ */
+.prog{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream);border-top:1px solid var(--rule);
+}
+.prog-inner{max-width:1200px;margin:0 auto}
+.prog-head{text-align:center;margin-bottom:4.5rem}
+.prog-head h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;color:var(--brun);
+  letter-spacing:-.02em;margin-bottom:1.2rem;
+}
+.prog-head h2 em{font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--terra);font-weight:400}
+.prog-lead{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1.15rem;color:var(--olive-deep)}
+.prog-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+}
+@media(max-width:880px){.prog-grid{grid-template-columns:1fr}}
+.prog-card{
+  background:var(--cream-3);padding:3rem 2.5rem;
+  border:1px solid var(--rule);transition:transform .35s,border-color .35s;
+  display:flex;flex-direction:column;
+}
+.prog-card:hover{transform:translateY(-4px);border-color:var(--terra)}
+.prog-card.featured{background:var(--brun);color:var(--cream)}
+.prog-card.featured h3,.prog-card.featured .prog-price{color:var(--cream)}
+.prog-card.featured .prog-price em{color:var(--cream-2)}
+.prog-card.featured .prog-features li{color:rgba(240,230,216,.85);border-color:rgba(240,230,216,.15)}
+.prog-card.featured .prog-tag{background:var(--terra);color:var(--cream)}
+.prog-tag{
+  align-self:flex-start;
+  background:var(--terra);color:var(--cream);
+  font-family:'Inter',sans-serif;font-size:.6rem;font-weight:500;
+  letter-spacing:.35em;text-transform:uppercase;padding:.4rem .8rem;border-radius:999px;
+  margin-bottom:1.8rem;opacity:0;
+}
+.prog-card.featured .prog-tag{opacity:1}
+.prog-card h3{
+  font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+  font-size:1.55rem;color:var(--brun);margin-bottom:1rem;line-height:1.1;
+}
+.prog-price{
+  font-family:'Fraunces',serif;font-weight:300;font-size:2.6rem;
+  color:var(--terra);line-height:1;margin-bottom:.4rem;letter-spacing:-.02em;
+}
+.prog-price em{
+  font-family:'Inter',sans-serif;font-style:normal;font-size:.78rem;
+  color:var(--muted);font-weight:500;letter-spacing:.25em;text-transform:uppercase;
+  display:block;margin-top:.5rem;
+}
+.prog-features{
+  list-style:none;margin:2rem 0;flex-grow:1;
+}
+.prog-features li{
+  font-family:'Inter',sans-serif;font-size:.92rem;color:var(--olive-deep);
+  padding:.7rem 0;border-bottom:1px dotted var(--rule);
+}
+.prog-features li:last-child{border-bottom:0}
+.prog-cta{
+  align-self:flex-start;margin-top:1rem;
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--terra);
+  border-bottom:1px solid var(--terra);padding-bottom:3px;transition:gap .25s;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.prog-card.featured .prog-cta{color:var(--cream-2);border-color:var(--cream-2)}
+.prog-cta:hover{gap:.9rem}
+
+/* ============================================================
+   TÉMOIGNAGES — 3 témoignages avec citations
+   ============================================================ */
+.temoign{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream-2);
+}
+.temoign-inner{max-width:1200px;margin:0 auto}
+.temoign-head{text-align:center;margin-bottom:5rem}
+.temoign-head h2{
+  font-family:'Fraunces',serif;font-weight:300;font-style:italic;
+  font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.05;color:var(--brun);letter-spacing:-.015em;
+}
+.temoign-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;
+}
+@media(max-width:880px){.temoign-grid{grid-template-columns:1fr;gap:3rem}}
+.temoign-card{
+  background:var(--cream-3);padding:2.5rem;border-left:3px solid var(--terra);
+  display:flex;flex-direction:column;
+}
+.temoign-quote-mark{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3.5rem;
+  color:var(--terra);line-height:.8;margin-bottom:1rem;
+}
+.temoign-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:1.2rem;line-height:1.55;color:var(--brun);
+  margin-bottom:2rem;flex-grow:1;
+}
+.temoign-author{
+  display:flex;align-items:center;gap:1rem;padding-top:1.5rem;border-top:1px solid var(--rule);
+}
+.temoign-avatar{
+  width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;
+  flex-shrink:0;
+}
+.temoign-name{font-family:'Fraunces',serif;font-weight:500;font-size:1rem;color:var(--brun)}
+.temoign-role{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted)}
+
+/* ============================================================
+   PARCOURS — split: photo + bio
+   ============================================================ */
+.parcours{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  background:var(--cream);min-height:80vh;
+}
+@media(max-width:880px){.parcours{grid-template-columns:1fr}}
+.parcours-img{
+  background:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1400&q=85') center/cover no-repeat;
+  min-height:500px;filter:saturate(.95);
+}
+.parcours-text{
+  padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,6rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.parcours-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.45em;
+  text-transform:uppercase;color:var(--terra);margin-bottom:2rem;
+}
+.parcours-text h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(2.4rem,5vw,3.8rem);line-height:1;color:var(--brun);
+  margin-bottom:.5rem;letter-spacing:-.02em;
+}
+.parcours-text h2 em{font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--terra);font-weight:400}
+.parcours-role{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;
+  color:var(--olive);margin-bottom:2.5rem;
+}
+.parcours-text p{
+  font-family:'Inter',sans-serif;color:var(--olive-deep);font-size:1.02rem;line-height:1.85;
+  margin-bottom:1.3rem;max-width:38rem;
+}
+.parcours-creds{
+  margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--rule);
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+}
+.parcours-cred-label{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.parcours-cred-value{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--brun);font-weight:500}
+
+/* ============================================================
+   BLOG / RESSOURCES
+   ============================================================ */
+.blog{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream-3);border-top:1px solid var(--rule);
+}
+.blog-inner{max-width:1200px;margin:0 auto}
+.blog-head{margin-bottom:4rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem}
+.blog-head h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.05;color:var(--brun);letter-spacing:-.02em;
+}
+.blog-head h2 em{font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--terra);font-weight:400}
+.blog-head-link{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--terra);
+  border-bottom:1px solid var(--terra);padding-bottom:3px;
+}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+@media(max-width:880px){.blog-grid{grid-template-columns:1fr;gap:3rem}}
+.blog-card{border-top:1px solid var(--rule);padding-top:2rem;transition:transform .35s}
+.blog-card:hover{transform:translateY(-3px)}
+.blog-card-cat{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--terra);margin-bottom:1.2rem}
+.blog-card h3{
+  font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+  font-size:1.55rem;color:var(--brun);margin-bottom:1.2rem;line-height:1.2;letter-spacing:-.005em;
+}
+.blog-card p{font-family:'Inter',sans-serif;font-size:.95rem;color:var(--olive-deep);line-height:1.7;margin-bottom:1.5rem}
+.blog-card-meta{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;color:var(--muted)}
+
+/* ============================================================
+   BOOKING — formulaire séance découverte
+   ============================================================ */
+.booking{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream);
+  position:relative;
+}
+.booking-inner{max-width:780px;margin:0 auto;text-align:center}
+.booking-eyebrow{font-family:'Inter',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--terra);margin-bottom:1.5rem}
+.booking h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(2.3rem,5vw,4rem);line-height:1;color:var(--brun);letter-spacing:-.02em;
+  margin-bottom:1.5rem;
+}
+.booking h2 em{font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--terra);font-weight:400}
+.booking-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--olive-deep);margin-bottom:4rem;line-height:1.5}
+
+.booking-form{display:flex;flex-direction:column;gap:1.5rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.booking-form label{display:flex;flex-direction:column;gap:.5rem}
+.booking-form span{
+  font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--muted);
+}
+.booking-form input,.booking-form select,.booking-form textarea{
+  background:transparent;border:0;border-bottom:1px solid var(--rule);
+  padding:.9rem .25rem;color:var(--ink);font-family:'Fraunces',serif;font-size:1.05rem;
+  outline:0;transition:border-color .2s;font-weight:400;
+}
+.booking-form textarea{resize:vertical;min-height:90px;line-height:1.6}
+.booking-form input:focus,.booking-form select:focus,.booking-form textarea:focus{border-color:var(--terra)}
+.booking-form button{
+  align-self:center;margin-top:2.5rem;min-width:280px;
+  padding:1.1rem 2.2rem;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;
+  background:var(--terra);color:var(--cream);border-radius:999px;
+  transition:background .25s,transform .15s;
+}
+.booking-form button:hover{background:var(--terra-deep);transform:translateY(-2px)}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4rem);background:var(--cream-2);
+  border-top:1px solid var(--rule);
+}
+.infos-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center;
+}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
+.info-label{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--terra);margin-bottom:1.2rem}
+.info-content{font-family:'Fraunces',serif;font-weight:500;font-size:1.15rem;color:var(--brun);line-height:1.6}
+.info-content em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);display:block;margin-top:.3rem;font-size:1rem;font-weight:400}
+
+/* ============================================================
+   HW CTA (palette HW noir+or — verbatim)
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--cream);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--muted);font-size:.85rem;font-family:'Cormorant Garamond',serif;font-style:italic}
+.footer-inner a{color:var(--terra)}
+
+.reveal{opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- HectoWeb strip -->
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Camille <strong>Beaulieu</strong></a>
+  <ul class="nav-links">
+    <li><a href="#approche">Approche</a></li>
+    <li><a href="#prog">Programmes</a></li>
+    <li><a href="#temoign">Témoignages</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#booking" class="nav-cta">Séance découverte</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-text">
+    <p class="hero-eyebrow">Coach professionnelle · Lausanne</p>
+    <h1>Avancer<br/>quand tout vous<br/><em>retient.</em></h1>
+    <p class="hero-tag">Coaching individuel pour dirigeants et entrepreneurs en transition. Décisions difficiles, changements de cap, reconstruction après l'épuisement — vous n'avez plus à le porter seul·e.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Cabinet</span><span class="hero-meta-value">Place de la Gare</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Modalité</span><span class="hero-meta-value">Présentiel · Visio</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Certification</span><span class="hero-meta-value">ICF PCC</span></div>
+    </div>
+    <a href="#booking" class="hero-cta">Réserver une séance découverte →</a>
+    <span class="hero-marginalia">« le mouvement avant la certitude »</span>
+  </div>
+</header>
+
+<!-- APPROCHE -->
+<section id="approche" class="approche">
+  <div class="approche-inner">
+    <div class="approche-head">
+      <p class="approche-eyebrow">— Mon approche</p>
+      <h2>Trois temps,<br/>une <em>même</em> direction.</h2>
+      <p class="approche-lead">Pas de méthode magique. Pas de promesse de transformation en dix séances. Juste un cadre clair, une écoute honnête, et le temps qu'il faut pour que <em>vous</em> trouviez votre propre mouvement.</p>
+    </div>
+    <div class="approche-grid">
+      <div class="pilier">
+        <div class="pilier-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </div>
+        <p class="pilier-num">i.</p>
+        <h3>Écoute</h3>
+        <p>Pendant les premières séances, je n'apporte presque rien. J'écoute ce que vous racontez, et ce que vous évitez de raconter. La transformation commence quand on accepte de voir clair sur la situation présente.</p>
+      </div>
+      <div class="pilier">
+        <div class="pilier-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+        </div>
+        <p class="pilier-num">ii.</p>
+        <h3>Stratégie</h3>
+        <p>Une fois la situation cartographiée, on commence à dessiner. Pas un plan rigide — une boussole. Des hypothèses à tester, des options à explorer, des angles morts à éclairer.</p>
+      </div>
+      <div class="pilier">
+        <div class="pilier-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <p class="pilier-num">iii.</p>
+        <h3>Action</h3>
+        <p>L'action arrive seule, presque sans effort, une fois que le travail intérieur a été fait. On ajuste, on regarde ce que ça produit, on continue. Le coaching s'arrête quand vous n'en avez plus besoin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES -->
+<section id="prog" class="prog">
+  <div class="prog-inner">
+    <div class="prog-head">
+      <h2>Trois <em>formats</em>, selon votre moment.</h2>
+      <p class="prog-lead">Une séance, une transition, un accompagnement profond. À vous de choisir.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog-card">
+        <span class="prog-tag">—</span>
+        <h3>Séance découverte</h3>
+        <p class="prog-price">180 CHF<em>1 séance · 60 min</em></p>
+        <ul class="prog-features">
+          <li>Cadrage de votre situation</li>
+          <li>Premières clarifications</li>
+          <li>Recommandation de format adapté</li>
+          <li>Sans engagement de suite</li>
+        </ul>
+        <a href="#booking" class="prog-cta">Réserver →</a>
+      </div>
+      <div class="prog-card featured">
+        <span class="prog-tag">Le plus choisi</span>
+        <h3>Programme transition</h3>
+        <p class="prog-price">1'480 CHF<em>6 séances · sur 3 mois</em></p>
+        <ul class="prog-features">
+          <li>Bilan complet de la situation</li>
+          <li>Travail sur 2-3 axes prioritaires</li>
+          <li>Outils &amp; cadres entre séances</li>
+          <li>Échanges écrits inclus</li>
+          <li>Bilan final &amp; suite recommandée</li>
+        </ul>
+        <a href="#booking" class="prog-cta">Réserver →</a>
+      </div>
+      <div class="prog-card">
+        <span class="prog-tag">—</span>
+        <h3>Accompagnement leadership</h3>
+        <p class="prog-price">3'900 CHF<em>3 mois · sur mesure</em></p>
+        <ul class="prog-features">
+          <li>10 à 12 séances rapprochées</li>
+          <li>Travail postural &amp; stratégique</li>
+          <li>Sessions intercalées en équipe</li>
+          <li>Disponibilité prioritaire</li>
+          <li>Suivi sur 3 mois après le programme</li>
+        </ul>
+        <a href="#booking" class="prog-cta">Réserver →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section id="temoign" class="temoign">
+  <div class="temoign-inner">
+    <div class="temoign-head">
+      <h2>Ce qu'<em>ils</em> en disent.</h2>
+    </div>
+    <div class="temoign-grid">
+      <div class="temoign-card">
+        <p class="temoign-quote-mark">“</p>
+        <p class="temoign-quote">Camille m'a aidée à prendre la décision la plus difficile de ma carrière. Sans jamais me dire quoi faire — juste en me donnant l'espace d'y voir clair.</p>
+        <div class="temoign-author">
+          <div class="temoign-avatar" style="background-image:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=85')"></div>
+          <div>
+            <p class="temoign-name">Sarah K.</p>
+            <p class="temoign-role">Directrice marketing</p>
+          </div>
+        </div>
+      </div>
+      <div class="temoign-card">
+        <p class="temoign-quote-mark">“</p>
+        <p class="temoign-quote">Six séances pour défaire dix ans de pilotage automatique. Je sors avec un cap, des outils, et surtout l'énergie que je croyais avoir perdue.</p>
+        <div class="temoign-author">
+          <div class="temoign-avatar" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=85')"></div>
+          <div>
+            <p class="temoign-name">Julien M.</p>
+            <p class="temoign-role">Fondateur SaaS</p>
+          </div>
+        </div>
+      </div>
+      <div class="temoign-card">
+        <p class="temoign-quote-mark">“</p>
+        <p class="temoign-quote">Après l'épuisement professionnel, j'avais besoin de quelqu'un qui ne me bouscule pas mais ne me laisse pas non plus stagner. Camille a trouvé ce point d'équilibre.</p>
+        <div class="temoign-author">
+          <div class="temoign-avatar" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=85')"></div>
+          <div>
+            <p class="temoign-name">Anouk D.</p>
+            <p class="temoign-role">Avocate associée</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section id="parcours" class="parcours">
+  <div class="parcours-img"></div>
+  <div class="parcours-text">
+    <p class="parcours-eyebrow">— Mon parcours</p>
+    <h2>Camille <em>Beaulieu</em></h2>
+    <p class="parcours-role">Coach professionnelle, certifiée ICF PCC</p>
+    <p>Quinze ans en entreprise avant de devenir coach. J'ai porté des fonctions de direction marketing puis générale, dans des sociétés où chaque trimestre comptait. J'ai connu la pression, les arbitrages impossibles, les nuits sans sommeil. Je sais d'où je parle quand je travaille avec des dirigeants.</p>
+    <p>J'ai quitté ce monde en 2018 après une transition difficile que j'ai conduite seule — et qui m'a appris l'importance d'être accompagnée. Depuis, je consacre toute mon énergie à offrir l'accompagnement que j'aurais voulu avoir.</p>
+    <div class="parcours-creds">
+      <div>
+        <p class="parcours-cred-label">Certifications</p>
+        <p class="parcours-cred-value">ICF PCC · Coactive</p>
+      </div>
+      <div>
+        <p class="parcours-cred-label">Approches</p>
+        <p class="parcours-cred-value">Process Communication · Systémique</p>
+      </div>
+      <div>
+        <p class="parcours-cred-label">Depuis</p>
+        <p class="parcours-cred-value">2019 · 180+ clients</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog">
+  <div class="blog-inner">
+    <div class="blog-head">
+      <h2>Quelques <em>ressources</em><br/>pour avancer seul·e.</h2>
+      <a href="#" class="blog-head-link">Tous les articles →</a>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-card">
+        <p class="blog-card-cat">— Décision</p>
+        <h3>Quand savoir qu'il faut partir.</h3>
+        <p>On reste toujours trop longtemps. Pas par lâcheté — par loyauté. Voici trois signaux que mes clients confondent souvent avec « ce n'est pas si grave ».</p>
+        <p class="blog-card-meta">Lecture 7 minutes</p>
+      </article>
+      <article class="blog-card">
+        <p class="blog-card-cat">— Identité</p>
+        <h3>Le syndrome de l'imposteur, vraiment ?</h3>
+        <p>Ce qu'on appelle imposteur est souvent autre chose : un désalignement entre ce qu'on fait et ce qu'on est. La cause n'est pas en vous — elle est dans la situation.</p>
+        <p class="blog-card-meta">Lecture 9 minutes</p>
+      </article>
+      <article class="blog-card">
+        <p class="blog-card-cat">— Action</p>
+        <h3>Décider sans regret.</h3>
+        <p>Le regret n'est pas dans la décision, il est dans l'absence de processus de décision. Quatre questions à se poser avant un choix structurant, pour s'épargner les ruminations.</p>
+        <p class="blog-card-meta">Lecture 6 minutes</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking" class="booking">
+  <div class="booking-inner">
+    <p class="booking-eyebrow">— Séance découverte</p>
+    <h2>On en <em>parle</em> ?</h2>
+    <p class="booking-lead">Une heure, sans engagement. Vous me racontez où vous en êtes, on regarde ensemble si je peux vous être utile.</p>
+
+    <form class="booking-form">
+      <label><span>Quel est votre objectif de coaching ?</span><input type="text" placeholder="Ex. transition de poste, prise de décision, leadership..." required /></label>
+      <label><span>Décrivez brièvement votre situation actuelle</span><textarea placeholder="Quelques lignes suffisent — on creusera ensemble." required></textarea></label>
+      <div class="form-row">
+        <label><span>Nom &amp; prénom</span><input type="text" required /></label>
+        <label><span>Téléphone</span><input type="tel" required /></label>
+      </div>
+      <label><span>Email</span><input type="email" required /></label>
+      <button type="submit">Demander une séance découverte →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Cabinet</p>
+      <p class="info-content">Place de la Gare 4<br/><em>1003 Lausanne, Suisse</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 21 555 78 04<br/><em>contact@camillebeaulieu.ch</em></p>
+    </div>
+    <div>
+      <p class="info-label">Modalité</p>
+      <p class="info-content">Sur rendez-vous<br/><em>Présentiel ou visio Zoom</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Camille Beaulieu · Lausanne · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.6</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.utils.toArray('.pilier, .prog-card, .temoign-card, .blog-card, .parcours-text > *, .info-content').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+});
+
+gsap.from('.hero-text > *',{opacity:0,y:30,duration:1,ease:'power3.out',stagger:.08,delay:.2});
+gsap.from('.hero-img',{opacity:0,scale:1.04,duration:1.4,ease:'power3.out',delay:.1});
+
+document.querySelector('.booking-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Site de démonstration HectoWeb.\nSur votre vrai site, la demande de séance découverte serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+});
+</script>
+</body>
+</html>

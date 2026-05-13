@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Hôtel du Cygne — Hôtel boutique 4★ face au Léman · Montreux</title>
+<meta name="description" content="Hôtel du Cygne, boutique-hôtel 4 étoiles à Montreux, face au lac Léman. Suites avec vue, restaurant gastronomique, spa, expériences sur-mesure." />
+<meta name="theme-color" content="#e8dcc8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Italiana&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Fraunces:ital,wght@0,300;1,300&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — sable chaud + brun chocolat profond + or vieux
+   Warm-rich, vieille bourgeoisie suisse moderne
+   ============================================================ */
+:root{
+  --sand:#e8dcc8;
+  --sand-2:#dfd0b7;
+  --sand-3:#d4c3a4;
+  --choco:#4a3525;
+  --choco-2:#3a2a1d;
+  --choco-3:#2c1f15;
+  --gold-old:#b8915c;
+  --gold-deep:#9a774a;
+  --gold-light:#cea876;
+  --ivory:#faf4e8;
+  --muted:#8a7a64;
+  --rule:rgba(74,53,37,.18);
+  --rule-dark:rgba(232,220,200,.16);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--choco);background:var(--sand);
+  -webkit-font-smoothing:antialiased;line-height:1.75;overflow-x:hidden;
+}
+::selection{background:var(--choco);color:var(--ivory)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{position:fixed;top:0;left:0;right:0;z-index:60;background:#0a0a0c;border-bottom:1px solid #e3c789;font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV — fond ivoire warm
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1.5rem clamp(1.5rem,4vw,3.5rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,padding .3s,border-color .35s;
+}
+.nav.scrolled{
+  background:rgba(232,220,200,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1rem;padding-bottom:1rem;
+}
+.nav-brand{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:1.7rem;color:var(--choco);letter-spacing:.05em;
+}
+.nav-brand .du{font-family:'Lora',serif;font-style:italic;font-size:.85em;color:var(--gold-deep);margin:0 .2em}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--choco);opacity:.7;
+}
+.nav-links a:hover{color:var(--gold-deep);opacity:1}
+.nav-cta{
+  background:var(--choco);color:var(--ivory) !important;padding:.7rem 1.4rem;
+  font-size:.68rem;letter-spacing:.3em;border-radius:2px;opacity:1 !important;
+  transition:background .25s,transform .15s;
+}
+.nav-cta:hover{background:var(--gold-deep);color:var(--ivory) !important;transform:translateY(-1px)}
+@media(max-width:880px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — panorama lac plein écran, wordmark centré
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:7rem clamp(1.5rem,4vw,3rem) 5rem;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(180deg,rgba(74,53,37,.3) 0%,rgba(74,53,37,.1) 35%,rgba(232,220,200,.0) 60%,rgba(74,53,37,.6) 100%),
+    url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2400&q=85') center/cover no-repeat;
+  filter:saturate(1.05) contrast(1.03);
+}
+.hero-top{
+  position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;
+}
+.hero-top-stars{
+  font-family:'Italiana',serif;font-size:1.5rem;color:var(--gold-light);letter-spacing:.3em;
+}
+.hero-top-info{
+  font-family:'Lora',serif;font-style:italic;font-size:1rem;color:var(--ivory);text-align:right;
+  text-shadow:0 1px 6px rgba(0,0,0,.3);
+}
+.hero-top-info b{font-weight:600;font-style:normal;color:var(--gold-light)}
+
+.hero-bottom{position:relative;z-index:2;text-align:center}
+.hero-pretitle{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--gold-light);
+  margin-bottom:2rem;display:inline-flex;align-items:center;gap:1.2rem;
+}
+.hero-pretitle::before,.hero-pretitle::after{content:'';width:50px;height:1px;background:var(--gold-light)}
+
+.hero-wordmark{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(3rem,10vw,9rem);line-height:.95;letter-spacing:.02em;
+  color:var(--ivory);margin-bottom:1rem;
+  text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+.hero-wordmark .du{font-family:'Lora',serif;font-style:italic;color:var(--gold-light);font-size:.65em;margin:0 .15em;font-weight:400}
+.hero-tag{
+  font-family:'Lora',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.55;color:var(--ivory);
+  text-shadow:0 1px 8px rgba(0,0,0,.35);
+  max-width:38rem;margin:0 auto 3rem;
+}
+.hero-cta-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:1.1rem 2rem;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.35em;text-transform:uppercase;
+  background:var(--ivory);color:var(--choco);border-radius:2px;
+  transition:background .25s,transform .15s;
+}
+.hero-cta:hover{background:var(--gold-light);transform:translateY(-2px)}
+.hero-cta.alt{
+  background:transparent;color:var(--ivory);border:1px solid var(--ivory);
+}
+.hero-cta.alt:hover{background:var(--ivory);color:var(--choco)}
+
+/* ============================================================
+   SUITES — 4 chambres en grille
+   ============================================================ */
+.suites{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--sand);
+}
+.suites-head{max-width:900px;margin:0 auto 5rem;text-align:center}
+.s-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.5em;
+  text-transform:uppercase;color:var(--gold-deep);margin-bottom:1.5rem;
+}
+.suites-head h2{
+  font-family:'Lora',serif;font-weight:500;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;color:var(--choco);letter-spacing:-.01em;
+  margin-bottom:1.5rem;
+}
+.suites-head h2 em{font-style:italic;color:var(--gold-deep);font-weight:400}
+.suites-head p{font-family:'Lora',serif;font-style:italic;color:var(--choco);opacity:.7;font-size:1.15rem;line-height:1.6}
+
+.suites-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;
+}
+@media(max-width:780px){.suites-grid{grid-template-columns:1fr}}
+.suite{
+  background:var(--ivory);border:1px solid var(--rule);
+  overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+}
+.suite:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(74,53,37,.12)}
+.suite-img{
+  width:100%;aspect-ratio:16/10;
+  background-size:cover;background-position:center;
+}
+.suite-body{padding:2.2rem 2.2rem}
+.suite-cat{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;color:var(--gold-deep);letter-spacing:.4em;text-transform:uppercase;margin-bottom:.7rem}
+.suite-name{font-family:'Lora',serif;font-weight:500;font-size:1.7rem;color:var(--choco);margin-bottom:.6rem;letter-spacing:-.005em}
+.suite-name em{font-style:italic;color:var(--gold-deep);font-weight:400}
+.suite-desc{font-family:'Lora',serif;color:var(--choco);opacity:.75;font-size:1rem;line-height:1.7;margin-bottom:1.5rem}
+.suite-foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.3rem;border-top:1px solid var(--rule)}
+.suite-price{font-family:'Lora',serif;color:var(--choco);font-size:1.05rem}
+.suite-price b{font-weight:600;color:var(--gold-deep);font-size:1.25rem;font-style:italic}
+.suite-link{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--choco);border-bottom:1px solid var(--choco);padding-bottom:2px;
+}
+.suite-link:hover{color:var(--gold-deep);border-color:var(--gold-deep)}
+
+/* ============================================================
+   RESTAURANT — split image+texte, ambiance gastronomique
+   ============================================================ */
+.resto{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  background:var(--choco);color:var(--ivory);min-height:90vh;
+}
+@media(max-width:880px){.resto{grid-template-columns:1fr}}
+.resto-img{
+  background:url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+  min-height:600px;filter:saturate(.95);
+}
+.resto-text{
+  padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,6rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.resto-text .s-eyebrow{color:var(--gold-light);margin-bottom:2rem}
+.resto-text h2{
+  font-family:'Lora',serif;font-weight:500;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1.05;color:var(--ivory);
+  margin-bottom:2rem;letter-spacing:-.01em;
+}
+.resto-text h2 em{font-style:italic;color:var(--gold-light);font-weight:400}
+.resto-text p{font-family:'Lora',serif;color:var(--ivory);opacity:.85;font-size:1.1rem;line-height:1.85;margin-bottom:1.4rem;max-width:36rem}
+.resto-stats{
+  margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--rule-dark);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+}
+.resto-stat{display:flex;flex-direction:column;gap:.3rem}
+.resto-stat-num{font-family:'Italiana',serif;font-size:2.8rem;color:var(--gold-light);line-height:1}
+.resto-stat-label{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--ivory);opacity:.7}
+
+/* ============================================================
+   SPA — section apaisante, fond sand 2, photo grande
+   ============================================================ */
+.spa{
+  display:grid;grid-template-columns:1fr 1.1fr;
+  background:var(--sand-2);min-height:80vh;
+}
+@media(max-width:880px){.spa{grid-template-columns:1fr}}
+.spa-text{
+  padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,6rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.spa-text h2{
+  font-family:'Lora',serif;font-weight:500;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1.05;color:var(--choco);
+  margin-bottom:2rem;letter-spacing:-.01em;
+}
+.spa-text h2 em{font-style:italic;color:var(--gold-deep);font-weight:400}
+.spa-text p{font-family:'Lora',serif;color:var(--choco);opacity:.78;font-size:1.1rem;line-height:1.85;margin-bottom:1.4rem;max-width:36rem}
+.spa-list{
+  margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem;
+  font-family:'Lora',serif;font-style:italic;color:var(--choco);font-size:1.05rem;
+}
+.spa-list li{display:flex;align-items:center;gap:1rem;list-style:none}
+.spa-list li::before{content:'❋';color:var(--gold-deep);font-style:normal}
+.spa-img{
+  background:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+  min-height:600px;
+}
+
+/* ============================================================
+   EXPÉRIENCES — 3 cards escapades
+   ============================================================ */
+.experiences{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--sand);
+}
+.exp-head{max-width:900px;margin:0 auto 5rem;text-align:center}
+.exp-head h2{
+  font-family:'Lora',serif;font-weight:500;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;color:var(--choco);
+}
+.exp-head h2 em{font-style:italic;color:var(--gold-deep);font-weight:400}
+.exp-head p{font-family:'Lora',serif;font-style:italic;color:var(--choco);opacity:.7;font-size:1.15rem;line-height:1.6;margin-top:1.5rem}
+
+.exp-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;
+}
+@media(max-width:880px){.exp-grid{grid-template-columns:1fr}}
+.experience{
+  background:var(--ivory);border:1px solid var(--rule);
+  display:flex;flex-direction:column;
+  transition:transform .3s,box-shadow .3s;
+}
+.experience:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(74,53,37,.12)}
+.exp-img{
+  width:100%;aspect-ratio:4/3;
+  background-size:cover;background-position:center;
+}
+.exp-body{padding:2rem;flex:1;display:flex;flex-direction:column}
+.exp-tag{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;color:var(--gold-deep);letter-spacing:.4em;text-transform:uppercase;margin-bottom:.7rem}
+.experience h3{font-family:'Lora',serif;font-weight:500;font-size:1.5rem;color:var(--choco);margin-bottom:.8rem;line-height:1.2}
+.experience h3 em{font-style:italic;color:var(--gold-deep);font-weight:400}
+.experience p{font-family:'Lora',serif;color:var(--choco);opacity:.75;font-size:.98rem;line-height:1.7;margin-bottom:1.5rem;flex:1}
+.exp-foot{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--rule)}
+.exp-duration{font-family:'Inter',sans-serif;font-size:.7rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+.exp-price{font-family:'Lora',serif;font-style:italic;color:var(--gold-deep);font-weight:600;font-size:1.05rem}
+
+/* ============================================================
+   RÉSERVER — formulaire booking
+   ============================================================ */
+.reserve{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--choco);color:var(--ivory);text-align:center;
+}
+.reserve-inner{max-width:780px;margin:0 auto}
+.reserve h2{
+  font-family:'Lora',serif;font-weight:500;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;color:var(--ivory);
+  margin-bottom:1.5rem;letter-spacing:-.01em;
+}
+.reserve h2 em{font-style:italic;color:var(--gold-light);font-weight:400}
+.reserve-lead{font-family:'Lora',serif;font-style:italic;font-size:1.2rem;color:var(--ivory);opacity:.85;margin-bottom:4rem;line-height:1.6}
+
+.reserve-form{display:flex;flex-direction:column;gap:1.8rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.8rem}
+@media(max-width:680px){.form-row,.form-row-3{grid-template-columns:1fr}}
+.reserve-form label{display:flex;flex-direction:column;gap:.6rem}
+.reserve-form span{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-light)}
+.reserve-form input,.reserve-form select,.reserve-form textarea{
+  background:rgba(232,220,200,.06);border:1px solid var(--rule-dark);
+  padding:.95rem 1rem;color:var(--ivory);font-family:'Lora',serif;font-size:1rem;
+  outline:0;transition:border-color .2s,background .2s;
+}
+.reserve-form input:focus,.reserve-form select:focus,.reserve-form textarea:focus{border-color:var(--gold-light);background:rgba(232,220,200,.1)}
+.reserve-form select{color:var(--ivory)}
+.reserve-form select option{background:var(--choco);color:var(--ivory)}
+.reserve-form button{
+  align-self:center;margin-top:2rem;min-width:320px;
+  padding:1.15rem 2.2rem;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.35em;text-transform:uppercase;
+  background:var(--gold-light);color:var(--choco);border-radius:2px;
+  transition:background .25s,transform .15s;
+}
+.reserve-form button:hover{background:var(--ivory);transform:translateY(-2px)}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4rem);
+  background:var(--sand-2);border-top:1px solid var(--rule);
+}
+.infos-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center;
+}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
+.info-label{font-family:'Inter',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:1.2rem}
+.info-content{font-family:'Lora',serif;font-weight:500;font-size:1.15rem;color:var(--choco);line-height:1.6}
+.info-content em{font-family:'Lora',serif;font-style:italic;color:var(--choco);opacity:.6;display:block;margin-top:.3rem;font-size:.95rem;font-weight:400}
+
+/* ============================================================
+   HW CTA
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--sand);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--choco);opacity:.65;font-size:.82rem;font-family:'Lora',serif;font-style:italic}
+.footer-inner a{color:var(--gold-deep)}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Hôtel <span class="du">du</span> Cygne</a>
+  <ul class="nav-links">
+    <li><a href="#suites">Suites</a></li>
+    <li><a href="#resto">Restaurant</a></li>
+    <li><a href="#spa">Spa</a></li>
+    <li><a href="#experiences">Expériences</a></li>
+    <li><a href="#reserve" class="nav-cta">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-top">
+    <div class="hero-top-stars">★ ★ ★ ★</div>
+    <p class="hero-top-info"><b>Montreux</b> · face au lac Léman<br/>Ouvert toute l'année</p>
+  </div>
+
+  <div class="hero-bottom">
+    <p class="hero-pretitle">Boutique-hôtel quatre étoiles</p>
+    <h1 class="hero-wordmark">Hôtel <span class="du">du</span><br/>Cygne</h1>
+    <p class="hero-tag">Une maison de famille face au Léman, vingt-quatre chambres et suites, restaurant gastronomique et spa privé. Depuis 1923.</p>
+    <div class="hero-cta-group">
+      <a href="#reserve" class="hero-cta">Réserver un séjour →</a>
+      <a href="#suites" class="hero-cta alt">Découvrir les suites</a>
+    </div>
+  </div>
+</header>
+
+<!-- SUITES -->
+<section id="suites" class="suites">
+  <div class="suites-head">
+    <p class="s-eyebrow">— Nos chambres &amp; suites</p>
+    <h2>Vingt-quatre clés.<br/>Aucune <em>identique</em>.</h2>
+    <p>Chaque chambre a été dessinée comme une pièce unique — moulures d'origine, parquets anciens, mobilier sur-mesure, vue sur le lac ou sur le parc.</p>
+  </div>
+
+  <div class="suites-grid">
+    <div class="suite">
+      <div class="suite-img" style="background-image:url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1400&q=85')"></div>
+      <div class="suite-body">
+        <p class="suite-cat">Catégorie · Classique</p>
+        <h3 class="suite-name">Chambre <em>Classique</em></h3>
+        <p class="suite-desc">22 m², vue jardin, lit king-size, salle de bain marbre. L'art de l'essentiel suisse — pour un séjour court mais raffiné.</p>
+        <div class="suite-foot">
+          <p class="suite-price"><b>dès 280</b> CHF / nuit</p>
+          <a href="#reserve" class="suite-link">Réserver →</a>
+        </div>
+      </div>
+    </div>
+    <div class="suite">
+      <div class="suite-img" style="background-image:url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1400&q=85')"></div>
+      <div class="suite-body">
+        <p class="suite-cat">Catégorie · Junior Suite</p>
+        <h3 class="suite-name">Junior Suite <em>Léman</em></h3>
+        <p class="suite-desc">36 m², coin salon, balcon plein sud sur le lac. Le compromis idéal entre chambre généreuse et suite complète.</p>
+        <div class="suite-foot">
+          <p class="suite-price"><b>dès 420</b> CHF / nuit</p>
+          <a href="#reserve" class="suite-link">Réserver →</a>
+        </div>
+      </div>
+    </div>
+    <div class="suite">
+      <div class="suite-img" style="background-image:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=85')"></div>
+      <div class="suite-body">
+        <p class="suite-cat">Catégorie · Suite Lac</p>
+        <h3 class="suite-name">Suite <em>Lac</em></h3>
+        <p class="suite-desc">52 m², chambre séparée, vaste terrasse privée surplombant le lac, baignoire face à la vue. Pour les séjours mémorables.</p>
+        <div class="suite-foot">
+          <p class="suite-price"><b>dès 680</b> CHF / nuit</p>
+          <a href="#reserve" class="suite-link">Réserver →</a>
+        </div>
+      </div>
+    </div>
+    <div class="suite">
+      <div class="suite-img" style="background-image:url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1400&q=85')"></div>
+      <div class="suite-body">
+        <p class="suite-cat">Catégorie · Présidentielle</p>
+        <h3 class="suite-name">Suite <em>Présidentielle</em></h3>
+        <p class="suite-desc">95 m², deux chambres, salon de réception, terrasse de 30 m², majordome dédié. Le sommet de l'hospitalité montreusienne.</p>
+        <div class="suite-foot">
+          <p class="suite-price"><b>dès 1 480</b> CHF / nuit</p>
+          <a href="#reserve" class="suite-link">Réserver →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANT -->
+<section id="resto" class="resto">
+  <div class="resto-img"></div>
+  <div class="resto-text">
+    <p class="s-eyebrow">— Restaurant gastronomique</p>
+    <h2>La table d'<em>Augustin Mercier</em></h2>
+    <p>Notre chef Augustin Mercier, formé chez Boyer et passé par le Beau-Rivage Palace, propose chaque soir un menu unique en sept services. Cuisine ancrée dans le terroir lémanique — poissons du lac, légumes de Lavaux, fromages d'alpage — et précise comme une horlogerie suisse.</p>
+    <p>Table d'hôte limitée à vingt-quatre couverts. Réservation conseillée plusieurs jours à l'avance, surtout en haute saison. Menu végétarien sur demande, accord vins suisses inclus.</p>
+    <div class="resto-stats">
+      <div class="resto-stat"><span class="resto-stat-num">7</span><span class="resto-stat-label">Services</span></div>
+      <div class="resto-stat"><span class="resto-stat-num">24</span><span class="resto-stat-label">Couverts</span></div>
+      <div class="resto-stat"><span class="resto-stat-num">16</span><span class="resto-stat-label">/20 GaultMillau</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPA -->
+<section id="spa" class="spa">
+  <div class="spa-text">
+    <p class="s-eyebrow">— Spa &amp; bien-être</p>
+    <h2>Un <em>spa privé</em><br/>au sous-sol voûté.</h2>
+    <p>Sous les voûtes d'origine de la cave à vins, un spa de 320 m² entièrement dédié à nos hôtes — piscine intérieure chauffée, hammam vapeur, sauna finlandais, cabines de soins privatives.</p>
+    <p>Carte de soins signature développée avec une maison genevoise, à base de plantes alpines et d'huiles essentielles vaudoises. Réservation gratuite pour les résidents.</p>
+    <ul class="spa-list">
+      <li>Piscine intérieure 14 m, eau à 32°</li>
+      <li>Hammam, sauna, douches sensorielles</li>
+      <li>Quatre cabines de soins privatives</li>
+      <li>Massages signature 60 / 90 / 120 min</li>
+      <li>Coach yoga &amp; pilates sur rendez-vous</li>
+    </ul>
+  </div>
+  <div class="spa-img"></div>
+</section>
+
+<!-- EXPÉRIENCES -->
+<section id="experiences" class="experiences">
+  <div class="exp-head">
+    <p class="s-eyebrow">— Escapades signature</p>
+    <h2>Trois <em>expériences</em><br/>signées Cygne.</h2>
+    <p>Pour celles et ceux qui veulent prolonger l'expérience au-delà des murs — nos concierges organisent ces escapades sur-mesure, pour vous, pendant votre séjour.</p>
+  </div>
+
+  <div class="exp-grid">
+    <article class="experience">
+      <div class="exp-img" style="background-image:url('https://images.unsplash.com/photo-1505144808419-1957a94ca61e?auto=format&fit=crop&w=1200&q=85')"></div>
+      <div class="exp-body">
+        <p class="exp-tag">Lac · Bateau privé</p>
+        <h3>Croisière privée <em>sur le Léman</em></h3>
+        <p>Quatre heures à bord d'un Riva en bois précieux, route au gré de l'envie : Vevey, Saint-Saphorin, Lavaux. Pilote, apéritif, plaid au bout du pont.</p>
+        <div class="exp-foot">
+          <span class="exp-duration">4 h</span>
+          <span class="exp-price">dès 980 CHF</span>
+        </div>
+      </div>
+    </article>
+    <article class="experience">
+      <div class="exp-img" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=85')"></div>
+      <div class="exp-body">
+        <p class="exp-tag">Vignobles · Dégustation</p>
+        <h3>Caves de <em>Lavaux classées</em></h3>
+        <p>Visite privée de trois domaines viticoles emblématiques de Lavaux, classés UNESCO. Dégustation de Chasselas vinifiés sur place, panier-déjeuner inclus.</p>
+        <div class="exp-foot">
+          <span class="exp-duration">5 h</span>
+          <span class="exp-price">dès 460 CHF</span>
+        </div>
+      </div>
+    </article>
+    <article class="experience">
+      <div class="exp-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85')"></div>
+      <div class="exp-body">
+        <p class="exp-tag">Gastronomie · 2 nuits</p>
+        <h3>Week-end <em>gastronomique</em></h3>
+        <p>Deux nuits en Suite Lac, deux dîners au menu signature du chef Mercier, accord vins suisses inclus, brunch tardif le dimanche. Tout est compris.</p>
+        <div class="exp-foot">
+          <span class="exp-duration">2 nuits</span>
+          <span class="exp-price">dès 1 980 CHF</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- RÉSERVER -->
+<section id="reserve" class="reserve">
+  <div class="reserve-inner">
+    <p class="s-eyebrow" style="color:var(--gold-light)">— Réservation</p>
+    <h2>Réserver <em>un séjour</em></h2>
+    <p class="reserve-lead">Notre équipe revient vers vous sous 4 heures ouvrées avec la confirmation et les options possibles. Réception téléphonique 24/7.</p>
+
+    <form class="reserve-form">
+      <div class="form-row">
+        <label><span>Arrivée</span><input type="date" required /></label>
+        <label><span>Départ</span><input type="date" required /></label>
+      </div>
+      <div class="form-row">
+        <label><span>Type de chambre</span>
+          <select>
+            <option>Chambre Classique</option>
+            <option>Junior Suite Léman</option>
+            <option>Suite Lac</option>
+            <option>Suite Présidentielle</option>
+          </select>
+        </label>
+        <label><span>Personnes</span>
+          <select>
+            <option>1 adulte</option>
+            <option selected>2 adultes</option>
+            <option>2 adultes · 1 enfant</option>
+            <option>2 adultes · 2 enfants</option>
+            <option>3 adultes</option>
+            <option>4 adultes</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-row">
+        <label><span>Nom complet</span><input type="text" required /></label>
+        <label><span>Téléphone</span><input type="tel" required /></label>
+      </div>
+      <label><span>Email</span><input type="email" required /></label>
+      <button type="submit">Demander la réservation →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Adresse</p>
+      <p class="info-content">Quai Edouard-Jaccoud 12<br/><em>1820 Montreux, Suisse</em></p>
+    </div>
+    <div>
+      <p class="info-label">Réception</p>
+      <p class="info-content">+41 21 555 19 23<br/><em>24h/24 · concierge@hotelducygne.ch</em></p>
+    </div>
+    <div>
+      <p class="info-label">Ouverture</p>
+      <p class="info-content">Toute l'année<br/><em>Check-in dès 15h · Check-out 12h</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Hôtel du Cygne · Montreux · depuis 1923</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v1.0</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-top, .hero-pretitle, .hero-wordmark, .hero-tag, .hero-cta-group',{opacity:0,y:30,duration:1.1,ease:'power3.out',stagger:.13,delay:.2});
+
+gsap.utils.toArray('.suite, .resto-text > *, .spa-text > *, .experience, .info-content').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+});
+
+document.querySelector('.reserve-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert('Site de démonstration HectoWeb.\nSur votre vrai site, la demande de réservation serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Maison Laurent Vidal — Pâtisserie haute gastronomie · Lausanne</title>
+<meta name="description" content="Maison Laurent Vidal, pâtisserie haute gastronomie à Lausanne. Créations signatures, collections saisonnières, commandes événements. Meilleur Ouvrier de France 2022." />
+<meta name="theme-color" content="#f5dcd0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Fraunces:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — rose poudré + or chaud + chocolat profond + crème
+   Sensuel macro gourmand · magazine gastronomie haut de gamme
+   ============================================================ */
+:root{
+  --rose:#f5dcd0;
+  --rose-2:#ecc8b7;
+  --cream:#fff5e8;
+  --cream-2:#fbe9d4;
+  --gold:#d4a560;
+  --gold-2:#b88840;
+  --choco:#3d251c;
+  --choco-2:#5a3a2c;
+  --ink:#2a1a13;
+  --muted:#8a6f5e;
+  --rule:rgba(61,37,28,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);
+  -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;
+}
+::selection{background:var(--gold);color:var(--choco)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* HW STRIP */
+.hw-strip{position:fixed;top:0;left:0;right:0;z-index:60;background:#0a0a0c;border-bottom:1px solid #e3c789;font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* NAV */
+.nav{
+  position:fixed;top:30px;left:0;right:0;z-index:50;
+  padding:1.4rem clamp(1.5rem,4vw,3.5rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(255,245,232,.95);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1rem;padding-bottom:1rem;
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;font-weight:500;font-style:italic;
+  font-size:1.55rem;color:var(--choco);letter-spacing:-.005em;
+}
+.nav-links{display:flex;gap:2.3rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.74rem;font-weight:500;
+  letter-spacing:.25em;text-transform:uppercase;color:var(--choco-2);
+}
+.nav-links a:hover{color:var(--gold-2)}
+.nav-cta{
+  background:var(--choco);color:var(--cream) !important;padding:.75rem 1.5rem;
+  border-radius:999px;font-size:.7rem;letter-spacing:.28em;font-weight:500;
+  transition:background .25s;
+}
+.nav-cta:hover{background:var(--choco-2);color:var(--cream) !important}
+@media(max-width:840px){.nav-links li:not(:last-child){display:none}}
+
+/* HERO — macro éditorial split + grand titre serif fluide */
+.hero{
+  position:relative;min-height:100vh;padding-top:5rem;
+  display:grid;grid-template-columns:1fr 1.1fr;
+  background:var(--rose);
+}
+@media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto}}
+.hero-text{
+  padding:clamp(4rem,7vw,8rem) clamp(2rem,5vw,5rem);
+  display:flex;flex-direction:column;justify-content:center;position:relative;
+}
+.hero-eye{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--gold-2);
+  margin-bottom:2rem;display:inline-flex;align-items:center;gap:1rem;
+}
+.hero-eye::before{content:'';width:50px;height:1px;background:var(--gold-2)}
+.hero h1{
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(3.2rem,7.5vw,6.5rem);line-height:.95;letter-spacing:-.025em;
+  color:var(--choco);margin-bottom:1.8rem;
+}
+.hero h1 em{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  color:var(--gold-2);display:block;
+}
+.hero-tag{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.2rem,1.7vw,1.5rem);line-height:1.55;color:var(--choco-2);
+  max-width:34rem;margin-bottom:2.5rem;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:1.5rem 3rem;
+  padding-top:2rem;border-top:1px solid var(--rule);
+}
+.hero-meta-item{display:flex;flex-direction:column;gap:.2rem}
+.hero-meta-label{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+.hero-meta-value{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:var(--choco);font-weight:500}
+.hero-cta{
+  margin-top:2.5rem;display:inline-flex;align-items:center;gap:.7rem;
+  padding:1rem 2rem;background:var(--choco);color:var(--cream);border-radius:999px;
+  font-family:'Inter',sans-serif;font-size:.75rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;
+  transition:background .25s,transform .15s;align-self:flex-start;
+}
+.hero-cta:hover{background:var(--choco-2);transform:translateY(-2px)}
+.hero-img{
+  position:relative;overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+  min-height:600px;
+}
+@media(max-width:880px){.hero-img{min-height:60vh;order:-1}}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(225deg,rgba(212,165,96,.15) 0%,rgba(61,37,28,.18) 100%);
+}
+
+/* SIGNATURES */
+.signatures{padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);background:var(--cream)}
+.signatures-head{max-width:780px;margin:0 auto 5rem;text-align:center}
+.sig-eye{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-2);margin-bottom:1.5rem}
+.signatures-head h2{
+  font-family:'Playfair Display',serif;font-weight:400;
+  font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:1.02;color:var(--choco);
+  margin-bottom:1.5rem;letter-spacing:-.02em;
+}
+.signatures-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2);font-weight:500}
+.signatures-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--muted)}
+
+.sig-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem 2.5rem;
+}
+@media(max-width:900px){.sig-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.sig-grid{grid-template-columns:1fr}}
+.sig{display:flex;flex-direction:column;text-align:center}
+.sig-img{
+  width:100%;aspect-ratio:4/5;
+  background-size:cover;background-position:center;margin-bottom:1.8rem;
+  filter:saturate(1.05);transition:transform .8s;
+}
+.sig:hover .sig-img{transform:scale(1.03)}
+.sig-tag{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-2);margin-bottom:.6rem}
+.sig h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.6rem;color:var(--choco);margin-bottom:.5rem;line-height:1.2}
+.sig p{font-family:'Inter',sans-serif;font-size:.95rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;max-width:22rem;align-self:center}
+.sig-price{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold-2);font-weight:500}
+
+/* COLLECTIONS SAISONNIÈRES — split timeline */
+.collections{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--rose);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.collections-head{max-width:780px;margin:0 auto 5rem;text-align:center}
+.collections-head h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;color:var(--choco);letter-spacing:-.02em;margin-bottom:1rem}
+.collections-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
+.collections-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--muted)}
+
+.coll-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+@media(max-width:880px){.coll-grid{grid-template-columns:1fr}}
+.coll{background:var(--cream);overflow:hidden;border:1px solid var(--rule);display:flex;flex-direction:column}
+.coll-img{
+  width:100%;aspect-ratio:4/3;
+  background-size:cover;background-position:center;
+}
+.coll-body{padding:2.2rem 2rem;flex:1;display:flex;flex-direction:column}
+.coll-season{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-2);margin-bottom:.6rem}
+.coll h3{font-family:'Playfair Display',serif;font-weight:500;font-size:1.7rem;color:var(--choco);margin-bottom:.8rem;letter-spacing:-.01em}
+.coll h3 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
+.coll p{font-family:'Inter',sans-serif;font-size:.95rem;color:var(--muted);line-height:1.7;flex:1}
+
+/* ÉVÉNEMENTS — éditorial */
+.evenements{
+  display:grid;grid-template-columns:1fr 1.1fr;background:var(--cream);min-height:70vh;
+}
+@media(max-width:880px){.evenements{grid-template-columns:1fr}}
+.evenements-img{
+  background:url('https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
+  min-height:500px;filter:saturate(1.05);
+}
+.evenements-text{padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,6rem);display:flex;flex-direction:column;justify-content:center}
+.evenements-eye{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-2);margin-bottom:2rem}
+.evenements h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.05;color:var(--choco);letter-spacing:-.02em;margin-bottom:1.8rem}
+.evenements h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2);font-weight:500}
+.evenements p{font-family:'Inter',sans-serif;color:var(--muted);font-size:1.05rem;line-height:1.8;margin-bottom:1.2rem;max-width:34rem}
+.evenements-list{margin-top:1rem;padding-top:1.8rem;border-top:1px solid var(--rule);max-width:34rem}
+.evenements-list li{display:flex;align-items:baseline;gap:1rem;padding:.7rem 0;border-bottom:1px dotted var(--rule);list-style:none}
+.evenements-list li:last-child{border-bottom:0}
+.evenements-list .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--gold-2);font-weight:500;min-width:2rem}
+.evenements-list .item{font-family:'Inter',sans-serif;font-size:1rem;color:var(--choco)}
+.evenements-note{
+  margin-top:2rem;padding:1.5rem 1.8rem;background:var(--rose);border-left:3px solid var(--gold);
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--choco-2);max-width:34rem;
+}
+
+/* ATELIER / CHEF */
+.atelier{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--choco);color:var(--rose);text-align:center;
+}
+.atelier-inner{max-width:780px;margin:0 auto}
+.atelier-eye{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.atelier h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;color:var(--cream);letter-spacing:-.02em;margin-bottom:2rem}
+.atelier h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-weight:500}
+.atelier p{font-family:'Inter',sans-serif;color:var(--rose-2);font-size:1.05rem;line-height:1.85;margin-bottom:1.3rem;font-weight:300}
+.atelier-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.4rem,2.3vw,2rem);line-height:1.45;color:var(--gold);
+  margin:3rem 0;padding:2.5rem 0;
+  border-top:1px solid rgba(212,165,96,.3);border-bottom:1px solid rgba(212,165,96,.3);
+}
+.atelier-signature{
+  margin-top:1rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.6rem;color:var(--gold);
+}
+.atelier-mof{
+  display:inline-block;margin-top:2.5rem;padding:.8rem 1.5rem;
+  border:1px solid var(--gold);
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
+}
+
+/* BOUTIQUE / VISITE */
+.boutique-visit{
+  display:grid;grid-template-columns:1.1fr 1fr;background:var(--cream);min-height:70vh;
+}
+@media(max-width:880px){.boutique-visit{grid-template-columns:1fr}}
+.boutique-visit-text{padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,5rem);display:flex;flex-direction:column;justify-content:center}
+.boutique-visit-text .sig-eye{margin-bottom:1.5rem}
+.boutique-visit-text h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.05;color:var(--choco);letter-spacing:-.02em;margin-bottom:1.8rem}
+.boutique-visit-text h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
+.boutique-visit-text p{font-family:'Inter',sans-serif;color:var(--muted);font-size:1.05rem;line-height:1.8;max-width:34rem;margin-bottom:1rem}
+.boutique-visit-img{
+  background:url('https://images.unsplash.com/photo-1505976134455-65d4f6dac6da?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
+  min-height:500px;
+}
+
+/* COMMANDE / FORM */
+.commande{padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);background:var(--rose);border-top:1px solid var(--rule);text-align:center}
+.commande-inner{max-width:680px;margin:0 auto}
+.commande-eye{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-2);margin-bottom:1.5rem}
+.commande h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2.2rem,5vw,4rem);line-height:1;color:var(--choco);letter-spacing:-.02em;margin-bottom:1.5rem}
+.commande h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
+.commande-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--choco-2);margin-bottom:4rem;line-height:1.55}
+
+.commande-form{display:flex;flex-direction:column;gap:1.5rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
+@media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}}
+.commande-form label{display:flex;flex-direction:column;gap:.5rem}
+.commande-form span{font-family:'Inter',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
+.commande-form input,.commande-form select,.commande-form textarea{
+  background:var(--cream);border:1px solid var(--rule);
+  padding:.9rem 1rem;color:var(--choco);font-family:'Inter',sans-serif;font-size:1rem;
+  outline:0;transition:border-color .2s;border-radius:6px;
+}
+.commande-form input:focus,.commande-form select:focus,.commande-form textarea:focus{border-color:var(--gold-2)}
+.commande-form textarea{min-height:110px;resize:vertical}
+.commande-form button{
+  align-self:center;margin-top:2rem;min-width:280px;
+  padding:1.1rem 2.2rem;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;
+  letter-spacing:.3em;text-transform:uppercase;
+  background:var(--choco);color:var(--cream);border-radius:999px;
+  transition:background .25s,transform .15s;
+}
+.commande-form button:hover{background:var(--choco-2);transform:translateY(-2px)}
+
+/* INFOS */
+.infos{padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4rem);background:var(--cream);border-top:1px solid var(--rule)}
+.infos-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
+.info-label{font-family:'Inter',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-2);margin-bottom:1.2rem}
+.info-content{font-family:'Playfair Display',serif;font-weight:500;font-size:1.2rem;color:var(--choco);line-height:1.6}
+.info-content em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);display:block;margin-top:.3rem;font-size:.95rem;font-weight:400}
+
+/* HW CTA */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--cream);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--muted);font-size:.85rem;font-family:'Cormorant Garamond',serif;font-style:italic}
+.footer-inner a{color:var(--gold-2)}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<div class="hw-strip">Site de démonstration HectoWeb<a href="../index.html">← Retour aux 20 univers</a></div>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Maison Laurent Vidal</a>
+  <ul class="nav-links">
+    <li><a href="#signatures">Créations</a></li>
+    <li><a href="#collections">Saisons</a></li>
+    <li><a href="#atelier">L'atelier</a></li>
+    <li><a href="#boutique">Boutique</a></li>
+    <li><a href="#commande" class="nav-cta">Commander</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-text">
+    <p class="hero-eye">Pâtisserie haute gastronomie</p>
+    <h1>Maison<br/><em>Laurent Vidal</em></h1>
+    <p class="hero-tag">Pâtisserie d'auteur à Lausanne. Des créations sensuelles, signées, renouvelées au gré des saisons. Pour les amateurs de goût juste et de gestes précis.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Depuis</span><span class="hero-meta-value">2019</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Distinction</span><span class="hero-meta-value">MOF 2022</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Lieu</span><span class="hero-meta-value">Lausanne</span></div>
+    </div>
+    <a href="#commande" class="hero-cta">Commander une pièce →</a>
+  </div>
+  <div class="hero-img"></div>
+</header>
+
+<!-- SIGNATURES -->
+<section id="signatures" class="signatures">
+  <div class="signatures-head">
+    <p class="sig-eye">— Les créations signatures</p>
+    <h2>Six pièces<br/>qui nous <em>définissent.</em></h2>
+    <p>Disponibles chaque jour à la boutique, en édition limitée. Quelques exemplaires seulement par jour — premier arrivé, premier servi.</p>
+  </div>
+
+  <div class="sig-grid">
+    <div class="sig">
+      <div class="sig-img" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="sig-tag">Éclair · Signature</p>
+      <h3>Éclair Pistache d'Iran</h3>
+      <p>Choux croustillant, crème pâtissière à la pistache torréfiée, glaçage miroir.</p>
+      <p class="sig-price">9 CHF</p>
+    </div>
+    <div class="sig">
+      <div class="sig-img" style="background-image:url('https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="sig-tag">Tartelette · Saison</p>
+      <h3>Tartelette Citron Verveine</h3>
+      <p>Pâte sablée bretonne, crème citron de Menton infusée verveine, meringue italienne flambée.</p>
+      <p class="sig-price">11 CHF</p>
+    </div>
+    <div class="sig">
+      <div class="sig-img" style="background-image:url('https://images.unsplash.com/photo-1505976134455-65d4f6dac6da?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="sig-tag">Choux · Classique revisité</p>
+      <h3>Saint-Honoré Vanille Bourbon</h3>
+      <p>Pâte feuilletée caramélisée, choux à la vanille de Madagascar, chantilly fouettée minute.</p>
+      <p class="sig-price">13 CHF</p>
+    </div>
+    <div class="sig">
+      <div class="sig-img" style="background-image:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="sig-tag">Feuilleté · Signature</p>
+      <h3>Mille-feuille Caramel Beurre Salé</h3>
+      <p>Pâte feuilletée inversée 12 tours, crème légère au caramel de Guérande, sablé croustillant.</p>
+      <p class="sig-price">12 CHF</p>
+    </div>
+    <div class="sig">
+      <div class="sig-img" style="background-image:url('https://images.unsplash.com/photo-1565895405138-6c3a1555da6a?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="sig-tag">Choux · Praliné maison</p>
+      <h3>Religieuse Praliné</h3>
+      <p>Double choux, praliné noisettes du Piémont (50 %), glaçage chocolat lait, fève tonka râpée.</p>
+      <p class="sig-price">10 CHF</p>
+    </div>
+    <div class="sig">
+      <div class="sig-img" style="background-image:url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="sig-tag">Fruit · Saison printemps</p>
+      <h3>Fraisier Mara des Bois</h3>
+      <p>Génoise vanille bourbon, crème mousseline allégée, fraises Mara des Bois de Provence.</p>
+      <p class="sig-price">13 CHF</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections" class="collections">
+  <div class="collections-head">
+    <p class="sig-eye">— Collections saisonnières</p>
+    <h2>Trois <em>saisons,</em><br/>trois lectures du goût.</h2>
+    <p>Chaque saison, une dizaine de pièces inédites qui n'existent que quelques semaines. Les habitués les attendent — vous devriez aussi.</p>
+  </div>
+  <div class="coll-grid">
+    <div class="coll">
+      <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=900&q=85')"></div>
+      <div class="coll-body">
+        <p class="coll-season">Mars · Mai</p>
+        <h3>Printemps <em>floral</em></h3>
+        <p>Fleurs comestibles, rhubarbe, fraises Mara, sureau, violette. Couleurs pastel, textures aériennes, mousses légères. Le réveil du palais après l'hiver.</p>
+      </div>
+    </div>
+    <div class="coll">
+      <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85')"></div>
+      <div class="coll-body">
+        <p class="coll-season">Juin · Septembre</p>
+        <h3>Été <em>fruité</em></h3>
+        <p>Pêches de vigne, framboises, abricots, figues, basilic citron. Pièces fraîches, juteuses, peu sucrées. Recettes pensées pour 25 °C à l'ombre — pas pour les vitrines.</p>
+      </div>
+    </div>
+    <div class="coll">
+      <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85')"></div>
+      <div class="coll-body">
+        <p class="coll-season">Octobre · Février</p>
+        <h3>Hiver <em>épicé</em></h3>
+        <p>Chocolats grand cru, marrons glacés, fève tonka, agrumes confits, vanille de Tahiti. Pièces denses, intenses, longues en bouche. Notre saison la plus aimée.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉVÉNEMENTS -->
+<section class="evenements">
+  <div class="evenements-img"></div>
+  <div class="evenements-text">
+    <p class="evenements-eye">— Commandes événements</p>
+    <h2>Pièces<br/><em>sur-mesure.</em></h2>
+    <p>Mariages, baptêmes, anniversaires, événements d'entreprise — nous concevons sur-mesure des pièces uniques pour les grandes occasions. Pièce montée, wedding cake, plateau de mignardises, viennoiseries de prestige.</p>
+    <ul class="evenements-list">
+      <li><span class="num">01</span><span class="item">Wedding cakes 3 à 7 étages</span></li>
+      <li><span class="num">02</span><span class="item">Pièces montées (croquembouche, religieuse géante)</span></li>
+      <li><span class="num">03</span><span class="item">Plateaux mignardises &amp; macarons</span></li>
+      <li><span class="num">04</span><span class="item">Petits-déjeuners d'entreprise haut de gamme</span></li>
+      <li><span class="num">05</span><span class="item">Buffets de desserts traiteur</span></li>
+    </ul>
+    <div class="evenements-note">Délai minimum 24 h pour les commandes courantes. 2 semaines minimum pour les wedding cakes et pièces sur-mesure. Devis personnalisé sur demande.</div>
+  </div>
+</section>
+
+<!-- ATELIER -->
+<section id="atelier" class="atelier">
+  <div class="atelier-inner">
+    <p class="atelier-eye">— L'atelier</p>
+    <h2>Laurent Vidal,<br/>chef <em>pâtissier.</em></h2>
+    <p>Formé à l'École Ferrandi Paris, Laurent Vidal passe par la pâtisserie de Cédric Grolet au Meurice, puis seconde Yann Couvreur pendant trois ans. Il s'installe à Lausanne en 2019, dans une boutique du Petit-Chêne entièrement repensée.</p>
+    <p>En 2022, il décroche le titre de Meilleur Ouvrier de France en pâtisserie — la plus haute distinction de la profession en France. La maison devient l'une des rares adresses suisses à porter ce ruban.</p>
+    <blockquote class="atelier-quote">« La pâtisserie, ce n'est pas du sucre. C'est de la précision, de la patience, et un peu de mémoire d'enfance. »</blockquote>
+    <p class="atelier-signature">Laurent V.</p>
+    <div class="atelier-mof">M · O · F · 2022</div>
+  </div>
+</section>
+
+<!-- BOUTIQUE -->
+<section id="boutique" class="boutique-visit">
+  <div class="boutique-visit-text">
+    <p class="sig-eye">— Visiter la boutique</p>
+    <h2>Petit-Chêne,<br/>en <em>plein cœur</em> de Lausanne.</h2>
+    <p>La boutique a été dessinée par l'architecte Caroline Pillet en 2019. Marbre rosé, laiton brossé, vitrine ouverte sur le laboratoire — vous voyez les pièces se faire pendant que vous choisissez les vôtres.</p>
+    <p>Le café (Belleville Brûlerie, Paris) accompagne très bien les viennoiseries du matin, qui sortent du four à 7h30. Les pièces signatures sont en vitrine à partir de 10h.</p>
+    <p>Six places assises au comptoir pour déguster sur place — sans réservation possible, premiers arrivés.</p>
+  </div>
+  <div class="boutique-visit-img"></div>
+</section>
+
+<!-- COMMANDE -->
+<section id="commande" class="commande">
+  <div class="commande-inner">
+    <p class="commande-eye">— Commande en ligne</p>
+    <h2>Commander une <em>pièce</em></h2>
+    <p class="commande-lead">Pour les commandes événements et pièces sur-mesure.<br/>Réponse personnalisée sous 24 h.</p>
+
+    <form class="commande-form">
+      <div class="form-row">
+        <label><span>Type d'événement</span>
+          <select><option>Mariage</option><option>Baptême / Communion</option><option>Anniversaire</option><option>Événement entreprise</option><option>Plateau mignardises</option><option>Autre</option></select>
+        </label>
+        <label><span>Date souhaitée</span><input type="date" required /></label>
+      </div>
+      <div class="form-row-3">
+        <label><span>Personnes</span><input type="number" min="1" placeholder="30" /></label>
+        <label><span>Téléphone</span><input type="tel" required /></label>
+        <label><span>Budget approx.</span>
+          <select><option>&lt; 200 CHF</option><option>200–500 CHF</option><option>500–1000 CHF</option><option>1000–2500 CHF</option><option>2500 CHF +</option></select>
+        </label>
+      </div>
+      <div class="form-row">
+        <label><span>Nom</span><input type="text" required /></label>
+        <label><span>Email</span><input type="email" required /></label>
+      </div>
+      <label><span>Allergies / restrictions / message</span><textarea placeholder="Allergies (gluten, fruits à coque...), préférences, références visuelles..."></textarea></label>
+      <button type="submit">Envoyer ma demande →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Adresse</p>
+      <p class="info-content">Rue du Petit-Chêne 18<br/><em>1003 Lausanne</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 21 555 47 09<br/><em>bonjour@maisonvidal.ch</em></p>
+    </div>
+    <div>
+      <p class="info-label">Horaires boutique</p>
+      <p class="info-content">Mar — Sam · 9h–19h<br/><em>Dim · 9h–13h · Fermé le lundi</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Maison Laurent Vidal · Lausanne · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.8</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-text > *',{opacity:0,y:30,duration:1,ease:'power3.out',stagger:.1,delay:.25});
+gsap.from('.hero-img',{opacity:0,scale:1.05,duration:1.4,ease:'power3.out',delay:.15});
+
+gsap.utils.toArray('.sig, .coll, .evenements-list li, .atelier-inner > *, .info-content').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 92%',once:true}});
+});
+
+document.querySelector('.commande-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Site de démonstration HectoWeb.\nSur votre vrai site, la commande serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+});
+</script>
+</body>
+</html>

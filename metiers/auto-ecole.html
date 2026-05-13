@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>OLA — Auto-école Lausanne · Permis B, A, Code en 6 semaines</title>
+<meta name="description" content="OLA, auto-école moderne à Lausanne, Renens et Vevey. Permis B, moto, code et sensibilisation. Réussite dès la première tentative. Inscription en ligne." />
+<meta name="theme-color" content="#0ea5e9" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;1,400&family=Inter:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — bleu vif + jaune mobile + blanc + accents noirs
+   Jeune, dynamique, playful. Radicalement différent :
+   - restaurant (crème+bordeaux)
+   - tatoueur (noir+rouge sang)
+   - coach (terra cotta+crème)
+   - hub HectoWeb (noir+lime)
+   ============================================================ */
+:root{
+  --blue:#0ea5e9;
+  --blue-deep:#0284c7;
+  --blue-dark:#075985;
+  --yellow:#fbbf24;
+  --yellow-deep:#f59e0b;
+  --white:#ffffff;
+  --off:#f8fafc;
+  --ink:#0a0a0a;
+  --ink-soft:#1e293b;
+  --muted:#64748b;
+  --rule:rgba(10,10,10,.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter Tight',system-ui,sans-serif;color:var(--ink);background:var(--white);
+  -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;
+}
+::selection{background:var(--yellow);color:var(--ink)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:#0a0a0c;border-bottom:1px solid #e3c789;
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
+}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1.3rem clamp(1.5rem,4vw,3rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,border-color .35s,padding .3s;
+}
+.nav.scrolled{
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:.9rem;padding-bottom:.9rem;
+  box-shadow:0 6px 30px rgba(14,165,233,.06);
+}
+.nav-brand{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:1.65rem;color:var(--ink);letter-spacing:-.02em;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.nav-brand-dot{
+  width:10px;height:10px;border-radius:50%;background:var(--yellow);
+  display:inline-block;animation:pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter Tight',sans-serif;font-size:.85rem;font-weight:500;
+  color:var(--ink-soft);
+}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{
+  background:var(--ink);color:var(--white) !important;padding:.75rem 1.5rem;
+  border-radius:999px;font-size:.82rem;font-weight:600;letter-spacing:.01em;
+  transition:background .25s,transform .15s;
+}
+.nav-cta:hover{background:var(--blue);transform:translateY(-2px)}
+@media(max-width:880px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — full bleed avec gros titre + accents jaune
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;padding:7rem clamp(1.5rem,5vw,3rem) 4rem;
+  background:linear-gradient(135deg,var(--blue) 0%,var(--blue-deep) 100%);
+  color:var(--white);overflow:hidden;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center;
+}
+@media(max-width:980px){.hero{grid-template-columns:1fr;padding-bottom:6rem}}
+.hero-shape{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:var(--yellow);opacity:.9;
+}
+.hero-shape-1{width:200px;height:200px;top:-50px;right:-50px;animation:float 8s ease-in-out infinite}
+.hero-shape-2{width:80px;height:80px;bottom:60px;left:40%;background:var(--white);animation:float 6s ease-in-out infinite reverse}
+.hero-shape-3{width:120px;height:120px;top:55%;right:15%;background:rgba(255,255,255,.12);animation:float 10s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+.hero-text{position:relative;z-index:2}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:rgba(255,255,255,.15);backdrop-filter:blur(8px);
+  padding:.55rem 1.1rem;border-radius:999px;font-size:.78rem;font-weight:500;
+  margin-bottom:1.8rem;border:1px solid rgba(255,255,255,.2);
+}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--yellow);animation:pulse 1.5s ease-in-out infinite}
+.hero h1{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:clamp(2.8rem,7vw,5.5rem);line-height:1;letter-spacing:-.03em;
+  color:var(--white);margin-bottom:1.8rem;
+}
+.hero h1 .underline{
+  position:relative;display:inline-block;
+}
+.hero h1 .underline::after{
+  content:'';position:absolute;left:-2%;right:-2%;bottom:-2px;height:14px;
+  background:var(--yellow);z-index:-1;border-radius:8px;transform:rotate(-1deg);
+}
+.hero-tag{
+  font-family:'Inter Tight',sans-serif;font-weight:400;font-size:clamp(1.1rem,1.6vw,1.3rem);
+  color:rgba(255,255,255,.92);margin-bottom:2.5rem;max-width:32rem;line-height:1.6;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:1.1rem 2.2rem;background:var(--yellow);color:var(--ink);
+  border-radius:999px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:700;
+  transition:background .25s,transform .15s,box-shadow .25s;
+  box-shadow:0 8px 24px rgba(251,191,36,.35);
+}
+.btn-primary:hover{background:var(--yellow-deep);transform:translateY(-3px);box-shadow:0 12px 32px rgba(251,191,36,.45)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:1.1rem 2rem;background:transparent;color:var(--white);
+  border:2px solid rgba(255,255,255,.4);border-radius:999px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:600;
+  transition:border-color .25s,background .25s;
+}
+.btn-secondary:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
+.hero-stats{
+  display:flex;gap:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.15);
+}
+.hero-stat-value{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--yellow);line-height:1}
+.hero-stat-label{font-family:'Inter Tight',sans-serif;font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.3rem}
+.hero-img-wrap{
+  position:relative;z-index:1;border-radius:24px;overflow:hidden;
+  aspect-ratio:4/5;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+  transform:rotate(2deg);
+}
+.hero-img-wrap::before{
+  content:'PERMIS B';
+  position:absolute;top:1.5rem;left:1.5rem;z-index:2;
+  background:var(--white);color:var(--ink);
+  padding:.5rem 1rem;border-radius:8px;
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.1em;
+}
+.hero-img{
+  width:100%;height:100%;
+  background:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1400&q=85') center/cover no-repeat;
+}
+@media(max-width:980px){.hero-img-wrap{max-width:400px;margin:0 auto;transform:none}}
+
+/* ============================================================
+   FORMULES — 4 cards colorées
+   ============================================================ */
+.formules{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,3rem);
+  background:var(--off);
+}
+.formules-inner{max-width:1300px;margin:0 auto}
+.formules-head{text-align:center;margin-bottom:4rem}
+.section-eyebrow{
+  display:inline-block;
+  background:var(--ink);color:var(--white);padding:.5rem 1rem;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.5rem;
+}
+.section-title{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.05;color:var(--ink);
+  letter-spacing:-.025em;margin-bottom:1rem;
+}
+.section-title .highlight{position:relative;display:inline-block}
+.section-title .highlight::after{
+  content:'';position:absolute;left:-2%;right:-2%;bottom:0;height:14px;
+  background:var(--yellow);z-index:-1;border-radius:8px;transform:rotate(-.5deg);
+}
+.section-lead{font-family:'Inter Tight',sans-serif;font-size:1.1rem;color:var(--muted);max-width:38rem;margin:0 auto}
+.formules-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+}
+@media(max-width:1100px){.formules-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.formules-grid{grid-template-columns:1fr}}
+.formule{
+  padding:2rem 1.8rem;border-radius:20px;color:var(--ink);
+  transition:transform .35s,box-shadow .35s;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+}
+.formule:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1)}
+.formule-1{background:var(--yellow)}
+.formule-2{background:var(--blue);color:var(--white)}
+.formule-3{background:var(--ink);color:var(--white)}
+.formule-4{background:var(--off);border:2px solid var(--ink)}
+.formule-icon{
+  width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;
+}
+.formule-1 .formule-icon{background:rgba(10,10,10,.12)}
+.formule-4 .formule-icon{background:var(--yellow)}
+.formule h3{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.35rem;
+  line-height:1.15;margin-bottom:.5rem;
+}
+.formule-sub{
+  font-family:'Inter Tight',sans-serif;font-size:.85rem;opacity:.75;margin-bottom:1.5rem;
+}
+.formule-price{
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:2.4rem;line-height:1;
+  margin-bottom:.4rem;letter-spacing:-.02em;
+}
+.formule-currency{font-size:.9rem;font-weight:500;margin-left:.3rem;opacity:.7}
+.formule-list{list-style:none;margin:1.5rem 0;padding:0;flex-grow:1}
+.formule-list li{
+  display:flex;align-items:flex-start;gap:.5rem;padding:.4rem 0;
+  font-family:'Inter Tight',sans-serif;font-size:.88rem;line-height:1.45;
+}
+.formule-list li::before{content:'✓';font-weight:700;flex-shrink:0;margin-top:.05rem}
+.formule-cta{
+  margin-top:1rem;padding:.85rem 1.2rem;text-align:center;
+  background:rgba(10,10,10,.12);color:inherit;border-radius:999px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:600;
+  transition:background .25s;
+}
+.formule-2 .formule-cta,.formule-3 .formule-cta{background:rgba(255,255,255,.2)}
+.formule-4 .formule-cta{background:var(--ink);color:var(--white)}
+.formule-cta:hover{background:rgba(10,10,10,.2)}
+.formule-2 .formule-cta:hover,.formule-3 .formule-cta:hover{background:rgba(255,255,255,.35)}
+
+/* ============================================================
+   MONITEURS
+   ============================================================ */
+.monos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,3rem);
+  background:var(--white);
+}
+.monos-inner{max-width:1200px;margin:0 auto}
+.monos-head{text-align:center;margin-bottom:4rem}
+.monos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+@media(max-width:880px){.monos-grid{grid-template-columns:1fr}}
+.mono{
+  background:var(--off);border-radius:20px;overflow:hidden;
+  transition:transform .35s,box-shadow .35s;
+}
+.mono:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.08)}
+.mono-photo{
+  aspect-ratio:4/3;background-size:cover;background-position:center;
+  position:relative;
+}
+.mono-badge{
+  position:absolute;bottom:1rem;left:1rem;
+  background:var(--yellow);color:var(--ink);
+  padding:.45rem 1rem;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.05em;
+}
+.mono-content{padding:1.8rem}
+.mono h3{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.35rem;
+  color:var(--ink);margin-bottom:.4rem;
+}
+.mono-role{font-family:'Inter Tight',sans-serif;font-size:.88rem;color:var(--blue);font-weight:500;margin-bottom:1rem}
+.mono p{font-family:'Inter Tight',sans-serif;font-size:.92rem;color:var(--muted);line-height:1.6}
+
+/* ============================================================
+   TÉMOIGNAGES ÉLÈVES
+   ============================================================ */
+.testim{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,3rem);
+  background:var(--ink);color:var(--white);
+}
+.testim-inner{max-width:1200px;margin:0 auto}
+.testim-head{margin-bottom:4rem;text-align:center}
+.testim-head .section-eyebrow{background:var(--yellow);color:var(--ink)}
+.testim-head .section-title{color:var(--white)}
+.testim-head .section-title .highlight::after{background:var(--blue)}
+.testim-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:880px){.testim-grid{grid-template-columns:1fr}}
+.testim-card{
+  background:rgba(255,255,255,.05);border-radius:20px;padding:2rem;
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;flex-direction:column;
+}
+.testim-stars{color:var(--yellow);margin-bottom:1rem;font-size:1.05rem;letter-spacing:.15em}
+.testim-quote{
+  font-family:'Inter Tight',sans-serif;font-size:1.05rem;line-height:1.6;
+  color:rgba(255,255,255,.92);margin-bottom:1.8rem;flex-grow:1;
+}
+.testim-author{display:flex;align-items:center;gap:.9rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1)}
+.testim-avatar{width:46px;height:46px;border-radius:50%;background-size:cover;background-position:center;flex-shrink:0}
+.testim-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.95rem;color:var(--white)}
+.testim-info{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.5)}
+
+/* ============================================================
+   INSCRIPTION — formulaire
+   ============================================================ */
+.inscr{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,3rem);
+  background:linear-gradient(135deg,var(--yellow) 0%,#fde68a 100%);
+}
+.inscr-inner{max-width:880px;margin:0 auto}
+.inscr-head{text-align:center;margin-bottom:3.5rem}
+.inscr-head .section-eyebrow{background:var(--ink);color:var(--yellow)}
+.inscr-form{
+  background:var(--white);border-radius:24px;padding:clamp(2rem,4vw,3.5rem);
+  box-shadow:0 30px 80px rgba(0,0,0,.12);
+  display:flex;flex-direction:column;gap:1.5rem;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:560px){.form-row{grid-template-columns:1fr}}
+.inscr-form label{display:flex;flex-direction:column;gap:.5rem}
+.inscr-form span{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
+}
+.inscr-form input,.inscr-form select{
+  background:var(--off);border:2px solid transparent;
+  padding:.95rem 1.1rem;color:var(--ink);font-family:'Inter Tight',sans-serif;font-size:1rem;
+  border-radius:12px;outline:0;transition:border-color .2s,background .2s;
+}
+.inscr-form input:focus,.inscr-form select:focus{border-color:var(--blue);background:var(--white)}
+.inscr-form button{
+  align-self:center;margin-top:1rem;min-width:280px;
+  padding:1.1rem 2.2rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:700;
+  background:var(--ink);color:var(--white);border-radius:999px;
+  transition:background .25s,transform .15s;
+}
+.inscr-form button:hover{background:var(--blue);transform:translateY(-2px)}
+
+/* ============================================================
+   TARIFS TABLE
+   ============================================================ */
+.tarifs{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,3rem);
+  background:var(--white);
+}
+.tarifs-inner{max-width:1000px;margin:0 auto}
+.tarifs-head{text-align:center;margin-bottom:3.5rem}
+.tarifs-table{
+  background:var(--off);border-radius:20px;overflow:hidden;
+  border:1px solid var(--rule);
+}
+.tarifs-row{
+  display:grid;grid-template-columns:2fr 1fr 3fr;gap:1.5rem;
+  padding:1.5rem 2rem;border-bottom:1px solid var(--rule);align-items:center;
+  font-family:'Inter Tight',sans-serif;
+}
+.tarifs-row:last-child{border-bottom:0}
+.tarifs-row.header{
+  background:var(--ink);color:var(--white);
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;padding:1.2rem 2rem;
+}
+.tarifs-row.header > div{color:var(--white)}
+.tarifs-row .label{font-weight:600;font-size:.98rem;color:var(--ink)}
+.tarifs-row .price{
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.15rem;color:var(--blue);
+}
+.tarifs-row .desc{font-size:.88rem;color:var(--muted);line-height:1.5}
+@media(max-width:680px){
+  .tarifs-row,.tarifs-row.header{grid-template-columns:1fr;gap:.4rem;padding:1.2rem}
+  .tarifs-row.header{display:none}
+}
+
+/* ============================================================
+   SUCCURSALES
+   ============================================================ */
+.succ{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,3rem);
+  background:var(--off);
+}
+.succ-inner{max-width:1200px;margin:0 auto}
+.succ-head{text-align:center;margin-bottom:4rem}
+.succ-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+@media(max-width:880px){.succ-grid{grid-template-columns:1fr}}
+.succ-card{
+  background:var(--white);border-radius:20px;padding:2.2rem;
+  border:2px solid transparent;transition:border-color .35s,transform .35s;
+}
+.succ-card:hover{border-color:var(--blue);transform:translateY(-4px)}
+.succ-num{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;
+  letter-spacing:.2em;color:var(--blue);margin-bottom:1rem;
+}
+.succ-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.5rem;color:var(--ink);margin-bottom:1rem}
+.succ-addr{font-family:'Inter Tight',sans-serif;font-size:.95rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.succ-tag{
+  display:inline-block;background:var(--yellow);color:var(--ink);
+  padding:.4rem .9rem;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.05em;
+}
+
+/* ============================================================
+   INFOS / CONTACT
+   ============================================================ */
+.infos{
+  padding:clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,3rem);
+  background:var(--white);border-top:1px solid var(--rule);
+}
+.infos-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;text-align:center;
+}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2rem}}
+.info-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem}
+.info-content{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:1.1rem;color:var(--ink);line-height:1.5}
+.info-content em{font-family:'Inter Tight',sans-serif;font-style:normal;color:var(--muted);display:block;margin-top:.3rem;font-size:.9rem;font-weight:400}
+
+/* ============================================================
+   HW CTA
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,3rem);background:var(--off);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--muted);font-size:.85rem;font-family:'JetBrains Mono',monospace}
+.footer-inner a{color:var(--blue);font-weight:500}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<!-- HectoWeb strip -->
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">OLA<span class="nav-brand-dot"></span></a>
+  <ul class="nav-links">
+    <li><a href="#formules">Formules</a></li>
+    <li><a href="#monos">Moniteurs</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#succ">Écoles</a></li>
+    <li><a href="#inscr" class="nav-cta">S'inscrire</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-shape hero-shape-1"></div>
+  <div class="hero-shape hero-shape-2"></div>
+  <div class="hero-shape hero-shape-3"></div>
+  <div class="hero-text">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> 94% de réussite première tentative</div>
+    <h1>Réussis ton permis<br/>en <span class="underline">6 semaines</span>.</h1>
+    <p class="hero-tag">Auto-école nouvelle génération à Lausanne, Renens et Vevey. Cours flexibles, moniteurs pédagogues, code en ligne 24/7. Le permis sans la galère.</p>
+    <div class="hero-actions">
+      <a href="#inscr" class="btn-primary">S'inscrire maintenant →</a>
+      <a href="#formules" class="btn-secondary">Voir les formules</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <p class="hero-stat-value">12k+</p>
+        <p class="hero-stat-label">Permis obtenus</p>
+      </div>
+      <div>
+        <p class="hero-stat-value">94%</p>
+        <p class="hero-stat-label">1<sup>re</sup> tentative</p>
+      </div>
+      <div>
+        <p class="hero-stat-value">3</p>
+        <p class="hero-stat-label">Succursales</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <div class="hero-img"></div>
+  </div>
+</header>
+
+<!-- FORMULES -->
+<section id="formules" class="formules">
+  <div class="formules-inner">
+    <div class="formules-head">
+      <span class="section-eyebrow">// Nos formules</span>
+      <h2 class="section-title">Quatre formules,<br/><span class="highlight">zéro embrouille</span>.</h2>
+      <p class="section-lead">Des prix fixes, tout compris, sans surprise à la fin du mois.</p>
+    </div>
+    <div class="formules-grid">
+      <div class="formule formule-1">
+        <div class="formule-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+        </div>
+        <h3>Code seul</h3>
+        <p class="formule-sub">Plateforme en ligne 24/7</p>
+        <p class="formule-price">380<span class="formule-currency">CHF</span></p>
+        <ul class="formule-list">
+          <li>Accès illimité 6 mois</li>
+          <li>5000+ questions officielles</li>
+          <li>Tests blancs hebdo</li>
+          <li>Suivi de progression</li>
+        </ul>
+        <a href="#inscr" class="formule-cta">Choisir cette formule</a>
+      </div>
+      <div class="formule formule-2">
+        <div class="formule-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17h2l2-7h10l2 7h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        </div>
+        <h3>Permis B complet</h3>
+        <p class="formule-sub">Voiture · Boîte manuelle</p>
+        <p class="formule-price">2'480<span class="formule-currency">CHF</span></p>
+        <ul class="formule-list">
+          <li>Code théorique inclus</li>
+          <li>20 leçons de conduite</li>
+          <li>Sensibilisation 8h</li>
+          <li>Cours de 1<sup>er</sup> secours</li>
+          <li>1 simulation d'examen</li>
+        </ul>
+        <a href="#inscr" class="formule-cta">Choisir cette formule</a>
+      </div>
+      <div class="formule formule-3">
+        <div class="formule-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="m9 17 3-9 3 9"/><path d="m9 5 6 3"/></svg>
+        </div>
+        <h3>Permis Moto A1</h3>
+        <p class="formule-sub">Jusqu'à 125 cm³</p>
+        <p class="formule-price">1'690<span class="formule-currency">CHF</span></p>
+        <ul class="formule-list">
+          <li>Théorie spéciale moto</li>
+          <li>12h de pratique 2 roues</li>
+          <li>Cours base obligatoires</li>
+          <li>Prêt de moto fournie</li>
+        </ul>
+        <a href="#inscr" class="formule-cta">Choisir cette formule</a>
+      </div>
+      <div class="formule formule-4">
+        <div class="formule-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+        </div>
+        <h3>Sensibilisation</h3>
+        <p class="formule-sub">Module obligatoire 8h</p>
+        <p class="formule-price">280<span class="formule-currency">CHF</span></p>
+        <ul class="formule-list">
+          <li>4 demi-journées</li>
+          <li>Petits groupes (max 12)</li>
+          <li>Attestation officielle</li>
+          <li>Samedi possible</li>
+        </ul>
+        <a href="#inscr" class="formule-cta">Choisir cette formule</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONITEURS -->
+<section id="monos" class="monos">
+  <div class="monos-inner">
+    <div class="monos-head">
+      <span class="section-eyebrow">// L'équipe</span>
+      <h2 class="section-title">Tes moniteurs,<br/><span class="highlight">pas tes profs</span>.</h2>
+      <p class="section-lead">Une équipe jeune et pédagogue qui sait que personne ne naît avec un volant entre les mains.</p>
+    </div>
+    <div class="monos-grid">
+      <div class="mono">
+        <div class="mono-photo" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85')">
+          <span class="mono-badge">12 ans · permis B/E</span>
+        </div>
+        <div class="mono-content">
+          <h3>Marc Rivera</h3>
+          <p class="mono-role">Moniteur expert · Lausanne centre</p>
+          <p>Référence de l'école depuis l'ouverture. Calme, méthodique, idéal pour ceux qui veulent apprendre la conduite défensive et s'attaquer aux gros véhicules.</p>
+        </div>
+      </div>
+      <div class="mono">
+        <div class="mono-photo" style="background-image:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=85')">
+          <span class="mono-badge">Spé. anxiété</span>
+        </div>
+        <div class="mono-content">
+          <h3>Léa Marchetti</h3>
+          <p class="mono-role">Spécialiste anxiété au volant · Renens</p>
+          <p>Formée à l'accompagnement des élèves anxieux. Phobies, blocages, échecs répétés : elle est l'arme secrète pour reprendre confiance au volant sans pression.</p>
+        </div>
+      </div>
+      <div class="mono">
+        <div class="mono-photo" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85')">
+          <span class="mono-badge">Manuel + auto</span>
+        </div>
+        <div class="mono-content">
+          <h3>Thomas Lemoine</h3>
+          <p class="mono-role">Moniteur permis B · Vevey</p>
+          <p>Mention permis manuel ET boîte automatique. Bilingue français/anglais, parfait pour les expats. Pratique aussi le permis remorque BE le week-end.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="testim">
+  <div class="testim-inner">
+    <div class="testim-head">
+      <span class="section-eyebrow">// Tu pourrais être le prochain</span>
+      <h2 class="section-title">Ils ont eu leur permis<br/><span class="highlight">avec nous</span>.</h2>
+    </div>
+    <div class="testim-grid">
+      <div class="testim-card">
+        <p class="testim-stars">★★★★★</p>
+        <p class="testim-quote">Passé en 5 semaines, j'ai eu mon permis du premier coup ! Léa a un don pour les flippés du volant — j'étais l'une d'elles.</p>
+        <div class="testim-author">
+          <div class="testim-avatar" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=85')"></div>
+          <div>
+            <p class="testim-name">Sofia D., 19 ans</p>
+            <p class="testim-info">Permis B · Mars 2026</p>
+          </div>
+        </div>
+      </div>
+      <div class="testim-card">
+        <p class="testim-stars">★★★★★</p>
+        <p class="testim-quote">Après deux échecs avec une autre école, j'ai changé pour OLA. Différence du jour à la nuit : on me prenait au sérieux. Réussi 6 semaines plus tard.</p>
+        <div class="testim-author">
+          <div class="testim-avatar" style="background-image:url('https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=85')"></div>
+          <div>
+            <p class="testim-name">Lucas B., 22 ans</p>
+            <p class="testim-info">Permis B · Février 2026</p>
+          </div>
+        </div>
+      </div>
+      <div class="testim-card">
+        <p class="testim-stars">★★★★★</p>
+        <p class="testim-quote">Code en ligne hyper bien fait, on peut bosser entre deux cours à la fac. Avec Marc on a planifié les leçons sur mes vacances. Top du top.</p>
+        <div class="testim-author">
+          <div class="testim-avatar" style="background-image:url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=85')"></div>
+          <div>
+            <p class="testim-name">Inès K., 18 ans</p>
+            <p class="testim-info">Permis B · Avril 2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPTION -->
+<section id="inscr" class="inscr">
+  <div class="inscr-inner">
+    <div class="inscr-head">
+      <span class="section-eyebrow">// On commence ?</span>
+      <h2 class="section-title">Inscris-toi en 2 minutes.</h2>
+      <p class="section-lead">On te rappelle dans la journée pour caler ta première leçon.</p>
+    </div>
+    <form class="inscr-form">
+      <div class="form-row">
+        <label><span>Type de permis</span>
+          <select required>
+            <option>Permis B (voiture)</option>
+            <option>Permis A1 (moto 125)</option>
+            <option>Permis A (moto)</option>
+            <option>Code seul</option>
+            <option>Sensibilisation</option>
+          </select>
+        </label>
+        <label><span>Date de naissance</span><input type="date" required /></label>
+      </div>
+      <label><span>Expérience préalable</span>
+        <select>
+          <option>Aucune — débutant complet</option>
+          <option>Quelques heures de conduite informelle</option>
+          <option>Déjà 5-10 leçons ailleurs</option>
+          <option>Échec précédent, à reprendre</option>
+        </select>
+      </label>
+      <div class="form-row">
+        <label><span>Nom &amp; prénom</span><input type="text" required /></label>
+        <label><span>Téléphone</span><input type="tel" required /></label>
+      </div>
+      <div class="form-row">
+        <label><span>Email</span><input type="email" required /></label>
+        <label><span>École préférée</span>
+          <select>
+            <option>Lausanne centre</option>
+            <option>Renens</option>
+            <option>Vevey</option>
+            <option>Peu importe — la plus dispo</option>
+          </select>
+        </label>
+      </div>
+      <button type="submit">Envoyer mon inscription →</button>
+    </form>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section id="tarifs" class="tarifs">
+  <div class="tarifs-inner">
+    <div class="tarifs-head">
+      <span class="section-eyebrow">// Transparence totale</span>
+      <h2 class="section-title">Tarifs détaillés.</h2>
+      <p class="section-lead">Tout est là, dans le détail. Pas de petits caractères.</p>
+    </div>
+    <div class="tarifs-table">
+      <div class="tarifs-row header">
+        <div>Prestation</div>
+        <div>Prix</div>
+        <div>Inclus</div>
+      </div>
+      <div class="tarifs-row">
+        <div class="label">Cours de code (en ligne)</div>
+        <div class="price">380 CHF</div>
+        <div class="desc">Accès 6 mois illimité, 5000 questions, tests blancs hebdomadaires</div>
+      </div>
+      <div class="tarifs-row">
+        <div class="label">Leçon de conduite (45 min)</div>
+        <div class="price">95 CHF</div>
+        <div class="desc">À l'unité, avec moniteur diplômé, véhicule récent (boîte manuelle ou auto)</div>
+      </div>
+      <div class="tarifs-row">
+        <div class="label">Forfait 10 leçons</div>
+        <div class="price">890 CHF</div>
+        <div class="desc">10 leçons à utiliser sur 6 mois — 5% d'économie</div>
+      </div>
+      <div class="tarifs-row">
+        <div class="label">Cours de 1<sup>er</sup> secours (10h)</div>
+        <div class="price">160 CHF</div>
+        <div class="desc">Obligatoire pour le permis B, sur 2 demi-journées</div>
+      </div>
+      <div class="tarifs-row">
+        <div class="label">Sensibilisation circulation routière (8h)</div>
+        <div class="price">280 CHF</div>
+        <div class="desc">Obligatoire avant l'examen pratique — 4 demi-journées</div>
+      </div>
+      <div class="tarifs-row">
+        <div class="label">Simulation d'examen pratique</div>
+        <div class="price">130 CHF</div>
+        <div class="desc">1h en conditions réelles, avec retour d'évaluation détaillé</div>
+      </div>
+      <div class="tarifs-row">
+        <div class="label">Location véhicule pour examen</div>
+        <div class="price">180 CHF</div>
+        <div class="desc">Voiture entretenue, prête le jour J, accompagnement aller-retour</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCURSALES -->
+<section id="succ" class="succ">
+  <div class="succ-inner">
+    <div class="succ-head">
+      <span class="section-eyebrow">// Nos écoles</span>
+      <h2 class="section-title">Trois adresses,<br/><span class="highlight">une même équipe</span>.</h2>
+    </div>
+    <div class="succ-grid">
+      <div class="succ-card">
+        <p class="succ-num">01 — Lausanne</p>
+        <h3>Lausanne centre</h3>
+        <p class="succ-addr">Avenue de la Gare 17<br/>1003 Lausanne<br/><br/>+41 21 555 33 17</p>
+        <span class="succ-tag">3 moniteurs</span>
+      </div>
+      <div class="succ-card">
+        <p class="succ-num">02 — Renens</p>
+        <h3>Renens</h3>
+        <p class="succ-addr">Rue de Lausanne 42<br/>1020 Renens<br/><br/>+41 21 555 42 02</p>
+        <span class="succ-tag">2 moniteurs</span>
+      </div>
+      <div class="succ-card">
+        <p class="succ-num">03 — Vevey</p>
+        <h3>Vevey</h3>
+        <p class="succ-addr">Quai Perdonnet 8<br/>1800 Vevey<br/><br/>+41 21 555 18 08</p>
+        <span class="succ-tag">2 moniteurs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Téléphone</p>
+      <p class="info-content">+41 21 555 33 17<br/><em>Bureau central · Lausanne</em></p>
+    </div>
+    <div>
+      <p class="info-label">Horaires bureau</p>
+      <p class="info-content">Lun–Ven · 9h–19h<br/><em>Sam · 9h–13h</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">hello@ola-permis.ch<br/><em>Réponse sous 24h</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>OLA Auto-école · Lausanne · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.6</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.utils.toArray('.formule, .mono, .testim-card, .succ-card, .tarifs-row').forEach((el,i)=>{
+  gsap.fromTo(el,{opacity:0,y:30},{opacity:1,y:0,duration:.7,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 90%',once:true},delay:(i%4)*.05});
+});
+
+gsap.from('.hero-text > *',{opacity:0,y:30,duration:.9,ease:'power3.out',stagger:.1,delay:.15});
+gsap.from('.hero-img-wrap',{opacity:0,x:50,rotate:6,duration:1.2,ease:'power3.out',delay:.25});
+
+document.querySelector('.inscr-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert("Site de démonstration HectoWeb.\nSur votre vrai site, l'inscription serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+});
+</script>
+</body>
+</html>

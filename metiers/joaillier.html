@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Atelier Noyer — Joaillerie sur-mesure · Genève</title>
+<meta name="description" content="Atelier Noyer, joaillerie sur-mesure à Genève depuis 1987. Pièces uniques, savoir-faire genevois, créations en or et pierres précieuses." />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;1,300&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   PALETTE — noir profond + or chaud + crème
+   Luxe minimaliste, lumière dramatique
+   ============================================================ */
+:root{
+  --void:#0a0a0a;
+  --void-2:#131110;
+  --void-3:#1c1916;
+  --gold:#c9a96e;
+  --gold-deep:#a88a52;
+  --gold-light:#dfc28b;
+  --cream:#f0e8d8;
+  --cream-soft:#d8cfb9;
+  --muted:#5a5448;
+  --rule:rgba(201,169,110,.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--cream);background:var(--void);
+  -webkit-font-smoothing:antialiased;line-height:1.75;overflow-x:hidden;
+}
+::selection{background:var(--gold);color:var(--void)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+img{display:block;max-width:100%}
+button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
+
+/* ============================================================
+   HW STRIP
+   ============================================================ */
+.hw-strip{position:fixed;top:0;left:0;right:0;z-index:60;background:#000;border-bottom:1px solid #e3c789;font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500}
+.hw-strip a{border-bottom:1px solid rgba(227,199,137,.5);padding-bottom:1px;margin-left:.6rem;color:#e3c789}
+.hw-strip a:hover{color:#f0d89f;border-color:#f0d89f}
+@media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed;top:32px;left:0;right:0;z-index:50;
+  padding:1.5rem clamp(1.5rem,4vw,3.5rem);
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .35s,padding .3s,border-color .35s;
+}
+.nav.scrolled{
+  background:rgba(10,10,10,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding-top:1rem;padding-bottom:1rem;
+}
+.nav-brand{
+  font-family:'Cinzel',serif;font-weight:500;
+  font-size:1.15rem;color:var(--cream);letter-spacing:.32em;text-transform:uppercase;
+}
+.nav-brand .star{color:var(--gold);margin:0 .35rem;font-family:'Bodoni Moda',serif;font-style:italic}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--cream-soft);
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  background:transparent;color:var(--gold) !important;padding:.65rem 1.4rem;
+  border:1px solid var(--gold);
+  font-size:.68rem;letter-spacing:.3em;
+  transition:background .25s,color .25s;
+}
+.nav-cta:hover{background:var(--gold);color:var(--void) !important}
+@media(max-width:880px){.nav-links li:not(:last-child){display:none}}
+
+/* ============================================================
+   HERO — macro fullscreen, wordmark centré bas
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:7rem clamp(1.5rem,4vw,3rem) 4rem;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at center,rgba(10,10,10,.2) 0%,rgba(10,10,10,.8) 75%,var(--void) 100%),
+    url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=2400&q=85') center/cover no-repeat;
+  filter:contrast(1.05);
+}
+.hero-top{
+  position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;
+}
+.hero-top-tag{
+  font-family:'Inter',sans-serif;font-size:.68rem;font-weight:500;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
+  display:inline-flex;align-items:center;gap:.6rem;
+}
+.hero-top-tag::before{content:'';width:30px;height:1px;background:var(--gold)}
+.hero-top-info{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;
+  color:var(--cream-soft);text-align:right;
+}
+
+.hero-bottom{position:relative;z-index:2;text-align:center}
+.hero-mini{
+  font-family:'Bodoni Moda',serif;font-style:italic;font-weight:400;font-size:1.2rem;
+  color:var(--gold);margin-bottom:1.5rem;display:inline-block;
+}
+.hero-mini::before,.hero-mini::after{content:'·';color:var(--gold);margin:0 1rem;font-size:1.5rem}
+.hero-wordmark{
+  font-family:'Cinzel',serif;font-weight:500;
+  font-size:clamp(2.5rem,8vw,7rem);line-height:1;letter-spacing:.18em;
+  color:var(--cream);margin-bottom:1.5rem;text-transform:uppercase;
+}
+.hero-wordmark .amp{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--gold);letter-spacing:0;font-weight:400}
+.hero-tag{
+  font-family:'Bodoni Moda',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.1rem,1.5vw,1.4rem);line-height:1.55;color:var(--cream);opacity:.8;
+  max-width:38rem;margin:0 auto 3rem;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold);padding:1rem 2rem;border:1px solid var(--gold);
+  transition:background .25s,color .25s,transform .15s;
+}
+.hero-cta:hover{background:var(--gold);color:var(--void);transform:translateY(-2px)}
+
+/* ============================================================
+   ORN
+   ============================================================ */
+.orn{display:flex;align-items:center;justify-content:center;gap:1.2rem;color:var(--gold);margin:0 auto}
+.orn::before,.orn::after{content:'';width:60px;height:1px;background:currentColor}
+.orn-sym{font-family:'Bodoni Moda',serif;font-style:italic;font-size:1.3rem}
+
+/* ============================================================
+   COLLECTIONS — 3 collections, layout magazine
+   ============================================================ */
+.collections{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--void);
+}
+.coll-head{max-width:900px;margin:0 auto 5rem;text-align:center}
+.coll-eyebrow{
+  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.45em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;font-weight:500;
+}
+.coll-head h2{
+  font-family:'Bodoni Moda',serif;font-weight:400;
+  font-size:clamp(2.4rem,5vw,4.5rem);line-height:1.05;color:var(--cream);letter-spacing:-.015em;
+}
+.coll-head h2 em{font-style:italic;color:var(--gold)}
+
+.orn{margin:0 auto 4rem}
+
+.coll-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;
+}
+@media(max-width:880px){.coll-grid{grid-template-columns:1fr;gap:3rem}}
+.coll{display:flex;flex-direction:column}
+.coll-img{
+  width:100%;aspect-ratio:3/4;
+  background-size:cover;background-position:center;margin-bottom:1.8rem;
+  filter:contrast(1.05) saturate(.95);
+  transition:transform .8s,filter .4s;
+}
+.coll:hover .coll-img{transform:scale(1.02)}
+.coll-num{
+  font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;color:var(--gold);
+  letter-spacing:.4em;text-transform:uppercase;margin-bottom:.6rem;
+}
+.coll h3{
+  font-family:'Cinzel',serif;font-weight:500;font-size:1.5rem;
+  color:var(--cream);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;
+}
+.coll p{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--cream-soft);font-size:1rem;line-height:1.7;opacity:.85}
+
+/* ============================================================
+   ATELIER — split image+texte, savoir-faire
+   ============================================================ */
+.atelier{
+  display:grid;grid-template-columns:1fr 1.1fr;
+  background:var(--void-2);min-height:90vh;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+@media(max-width:880px){.atelier{grid-template-columns:1fr}}
+.atelier-img{
+  background:url('https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;
+  min-height:600px;filter:contrast(1.08) saturate(.9);
+}
+.atelier-text{
+  padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,6rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.atelier-text .coll-eyebrow{margin-bottom:2rem}
+.atelier-text h2{
+  font-family:'Bodoni Moda',serif;font-weight:400;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1.05;color:var(--cream);
+  margin-bottom:2rem;letter-spacing:-.015em;
+}
+.atelier-text h2 em{font-style:italic;color:var(--gold)}
+.atelier-text p{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--cream);opacity:.85;font-size:1.1rem;line-height:1.85;margin-bottom:1.4rem;max-width:36rem}
+.atelier-quote{
+  font-family:'Bodoni Moda',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.4rem,2vw,1.8rem);line-height:1.4;color:var(--gold);
+  margin-top:3rem;padding:2.5rem 0 0;border-top:1px solid var(--rule);
+  max-width:36rem;
+}
+.atelier-sign{
+  margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.8rem;
+  color:var(--gold);letter-spacing:.3em;text-transform:uppercase;
+}
+
+/* ============================================================
+   PIECES SIGNATURE — galerie 6 pièces
+   ============================================================ */
+.pieces{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--void);
+}
+.pieces-head{max-width:1100px;margin:0 auto 5rem;text-align:center}
+.pieces-head h2{
+  font-family:'Bodoni Moda',serif;font-weight:400;
+  font-size:clamp(2.4rem,5vw,4.5rem);line-height:1.05;color:var(--cream);
+}
+.pieces-head h2 em{font-style:italic;color:var(--gold)}
+.pieces-head p{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--cream-soft);opacity:.8;font-size:1.15rem;margin-top:1.5rem;max-width:38rem;margin-left:auto;margin-right:auto;line-height:1.6}
+
+.pieces-grid{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;
+}
+@media(max-width:880px){.pieces-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.pieces-grid{grid-template-columns:1fr}}
+.piece{display:flex;flex-direction:column;text-align:center}
+.piece-img{
+  width:100%;aspect-ratio:1/1;
+  background-size:cover;background-position:center;margin-bottom:1.5rem;
+  background-color:var(--void-3);
+  transition:transform .6s;
+}
+.piece:hover .piece-img{transform:scale(1.03)}
+.piece-cat{font-family:'Inter',sans-serif;font-size:.6rem;color:var(--gold);letter-spacing:.4em;text-transform:uppercase;margin-bottom:.5rem;font-weight:500}
+.piece-name{font-family:'Cinzel',serif;font-weight:500;font-size:1.15rem;color:var(--cream);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+.piece-price{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--cream-soft);opacity:.7;font-size:.95rem}
+
+/* ============================================================
+   SURMESURE — process 5 étapes
+   ============================================================ */
+.process{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--void-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+.process-head{max-width:1100px;margin:0 auto 5rem;text-align:center}
+.process-head h2{font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(2.4rem,5vw,4.5rem);line-height:1.05;color:var(--cream)}
+.process-head h2 em{font-style:italic;color:var(--gold)}
+.process-head p{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--cream-soft);opacity:.8;font-size:1.15rem;margin-top:1.5rem;max-width:38rem;margin-left:auto;margin-right:auto;line-height:1.6}
+
+.process-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem;
+}
+@media(max-width:1000px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.process-grid{grid-template-columns:1fr}}
+.step{
+  padding:2.5rem 1.8rem;background:var(--void);border:1px solid var(--rule);
+  display:flex;flex-direction:column;text-align:center;
+  transition:border-color .3s,transform .3s;
+}
+.step:hover{border-color:var(--gold);transform:translateY(-3px)}
+.step-num{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);letter-spacing:.3em;margin-bottom:1.5rem}
+.step h3{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.2rem;color:var(--cream);margin-bottom:1rem;line-height:1.2}
+.step h3 em{font-style:italic;color:var(--gold);font-weight:400}
+.step p{font-family:'Inter',sans-serif;color:var(--cream-soft);opacity:.75;font-size:.85rem;line-height:1.65}
+
+/* ============================================================
+   VISITE — formulaire de prise de RDV atelier
+   ============================================================ */
+.visite{
+  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,5vw,4rem);
+  background:var(--void);text-align:center;
+}
+.visite-inner{max-width:720px;margin:0 auto}
+.visite h2{
+  font-family:'Bodoni Moda',serif;font-weight:400;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;color:var(--cream);margin-bottom:1.5rem;
+}
+.visite h2 em{font-style:italic;color:var(--gold)}
+.visite-lead{font-family:'Bodoni Moda',serif;font-style:italic;font-size:1.2rem;color:var(--cream-soft);opacity:.8;margin-bottom:4rem;line-height:1.6}
+
+.visite-form{display:flex;flex-direction:column;gap:1.8rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.visite-form label{display:flex;flex-direction:column;gap:.6rem}
+.visite-form span{font-family:'Inter',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--gold)}
+.visite-form input,.visite-form select,.visite-form textarea{
+  background:transparent;border:0;border-bottom:1px solid var(--rule);
+  padding:.9rem .2rem;color:var(--cream);font-family:'Bodoni Moda',serif;font-style:italic;font-size:1.1rem;
+  outline:0;transition:border-color .2s;
+}
+.visite-form input:focus,.visite-form select:focus,.visite-form textarea:focus{border-color:var(--gold)}
+.visite-form textarea{min-height:110px;resize:vertical}
+.visite-form button{
+  align-self:center;margin-top:2.5rem;min-width:300px;
+  padding:1.1rem 2.2rem;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.35em;text-transform:uppercase;
+  background:transparent;color:var(--gold);border:1px solid var(--gold);
+  transition:background .25s,color .25s,transform .15s;
+}
+.visite-form button:hover{background:var(--gold);color:var(--void);transform:translateY(-2px)}
+
+/* ============================================================
+   INFOS
+   ============================================================ */
+.infos{
+  padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4rem);
+  background:var(--void-2);border-top:1px solid var(--rule);
+}
+.infos-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;text-align:center}
+@media(max-width:800px){.infos-grid{grid-template-columns:1fr;gap:2.5rem}}
+.info-label{font-family:'Inter',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.info-content{font-family:'Cinzel',serif;font-weight:500;font-size:1rem;color:var(--cream);line-height:1.7;letter-spacing:.1em;text-transform:uppercase}
+.info-content em{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--cream-soft);opacity:.7;display:block;margin-top:.5rem;font-size:.95rem;font-weight:400;text-transform:none;letter-spacing:0}
+
+/* ============================================================
+   HW CTA
+   ============================================================ */
+.hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
+.hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
+.hw-cta-kicker::before,.hw-cta-kicker::after{content:'';width:40px;height:1px;background:#e3c789}
+.hw-cta h3{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;color:#f0ebe1;max-width:42rem;margin:0 auto 1.5rem;letter-spacing:-.025em}
+.hw-cta h3 em{font-style:italic;color:#e3c789;font-family:'Cormorant Garamond',serif;font-weight:400}
+.hw-cta p{color:#a39d8d;font-size:1.05rem;max-width:36rem;margin:0 auto 2.5rem;line-height:1.6;font-family:'Inter',sans-serif}
+.hw-cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hw-cta-btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;background:#e3c789;color:#0a0a0c;font-weight:500;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:background .25s,transform .15s}
+.hw-cta-btn:hover{background:#f0d89f;transform:translateY(-2px)}
+.hw-cta-back{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border:1px solid rgba(227,199,137,.4);color:#f0ebe1;border-radius:999px;font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;transition:border-color .25s,color .25s}
+.hw-cta-back:hover{border-color:#e3c789;color:#e3c789}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:2.5rem clamp(1.5rem,5vw,4rem);background:var(--void);border-top:1px solid var(--rule)}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+.footer-inner p{color:var(--cream-soft);opacity:.55;font-size:.72rem;font-family:'Cinzel',serif;letter-spacing:.3em;text-transform:uppercase;font-weight:400}
+.footer-inner a{color:var(--gold)}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<div class="hw-strip">
+  Site de démonstration HectoWeb
+  <a href="../index.html">← Retour aux 20 univers</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Atelier <span class="star">✦</span> Noyer</a>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#atelier">L'atelier</a></li>
+    <li><a href="#pieces">Pièces</a></li>
+    <li><a href="#process">Sur-mesure</a></li>
+    <li><a href="#visite" class="nav-cta">Prendre RDV</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-top">
+    <div class="hero-top-tag">Joaillerie · Genève · Depuis 1987</div>
+    <p class="hero-top-info">Sur rendez-vous uniquement<br/>Rue du Rhône</p>
+  </div>
+
+  <div class="hero-bottom">
+    <p class="hero-mini">Trente-sept ans d'orfèvrerie genevoise</p>
+    <h1 class="hero-wordmark">Atelier <span class="amp">N.</span> Noyer</h1>
+    <p class="hero-tag">Pièces uniques en or et pierres précieuses. Dessinées et fabriquées à la main, dans notre atelier de la Rue du Rhône.</p>
+    <a href="#visite" class="hero-cta">Visiter l'atelier →</a>
+  </div>
+</header>
+
+<!-- COLLECTIONS -->
+<section id="collections" class="collections">
+  <div class="coll-head">
+    <p class="coll-eyebrow">— Trois collections</p>
+    <h2>Origines, Constellation,<br/><em>et sur-mesure.</em></h2>
+  </div>
+
+  <div class="orn"><span class="orn-sym">✦</span></div>
+
+  <div class="coll-grid">
+    <div class="coll">
+      <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=1000&q=85')"></div>
+      <p class="coll-num">I — Collection</p>
+      <h3>Origines</h3>
+      <p>Pièces inspirées des bijoux genevois du XIXᵉ siècle — émaux, gravures fines, montures classiques en or jaune 18 carats. Hommage à notre tradition.</p>
+    </div>
+    <div class="coll">
+      <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=85')"></div>
+      <p class="coll-num">II — Collection</p>
+      <h3>Constellation</h3>
+      <p>Création contemporaine en or blanc, semi-pavages de diamants, lignes nettes et géométries lumineuses. Pour celles et ceux qui aiment l'épure.</p>
+    </div>
+    <div class="coll">
+      <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1000&q=85')"></div>
+      <p class="coll-num">III — Service</p>
+      <h3>Sur-mesure</h3>
+      <p>Une pièce qui n'existe pas encore. Vous nous racontez, nous dessinons, nous fondons, nous polissons. Une seule au monde, la vôtre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ATELIER -->
+<section id="atelier" class="atelier">
+  <div class="atelier-img"></div>
+  <div class="atelier-text">
+    <p class="coll-eyebrow">— L'atelier</p>
+    <h2>Le <em>geste</em> avant<br/>l'instrument.</h2>
+    <p>L'Atelier Noyer a été fondé en 1987 par Marcel Noyer, joaillier formé à l'École de la Place du Bourg-de-Four. Trente-sept ans plus tard, son atelier accueille encore deux orfèvres au quotidien — l'un héritier du métier, l'autre apprenti.</p>
+    <p>Chaque pièce est dessinée à la main, modelée en cire, fondue puis polie dans nos murs. Aucune sous-traitance. Aucun raccourci numérique. Le temps que prend une bague est le temps qu'elle mérite.</p>
+    <blockquote class="atelier-quote">« Une pièce qu'on porte trente ans n'est pas une pièce que l'on fait en trente jours. »</blockquote>
+    <p class="atelier-sign">— M. Noyer, fondateur</p>
+  </div>
+</section>
+
+<!-- PIECES SIGNATURE -->
+<section id="pieces" class="pieces">
+  <div class="pieces-head">
+    <p class="coll-eyebrow">— Pièces signature</p>
+    <h2>Quelques <em>créations</em><br/>du printemps.</h2>
+    <p>Six pièces parmi celles que nous avons façonnées ces derniers mois. Toutes restent disponibles ou peuvent être recommandées à l'identique.</p>
+  </div>
+
+  <div class="pieces-grid">
+    <div class="piece">
+      <div class="piece-img" style="background-image:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="piece-cat">Bague · or jaune 18 ct</p>
+      <h3 class="piece-name">Solitaire Solène</h3>
+      <p class="piece-price">Sur demande</p>
+    </div>
+    <div class="piece">
+      <div class="piece-img" style="background-image:url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="piece-cat">Pendentif · or blanc</p>
+      <h3 class="piece-name">Constellation N°7</h3>
+      <p class="piece-price">Sur demande</p>
+    </div>
+    <div class="piece">
+      <div class="piece-img" style="background-image:url('https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="piece-cat">Boucles d'oreilles · or rose</p>
+      <h3 class="piece-name">Gouttes Aurore</h3>
+      <p class="piece-price">Sur demande</p>
+    </div>
+    <div class="piece">
+      <div class="piece-img" style="background-image:url('https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="piece-cat">Alliance · or jaune</p>
+      <h3 class="piece-name">Trace fine</h3>
+      <p class="piece-price">Sur demande</p>
+    </div>
+    <div class="piece">
+      <div class="piece-img" style="background-image:url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="piece-cat">Collier · or blanc</p>
+      <h3 class="piece-name">Rivière Léman</h3>
+      <p class="piece-price">Sur demande</p>
+    </div>
+    <div class="piece">
+      <div class="piece-img" style="background-image:url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=900&q=85')"></div>
+      <p class="piece-cat">Bracelet · or jaune</p>
+      <h3 class="piece-name">Maillon Bourg</h3>
+      <p class="piece-price">Sur demande</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS SUR MESURE -->
+<section id="process" class="process">
+  <div class="process-head">
+    <p class="coll-eyebrow">— Sur-mesure</p>
+    <h2>Cinq étapes,<br/><em>une seule</em> pièce.</h2>
+    <p>De la première conversation au polissage final, voici comment se construit une pièce sur-mesure à l'Atelier Noyer. Comptez deux à quatre mois selon la complexité.</p>
+  </div>
+
+  <div class="process-grid">
+    <div class="step">
+      <p class="step-num">I.</p>
+      <h3>Le <em>dessin</em></h3>
+      <p>Premier rendez-vous à l'atelier. On écoute, on questionne, on esquisse. Vous repartez avec trois pistes graphiques.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">II.</p>
+      <h3>La <em>cire</em></h3>
+      <p>La pièce est sculptée à la main dans la cire bleue, à l'échelle 1. Vous l'essayez, on ajuste — jusqu'à validation.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">III.</p>
+      <h3>La <em>fonte</em></h3>
+      <p>Coulée à la cire perdue dans l'or de votre choix : jaune, blanc, rose, 18 carats. Sertissage des pierres en interne.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">IV.</p>
+      <h3>Le <em>polissage</em></h3>
+      <p>Étape la plus longue et la moins racontée. Trois à cinq jours selon la pièce. C'est ici que la lumière arrive.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">V.</p>
+      <h3>La <em>livraison</em></h3>
+      <p>Remise en main propre, écrin signé, certificat d'authenticité. Garantie atelier à vie sur le travail de bijouterie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VISITE -->
+<section id="visite" class="visite">
+  <div class="visite-inner">
+    <p class="coll-eyebrow">— Visite de l'atelier</p>
+    <h2>Venir <em>nous rencontrer</em></h2>
+    <p class="visite-lead">L'atelier est ouvert sur rendez-vous, du mardi au vendredi. Une heure suffit pour une première conversation — sans engagement, autour d'un thé.</p>
+
+    <form class="visite-form">
+      <div class="form-row">
+        <label><span>Nom</span><input type="text" required /></label>
+        <label><span>Email</span><input type="email" required /></label>
+      </div>
+      <label><span>Téléphone</span><input type="tel" required /></label>
+      <label><span>Votre projet</span><textarea placeholder="Bague de fiançailles, alliance, pièce unique, restauration… Dites-nous tout." required></textarea></label>
+      <button type="submit">Demander un rendez-vous →</button>
+    </form>
+  </div>
+</section>
+
+<!-- INFOS -->
+<section class="infos">
+  <div class="infos-grid">
+    <div>
+      <p class="info-label">Adresse</p>
+      <p class="info-content">Rue du Rhône 36<br/><em>1204 Genève, Suisse</em></p>
+    </div>
+    <div>
+      <p class="info-label">Contact</p>
+      <p class="info-content">+41 22 555 18 70<br/><em>atelier@ateliernoyer.ch</em></p>
+    </div>
+    <div>
+      <p class="info-label">Visite</p>
+      <p class="info-content">Mar · Ven · 10h–18h<br/><em>Sur rendez-vous uniquement</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- HW CTA -->
+<section class="hw-cta">
+  <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
+  <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
+  <p>HectoWeb conçoit des sites pour les artisans, restaurateurs, commerces et professions libérales partout en Suisse romande. Devis sous 24 heures, sans engagement.</p>
+  <div class="hw-cta-actions">
+    <a href="../index.html#contact" class="hw-cta-btn">Démarrer un projet ↗</a>
+    <a href="../index.html" class="hw-cta-back">← Voir les autres univers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>Atelier Noyer · Genève · MMXXVI</p>
+    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo v0.9</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+gsap.from('.hero-top, .hero-mini, .hero-wordmark, .hero-tag, .hero-cta',{opacity:0,y:30,duration:1.1,ease:'power3.out',stagger:.12,delay:.2});
+
+gsap.utils.toArray('.coll, .atelier-text > *, .piece, .step, .info-content').forEach(el=>{
+  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+});
+
+document.querySelector('.visite-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+  alert('Site de démonstration HectoWeb.\nSur votre vrai site, la demande de rendez-vous serait envoyée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch');
+});
+</script>
+</body>
+</html>
