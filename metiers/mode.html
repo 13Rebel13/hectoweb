@@ -4,23 +4,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title>Maison Lévrier — Mode &amp; lifestyle féminin · Lausanne</title>
-<meta name="description" content="Maison Lévrier, boutique de mode lifestyle féminine à Lausanne. Collections couture, lookbook, boutique en ligne, presse." />
+<meta name="description" content="Maison Lévrier, maison de mode lifestyle féminine à Lausanne. Lookbook scroll-driven, capsule automne numéro 12, pièces couture, presse, boutique Rue du Bourg." />
 <meta name="theme-color" content="#f0d9d3" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
    PALETTE — blush poudré + or pâle + crème + noir
-   Féminin chic moderne. Totalement différent des 3 autres :
-   pas de blanc Swiss minimal, pas de noir gallery, pas de
-   crème bordeaux. Ici : blush rosé, lookbook éditorial féminin.
    ============================================================ */
 :root{
   --blush:#f0d9d3;
   --blush-2:#e8c9c1;
+  --blush-3:#ead0c8;
   --cream:#f7ede0;
+  --cream-2:#f1e4d2;
   --gold:#d4b48a;
+  --gold-warm:#b8915c;
   --gold-2:#bf9b6e;
   --ink:#1a1a1a;
   --ink-2:#2e2a28;
@@ -29,7 +29,7 @@
   --rule-soft:rgba(26,26,26,.07);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{
   font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);
   -webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden;
@@ -40,10 +40,10 @@ img{display:block;max-width:100%}
 button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer}
 
 /* ============================================================
-   HW STRIP
+   HW STRIP — verbatim
    ============================================================ */
 .hw-strip{
-  position:fixed;top:0;left:0;right:0;z-index:60;
+  position:fixed;top:0;left:0;right:0;z-index:200;
   background:#0a0a0c;border-bottom:1px solid #e3c789;
   font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
   color:#e3c789;padding:.65rem 1.5rem;text-align:center;font-weight:500;
@@ -53,316 +53,591 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 @media(max-width:640px){.hw-strip{font-size:.6rem;letter-spacing:.12em;padding:.55rem 1rem}}
 
 /* ============================================================
-   NAV — wordmark Italiana élégant
+   CUSTOM CURSOR
+   ============================================================ */
+.cursor-dot,.cursor-ring{
+  position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);will-change:transform;
+  mix-blend-mode:difference;
+}
+.cursor-dot{
+  width:6px;height:6px;background:var(--cream);border-radius:50%;
+  transition:transform .15s ease, width .25s, height .25s, background .25s;
+}
+.cursor-ring{
+  width:36px;height:36px;border:1px solid rgba(247,237,224,.8);border-radius:50%;
+  transition:transform .25s ease, width .3s ease, height .3s ease, background .3s, border-color .3s;
+}
+.cursor-ring.hover{
+  width:56px;height:56px;background:var(--gold);border-color:var(--gold);mix-blend-mode:normal;
+}
+.cursor-dot.hover{background:var(--gold);width:8px;height:8px;mix-blend-mode:normal}
+@media(hover:none),(max-width:880px){.cursor-dot,.cursor-ring{display:none}}
+
+/* ============================================================
+   PAGE TRANSITION RIDEAU
+   ============================================================ */
+.curtain{
+  position:fixed;inset:0;z-index:300;pointer-events:none;
+  background:linear-gradient(90deg,var(--gold-warm) 0%,var(--gold) 50%,var(--gold-warm) 100%);
+  transform:translateY(100%);will-change:transform;
+}
+
+/* ============================================================
+   NAV — wordmark Italiana
    ============================================================ */
 .nav{
-  position:fixed;top:32px;left:0;right:0;z-index:50;
-  padding:1.5rem clamp(1.5rem,4vw,3.5rem);
+  position:fixed;top:32px;left:0;right:0;z-index:100;
+  padding:1.6rem clamp(1.5rem,4vw,3.5rem);
   display:flex;justify-content:space-between;align-items:center;
-  transition:background .35s,border-color .35s,padding .3s;
+  transition:background .35s,backdrop-filter .35s,border-color .35s,padding .3s;
 }
 .nav.scrolled{
-  background:rgba(247,237,224,.96);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--rule-soft);padding-top:1rem;padding-bottom:1rem;
+  background:rgba(247,237,224,.92);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--rule-soft);padding-top:1.05rem;padding-bottom:1.05rem;
 }
 .nav-brand{
   font-family:'Italiana',serif;font-weight:400;
-  font-size:2rem;color:var(--ink);letter-spacing:.04em;line-height:1;
+  font-size:2.05rem;color:var(--ink);letter-spacing:.04em;line-height:1;
+}
+.nav-brand small{
+  display:block;font-family:'Inter',sans-serif;font-size:.55rem;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--muted);
+  margin-top:.25rem;font-weight:400;
 }
 .nav-links{display:flex;gap:2.3rem;list-style:none;align-items:center}
 .nav-links a{
   font-family:'Inter',sans-serif;font-size:.72rem;font-weight:400;
   letter-spacing:.32em;text-transform:uppercase;color:var(--ink-2);
+  position:relative;padding-bottom:3px;
 }
-.nav-links a:hover{color:var(--gold-2)}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--gold-warm);transition:width .35s ease;
+}
+.nav-links a:hover{color:var(--gold-warm)}
+.nav-links a:hover::after{width:100%}
 .nav-cta{
   background:var(--ink);color:var(--cream) !important;padding:.85rem 1.6rem;
   font-size:.68rem;letter-spacing:.32em;border-radius:999px;
-  transition:background .25s;
+  transition:background .25s,transform .15s;text-transform:uppercase;
 }
-.nav-cta:hover{background:var(--gold-2);color:var(--cream) !important}
+.nav-cta:hover{background:var(--gold-warm);color:var(--cream) !important;transform:translateY(-2px)}
 @media(max-width:780px){.nav-links li:not(:last-child){display:none}}
 
 /* ============================================================
-   HERO — campagne plein écran mannequin
+   HERO — plein écran cinématique
    ============================================================ */
 .hero{
-  position:relative;min-height:100vh;
-  display:grid;grid-template-columns:1fr 1.1fr;
+  position:relative;min-height:100vh;width:100%;
+  display:grid;grid-template-columns:1fr 1.05fr;overflow:hidden;
   padding-top:5rem;
 }
-@media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto}}
+@media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:6rem}}
 .hero-text{
   background:var(--blush);padding:clamp(4rem,8vw,8rem) clamp(2rem,5vw,5rem);
-  display:flex;flex-direction:column;justify-content:center;position:relative;
+  display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;
 }
 .hero-text::after{
-  content:'L';position:absolute;right:3rem;top:50%;transform:translateY(-50%);
-  font-family:'Italiana',serif;font-size:18rem;color:rgba(26,26,26,.05);line-height:1;pointer-events:none;
+  content:'';position:absolute;right:-1px;top:15%;bottom:15%;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--gold) 50%,transparent);
 }
-.hero-overline{
-  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:400;
-  letter-spacing:.45em;text-transform:uppercase;color:var(--ink-2);
-  margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem;position:relative;z-index:2;
+.hero-kicker{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--gold-warm);
+  margin-bottom:2.2rem;display:inline-flex;align-items:center;gap:1rem;
 }
-.hero-overline::before{content:'';width:36px;height:1px;background:var(--gold-2)}
-.hero h1{
+.hero-kicker::before{content:'';width:36px;height:1px;background:var(--gold-warm)}
+.hero-title{
   font-family:'Italiana',serif;font-weight:400;
-  font-size:clamp(3.2rem,8vw,6.5rem);line-height:.95;letter-spacing:.005em;
-  color:var(--ink);margin-bottom:1.8rem;position:relative;z-index:2;
+  font-size:clamp(3.4rem,9.2vw,8.5rem);line-height:.95;letter-spacing:-.01em;
+  color:var(--ink);margin-bottom:1.6rem;
 }
-.hero h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold-2)}
+.hero-title .char{display:inline-block;will-change:transform,opacity}
+.hero-title .row{display:block;overflow:hidden;padding-bottom:.05em}
 .hero-sub{
   font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
-  font-size:clamp(1.2rem,1.7vw,1.45rem);line-height:1.5;color:var(--ink-2);
-  max-width:32rem;margin-bottom:2.5rem;position:relative;z-index:2;
+  font-size:clamp(1.15rem,1.7vw,1.55rem);color:var(--ink-2);
+  max-width:30rem;margin-bottom:2.5rem;line-height:1.45;
 }
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;position:relative;z-index:2}
-.hero-cta{
-  display:inline-flex;align-items:center;gap:.8rem;
-  padding:1.1rem 2rem;background:var(--ink);color:var(--cream);
-  font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
-  border-radius:999px;transition:background .25s,transform .15s;
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-primary{
+  background:var(--ink);color:var(--cream);padding:1.05rem 2.2rem;
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.32em;text-transform:uppercase;border-radius:999px;
+  transition:background .25s,transform .15s;display:inline-flex;align-items:center;gap:.7rem;
 }
-.hero-cta:hover{background:var(--gold-2);transform:translateY(-2px)}
-.hero-cta-2{
-  display:inline-flex;align-items:center;gap:.8rem;
-  padding:1.1rem 2rem;border:1px solid var(--ink);color:var(--ink);
-  font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
-  border-radius:999px;transition:background .25s,color .25s,border-color .25s;
+.btn-primary:hover{background:var(--gold-warm);transform:translateY(-2px)}
+.btn-ghost{
+  border:1px solid var(--ink);color:var(--ink);padding:1.05rem 2.2rem;
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.32em;text-transform:uppercase;border-radius:999px;
+  transition:background .25s,color .25s,transform .15s;
 }
-.hero-cta-2:hover{background:var(--ink);color:var(--cream)}
+.btn-ghost:hover{background:var(--ink);color:var(--cream);transform:translateY(-2px)}
+.hero-meta{
+  display:flex;gap:2rem;font-family:'Inter',sans-serif;font-size:.7rem;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+}
+.hero-meta span strong{display:block;color:var(--ink);font-size:.95rem;letter-spacing:.04em;margin-top:.3rem;text-transform:none;font-family:'Italiana',serif;font-weight:400}
 .hero-img{
-  background:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=90') center/cover no-repeat;
-  min-height:80vh;
+  position:relative;overflow:hidden;background:var(--blush-2);
+}
+.hero-img img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:saturate(.92) contrast(1.02);
+  transform:scale(1.08);will-change:transform;
+}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(26,26,26,.18) 100%);
+  pointer-events:none;
+}
+.hero-tag{
+  position:absolute;bottom:2rem;right:2rem;z-index:3;
+  background:rgba(247,237,224,.94);padding:1rem 1.4rem;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:.95rem;color:var(--ink-2);border-left:2px solid var(--gold-warm);
+  max-width:18rem;backdrop-filter:blur(8px);
 }
 
 /* ============================================================
-   BAND — sous-hero
+   CAPSULE INTRO — drop cap éditorial
    ============================================================ */
-.band{
-  background:var(--ink);color:var(--cream);
-  padding:1.3rem clamp(1.5rem,4vw,3.5rem);
-  display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;
-  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
-}
-.band span{display:inline-flex;align-items:center;gap:.7rem}
-.band span::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
-
-/* ============================================================
-   COLLECTIONS — 3 collections avec photo + description
-   ============================================================ */
-.collections{
-  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+.capsule{
+  padding:clamp(5rem,10vw,9rem) clamp(1.5rem,5vw,4rem);
   background:var(--cream);
+  display:grid;grid-template-columns:1fr 2fr;gap:clamp(2rem,6vw,6rem);
+  max-width:1280px;margin:0 auto;
 }
-.collections-head{max-width:1100px;margin:0 auto 5rem;text-align:center}
-.section-mark{
-  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:400;
-  letter-spacing:.45em;text-transform:uppercase;color:var(--gold-2);
+@media(max-width:880px){.capsule{grid-template-columns:1fr}}
+.capsule-label{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--gold-warm);
+  border-top:1px solid var(--gold);padding-top:1.4rem;
+  align-self:start;
+}
+.capsule-label strong{
+  display:block;font-family:'Italiana',serif;font-weight:400;
+  font-size:3.5rem;color:var(--ink);letter-spacing:.02em;
+  margin-top:1.2rem;line-height:1;
+}
+.capsule-text p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.3rem,2.1vw,1.8rem);line-height:1.5;color:var(--ink-2);
+  max-width:42rem;
+}
+.capsule-text p::first-letter{
+  font-family:'Italiana',serif;font-style:normal;font-weight:400;
+  font-size:5rem;float:left;line-height:.85;
+  padding:.2rem .9rem 0 0;color:var(--gold-warm);
+}
+.capsule-text .sign{
+  margin-top:2rem;font-family:'Inter',sans-serif;font-style:normal;
+  font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--muted);display:inline-flex;align-items:center;gap:1rem;
+}
+.capsule-text .sign::before{content:'';width:32px;height:1px;background:var(--muted)}
+
+/* ============================================================
+   LOOKBOOK — scroll-driven cinematic
+   ============================================================ */
+.lookbook-intro{
+  padding:clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4rem) clamp(2rem,4vw,3rem);
+  text-align:center;background:var(--cream);
+}
+.lookbook-intro .kicker{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--gold-warm);
   margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:1rem;
 }
-.section-mark::before,.section-mark::after{content:'';width:32px;height:1px;background:var(--gold-2)}
-.collections-head h2{
+.lookbook-intro .kicker::before,.lookbook-intro .kicker::after{content:'';width:40px;height:1px;background:var(--gold-warm)}
+.lookbook-intro h2{
   font-family:'Italiana',serif;font-weight:400;
-  font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;
+  font-size:clamp(2.5rem,6vw,5rem);line-height:1;color:var(--ink);
+  letter-spacing:.01em;
 }
-.collections-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold-2)}
-.collections-grid{
-  max-width:1400px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;
+.lookbook-intro p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.2rem;color:var(--muted);margin-top:1rem;
 }
-@media(max-width:1000px){.collections-grid{grid-template-columns:1fr;gap:3rem}}
-.collection{display:flex;flex-direction:column}
-.collection-img{
-  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
-  margin-bottom:1.8rem;transition:transform .8s;
+.lookbook{
+  position:relative;background:var(--cream);
 }
-.collection:hover .collection-img{transform:scale(1.02)}
-.collection-name{font-family:'Italiana',serif;font-weight:400;font-size:2rem;color:var(--ink);letter-spacing:.005em;margin-bottom:.6rem}
-.collection-name em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
-.collection-desc{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:1.15rem;color:var(--muted);line-height:1.55;margin-bottom:1.5rem;max-width:28rem}
-.collection-link{
-  display:inline-flex;align-items:center;gap:.6rem;
-  font-family:'Inter',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;
-  color:var(--ink);border-bottom:1px solid var(--gold-2);padding-bottom:3px;align-self:flex-start;
-  transition:gap .3s,color .25s;
+.silhouette{
+  position:relative;min-height:100vh;width:100%;
+  display:grid;grid-template-columns:1.15fr 1fr;
+  overflow:hidden;border-top:1px solid var(--rule-soft);
 }
-.collection-link:hover{gap:1rem;color:var(--gold-2)}
+.silhouette:nth-child(even){grid-template-columns:1fr 1.15fr}
+.silhouette:nth-child(even) .silhouette-img{order:2}
+.silhouette:nth-child(even) .silhouette-text{order:1}
+@media(max-width:880px){
+  .silhouette,.silhouette:nth-child(even){grid-template-columns:1fr;min-height:auto}
+  .silhouette:nth-child(even) .silhouette-img{order:0}
+  .silhouette:nth-child(even) .silhouette-text{order:0}
+}
+.silhouette-img{
+  position:relative;overflow:hidden;background:var(--blush-2);
+  min-height:60vh;
+}
+.silhouette-img .img-wrap{
+  position:absolute;inset:-8% -2%;will-change:transform;
+}
+.silhouette-img img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:saturate(.94) contrast(1.03);
+}
+.silhouette-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,26,26,.05) 0%,transparent 50%,rgba(26,26,26,.15) 100%);
+  pointer-events:none;
+}
+.silhouette-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(3rem,6vw,6rem) clamp(2rem,5vw,5rem);
+  background:var(--cream);position:relative;
+}
+.silhouette-text .inner{will-change:transform;}
+.silhouette-num{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(4rem,11vw,9rem);line-height:.85;
+  color:var(--gold);letter-spacing:.02em;margin-bottom:1.5rem;
+  display:flex;align-items:baseline;gap:.5rem;
+}
+.silhouette-num small{font-size:.3em;color:var(--muted);letter-spacing:.2em;font-family:'Inter',sans-serif;font-weight:400}
+.silhouette-name{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.1;color:var(--ink);
+  margin-bottom:1.5rem;letter-spacing:.005em;
+}
+.silhouette-name em{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--gold-warm);
+}
+.silhouette-pieces{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:1.15rem;line-height:1.7;color:var(--ink-2);
+  margin-bottom:2rem;max-width:24rem;
+}
+.silhouette-pieces li{
+  list-style:none;display:flex;align-items:baseline;gap:.7rem;
+  border-bottom:1px solid var(--rule-soft);padding:.65rem 0;
+}
+.silhouette-pieces li:last-child{border-bottom:0}
+.silhouette-pieces li::before{
+  content:'·';color:var(--gold-warm);font-size:1.5rem;line-height:0;
+}
+.silhouette-foot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid var(--rule);padding-top:1.4rem;max-width:24rem;
+}
+.silhouette-price{
+  font-family:'Italiana',serif;font-size:1.5rem;color:var(--ink);
+}
+.silhouette-price small{
+  display:block;font-family:'Inter',sans-serif;font-size:.62rem;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:.3rem;
+}
+.silhouette-cta{
+  font-family:'Inter',sans-serif;font-size:.68rem;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--gold-warm);
+  border-bottom:1px solid var(--gold-warm);padding-bottom:3px;
+  transition:color .25s,border-color .25s;
+}
+.silhouette-cta:hover{color:var(--ink);border-color:var(--ink)}
 
 /* ============================================================
-   LOOKBOOK — galerie magazine 8 looks
+   MARQUEE italique
    ============================================================ */
-.lookbook{
-  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
+.marquee{
+  background:var(--ink);color:var(--cream);
+  padding:clamp(3rem,5vw,4.5rem) 0;overflow:hidden;
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);
+}
+.marquee-track{
+  display:flex;gap:5rem;white-space:nowrap;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(2rem,5vw,4rem);letter-spacing:.005em;
+  will-change:transform;
+}
+.marquee-track span{display:inline-flex;align-items:center;gap:5rem;color:var(--cream)}
+.marquee-track span::after{
+  content:'·';color:var(--gold);font-size:1.5em;line-height:0;
+}
+
+/* ============================================================
+   PIÈCES — horizontal scroll snap
+   ============================================================ */
+.pieces{
+  padding:clamp(5rem,10vw,9rem) 0 clamp(3rem,6vw,5rem);
+  background:var(--cream-2);position:relative;
+}
+.pieces-head{
+  padding:0 clamp(1.5rem,5vw,4rem);max-width:1280px;margin:0 auto 3rem;
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;
+}
+@media(max-width:780px){.pieces-head{grid-template-columns:1fr}}
+.pieces-head h2{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:1;color:var(--ink);
+}
+.pieces-head .kicker{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--gold-warm);
+  margin-bottom:1.1rem;display:inline-flex;align-items:center;gap:1rem;
+}
+.pieces-head .kicker::before{content:'';width:36px;height:1px;background:var(--gold-warm)}
+.pieces-head .scroll-hint{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.05rem;color:var(--muted);display:flex;align-items:center;gap:.7rem;
+}
+.pieces-head .scroll-hint .arrows{
+  font-family:'Inter',sans-serif;font-style:normal;letter-spacing:.2em;
+  color:var(--gold-warm);font-size:.9rem;
+}
+.pieces-rail{
+  display:flex;gap:1.6rem;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding:0 clamp(1.5rem,5vw,4rem) 2rem;
+  scrollbar-width:thin;scrollbar-color:var(--gold) transparent;
+}
+.pieces-rail::-webkit-scrollbar{height:6px}
+.pieces-rail::-webkit-scrollbar-track{background:transparent}
+.pieces-rail::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+.piece-card{
+  flex:0 0 clamp(260px,28vw,360px);scroll-snap-align:start;
+  position:relative;cursor:pointer;
+  transition:transform .4s ease;
+}
+.piece-card:hover{transform:translateY(-6px)}
+.piece-img{
+  position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;
+  background:var(--blush-2);
+}
+.piece-img img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:opacity .55s ease,transform .8s ease;
+}
+.piece-img .img-back{opacity:0}
+.piece-card:hover .img-front{opacity:0}
+.piece-card:hover .img-back{opacity:1;transform:scale(1.05)}
+.piece-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(26,26,26,.18) 100%);
+  pointer-events:none;
+}
+.piece-tag{
+  position:absolute;top:1rem;left:1rem;
+  background:rgba(247,237,224,.95);padding:.4rem .8rem;
+  font-family:'Inter',sans-serif;font-size:.55rem;font-weight:500;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--gold-warm);
+}
+.piece-body{padding:1.3rem 0 .5rem}
+.piece-body .cat{
+  font-family:'Inter',sans-serif;font-size:.6rem;font-weight:500;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:.6rem;
+}
+.piece-body h3{
+  font-family:'Italiana',serif;font-weight:400;
+  font-size:1.5rem;line-height:1.15;color:var(--ink);
+  margin-bottom:.8rem;letter-spacing:.005em;
+}
+.piece-body .price{
+  display:inline-block;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.15rem;color:var(--ink-2);position:relative;padding-bottom:3px;
+}
+.piece-body .price::after{
+  content:'';position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--gold-warm);transition:width .45s ease;
+}
+.piece-card:hover .piece-body .price::after{width:100%}
+
+/* ============================================================
+   PRESS
+   ============================================================ */
+.press{
+  padding:clamp(5rem,10vw,9rem) clamp(1.5rem,5vw,4rem);
   background:var(--blush);
 }
-.lookbook-head{max-width:1100px;margin:0 auto 5rem;text-align:center}
-.lookbook-head h2{
+.press-inner{max-width:1180px;margin:0 auto}
+.press-head{text-align:center;margin-bottom:4rem}
+.press-head .kicker{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--gold-warm);
+  margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:1rem;
+}
+.press-head .kicker::before,.press-head .kicker::after{content:'';width:40px;height:1px;background:var(--gold-warm)}
+.press-head h2{
   font-family:'Italiana',serif;font-weight:400;
-  font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;
+  font-size:clamp(2.4rem,5.5vw,4.5rem);line-height:1;color:var(--ink);
 }
-.lookbook-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold-2)}
-.lookbook-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:1.2rem;color:var(--muted);max-width:32rem;margin:1.5rem auto 0;line-height:1.55}
-.lookbook-grid{
-  max-width:1400px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+.press-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;
 }
-@media(max-width:880px){.lookbook-grid{grid-template-columns:repeat(2,1fr)}}
-.look{position:relative;cursor:pointer;overflow:hidden}
-.look-img{
-  width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
-  transition:transform .8s,filter .4s;
+@media(max-width:880px){.press-grid{grid-template-columns:1fr}}
+.press-card{
+  background:var(--cream);padding:3rem 2.2rem;
+  border:1px solid var(--rule-soft);position:relative;
+  transition:transform .4s ease,border-color .4s;
 }
-.look:hover .look-img{transform:scale(1.05);filter:brightness(.9)}
-.look-num{
-  position:absolute;top:1rem;left:1rem;
-  font-family:'Italiana',serif;font-size:1.5rem;color:var(--cream);
-  text-shadow:0 1px 4px rgba(0,0,0,.3);
+.press-card:hover{transform:translateY(-6px);border-color:var(--gold)}
+.press-card::before{
+  content:'“';position:absolute;top:1rem;left:1.5rem;
+  font-family:'Italiana',serif;font-size:5rem;color:var(--gold);
+  line-height:1;opacity:.6;
 }
-.look-label{
-  position:absolute;bottom:1rem;left:1rem;
-  font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cream);
-  background:rgba(26,26,26,.5);padding:.4rem .7rem;
+.press-card .source{
+  font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--gold-warm);
+  margin-bottom:1.5rem;padding-top:2rem;
+}
+.press-card blockquote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:1.25rem;line-height:1.5;color:var(--ink-2);
+  margin-bottom:1.8rem;
+}
+.press-card cite{
+  font-family:'Inter',sans-serif;font-style:normal;font-size:.65rem;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--rule-soft);padding-top:1rem;display:block;
 }
 
 /* ============================================================
-   BOUTIQUE — 4 produits
+   BOUTIQUE PHYSIQUE
    ============================================================ */
 .boutique{
-  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
-  background:var(--cream);
-}
-.boutique-head{max-width:1400px;margin:0 auto 4rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
-@media(max-width:780px){.boutique-head{grid-template-columns:1fr}}
-.boutique-head h2{
-  font-family:'Italiana',serif;font-weight:400;
-  font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;
-}
-.boutique-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold-2)}
-.boutique-link{
-  display:inline-flex;align-items:center;gap:.6rem;
-  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;
-  color:var(--ink);border-bottom:1px solid var(--gold-2);padding-bottom:3px;
-  transition:gap .3s,color .25s;
-}
-.boutique-link:hover{gap:1rem;color:var(--gold-2)}
-
-.products-grid{
-  max-width:1400px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
-}
-@media(max-width:1000px){.products-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.products-grid{grid-template-columns:1fr}}
-.product{display:flex;flex-direction:column}
-.product-img{
-  position:relative;width:100%;aspect-ratio:3/4;background-size:cover;background-position:center;
-  margin-bottom:1.2rem;transition:transform .6s;
-}
-.product:hover .product-img{transform:scale(1.02)}
-.product-tag{
-  position:absolute;top:1rem;left:1rem;background:var(--gold);color:var(--ink);
-  font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
-  padding:.35rem .7rem;
-}
-.product-info{display:flex;justify-content:space-between;align-items:start;gap:1rem;padding-top:.5rem;border-top:1px solid var(--rule-soft)}
-.product-name{font-family:'Italiana',serif;font-size:1.2rem;color:var(--ink);letter-spacing:.005em;line-height:1.3}
-.product-cat{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:.9rem;margin-top:.2rem}
-.product-price{font-family:'Inter',sans-serif;font-weight:500;font-size:.95rem;color:var(--ink);white-space:nowrap}
-.product-price b{font-weight:400;color:var(--gold-2);font-size:.7rem;letter-spacing:.15em;margin-left:.3rem}
-
-/* ============================================================
-   PRESSE — citations
-   ============================================================ */
-.presse{
-  padding:clamp(7rem,11vw,11rem) clamp(1.5rem,4vw,3.5rem);
   background:var(--ink);color:var(--cream);
+  display:grid;grid-template-columns:1.1fr 1fr;
+  min-height:80vh;overflow:hidden;
 }
-.presse-head{max-width:1100px;margin:0 auto 5rem;text-align:center}
-.presse-head .section-mark{color:var(--gold)}
-.presse-head .section-mark::before,.presse-head .section-mark::after{background:var(--gold)}
-.presse-head h2{
+@media(max-width:880px){.boutique{grid-template-columns:1fr}}
+.boutique-img{position:relative;overflow:hidden;min-height:50vh}
+.boutique-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.08)}
+.boutique-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,26,26,.15) 0%,transparent 60%);
+}
+.boutique-text{
+  padding:clamp(3rem,6vw,6rem) clamp(2rem,5vw,5rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.boutique-text .kicker{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:1.6rem;display:inline-flex;align-items:center;gap:1rem;
+}
+.boutique-text .kicker::before{content:'';width:40px;height:1px;background:var(--gold)}
+.boutique-text h2{
   font-family:'Italiana',serif;font-weight:400;
-  font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.05;color:var(--cream);letter-spacing:.005em;
+  font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1;color:var(--cream);
+  margin-bottom:1.5rem;letter-spacing:.005em;
 }
-.presse-head h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--gold)}
-.presse-grid{
-  max-width:1300px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;
-}
-@media(max-width:880px){.presse-grid{grid-template-columns:1fr}}
-.press-card{
-  padding:2.5rem 0;
-  border-top:1px solid rgba(247,237,224,.18);
-}
-.press-mag{
-  font-family:'Italiana',serif;font-size:2rem;color:var(--gold);letter-spacing:.02em;margin-bottom:1.5rem;
-}
-.press-quote{
+.boutique-text h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold)}
+.boutique-text p{
   font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
-  font-size:1.25rem;line-height:1.55;color:var(--cream);margin-bottom:1.5rem;
+  font-size:1.2rem;line-height:1.6;color:#d9cdb8;
+  max-width:28rem;margin-bottom:2.2rem;
 }
-.press-source{font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(247,237,224,.6)}
+.boutique-info{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;
+  border-top:1px solid rgba(212,180,138,.3);padding-top:2rem;
+}
+.boutique-info dt{
+  font-family:'Inter',sans-serif;font-size:.62rem;font-weight:500;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:.7rem;
+}
+.boutique-info dd{
+  font-family:'Italiana',serif;font-size:1.15rem;color:var(--cream);
+  line-height:1.4;
+}
+.boutique-info dd small{
+  display:block;font-family:'Inter',sans-serif;font-size:.78rem;
+  letter-spacing:.05em;color:#a89880;margin-top:.3rem;
+}
 
 /* ============================================================
    NEWSLETTER
    ============================================================ */
 .newsletter{
-  padding:clamp(6rem,10vw,10rem) clamp(1.5rem,4vw,3.5rem);
-  background:var(--blush-2);text-align:center;
+  padding:clamp(5rem,10vw,9rem) clamp(1.5rem,5vw,4rem);
+  background:var(--blush-3);text-align:center;
 }
-.newsletter-inner{max-width:680px;margin:0 auto}
-.newsletter-inner h2{
+.newsletter-inner{max-width:42rem;margin:0 auto}
+.newsletter .kicker{
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.5em;text-transform:uppercase;color:var(--gold-warm);
+  margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:1rem;
+}
+.newsletter .kicker::before,.newsletter .kicker::after{content:'';width:40px;height:1px;background:var(--gold-warm)}
+.newsletter h2{
   font-family:'Italiana',serif;font-weight:400;
-  font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;margin-bottom:1.2rem;
+  font-size:clamp(2.2rem,5vw,4rem);line-height:1.02;color:var(--ink);
+  margin-bottom:1.2rem;
 }
-.newsletter-inner h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
-.newsletter-inner p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--ink-2);line-height:1.5;margin-bottom:3rem;max-width:30rem;margin-left:auto;margin-right:auto}
-
-.newsletter-form{display:flex;flex-direction:column;gap:1.5rem;text-align:left;max-width:520px;margin:0 auto}
-.newsletter-form .nf-input{display:flex;gap:0;border-bottom:1px solid var(--ink)}
+.newsletter h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-warm)}
+.newsletter p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.2rem;color:var(--ink-2);margin-bottom:2.5rem;
+}
+.newsletter-form{
+  display:flex;gap:0;border-bottom:1px solid var(--ink);
+  margin-bottom:1.2rem;
+}
 .newsletter-form input{
-  flex:1;background:transparent;border:0;padding:1rem 0;color:var(--ink);
-  font-family:'Inter',sans-serif;font-size:1rem;outline:0;
+  flex:1;border:0;background:transparent;
+  font-family:'Italiana',serif;font-size:1.2rem;color:var(--ink);
+  padding:1rem .5rem;outline:none;
 }
-.newsletter-form input::placeholder{color:var(--muted);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem}
+.newsletter-form input::placeholder{color:var(--muted);font-family:'Cormorant Garamond',serif;font-style:italic}
 .newsletter-form button{
-  padding:1rem 1.5rem;background:var(--ink);color:var(--cream);
-  font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
-  border-radius:999px;transition:background .25s;
+  font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--ink);
+  padding:1rem 1.6rem;border:0;cursor:pointer;
+  transition:color .25s,transform .15s;
 }
-.newsletter-form button:hover{background:var(--gold-2)}
-.newsletter-form label.check{display:flex;align-items:flex-start;gap:.7rem;font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.5;cursor:pointer}
-.newsletter-form label.check input{width:auto;flex-shrink:0;margin-top:.25rem;accent-color:var(--gold-2)}
+.newsletter-form button:hover{color:var(--gold-warm);transform:translateX(4px)}
+.newsletter-optin{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  font-family:'Inter',sans-serif;font-size:.7rem;color:var(--muted);
+  letter-spacing:.05em;
+}
+.newsletter-optin input{accent-color:var(--gold-warm)}
 
 /* ============================================================
-   BOUTIQUE PHYSIQUE
+   INFOS
    ============================================================ */
-.shop-physical{
-  padding:clamp(6rem,10vw,9rem) clamp(1.5rem,4vw,3.5rem);
-  background:var(--cream);border-top:1px solid var(--rule-soft);
+.infos{
+  padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem);
+  background:var(--cream);
 }
-.shop-inner{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+.infos-inner{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:3rem 0;
 }
-@media(max-width:880px){.shop-inner{grid-template-columns:1fr;gap:3rem}}
-.shop-img{
-  width:100%;aspect-ratio:4/3;
-  background:url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1400&q=90') center/cover no-repeat;
+@media(max-width:780px){.infos-inner{grid-template-columns:1fr;gap:2rem}}
+.info-block h4{
+  font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;
+  letter-spacing:.45em;text-transform:uppercase;color:var(--gold-warm);
+  margin-bottom:1.2rem;
 }
-.shop-text h2{font-family:'Italiana',serif;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.05;color:var(--ink);letter-spacing:.005em;margin:1.5rem 0 1.5rem}
-.shop-text h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-2)}
-.shop-text p{font-family:'Inter',sans-serif;color:var(--ink-2);font-size:1rem;line-height:1.75;margin-bottom:1.2rem}
-
-.shop-info{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--rule)}
-.shop-info-label{font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-2);margin-bottom:.7rem}
-.shop-info-value{font-family:'Italiana',serif;font-size:1.1rem;color:var(--ink);line-height:1.5;letter-spacing:.005em}
-.shop-info-value em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);display:block;margin-top:.2rem;font-size:.9rem}
+.info-block p{
+  font-family:'Italiana',serif;font-size:1.35rem;color:var(--ink);
+  line-height:1.4;
+}
+.info-block p small{
+  display:block;font-family:'Inter',sans-serif;font-size:.78rem;
+  color:var(--muted);margin-top:.5rem;letter-spacing:.04em;
+}
 
 /* ============================================================
-   HW CTA
+   HW CTA — verbatim
    ============================================================ */
 .hw-cta{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,4rem);text-align:center;background:#0a0a0c;color:#f0ebe1;border-top:2px solid #e3c789}
 .hw-cta-kicker{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:#e3c789;margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:1rem}
@@ -379,268 +654,421 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
 /* ============================================================
    FOOTER
    ============================================================ */
-.footer{padding:2.5rem clamp(1.5rem,4vw,3.5rem);background:var(--cream);border-top:1px solid var(--rule-soft)}
-.footer-inner{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
-.footer-inner p{font-family:'Inter',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:400}
-.footer-inner a{color:var(--gold-2);border-bottom:1px solid var(--gold-2)}
+.footer{
+  background:var(--ink);color:#a89880;
+  padding:3rem clamp(1.5rem,5vw,4rem);text-align:center;
+  border-top:1px solid rgba(212,180,138,.2);
+}
+.footer-brand{
+  font-family:'Italiana',serif;font-size:1.8rem;color:var(--cream);
+  margin-bottom:.6rem;letter-spacing:.04em;
+}
+.footer p{
+  font-family:'Inter',sans-serif;font-size:.7rem;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+.footer p a{color:var(--gold);border-bottom:1px solid rgba(212,180,138,.4)}
+.footer p a:hover{color:#f0d89f}
+.footer .legal{margin-top:1rem;font-size:.62rem;color:#7a6a55;letter-spacing:.15em}
 
-.reveal{opacity:0;transform:translateY(28px)}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+/* ============================================================
+   ACCESS — reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  .cursor-dot,.cursor-ring,.curtain{display:none !important}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    transition-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+  }
+  .hero-title .char,.silhouette-img .img-wrap,.silhouette-text .inner,.hero-img img{transform:none !important}
+  .marquee-track{animation:none !important}
+}
+
+/* fallback CSS marquee si JS off */
+@keyframes marquee-fallback{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-track{animation:marquee-fallback 30s linear infinite}
+.js-on .marquee-track{animation:none}
 </style>
 </head>
 <body>
 
-<!-- HW STRIP -->
+<!-- ===================== HW STRIP ===================== -->
 <div class="hw-strip">Site de démonstration HectoWeb<a href="../index.html">← Retour aux 20 univers</a></div>
 
-<!-- NAV -->
+<!-- ===================== CURSEUR ===================== -->
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<!-- ===================== RIDEAU TRANSITION ===================== -->
+<div class="curtain" aria-hidden="true"></div>
+
+<!-- ===================== NAV ===================== -->
 <nav class="nav" id="nav">
-  <a href="#top" class="nav-brand">Maison Lévrier</a>
+  <a href="#" class="nav-brand">Maison Lévrier<small>Lausanne · depuis 2014</small></a>
   <ul class="nav-links">
-    <li><a href="#collections">Collections</a></li>
+    <li><a href="#capsule">Capsule</a></li>
     <li><a href="#lookbook">Lookbook</a></li>
-    <li><a href="#boutique">Boutique</a></li>
-    <li><a href="#presse">Presse</a></li>
-    <li><a href="#shop" class="nav-cta">La boutique</a></li>
+    <li><a href="#pieces">Pièces</a></li>
+    <li><a href="#press">Presse</a></li>
+    <li><a href="#boutique" class="nav-cta">Visiter</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<header id="top" class="hero">
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="hero">
   <div class="hero-text">
-    <p class="hero-overline">Printemps · Été 2026</p>
-    <h1>L'art<br/>de la <em>présence.</em></h1>
-    <p class="hero-sub">Maison Lévrier, boutique de mode lifestyle féminine fondée à Lausanne. Pièces couture, sélection de créateurs européens, et un service personnalisé à l'ancienne.</p>
+    <div class="hero-kicker">Capsule Automne · N° 12</div>
+    <h1 class="hero-title" id="heroTitle">
+      <span class="row"><span class="word">MAISON</span></span>
+      <span class="row"><span class="word">LÉVRIER</span></span>
+    </h1>
+    <p class="hero-sub">
+      Une maison de mode féminine pensée pour celles qui choisissent l'essentiel.
+      Pièces couture en tirage limité, matières nobles, façonnage Suisse romande.
+    </p>
     <div class="hero-actions">
-      <a href="#collections" class="hero-cta">Voir les collections →</a>
-      <a href="#shop" class="hero-cta-2">Visiter la boutique</a>
+      <a href="#lookbook" class="btn-primary">Découvrir le lookbook →</a>
+      <a href="#boutique" class="btn-ghost">Visiter la boutique</a>
+    </div>
+    <div class="hero-meta">
+      <span>Saison<strong>Automne 26</strong></span>
+      <span>Atelier<strong>Lausanne</strong></span>
+      <span>Pièces<strong>32</strong></span>
     </div>
   </div>
-  <div class="hero-img"></div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2000&q=85" alt="Mannequin Maison Lévrier campagne automne" loading="eager" />
+    <div class="hero-tag">« Une silhouette se compose comme un poème : par ce qu'on retire. »</div>
+  </div>
 </header>
 
-<!-- BAND -->
-<div class="band">
-  <span>Sélection couture</span>
-  <span>Service sur mesure</span>
-  <span>Livraison Suisse offerte</span>
-  <span>Retours sous 14 jours</span>
+<!-- ===================== CAPSULE INTRO ===================== -->
+<section class="capsule" id="capsule">
+  <div class="capsule-label">
+    Capsule Automne
+    <strong>N° 12</strong>
+  </div>
+  <div class="capsule-text">
+    <p>
+      Douze ans après l'ouverture de la première boutique Rue du Bourg, Maison Lévrier
+      revient à ce qui l'a fondée : une garde-robe restreinte, juste, intemporelle.
+      Cette douzième capsule rassemble trente-deux pièces façonnées entre Lausanne et
+      Bienne — tweed suisse, soie naturelle, cuir tanné végétal. Aucune n'existera
+      au-delà de cette saison. C'est tout ce que nous savons faire : peu, mais bien.
+    </p>
+    <span class="sign">Camille Lévrier — Directrice artistique</span>
+  </div>
+</section>
+
+<!-- ===================== LOOKBOOK INTRO ===================== -->
+<section class="lookbook-intro">
+  <div class="kicker">Le Lookbook · Quatre silhouettes</div>
+  <h2>Le défilé</h2>
+  <p>Quatre femmes, quatre territoires, quatre manières d'habiter l'automne.</p>
+</section>
+
+<!-- ===================== LOOKBOOK ===================== -->
+<div class="lookbook" id="lookbook">
+
+  <article class="silhouette">
+    <div class="silhouette-img">
+      <div class="img-wrap" data-parallax="0.85">
+        <img src="https://images.unsplash.com/photo-1485518882345-15568b007407?auto=format&fit=crop&w=2000&q=85" alt="Silhouette 01 - La Voyageuse" loading="lazy" />
+      </div>
+    </div>
+    <div class="silhouette-text">
+      <div class="inner" data-parallax="1.25">
+        <div class="silhouette-num">01<small>/ 04</small></div>
+        <h3 class="silhouette-name">Silhouette Première — <em>La Voyageuse</em></h3>
+        <ul class="silhouette-pieces">
+          <li>Manteau Tweed Suisse, laine bouclée brune</li>
+          <li>Robe pull col roulé, mérinos écru</li>
+          <li>Bottines cuir, talon biseauté 5 cm</li>
+        </ul>
+        <div class="silhouette-foot">
+          <div class="silhouette-price"><small>Composition</small>CHF 1'490.—</div>
+          <a href="#pieces" class="silhouette-cta">Voir les pièces →</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="silhouette">
+    <div class="silhouette-img">
+      <div class="img-wrap" data-parallax="0.85">
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=2000&q=85" alt="Silhouette 02 - La Citadine" loading="lazy" />
+      </div>
+    </div>
+    <div class="silhouette-text">
+      <div class="inner" data-parallax="1.25">
+        <div class="silhouette-num">02<small>/ 04</small></div>
+        <h3 class="silhouette-name">Silhouette Seconde — <em>La Citadine</em></h3>
+        <ul class="silhouette-pieces">
+          <li>Blouse soie naturelle, col cravate ivoire</li>
+          <li>Pantalon tailleur, laine froide noire</li>
+          <li>Mocassins cuir vernis, dorure discrète</li>
+        </ul>
+        <div class="silhouette-foot">
+          <div class="silhouette-price"><small>Composition</small>CHF 1'180.—</div>
+          <a href="#pieces" class="silhouette-cta">Voir les pièces →</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="silhouette">
+    <div class="silhouette-img">
+      <div class="img-wrap" data-parallax="0.85">
+        <img src="https://images.unsplash.com/photo-1492447166138-50c3889fccb1?auto=format&fit=crop&w=2000&q=85" alt="Silhouette 03 - La Romantique" loading="lazy" />
+      </div>
+    </div>
+    <div class="silhouette-text">
+      <div class="inner" data-parallax="1.25">
+        <div class="silhouette-num">03<small>/ 04</small></div>
+        <h3 class="silhouette-name">Silhouette Troisième — <em>La Romantique</em></h3>
+        <ul class="silhouette-pieces">
+          <li>Robe longue soie blush, fronces taille</li>
+          <li>Veste tailleur courte, satin de laine ivoire</li>
+          <li>Escarpins cuir mat, talon kitten 4 cm</li>
+        </ul>
+        <div class="silhouette-foot">
+          <div class="silhouette-price"><small>Composition</small>CHF 1'620.—</div>
+          <a href="#pieces" class="silhouette-cta">Voir les pièces →</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="silhouette">
+    <div class="silhouette-img">
+      <div class="img-wrap" data-parallax="0.85">
+        <img src="https://images.unsplash.com/photo-1503104834685-7205e8607eb9?auto=format&fit=crop&w=2000&q=85" alt="Silhouette 04 - L'Audacieuse" loading="lazy" />
+      </div>
+    </div>
+    <div class="silhouette-text">
+      <div class="inner" data-parallax="1.25">
+        <div class="silhouette-num">04<small>/ 04</small></div>
+        <h3 class="silhouette-name">Silhouette Quatrième — <em>L'Audacieuse</em></h3>
+        <ul class="silhouette-pieces">
+          <li>Trench oversize, gabardine couleur sable</li>
+          <li>Body en maille fine, écru tendre</li>
+          <li>Sac seau cuir naturel, anse tressée main</li>
+        </ul>
+        <div class="silhouette-foot">
+          <div class="silhouette-price"><small>Composition</small>CHF 1'340.—</div>
+          <a href="#pieces" class="silhouette-cta">Voir les pièces →</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
 </div>
 
-<!-- COLLECTIONS -->
-<section id="collections" class="collections">
-  <div class="collections-head">
-    <p class="section-mark">Saison · 2026</p>
-    <h2>Trois <em>collections</em><br/>en boutique.</h2>
-  </div>
-  <div class="collections-grid">
-
-    <div class="collection">
-      <div class="collection-img" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=90')"></div>
-      <p class="collection-name">Hiver <em>Soyeux</em></p>
-      <p class="collection-desc">Pièces glissées, soies lavées, cachemires fins. Une garde-robe d'hiver qui ne pèse rien et ne tient froid à personne.</p>
-      <a href="#lookbook" class="collection-link">Voir la collection →</a>
-    </div>
-
-    <div class="collection">
-      <div class="collection-img" style="background-image:url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=90')"></div>
-      <p class="collection-name">Printemps <em>Sauvage</em></p>
-      <p class="collection-desc">Lins, gazes, mousselines. Imprimés botaniques peints à la main par Élise Caron. La fraîcheur des dimanches de mai.</p>
-      <a href="#lookbook" class="collection-link">Voir la collection →</a>
-    </div>
-
-    <div class="collection">
-      <div class="collection-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=90')"></div>
-      <p class="collection-name">Soirée <em>Couture</em></p>
-      <p class="collection-desc">Pièces de soirée — courtes, longues, à porter une fois et à garder pour toujours. Coupes signées Maison Lévrier.</p>
-      <a href="#lookbook" class="collection-link">Voir la collection →</a>
-    </div>
-
+<!-- ===================== MARQUEE ===================== -->
+<section class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Less but better.</span>
+    <span>L'élégance retenue.</span>
+    <span>Pour celles qui n'ont rien à prouver.</span>
+    <span>La beauté se mesure au silence.</span>
+    <span>Less but better.</span>
+    <span>L'élégance retenue.</span>
+    <span>Pour celles qui n'ont rien à prouver.</span>
+    <span>La beauté se mesure au silence.</span>
   </div>
 </section>
 
-<!-- LOOKBOOK -->
-<section id="lookbook" class="lookbook">
-  <div class="lookbook-head">
-    <p class="section-mark">Lookbook · printemps 2026</p>
-    <h2><em>Huit</em> silhouettes.</h2>
-    <p>Une sélection de looks photographiés à Évian, en avril dernier, par Tania Reuteler.</p>
-  </div>
-  <div class="lookbook-grid">
-    <div class="look">
-      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=90')"></div>
-      <span class="look-num">01</span>
-      <span class="look-label">Soie · Crème</span>
-    </div>
-    <div class="look">
-      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=90')"></div>
-      <span class="look-num">02</span>
-      <span class="look-label">Lin · Botanique</span>
-    </div>
-    <div class="look">
-      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=90')"></div>
-      <span class="look-num">03</span>
-      <span class="look-label">Soirée · Or pâle</span>
-    </div>
-    <div class="look">
-      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=90')"></div>
-      <span class="look-num">04</span>
-      <span class="look-label">Mousseline · Rosé</span>
-    </div>
-    <div class="look">
-      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1518730518541-d0843268c287?auto=format&fit=crop&w=800&q=90')"></div>
-      <span class="look-num">05</span>
-      <span class="look-label">Cachemire · Sable</span>
-    </div>
-    <div class="look">
-      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=90')"></div>
-      <span class="look-num">06</span>
-      <span class="look-label">Plissé · Crème</span>
-    </div>
-    <div class="look">
-      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=90')"></div>
-      <span class="look-num">07</span>
-      <span class="look-label">Manteau · Cachemire</span>
-    </div>
-    <div class="look">
-      <div class="look-img" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=90')"></div>
-      <span class="look-num">08</span>
-      <span class="look-label">Tailleur · Lin écru</span>
-    </div>
-  </div>
-</section>
-
-<!-- BOUTIQUE -->
-<section id="boutique" class="boutique">
-  <div class="boutique-head">
+<!-- ===================== PIÈCES ===================== -->
+<section class="pieces" id="pieces">
+  <div class="pieces-head">
     <div>
-      <p class="section-mark">Boutique · en ligne</p>
-      <h2>Quatre pièces<br/><em>mises en avant.</em></h2>
+      <div class="kicker">Pièces actuelles · Tirage limité</div>
+      <h2>Six pièces en boutique</h2>
     </div>
-    <a href="#shop" class="boutique-link">Voir tout le catalogue →</a>
+    <div class="scroll-hint">Faites défiler latéralement <span class="arrows">→→</span></div>
   </div>
-  <div class="products-grid">
+  <div class="pieces-rail" id="piecesRail">
 
-    <div class="product">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=90')">
-        <span class="product-tag">Nouveauté</span>
+    <article class="piece-card">
+      <div class="piece-img">
+        <span class="piece-tag">Nouveauté</span>
+        <img class="img-front" src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1200&q=85" alt="Robe Solène" loading="lazy" />
+        <img class="img-back" src="https://images.unsplash.com/photo-1492447166138-50c3889fccb1?auto=format&fit=crop&w=1200&q=85" alt="Robe Solène détail" loading="lazy" />
       </div>
-      <div class="product-info">
-        <div><p class="product-name">Robe Iris</p><p class="product-cat">Soie · imprimé botanique</p></div>
-        <p class="product-price">490<b>CHF</b></p>
+      <div class="piece-body">
+        <div class="cat">Robe / Soie</div>
+        <h3>Robe Solène</h3>
+        <span class="price">CHF 640.—</span>
       </div>
-    </div>
+    </article>
 
-    <div class="product">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=90')"></div>
-      <div class="product-info">
-        <div><p class="product-name">Blouse Hortense</p><p class="product-cat">Mousseline · crème</p></div>
-        <p class="product-price">280<b>CHF</b></p>
+    <article class="piece-card">
+      <div class="piece-img">
+        <span class="piece-tag">Édition 12</span>
+        <img class="img-front" src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=1200&q=85" alt="Blouse Hortense" loading="lazy" />
+        <img class="img-back" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=85" alt="Blouse Hortense portée" loading="lazy" />
       </div>
-    </div>
+      <div class="piece-body">
+        <div class="cat">Blouse / Soie ivoire</div>
+        <h3>Blouse Hortense</h3>
+        <span class="price">CHF 380.—</span>
+      </div>
+    </article>
 
-    <div class="product">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=90')">
-        <span class="product-tag">Édition</span>
+    <article class="piece-card">
+      <div class="piece-img">
+        <span class="piece-tag">Pièce phare</span>
+        <img class="img-front" src="https://images.unsplash.com/photo-1610631066894-62452ccb927c?auto=format&fit=crop&w=1200&q=85" alt="Manteau Lévrier" loading="lazy" />
+        <img class="img-back" src="https://images.unsplash.com/photo-1485518882345-15568b007407?auto=format&fit=crop&w=1200&q=85" alt="Manteau Lévrier porté" loading="lazy" />
       </div>
-      <div class="product-info">
-        <div><p class="product-name">Manteau Charlotte</p><p class="product-cat">Cachemire double face</p></div>
-        <p class="product-price">980<b>CHF</b></p>
+      <div class="piece-body">
+        <div class="cat">Manteau / Tweed Suisse</div>
+        <h3>Manteau Lévrier</h3>
+        <span class="price">CHF 1'290.—</span>
       </div>
-    </div>
+    </article>
 
-    <div class="product">
-      <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=800&q=90')"></div>
-      <div class="product-info">
-        <div><p class="product-name">Sac Léone</p><p class="product-cat">Cuir d'agneau · or pâle</p></div>
-        <p class="product-price">340<b>CHF</b></p>
+    <article class="piece-card">
+      <div class="piece-img">
+        <span class="piece-tag">Sur-mesure</span>
+        <img class="img-front" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=85" alt="Pantalon Aurore" loading="lazy" />
+        <img class="img-back" src="https://images.unsplash.com/photo-1503104834685-7205e8607eb9?auto=format&fit=crop&w=1200&q=85" alt="Pantalon Aurore porté" loading="lazy" />
       </div>
-    </div>
+      <div class="piece-body">
+        <div class="cat">Pantalon / Laine froide</div>
+        <h3>Pantalon Aurore</h3>
+        <span class="price">CHF 460.—</span>
+      </div>
+    </article>
+
+    <article class="piece-card">
+      <div class="piece-img">
+        <span class="piece-tag">Numéro 12</span>
+        <img class="img-front" src="https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?auto=format&fit=crop&w=1200&q=85" alt="Bottines Margot" loading="lazy" />
+        <img class="img-back" src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1200&q=85" alt="Bottines Margot détail" loading="lazy" />
+      </div>
+      <div class="piece-body">
+        <div class="cat">Chaussures / Cuir</div>
+        <h3>Bottines Margot</h3>
+        <span class="price">CHF 590.—</span>
+      </div>
+    </article>
+
+    <article class="piece-card">
+      <div class="piece-img">
+        <span class="piece-tag">Atelier Bienne</span>
+        <img class="img-front" src="https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=1200&q=85" alt="Sac Léon" loading="lazy" />
+        <img class="img-back" src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1200&q=85" alt="Sac Léon porté" loading="lazy" />
+      </div>
+      <div class="piece-body">
+        <div class="cat">Maroquinerie / Cuir naturel</div>
+        <h3>Sac Léon</h3>
+        <span class="price">CHF 720.—</span>
+      </div>
+    </article>
 
   </div>
 </section>
 
-<!-- PRESSE -->
-<section id="presse" class="presse">
-  <div class="presse-head">
-    <p class="section-mark">Presse · mentions</p>
-    <h2>Ce qu'<em>elles</em> en disent.</h2>
-  </div>
-  <div class="presse-grid">
-
-    <div class="press-card">
-      <p class="press-mag">Vogue Suisse</p>
-      <p class="press-quote">« Maison Lévrier a réussi le pari rare d'une vraie écriture de mode — feminine sans être sage, raffinée sans être froide. Une maison à suivre. »</p>
-      <p class="press-source">Édition n°218 · mars 2025</p>
+<!-- ===================== PRESS ===================== -->
+<section class="press" id="press">
+  <div class="press-inner">
+    <div class="press-head">
+      <div class="kicker">Vu dans la presse</div>
+      <h2>Ce qu'on en dit</h2>
     </div>
-
-    <div class="press-card">
-      <p class="press-mag">Femina</p>
-      <p class="press-quote">« La rue du Bourg tient enfin son adresse parfaite. Du textile pensé, des coupes irréprochables, et un accueil que l'on ne trouve plus nulle part. »</p>
-      <p class="press-source">Dossier mode · janvier 2026</p>
+    <div class="press-grid">
+      <article class="press-card">
+        <div class="source">Vogue Suisse</div>
+        <blockquote>
+          Maison Lévrier réussit l'exploit de produire une garde-robe contemporaine
+          sans céder à une seule tendance — et c'est exactement ce qui la rend
+          intemporelle.
+        </blockquote>
+        <cite>— Édition Septembre 2025</cite>
+      </article>
+      <article class="press-card">
+        <div class="source">Femina</div>
+        <blockquote>
+          La capsule numéro 12 est probablement ce que la mode suisse romande
+          a produit de plus juste cette décennie. Sobre, brillante, nécessaire.
+        </blockquote>
+        <cite>— Octobre 2025, rubrique Mode</cite>
+      </article>
+      <article class="press-card">
+        <div class="source">Bilan</div>
+        <blockquote>
+          Camille Lévrier a compris une chose rare : la croissance peut être
+          lente, locale, et profitable. Un modèle pour l'artisanat de luxe en Suisse.
+        </blockquote>
+        <cite>— Dossier « Maisons à suivre », 2025</cite>
+      </article>
     </div>
-
-    <div class="press-card">
-      <p class="press-mag">Bilan</p>
-      <p class="press-quote">« Florence Lévrier a fait le choix d'une mode lente, et c'est précisément ce qui en fait aujourd'hui l'une des marques les plus enviées de Suisse romande. »</p>
-      <p class="press-source">Portrait du mois · avril 2025</p>
-    </div>
-
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="newsletter">
+<!-- ===================== BOUTIQUE ===================== -->
+<section class="boutique" id="boutique">
+  <div class="boutique-img">
+    <img src="https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=2000&q=85" alt="Intérieur boutique Maison Lévrier Rue du Bourg" loading="lazy" />
+  </div>
+  <div class="boutique-text">
+    <div class="kicker">Boutique physique</div>
+    <h2>Rue du Bourg, <em>Lausanne</em></h2>
+    <p>
+      Notre adresse, ouverte du mardi au samedi. Un espace pensé comme un salon :
+      café offert, essayages sans rendez-vous, retouches incluses pour toute pièce achetée.
+      Camille vous reçoit en personne le samedi matin.
+    </p>
+    <dl class="boutique-info">
+      <div>
+        <dt>Adresse</dt>
+        <dd>Rue du Bourg 24<small>1003 Lausanne</small></dd>
+      </div>
+      <div>
+        <dt>Horaires</dt>
+        <dd>Mar – Sam<small>10h00 — 18h30</small></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="newsletter" id="newsletter">
   <div class="newsletter-inner">
-    <p class="section-mark">Lettre · de la maison</p>
-    <h2>Recevez les <em>nouveautés.</em></h2>
-    <p>Une lettre par mois, jamais plus. Lancements de collection, ventes privées en boutique, et quelques mots sur ce qui nous inspire.</p>
-
-    <form class="newsletter-form">
-      <div class="nf-input">
-        <input type="email" placeholder="votre.email@exemple.ch" required />
-        <button type="submit">S'inscrire →</button>
-      </div>
-      <label class="check">
-        <input type="checkbox" required />
-        <span>J'accepte de recevoir les communications de Maison Lévrier et confirme avoir lu les conditions d'utilisation.</span>
-      </label>
+    <div class="kicker">Le carnet · Newsletter</div>
+    <h2>Recevez les <em>lettres</em> de la Maison</h2>
+    <p>Six envois par an. Un avant-première par capsule. Aucun bavardage commercial.</p>
+    <form class="newsletter-form" id="newsletterForm" action="mailto:carnet@maisonlevrier.ch" method="post" enctype="text/plain">
+      <input type="email" name="email" placeholder="votre adresse e-mail" required />
+      <button type="submit">S'abonner →</button>
     </form>
+    <label class="newsletter-optin">
+      <input type="checkbox" required /> J'accepte de recevoir les lettres de Maison Lévrier (6 / an).
+    </label>
   </div>
 </section>
 
-<!-- SHOP PHYSICAL -->
-<section id="shop" class="shop-physical">
-  <div class="shop-inner">
-    <div class="shop-img"></div>
-    <div class="shop-text">
-      <p class="section-mark">Boutique · physique</p>
-      <h2>Rue du Bourg,<br/>au <em>numéro 32.</em></h2>
-      <p>Notre boutique à Lausanne occupe un ancien atelier d'horlogerie, transformé par l'Atelier B+S en 2022. Cabines généreuses, lumière douce, vestiaires en chêne. Vous y trouverez la totalité des collections, ainsi que notre service couture pour retouches et pièces sur mesure.</p>
-      <p>Florence et son équipe vous accueillent du mardi au samedi. Possibilité de rendez-vous privé en dehors des horaires sur demande.</p>
-      <div class="shop-info">
-        <div>
-          <p class="shop-info-label">Adresse</p>
-          <p class="shop-info-value">Rue du Bourg 32<br/><em>1003 Lausanne</em></p>
-        </div>
-        <div>
-          <p class="shop-info-label">Horaires</p>
-          <p class="shop-info-value">Mar · Sam<br/><em>10h–18h30</em></p>
-        </div>
-        <div>
-          <p class="shop-info-label">Téléphone</p>
-          <p class="shop-info-value">+41 21 555 06 32<br/><em>contact@maison-levrier.ch</em></p>
-        </div>
-        <div>
-          <p class="shop-info-label">Réseaux</p>
-          <p class="shop-info-value">@maisonlevrier<br/><em>Instagram · 22k</em></p>
-        </div>
-      </div>
+<!-- ===================== INFOS ===================== -->
+<section class="infos">
+  <div class="infos-inner">
+    <div class="info-block">
+      <h4>Adresse</h4>
+      <p>Rue du Bourg 24<small>1003 Lausanne, Vaud</small></p>
+    </div>
+    <div class="info-block">
+      <h4>Contact</h4>
+      <p>+41 21 312 84 16<small>bonjour@maisonlevrier.ch</small></p>
+    </div>
+    <div class="info-block">
+      <h4>Horaires</h4>
+      <p>Mardi — Samedi<small>10h00 — 18h30 · fermé dimanche &amp; lundi</small></p>
     </div>
   </div>
 </section>
 
-<!-- HW CTA -->
+<!-- ===================== HW CTA ===================== -->
 <section class="hw-cta">
   <p class="hw-cta-kicker">Vous avez aimé ce site ?</p>
   <h3>Vous aussi pouvez avoir<br/>un site <em>fait pour vous</em>.</h3>
@@ -651,33 +1079,256 @@ button{font:inherit;background:transparent;border:0;color:inherit;cursor:pointer
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ===================== FOOTER ===================== -->
 <footer class="footer">
-  <div class="footer-inner">
-    <p>Maison Lévrier · Lausanne · MMXXVI</p>
-    <p>Conçu par <a href="../index.html">HectoWeb</a> · Démo</p>
-  </div>
+  <div class="footer-brand">Maison Lévrier</div>
+  <p>Lausanne · depuis 2014 · Site démo conçu par <a href="../index.html">HectoWeb</a></p>
+  <div class="legal">© 2026 Maison Lévrier (fictif). Marque de démonstration pour HectoWeb.</div>
 </footer>
 
+<!-- ===================== SCRIPTS ===================== -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
-gsap.registerPlugin(ScrollTrigger);
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+(function(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.body.classList.add('js-on');
 
-gsap.from('.hero-text > *',{opacity:0,y:30,duration:1.1,ease:'power3.out',stagger:.12,delay:.25});
-gsap.from('.hero-img',{opacity:0,scale:1.04,duration:1.6,ease:'power3.out'});
+  /* ============================================================
+     SPLIT HERO TITLE in chars
+     ============================================================ */
+  const heroTitle = document.getElementById('heroTitle');
+  if (heroTitle){
+    heroTitle.querySelectorAll('.word').forEach(word => {
+      const text = word.textContent;
+      word.textContent = '';
+      [...text].forEach(ch => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = ch === ' ' ? ' ' : ch;
+        span.style.transform = 'translateY(110%)';
+        span.style.opacity = '0';
+        word.appendChild(span);
+      });
+    });
+  }
 
-gsap.utils.toArray('.collection, .look, .product, .press-card, .newsletter-form > *, .shop-text > *').forEach(el=>{
-  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.9,ease:'power3.out',
-    scrollTrigger:{trigger:el,start:'top 92%',once:true}});
-});
+  /* ============================================================
+     LENIS smooth scroll
+     ============================================================ */
+  let lenis = null;
+  if (!reduced && window.Lenis){
+    lenis = new Lenis({
+      duration: 1.15,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      smoothTouch: false,
+    });
+    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    if (window.ScrollTrigger){
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(time => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+    }
+  }
 
-document.querySelector('.newsletter-form')?.addEventListener('submit',e=>{
-  e.preventDefault();
-  alert("Site de démonstration HectoWeb.\nSur votre vrai site, l'inscription serait enregistrée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
-});
+  /* ============================================================
+     CUSTOM CURSOR
+     ============================================================ */
+  if (!reduced && window.matchMedia('(hover:hover)').matches){
+    const dot = document.querySelector('.cursor-dot');
+    const ring = document.querySelector('.cursor-ring');
+    let mx=window.innerWidth/2, my=window.innerHeight/2;
+    let rx=mx, ry=my, dx=mx, dy=my;
+    window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+    function tick(){
+      dx += (mx-dx)*0.6; dy += (my-dy)*0.6;
+      rx += (mx-rx)*0.18; ry += (my-ry)*0.18;
+      dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%,-50%)`;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+      requestAnimationFrame(tick);
+    }
+    tick();
+    document.querySelectorAll('a, button, .piece-card, input, label.newsletter-optin').forEach(el => {
+      el.addEventListener('mouseenter', () => { dot.classList.add('hover'); ring.classList.add('hover'); });
+      el.addEventListener('mouseleave', () => { dot.classList.remove('hover'); ring.classList.remove('hover'); });
+    });
+  }
+
+  /* ============================================================
+     NAV scrolled state
+     ============================================================ */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ============================================================
+     GSAP animations
+     ============================================================ */
+  if (window.gsap){
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ---- 1) HERO title reveal stagger ---- */
+    if (!reduced){
+      gsap.to('.hero-title .char', {
+        y:'0%', opacity:1,
+        duration:1.1, ease:'expo.out',
+        stagger:0.04, delay:0.25,
+      });
+      gsap.from('.hero-kicker, .hero-sub, .hero-actions, .hero-meta', {
+        y:30, opacity:0, duration:1.0, ease:'expo.out', stagger:0.1, delay:0.85,
+      });
+      gsap.fromTo('.hero-img img', {scale:1.18}, {
+        scale:1.05, duration:2.4, ease:'expo.out', delay:0.1,
+      });
+      gsap.fromTo('.hero-img img', {y:0}, {
+        y:-80, ease:'none',
+        scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}
+      });
+      gsap.fromTo('.hero-tag', {y:40, opacity:0}, {y:0, opacity:1, duration:1.2, ease:'expo.out', delay:1.3});
+    } else {
+      gsap.set('.hero-title .char', {y:'0%', opacity:1});
+    }
+
+    /* ---- 2) Curtain rideau on section change ---- */
+    if (!reduced){
+      const curtain = document.querySelector('.curtain');
+      ['#lookbook','#pieces','#press','#boutique'].forEach(sel => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 80%',
+          onEnter: () => {
+            gsap.set(curtain, {y:'100%'});
+            gsap.to(curtain, {
+              y:'0%', duration:0.45, ease:'power3.in',
+              onComplete:() => {
+                gsap.to(curtain, {y:'-100%', duration:0.55, ease:'power3.out', delay:0.05});
+              }
+            });
+          },
+          once: true,
+        });
+      });
+    }
+
+    /* ---- 3) Capsule reveal ---- */
+    gsap.utils.toArray('.capsule, .lookbook-intro, .press-head, .pieces-head, .boutique-text, .newsletter-inner').forEach(block => {
+      gsap.from(block.children, {
+        y:50, opacity:0, duration:1.1, ease:'expo.out', stagger:0.1,
+        scrollTrigger:{trigger:block, start:'top 78%'},
+      });
+    });
+
+    /* ---- 4) LOOKBOOK silhouettes parallax double-vitesse ---- */
+    if (!reduced){
+      gsap.utils.toArray('.silhouette').forEach(sil => {
+        const img = sil.querySelector('.img-wrap');
+        const txt = sil.querySelector('.silhouette-text .inner');
+
+        gsap.fromTo(img, {y:'-8%'}, {
+          y:'8%', ease:'none',
+          scrollTrigger:{trigger:sil, start:'top bottom', end:'bottom top', scrub:true},
+        });
+        gsap.fromTo(txt, {y:'14%'}, {
+          y:'-14%', ease:'none',
+          scrollTrigger:{trigger:sil, start:'top bottom', end:'bottom top', scrub:true},
+        });
+        gsap.from(sil.querySelector('.silhouette-num'), {
+          opacity:0, scale:0.7, duration:1.4, ease:'expo.out',
+          scrollTrigger:{trigger:sil, start:'top 70%'},
+        });
+        gsap.from(sil.querySelectorAll('.silhouette-name, .silhouette-pieces li, .silhouette-foot'), {
+          y:30, opacity:0, duration:1, ease:'expo.out', stagger:0.08,
+          scrollTrigger:{trigger:sil, start:'top 70%'},
+        });
+        gsap.from(sil.querySelector('.silhouette-img img'), {
+          scale:1.15, duration:1.6, ease:'expo.out',
+          scrollTrigger:{trigger:sil, start:'top 80%'},
+        });
+      });
+    } else {
+      gsap.set('.silhouette .img-wrap, .silhouette-text .inner', {clearProps:'all'});
+    }
+
+    /* ---- 5) Marquee infinite ---- */
+    const track = document.getElementById('marqueeTrack');
+    if (track){
+      let trackW = track.scrollWidth / 2;
+      gsap.to(track, {
+        x: -trackW, duration: 28, ease:'none', repeat:-1,
+        modifiers: { x: gsap.utils.unitize(x => parseFloat(x) % -trackW) }
+      });
+    }
+
+    /* ---- 6) Piece cards stagger reveal ---- */
+    gsap.from('.piece-card', {
+      y:60, opacity:0, duration:1.0, ease:'expo.out', stagger:0.08,
+      scrollTrigger:{trigger:'.pieces-rail', start:'top 80%'},
+    });
+
+    /* ---- 7) Press cards reveal ---- */
+    gsap.from('.press-card', {
+      y:50, opacity:0, duration:1.0, ease:'expo.out', stagger:0.12,
+      scrollTrigger:{trigger:'.press-grid', start:'top 80%'},
+    });
+
+    /* ---- 8) Boutique img + text reveal ---- */
+    if (!reduced){
+      gsap.fromTo('.boutique-img img', {scale:1.15}, {
+        scale:1, duration:1.6, ease:'expo.out',
+        scrollTrigger:{trigger:'.boutique', start:'top 80%'},
+      });
+      gsap.from('.boutique-info > div', {
+        y:30, opacity:0, duration:1, ease:'expo.out', stagger:0.1,
+        scrollTrigger:{trigger:'.boutique-info', start:'top 85%'},
+      });
+    }
+
+    /* ---- 9) Infos reveal ---- */
+    gsap.from('.info-block', {
+      y:40, opacity:0, duration:1, ease:'expo.out', stagger:0.12,
+      scrollTrigger:{trigger:'.infos', start:'top 85%'},
+    });
+
+    /* ---- 10) HW CTA reveal ---- */
+    gsap.from('.hw-cta > *', {
+      y:30, opacity:0, duration:1, ease:'expo.out', stagger:0.1,
+      scrollTrigger:{trigger:'.hw-cta', start:'top 80%'},
+    });
+  }
+
+  /* ============================================================
+     Newsletter form fallback démo
+     ============================================================ */
+  document.getElementById('newsletterForm')?.addEventListener('submit', e => {
+    e.preventDefault();
+    alert("Site de démonstration HectoWeb.\nSur votre vrai site, votre inscription serait enregistrée puis traitée par email.\n\nIntéressé par un site comme celui-ci ? info@hectoweb.ch");
+  });
+
+  /* ============================================================
+     Smooth anchor scroll (avec Lenis si dispo)
+     ============================================================ */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      if (lenis){
+        lenis.scrollTo(target, {offset:-60, duration:1.4});
+      } else {
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
+})();
 </script>
 </body>
 </html>
